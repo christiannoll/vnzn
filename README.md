@@ -1,1 +1,1 @@
-# vnzn
+# vnzn - iOS App
