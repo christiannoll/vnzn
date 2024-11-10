@@ -1,0 +1,22 @@
+import SwiftUI
+
+struct PostImage: View {
+    
+    let post: Item
+    
+    var body: some View {
+        AsyncImage(url: URL(string: "https://www.vnzn.de/images/" + post.data)) { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else if phase.error != nil {
+                Image(systemName: "photo")
+                    .font(.title)
+                    .foregroundStyle(.secondary)
+            } else {
+                ProgressView()
+            }
+        }
+    }
+}
