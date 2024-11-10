@@ -1,10 +1,3 @@
-//
-//  ItemDTO.swift
-//  TestMarkdown
-//
-//  Created by Christian on 14.10.24.
-//
-
 import Foundation
 
 public enum ItemType {

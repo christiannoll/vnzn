@@ -1,10 +1,3 @@
-//
-//  SafariView.swift
-//  TestMarkdown
-//
-//  Created by Christian on 24.09.24.
-//
-
 import SwiftUI
 import SafariServices
 

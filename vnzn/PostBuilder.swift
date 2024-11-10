@@ -1,10 +1,3 @@
-//
-//  PostBuilder.swift
-//  TestMarkdown
-//
-//  Created by Christian on 12.10.24.
-//
-
 import Foundation
 
 struct PostBuilder {

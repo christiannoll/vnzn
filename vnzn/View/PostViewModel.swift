@@ -1,10 +1,3 @@
-//
-//  PostViewModel.swift
-//  TestMarkdown
-//
-//  Created by Christian on 09.11.24.
-//
-
 import Foundation
 
 @Observable class PostViewModel {

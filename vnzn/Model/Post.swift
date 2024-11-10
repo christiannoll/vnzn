@@ -1,10 +1,3 @@
-//
-//  Post.swift
-//  TestMarkdown
-//
-//  Created by Christian on 13.10.24.
-//
-
 import Foundation
 import SwiftData
 

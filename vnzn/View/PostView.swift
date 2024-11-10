@@ -1,10 +1,3 @@
-//
-//  PostView.swift
-//  TestMarkdown
-//
-//  Created by Christian on 15.09.24.
-//
-
 import SwiftUI
 
 struct PostView: View {

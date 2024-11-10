@@ -1,10 +1,3 @@
-//
-//  NodeParser.swift
-//  TestMarkdown
-//
-//  Created by Christian on 01.11.24.
-//
-
 import Foundation
 
 struct NodeParser {

@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  TestMarkdown
-//
-//  Created by Christian on 19.08.24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
