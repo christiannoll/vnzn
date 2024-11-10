@@ -49,21 +49,26 @@ struct ContentView: View {
                         VStack(alignment: .center) {
                             HStack {
                                 Spacer()
-                                AsyncImage(url: URL(string: "https://www.vnzn.de/images/" + post.data)) { phase in
-                                    if let image = phase.image {
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                    } else if phase.error != nil {
-                                        Image(systemName: "photo")
-                                            .font(.title)
-                                            .foregroundStyle(.secondary)
-                                    } else {
-                                        ProgressView()
+                                Button {
+                                    selectedPost = post
+                                    path.append(post)
+                                } label: {
+                                    AsyncImage(url: URL(string: "https://www.vnzn.de/images/" + post.data)) { phase in
+                                        if let image = phase.image {
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } else if phase.error != nil {
+                                            Image(systemName: "photo")
+                                                .font(.title)
+                                                .foregroundStyle(.secondary)
+                                        } else {
+                                            ProgressView()
+                                        }
                                     }
+                                    .frame(width: 200, height: 200)
+                                    .padding(.top, 30)
                                 }
-                                .frame(width: 200, height: 200)
-                                .padding(.top, 30)
                                 Spacer()
                             }
                             Text(createPostDate(post)).foregroundStyle(.secondary)

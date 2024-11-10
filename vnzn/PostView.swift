@@ -29,16 +29,33 @@ struct PostView: View {
                 }
                 .padding(.top, 60)
                 .padding(.bottom, 20)
-                ForEach(nodeParser.parse(post.data), id: \.self) { nodes in
-                    if case .curlybraces(_) = nodes.first {
-                        Text(stringBuilder.parse(nodes))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                            .padding(.bottom, 4)
-                    } else {
-                        Text(stringBuilder.parse(nodes))
-                            .multilineTextAlignment(.leading)
+                if post.itemType() == .text {
+                    ForEach(nodeParser.parse(post.data), id: \.self) { nodes in
+                        if case .curlybraces(_) = nodes.first {
+                            Text(stringBuilder.parse(nodes))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity)
+                                .padding(.bottom, 4)
+                        } else {
+                            Text(stringBuilder.parse(nodes))
+                                .multilineTextAlignment(.leading)
+                        }
                     }
+                } else {
+                    AsyncImage(url: URL(string: "https://www.vnzn.de/images/" + post.data)) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } else if phase.error != nil {
+                            Image(systemName: "photo")
+                                .font(.title)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ProgressView()
+                        }
+                    }
+                    .frame(width: 300, height: 300)
                 }
                 HStack {
                     Text(createPostDate(post)).foregroundStyle(.secondary)
