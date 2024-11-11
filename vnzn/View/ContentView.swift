@@ -11,10 +11,20 @@ struct ContentView: View {
                 .tabItem {
                     if router.selectedTab == .timeline {
                         Label("Timeline", systemImage: "rectangle.stack.fill")
-                        } else {
-                            Label("Timeline", systemImage: "rectangle.stack")
-                        }
+                    } else {
+                        Label("Timeline", systemImage: "rectangle.stack")
                     }
-            .tag(Router.Tabs.timeline)        }
+                }
+                .tag(Router.Tabs.timeline)
+            IndexView()
+                .tabItem {
+                    if router.selectedTab == .index {
+                        Label("Index", systemImage: "book.pages.fill")
+                    } else {
+                        Label("Index", systemImage: "book.pages")
+                    }
+                }
+                .tag(Router.Tabs.index)
+        }
     }
 }
