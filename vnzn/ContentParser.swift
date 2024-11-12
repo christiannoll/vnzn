@@ -22,6 +22,14 @@ class ContentParser : NSObject, XMLParserDelegate {
         return items
     }
     
+    func parse(xmlString: String) -> [Item] {
+        let xmlData = xmlString.data(using: String.Encoding.utf8)!
+        let parser = XMLParser(data: xmlData)
+        parser.delegate = self;
+        parser.parse()
+        return items
+    }
+    
     func parser(_ parser: XMLParser,
                 didStartElement elementName: String,
                 namespaceURI: String?,

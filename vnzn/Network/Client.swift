@@ -24,19 +24,19 @@ class Client {
         }*/
     }
 
-    private func fetchData<T: Codable>(fromUrl: String) async throws -> [T] {
-        guard let downloadedData: [T] = await Client().downloadData(fromURL: fromUrl) else {return []}
+    func fetchData(fromUrl: String) async throws -> String {
+        guard let downloadedData: String = await Client().downloadData(fromURL: fromUrl) else {return ""}
 
         return downloadedData
     }
     
-    private func downloadData<T: Codable>(fromURL: String) async -> T? {
+    private func downloadData(fromURL: String) async -> String? {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse }
             guard response.statusCode >= 200 && response.statusCode < 300 else { throw NetworkError.badStatus }
-            guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data) else { throw NetworkError.failedToDecodeResponse }
+            guard let decodedResponse = String(data: data, encoding: .utf8) else { throw NetworkError.failedToDecodeResponse }
             
             return decodedResponse
         } catch NetworkError.badUrl {

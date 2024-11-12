@@ -77,6 +77,9 @@ struct TimelineView: View {
                 }
             }*/
             .scrollContentBackground(.hidden)
+            .task {
+                await model.fetchPosts(fromUrl: "https://www.vnzn.de/xml/content.xml")
+            }
         }
     }
     
