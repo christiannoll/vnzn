@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TimelineView: View {
     
-    private var model = PostViewModel()
+    @State private var model = PostViewModel()
     @State private var searchText = ""
     @State private var path = NavigationPath()
     @State private var selectedPost: Item? = nil
@@ -78,7 +78,9 @@ struct TimelineView: View {
             }*/
             .scrollContentBackground(.hidden)
             .task {
-                await model.fetchPosts(fromUrl: "https://www.vnzn.de/xml/content.xml")
+                if model.posts.isEmpty {
+                    await model.fetchPosts(fromUrl: "https://www.vnzn.de/xml/content.xml")
+                }
             }
         }
     }
