@@ -2,13 +2,12 @@ import SwiftUI
 
 struct TimelineView: View {
     
-    @State private var model = PostViewModel()
+    private var model = PostViewModel()
     @State private var searchText = ""
     @State private var path = NavigationPath()
     @State private var selectedPost: Item? = nil
     
     init() {
-        
     }
     
     var searchResults: [Item] {
