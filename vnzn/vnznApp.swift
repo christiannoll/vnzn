@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main
 struct vnznApp: App {
@@ -10,5 +11,6 @@ struct vnznApp: App {
             ContentView()
                 .environment(router)
         }
+        .modelContainer(appContainer)
     }
 }

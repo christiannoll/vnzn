@@ -6,8 +6,28 @@ let appContainer: ModelContainer = {
     do {
         let container = try ModelContainer(for: Post.self)
         
-        let post = Post(id: 0, title: "Hello")
+        /*let post = Post(id: 0, title: "Hello")
+        post.metaInfo.isFavourite = true
         container.mainContext.insert(post)
+        var postFetchDescriptor = FetchDescriptor<Post>()
+        var loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
+        
+        for loadedPost in loadedPosts {
+            print("id: \(loadedPost.id), title: \(loadedPost.title), isFavourite: \(loadedPost.metaInfo.isFavourite)")
+        }
+        
+        post.title = "Second"
+        try container.mainContext.save()*/
+        
+        var postFetchDescriptor = FetchDescriptor<Post>()
+        var loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
+        //loadedPosts.first?.title = "Mathe"
+        
+        
+        for loadedPost in loadedPosts {
+            print("id: \(loadedPost.id), title: \(loadedPost.title), isFavourite: \(loadedPost.metaInfo.isFavourite)")
+        }
+        //try container.mainContext.save()
         
         /*var itemFetchDescriptor = FetchDescriptor<Day>()
         
