@@ -17,9 +17,9 @@ final class Post {
     var persons: Set<String> = []
     var movies: Set<String> = []
     var books: Set<String> = []
-    @Relationship(deleteRule: .cascade, inverse: \MetaInfo.post) var metaInfo: MetaInfo
+    @Relationship(deleteRule: .cascade, inverse: \MetaInfo.post) var metaInfo: MetaInfo?
     
-    init(id: Int, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String>, indices: Set<String>, serials: Set<String>, links: [String : String], years: [Int], persons: Set<String>, movies: Set<String>, books: Set<String>, metaInfo: MetaInfo) {
+    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], metaInfo: MetaInfo? = nil) {
         self.id = id
         self.data = data
         self.name = name

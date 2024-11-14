@@ -6,6 +6,9 @@ let appContainer: ModelContainer = {
     do {
         let container = try ModelContainer(for: Post.self)
         
+        let post = Post(id: 0, title: "Hello")
+        container.mainContext.insert(post)
+        
         /*var itemFetchDescriptor = FetchDescriptor<Day>()
         
         let endDate = Date().getNextMonth()?.getNextMonth()?.noon
