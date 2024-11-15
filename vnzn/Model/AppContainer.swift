@@ -19,6 +19,17 @@ let appContainer: ModelContainer = {
         post.title = "Second"
         try container.mainContext.save()*/
         
+        let lastUpdateKey = "lastUpdate"
+        let lastUpdateFromServer = Date().timeIntervalSince1970
+        
+        let lastUpdateClient = UserDefaults.standard.double(forKey: lastUpdateKey)
+        if lastUpdateClient > 0 {
+            if lastUpdateFromServer > lastUpdateClient {
+                print("Need to update")
+            }
+        }
+        UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
+        
         var postFetchDescriptor = FetchDescriptor<Post>()
         var loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
         //loadedPosts.first?.title = "Mathe"
