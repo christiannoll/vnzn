@@ -20,6 +20,7 @@ public class Item: Identifiable, Hashable {
     }
     
     func itemType() -> ItemType { return .text }
+    func postType() -> PostType { return PostType.text }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -42,5 +43,9 @@ class ImagePost : Item {
     
     override func itemType() -> ItemType {
         .image
+    }
+    
+    override func postType() -> PostType {
+        PostType.image
     }
 }

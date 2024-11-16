@@ -1,20 +1,23 @@
 import SwiftUI
+import SwiftData
 
 struct TimelineView: View {
     
-    private var model = PostViewModel()
+    //private var model = PostViewModel()
     @State private var searchText = ""
     @State private var path = NavigationPath()
-    @State private var selectedPost: Item? = nil
+    @State private var selectedPost: Post? = nil
+    
+    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
     init() {
     }
     
-    var searchResults: [Item] {
+    var searchResults: [Post] {
         if searchText.isEmpty {
-            return model.posts
+            return posts
         } else {
-            return model.posts.filter { $0.data.contains(searchText) }
+            return posts.filter { $0.data.contains(searchText) }
         }
     }
 
@@ -22,7 +25,7 @@ struct TimelineView: View {
         NavigationStack(path: $path) {
             List {
                 ForEach (searchResults) { post in
-                    if post.itemType() == .text {
+                    if post.type == PostType.text {
                         Button {
                             selectedPost = post
                             path.append(post)
@@ -58,8 +61,8 @@ struct TimelineView: View {
                     }
                 }
             }
-            .navigationDestination(for: Item.self) { post in
-                PostView(post: post, model: model)
+            .navigationDestination(for: Post.self) { post in
+                PostView(post: post)
             }
             .searchable(text: $searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
@@ -76,19 +79,19 @@ struct TimelineView: View {
                 }
             }*/
             .scrollContentBackground(.hidden)
-            .task {
+            /*.task {
                 if model.posts.isEmpty {
                     await model.fetchPosts(fromUrl: "https://www.vnzn.de/xml/content.xml")
                 }
-            }
+            }*/
         }
     }
     
-    private func createPostDate(_ item: Item) -> String {
+    private func createPostDate(_ post: Post) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "dd MMM yyyy"
-        return dateFormatter.string(from: item.date!)
+        return dateFormatter.string(from: post.date!)
     }
 }
 

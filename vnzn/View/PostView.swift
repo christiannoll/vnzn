@@ -1,12 +1,15 @@
 import SwiftUI
+import SwiftData
 
 struct PostView: View {
     
-    @State var post: Item
+    @State var post: Post
     let postBuilder = PostBuilder()
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
-    let model: PostViewModel
+    //let model: PostViewModel
+    
+    @Query(sort: \Post.date) var posts: [Post]
 
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
@@ -22,7 +25,7 @@ struct PostView: View {
                 }
                 .padding(.top, 60)
                 .padding(.bottom, 20)
-                if post.itemType() == .text {
+                if post.type == .text {
                     ForEach(nodeParser.parse(post.data), id: \.self) { nodes in
                         if case .curlybraces(_) = nodes.first {
                             Text(stringBuilder.parse(nodes))
@@ -48,7 +51,7 @@ struct PostView: View {
             .padding(.horizontal)
             .environment(\.openURL, OpenURLAction { url in
                 if url.absoluteString.starts(with: "#") {
-                    if let foundPost = model.findPost(url: url) {
+                    if let foundPost = findPost(url: url) {
                         post = foundPost
                     }
                 } else {
@@ -67,29 +70,29 @@ struct PostView: View {
         }
     }
     
-    private func createPostDate(_ item: Item) -> String {
+    private func createPostDate(_ post: Post) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "dd MMM yyyy"
-        return dateFormatter.string(from: item.date!)
+        return dateFormatter.string(from: post.date!)
     }
     
-    private func createPostUrl(_ item: Item?) -> String {
-        guard let selectedItem = item else { return "https://www.vnzn.de/" }
+    private func createPostUrl(_ post: Post?) -> String {
+        guard let selectedPost = post else { return "https://www.vnzn.de/" }
         var url = "https://www.vnzn.de/"
         
-        url.append(createDatePath(selectedItem))
-        url.append(selectedItem.name.trimmingCharacters(in: .whitespacesAndNewlines))
+        url.append(createDatePath(selectedPost))
+        url.append(selectedPost.name.trimmingCharacters(in: .whitespacesAndNewlines))
         url.append("/")
         
         return url
     }
     
-    private func createDatePath(_ item: Item) -> String {
+    private func createDatePath(_ post: Post) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy/MM/dd/"
-        return dateFormatter.string(from: item.date!)
+        return dateFormatter.string(from: post.date!)
     }
 
     private func boldText(_ text: String) -> Text {
@@ -100,6 +103,14 @@ struct PostView: View {
         var attributedString = AttributedString(text + " ")
         attributedString.font = .body.bold()
         return Text(attributedString + attributedString)
+    }
+    
+    private func findPost(url: URL) -> Post? {
+        var foundPost: Post?
+        if let postUrl = URL(string: String(url.absoluteString.dropFirst())) {
+            foundPost = posts.first(where: { $0.name == postUrl.pathComponents.last! })
+        }
+        return foundPost
     }
 }
 

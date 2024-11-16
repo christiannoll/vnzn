@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PostImage: View {
     
-    let post: Item
+    let post: Post
     
     var body: some View {
         AsyncImage(url: URL(string: "https://www.vnzn.de/images/" + post.data)) { phase in

@@ -1,25 +1,31 @@
 import Foundation
 import SwiftData
 
+public enum PostType: Int, Codable, CodingKey {
+    case text
+    case image
+}
+
 @Model
 final class Post {
     
     @Attribute(.unique) var id: Int
-    var data = ""
-    var name = ""
-    var title = ""
+    var data: String
+    var name: String
+    var title: String
     var date: Date?
-    var tags: Set<String> = []
-    var indices: Set<String> = []
-    var serials: Set<String> = []
-    var links: [String: String] = [:]
-    var years: [Int] = []
-    var persons: Set<String> = []
-    var movies: Set<String> = []
-    var books: Set<String> = []
+    var tags: Set<String>
+    var indices: Set<String>
+    var serials: Set<String>
+    var links: [String: String]
+    var years: [Int]
+    var persons: Set<String>
+    var movies: Set<String>
+    var books: Set<String>
+    var type: PostType
     @Relationship(deleteRule: .cascade, inverse: \MetaInfo.post) var metaInfo: MetaInfo
     
-    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], metaInfo: MetaInfo = .init()) {
+    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, metaInfo: MetaInfo = .init()) {
         self.id = id
         self.data = data
         self.name = name
@@ -33,6 +39,7 @@ final class Post {
         self.persons = persons
         self.movies = movies
         self.books = books
+        self.type = type
         self.metaInfo = metaInfo
     }
 }

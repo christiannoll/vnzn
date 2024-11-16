@@ -19,12 +19,4 @@ import Foundation
             print(error)
         }
     }
-    
-    func findPost(url: URL) -> Item? {
-        var foundPost: Item?
-        if let postUrl = URL(string: String(url.absoluteString.dropFirst())) {
-            foundPost = posts.first(where: { $0.name == postUrl.pathComponents.last! })
-        }
-        return foundPost
-    }
 }
