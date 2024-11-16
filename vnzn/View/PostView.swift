@@ -72,19 +72,15 @@ struct PostView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 VStack {
                     Button {
-                        post.metaInfo.isFavourite.toggle()
+                        post.isFavourite.toggle()
+                        try? modelContext.save()
                     } label: {
-                        Image(systemName: post.metaInfo.isFavourite ? "star.fill" : "star")
+                        Image(systemName: post.isFavourite ? "star.fill" : "star")
                             .foregroundStyle(Color.accentColor)
                     }
                     Spacer()
                 }
                 .padding(.trailing, 16)
-            }
-        }
-        .onDisappear {
-            if modelContext.hasChanges {
-                try? modelContext.save()
             }
         }
     }

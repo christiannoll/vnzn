@@ -23,9 +23,9 @@ final class Post {
     var movies: Set<String>
     var books: Set<String>
     var type: PostType
-    @Relationship(deleteRule: .cascade, inverse: \MetaInfo.post) var metaInfo: MetaInfo
+    var isFavourite: Bool
     
-    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, metaInfo: MetaInfo = .init()) {
+    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, isFavourite: Bool = false) {
         self.id = id
         self.data = data
         self.name = name
@@ -40,6 +40,6 @@ final class Post {
         self.movies = movies
         self.books = books
         self.type = type
-        self.metaInfo = metaInfo
+        self.isFavourite = isFavourite
     }
 }
