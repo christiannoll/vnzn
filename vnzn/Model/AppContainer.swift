@@ -19,16 +19,19 @@ let appContainer: ModelContainer = {
         post.title = "Second"
         try container.mainContext.save()*/
         
-        let lastUpdateKey = "lastUpdate"
-        let lastUpdateFromServer = Date().timeIntervalSince1970
         
-        let lastUpdateClient = UserDefaults.standard.double(forKey: lastUpdateKey)
-        if lastUpdateClient > 0 {
-            if lastUpdateFromServer > lastUpdateClient {
-                print("Need to update")
+        Task {
+            let lastUpdateKey = "lastUpdate"
+            let lastUpdateFromServer = await fetchLastUpdate()
+            
+            
+            let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
+            if lastUpdateFromServer > lastUpdateLocal {
+                let updateService = UpdateService()
+                await updateService.update(container: container)
+                UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
             }
         }
-        UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
         
         var postFetchDescriptor = FetchDescriptor<Post>()
         var loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
@@ -78,3 +81,18 @@ let appContainer: ModelContainer = {
         fatalError("Failed to create container")
     }
 }()
+
+func fetchLastUpdate() async -> Double {
+    do {
+        let fromUrl = "https://www.vnzn.de/app/last_update.txt"
+        let dateString = try await Client().fetchData(fromUrl: fromUrl)
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = currentDateFormatter.date(from:dateString) {
+            return date.timeIntervalSince1970
+        }
+    } catch {
+        print(error)
+    }
+    return 0
+}
