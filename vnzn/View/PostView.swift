@@ -7,7 +7,6 @@ struct PostView: View {
     let postBuilder = PostBuilder()
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
-    //let model: PostViewModel
     
     @Query(sort: \Post.date) var posts: [Post]
 

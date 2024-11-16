@@ -3,7 +3,6 @@ import SwiftData
 
 struct TimelineView: View {
     
-    //private var model = PostViewModel()
     @State private var searchText = ""
     @State private var path = NavigationPath()
     @State private var selectedPost: Post? = nil
@@ -79,11 +78,6 @@ struct TimelineView: View {
                 }
             }*/
             .scrollContentBackground(.hidden)
-            /*.task {
-                if model.posts.isEmpty {
-                    await model.fetchPosts(fromUrl: "https://www.vnzn.de/xml/content.xml")
-                }
-            }*/
         }
     }
     
