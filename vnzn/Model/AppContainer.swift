@@ -84,7 +84,7 @@ let appContainer: ModelContainer = {
 
 func fetchLastUpdate() async -> Double {
     do {
-        let fromUrl = "https://www.vnzn.de/app/last_update.txt"
+        let fromUrl = VnznEnv.baseUrl + "app/last_update.txt"
         let dateString = try await Client().fetchData(fromUrl: fromUrl)
         let currentDateFormatter = DateFormatter()
         currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

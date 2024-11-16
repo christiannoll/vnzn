@@ -7,7 +7,7 @@ struct UpdateService {
     
     @MainActor
     func update(container: ModelContainer) async throws {
-        let items = await fetchItems(fromUrl: "https://www.vnzn.de/xml/content.xml")
+        let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
         for item in items {
             let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType())
             container.mainContext.insert(post)

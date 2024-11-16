@@ -78,8 +78,8 @@ struct PostView: View {
     }
     
     private func createPostUrl(_ post: Post?) -> String {
-        guard let selectedPost = post else { return "https://www.vnzn.de/" }
-        var url = "https://www.vnzn.de/"
+        guard let selectedPost = post else { return VnznEnv.baseUrl }
+        var url = VnznEnv.baseUrl
         
         url.append(createDatePath(selectedPost))
         url.append(selectedPost.name.trimmingCharacters(in: .whitespacesAndNewlines))
