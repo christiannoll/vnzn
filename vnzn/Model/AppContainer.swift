@@ -33,14 +33,14 @@ let appContainer: ModelContainer = {
             }
         }
         
-        var postFetchDescriptor = FetchDescriptor<Post>()
+        /*var postFetchDescriptor = FetchDescriptor<Post>()
         var loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
-        //loadedPosts.first?.title = "Mathe"
+        loadedPosts.first?.title = "Mathe"
         
         
         for loadedPost in loadedPosts {
             print("id: \(loadedPost.id), title: \(loadedPost.title), isFavourite: \(loadedPost.metaInfo.isFavourite)")
-        }
+        }*/
         //try container.mainContext.save()
         
         /*var itemFetchDescriptor = FetchDescriptor<Day>()

@@ -9,6 +9,7 @@ struct PostView: View {
     let nodeParser = NodeParser()
     
     @Query(sort: \Post.date) var posts: [Post]
+    @Environment(\.modelContext) private var modelContext
 
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
@@ -65,6 +66,25 @@ struct PostView: View {
                 if let urlToOpen {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                VStack {
+                    Button {
+                        post.metaInfo.isFavourite.toggle()
+                    } label: {
+                        Image(systemName: post.metaInfo.isFavourite ? "star.fill" : "star")
+                            .foregroundStyle(Color.accentColor)
+                    }
+                    Spacer()
+                }
+                .padding(.trailing, 16)
+            }
+        }
+        .onDisappear {
+            if modelContext.hasChanges {
+                try? modelContext.save()
             }
         }
     }
