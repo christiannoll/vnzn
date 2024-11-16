@@ -28,7 +28,7 @@ let appContainer: ModelContainer = {
             let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
             if lastUpdateFromServer > lastUpdateLocal {
                 let updateService = UpdateService()
-                await updateService.update(container: container)
+                try await updateService.update(container: container)
                 UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
             }
         }

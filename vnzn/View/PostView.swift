@@ -96,9 +96,9 @@ struct PostView: View {
     }
 
     private func boldText(_ text: String) -> Text {
-        let integers = (0...3)
+        /*let integers = (0...3)
         _ = integers.publisher
-                .sink { print("Received \($0)") }
+                .sink { print("Received \($0)") }*/
         
         var attributedString = AttributedString(text + " ")
         attributedString.font = .body.bold()
