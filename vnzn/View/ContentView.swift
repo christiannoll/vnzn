@@ -16,12 +16,22 @@ struct ContentView: View {
                     }
                 }
                 .tag(Router.Tabs.timeline)
+            FavouritesView()
+                .tabItem {
+                    if router.selectedTab == .favourites {
+                        Label("Favourites", systemImage: "star.fill")
+                    } else {
+                        Label("Favourites", systemImage: "star")
+                    }
+                }
+                .tag(Router.Tabs.favourites)
             IndexView()
                 .tabItem {
                     if router.selectedTab == .index {
-                        Label("Index", systemImage: "book.pages.fill")
+                        Label("Index", systemImage: "list.bullet")
+                            .foregroundStyle(Color.accentColor)
                     } else {
-                        Label("Index", systemImage: "book.pages")
+                        Label("Index", systemImage: "list.bullet")
                     }
                 }
                 .tag(Router.Tabs.index)

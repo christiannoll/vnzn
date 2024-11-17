@@ -4,6 +4,7 @@ import Foundation
     
     enum Tabs: Hashable {
         case timeline
+        case favourites
         case index
     }
     
