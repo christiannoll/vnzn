@@ -1,17 +1,27 @@
 import Foundation
 import SwiftData
 
-struct UpdateService {
+class UpdateService {
     
     let contentParser = ContentParser()
+    var loadedPosts: [Post] = []
     
     @MainActor
     func update(container: ModelContainer) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
+        
+        let postFetchDescriptor = FetchDescriptor<Post>()
+        loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
+        
         for item in items {
-            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType())
+            var isFavourite = false
+            if let loadedPost = loadedPost(item) {
+                isFavourite = loadedPost.isFavourite
+            }
+            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), isFavourite: isFavourite)
             container.mainContext.insert(post)
         }
+        
         try container.mainContext.save()
     }
     
@@ -19,11 +29,14 @@ struct UpdateService {
         do {
             let xmlString = try await Client().fetchData(fromUrl: fromUrl)
             let items = contentParser.parse(xmlString: xmlString)
-            //items.sort { $0.date! > $1.date! }
             return items
         } catch {
             print(error)
             return []
         }
+    }
+    
+    private func loadedPost(_ item: Item) -> Post? {
+        loadedPosts.first  { $0.id == item.id }
     }
 }
