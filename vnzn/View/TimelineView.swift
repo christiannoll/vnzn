@@ -7,10 +7,9 @@ struct TimelineView: View {
     @State private var path = NavigationPath()
     @State private var selectedPost: Post? = nil
     
-    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
+    let onlyFavourites: Bool
     
-    init() {
-    }
+    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
     var searchResults: [Post] {
         if searchText.isEmpty {
@@ -23,7 +22,7 @@ struct TimelineView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                ForEach (searchResults) { post in
+                ForEach (searchResults.filter { shouldInclude($0) }) { post in
                     if post.type == PostType.text {
                         Button {
                             selectedPost = post
@@ -68,15 +67,6 @@ struct TimelineView: View {
             .navigationTitle("v.n.z.n")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.blue)
-            /*.toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    Image(systemName: "folder")
-                }
-                
-                ToolbarItem(placement: .bottomBar) {
-                    Image(systemName: "message")
-                }
-            }*/
             .scrollContentBackground(.hidden)
         }
     }
@@ -86,6 +76,13 @@ struct TimelineView: View {
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "dd MMM yyyy"
         return dateFormatter.string(from: post.date!)
+    }
+    
+    private func shouldInclude(_ post: Post) -> Bool {
+        if onlyFavourites && !post.isFavourite {
+            return false
+        }
+        return true
     }
 }
 
