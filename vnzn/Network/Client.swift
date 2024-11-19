@@ -33,7 +33,11 @@ class Client {
     private func downloadData(fromURL: String) async -> String? {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }
-            let (data, response) = try await URLSession.shared.data(from: url)
+            let configuration = URLSessionConfiguration.default
+            //configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+            let urlSession = URLSession(configuration: configuration)
+            
+            let (data, response) = try await urlSession.data(from: url)
             guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse }
             guard response.statusCode >= 200 && response.statusCode < 300 else { throw NetworkError.badStatus }
             guard let decodedResponse = String(data: data, encoding: .utf8) else { throw NetworkError.failedToDecodeResponse }
