@@ -1,6 +1,11 @@
 import Foundation
 
-public class Item: Identifiable, Hashable {
+enum ItemType {
+    case text
+    case image
+}
+
+class Item: Identifiable, Hashable {
     public let id: Int
     var data = ""
     var name = ""
