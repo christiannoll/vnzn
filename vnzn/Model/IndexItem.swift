@@ -1,6 +1,6 @@
 import Foundation
 
-class IndexItem: Identifiable {
+class IndexItem: Identifiable, Hashable {
     
     private let _key: String
     private var posts: [Post] = []
@@ -24,4 +24,14 @@ class IndexItem: Identifiable {
     func addPost(_ post: Post) {
         posts.append(post)
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(key)
+    }
+}
+
+extension IndexItem: Equatable {}
+
+func ==(lhs: IndexItem, rhs: IndexItem) -> Bool {
+    lhs.key == rhs.key
 }

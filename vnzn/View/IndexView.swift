@@ -21,13 +21,22 @@ struct IndexView: View {
         NavigationStack(path: $path) {
             List {
                 ForEach(searchResults) { indexItem in
-                    Text(indexItem.linkTitle)
+                    Button {
+                        path.append(indexItem)
+                    } label: {
+                        Text(indexItem.linkTitle)
+                    }
                 }
             }
             .task {
-                await index.createIndex(posts)
+                if index.indexItems.isEmpty {
+                    await index.createIndex(posts)
+                }
+            }
+            .searchable(text: $searchText, prompt: "Index durchsuchen")
+            .navigationDestination(for: IndexItem.self) { indexItem in
+                IndexItemView(indexItem: indexItem)
             }
         }
-        .searchable(text: $searchText, prompt: "Index durchsuchen")
     }
 }
