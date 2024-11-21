@@ -35,6 +35,15 @@ struct ContentView: View {
                     }
                 }
                 .tag(Router.Tabs.index)
+            TagsView()
+                .tabItem {
+                    if router.selectedTab == .tags {
+                        Label("Tags", systemImage: "tag.fill")
+                    } else {
+                        Label("Tags", systemImage: "tag")
+                    }
+                }
+                .tag(Router.Tabs.tags)
         }
     }
 }

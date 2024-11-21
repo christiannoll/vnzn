@@ -6,6 +6,7 @@ import Foundation
         case timeline
         case favourites
         case index
+        case tags
     }
     
     var selectedTab = Tabs.timeline
