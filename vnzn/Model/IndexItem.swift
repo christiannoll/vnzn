@@ -3,7 +3,7 @@ import Foundation
 class IndexItem: Identifiable, Hashable {
     
     private let _key: String
-    private var posts: [Post] = []
+    var posts: [Post] = []
     
     var key: String {
         get { return _key }

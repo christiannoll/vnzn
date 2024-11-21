@@ -2,9 +2,19 @@ import SwiftUI
 
 struct IndexItemView: View {
     
-    let indexItem: IndexItem
+    let posts: [Post]
+    @Binding var path: NavigationPath
+    @State private var selectedPost: Post? = nil
     
     var body: some View {
-        Text(indexItem.linkTitle)
+        List {
+            ForEach (posts) { post in
+                PostRow(post: post, selectedPost: $selectedPost, path: $path)
+            }
+        }
+        .navigationDestination(for: Post.self) { post in
+            PostView(post: post)
+        }
+        .scrollContentBackground(.hidden)
     }
 }

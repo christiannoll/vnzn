@@ -35,8 +35,9 @@ struct IndexView: View {
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")
             .navigationDestination(for: IndexItem.self) { indexItem in
-                IndexItemView(indexItem: indexItem)
+                IndexItemView(posts: indexItem.posts, path: $path)
             }
+            .scrollContentBackground(.hidden)
         }
     }
 }
