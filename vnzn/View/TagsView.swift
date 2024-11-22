@@ -1,11 +1,43 @@
 import SwiftUI
+import SwiftData
 
 struct TagsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    @State private var searchText = ""
+    @State private var path = NavigationPath()
+    
+    private var tags = Tags()
+    @Query(sort: \Post.date) var posts: [Post]
+    
+    var searchResults: [TagItem] {
+        if searchText.isEmpty {
+            return tags.tagItems
+        } else {
+            return tags.tagItems.filter { $0.key.contains(searchText) }
+        }
     }
-}
-
-#Preview {
-    TagsView()
+    
+    var body: some View {
+        NavigationStack(path: $path) {
+            List {
+                ForEach(searchResults) { tagItem in
+                    Button {
+                        path.append(tagItem)
+                    } label: {
+                        Text(tagItem.tagTitle)
+                    }
+                }
+            }
+            .task {
+                if tags.tagItems.isEmpty {
+                    await tags.createTags(posts)
+                }
+            }
+            .searchable(text: $searchText, prompt: "Kategorien durchsuchen")
+            .navigationDestination(for: TagItem.self) { tagItem in
+                TagItemView(posts: tagItem.posts, path: $path)
+            }
+            .scrollContentBackground(.hidden)
+        }
+    }
 }

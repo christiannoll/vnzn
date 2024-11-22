@@ -38,9 +38,9 @@ struct ContentView: View {
             TagsView()
                 .tabItem {
                     if router.selectedTab == .tags {
-                        Label("Tags", systemImage: "tag.fill")
+                        Label("Kategorien", systemImage: "tag.fill")
                     } else {
-                        Label("Tags", systemImage: "tag")
+                        Label("Kategorien", systemImage: "tag")
                     }
                 }
                 .tag(Router.Tabs.tags)
