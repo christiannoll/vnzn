@@ -31,6 +31,10 @@ class Tags {
         sort()
     }
     
+    func getTagItem(_ key: String) -> TagItem? {
+        tagItems.first { $0.key == key }
+    }
+    
     fileprivate func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
         for tag in post.tags {

@@ -28,7 +28,7 @@ struct TimelineView: View {
                 }
             }
             .navigationDestination(for: Post.self) { post in
-                PostView(post: post)
+                PostView(post: post, path: $path)
             }
             .searchable(text: $searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)

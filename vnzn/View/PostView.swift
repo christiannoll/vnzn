@@ -4,11 +4,13 @@ import SwiftData
 struct PostView: View {
     
     @State var post: Post
+    @Binding var path: NavigationPath
     let postBuilder = PostBuilder()
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
     
     @Query(sort: \Post.date) var posts: [Post]
+    @Environment(Tags.self) var tags: Tags
     @Environment(\.modelContext) private var modelContext
 
     @State private var isSafariPresented = false
@@ -46,6 +48,20 @@ struct PostView: View {
                     Spacer()
                 }
                 .padding(.top, 6)
+                HStack {
+                    ForEach(post.tags.map { $0 }, id: \.self) { tag in
+                        Button {
+                            if let tagItem = tags.getTagItem(tag) {
+                                path.append(tagItem)
+                            }
+                        } label: {
+                            Text("#" + tag + " ")
+                                .foregroundStyle(Color.accentColor)
+                                .font(.footnote)
+                        }
+                    }
+                }
+                .padding(.top, 6)
                 Spacer()
             }
             .padding(.horizontal)
@@ -66,6 +82,9 @@ struct PostView: View {
                 if let urlToOpen {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
+            }
+            .navigationDestination(for: TagItem.self) { tagItem in
+                TagItemView(posts: tagItem.posts, path: $path)
             }
         }
         .toolbar {

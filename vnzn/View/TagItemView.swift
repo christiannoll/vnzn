@@ -13,7 +13,7 @@ struct TagItemView: View {
             }
         }
         .navigationDestination(for: Post.self) { post in
-            PostView(post: post)
+            PostView(post: post, path: $path)
         }
         .scrollContentBackground(.hidden)
     }
