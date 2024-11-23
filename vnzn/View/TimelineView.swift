@@ -9,6 +9,7 @@ struct TimelineView: View {
     
     let onlyFavourites: Bool
     
+    @Environment(Tags.self) var tags: Tags
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
     var searchResults: [Post] {
@@ -35,6 +36,11 @@ struct TimelineView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.blue)
             .scrollContentBackground(.hidden)
+            .task {
+                if tags.tagItems.isEmpty {
+                    await tags.createTags(posts)
+                }
+            }
         }
     }
     

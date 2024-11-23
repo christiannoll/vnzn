@@ -6,7 +6,7 @@ struct TagsView: View {
     @State private var searchText = ""
     @State private var path = NavigationPath()
     
-    private var tags = Tags()
+    @Environment(Tags.self) var tags: Tags
     @Query(sort: \Post.date) var posts: [Post]
     
     var searchResults: [TagItem] {
