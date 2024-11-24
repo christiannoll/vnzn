@@ -87,6 +87,10 @@ struct PostView: View {
                 TagItemView(posts: tagItem.posts, path: $path)
             }
         }
+        .onAppear {
+            modelContext.insert(HistoryItem(date: Date(), post: post))
+            try? modelContext.save()
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 VStack {

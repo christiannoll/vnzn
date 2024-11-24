@@ -1,9 +1,21 @@
 import SwiftUI
+import SwiftData
 
 struct HistoryView: View {
     
+    @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                ForEach(items) { item in
+                    HStack {
+                        Text(item.post?.title ?? "")
+                        Text(item.date?.description ?? "")
+                    }
+                }
+            }
+        }
     }
 }
 
