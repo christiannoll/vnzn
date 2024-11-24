@@ -44,6 +44,15 @@ struct ContentView: View {
                     }
                 }
                 .tag(Router.Tabs.tags)
+            HistoryView()
+                .tabItem {
+                    if router.selectedTab == .history {
+                        Label("Verlauf", systemImage: "clock.fill")
+                    } else {
+                        Label("Verlauf", systemImage: "clock")
+                    }
+                }
+                .tag(Router.Tabs.history)
         }
     }
 }

@@ -4,7 +4,7 @@ import SwiftData
 @MainActor
 let appContainer: ModelContainer = {
     do {
-        let container = try ModelContainer(for: Post.self)
+        let container = try ModelContainer(for: Post.self, HistoryItem.self)
         
         Task {
             let lastUpdateKey = "lastUpdate"
