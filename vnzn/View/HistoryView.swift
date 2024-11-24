@@ -17,10 +17,13 @@ struct HistoryView: View {
                     } label: {
                         HStack {
                             Text(item.post?.title ?? "")
-                            Text(item.date?.description ?? "")
+                            Spacer()
+                            Text(createPostDate(item.date))
                         }
                     }
                     .buttonStyle(.plain)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }
             .navigationDestination(for: Post.self) { post in
@@ -43,6 +46,17 @@ struct HistoryView: View {
             try modelContext.delete(model: HistoryItem.self)
         } catch {
             print("Failed to delete all schools.")
+        }
+    }
+    
+    private func createPostDate(_ date: Date?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        if let date {
+            return dateFormatter.string(from: date)
+        } else {
+            return ""
         }
     }
 }
