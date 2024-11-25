@@ -26,6 +26,8 @@ class Item: Identifiable, Hashable {
     
     func itemType() -> ItemType { return .text }
     func postType() -> PostType { return PostType.text }
+    func textFormat() -> String { return "" }
+    
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -40,6 +42,10 @@ extension Item: Equatable {
 
 class TextPost: Item {
     var format = "normal"
+    
+    override func textFormat() -> String {
+        format
+    }
 }
 
 class ImagePost : Item {

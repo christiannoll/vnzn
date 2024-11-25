@@ -18,7 +18,7 @@ class UpdateService {
             if let loadedPost = loadedPost(item) {
                 isFavourite = loadedPost.isFavourite
             }
-            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), isFavourite: isFavourite)
+            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: isFavourite)
             container.mainContext.insert(post)
         }
         
