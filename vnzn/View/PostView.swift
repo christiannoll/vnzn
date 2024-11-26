@@ -30,12 +30,12 @@ struct PostView: View {
                 if post.type == .text {
                     ForEach(nodeParser.parse(post.data), id: \.self) { nodes in
                         if case .curlybraces(_) = nodes.first {
-                            Text(stringBuilder.parse(nodes))
+                            Text(stringBuilder.parse(nodes, post))
                                 .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity)
                                 .padding(.bottom, 4)
                         } else {
-                            Text(stringBuilder.parse(nodes))
+                            Text(stringBuilder.parse(nodes, post))
                                 .multilineTextAlignment(.leading)
                         }
                     }

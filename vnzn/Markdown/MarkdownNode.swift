@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 public enum MarkdownNode : Hashable {
     case linebreak
@@ -10,7 +11,7 @@ public enum MarkdownNode : Hashable {
     case bold([MarkdownNode])
     case italic([MarkdownNode])
     case code([MarkdownNode])
-    case color(String, [MarkdownNode])
+    case color(Color, [MarkdownNode])
     case parenthesis([MarkdownNode])
     case brackets([MarkdownNode])
     case curlybraces([MarkdownNode])

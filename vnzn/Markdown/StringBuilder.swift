@@ -1,12 +1,20 @@
 import Foundation
+import SwiftUI
 
 class StringBuilder {
     
     private var firstListElement = false
     private var afterLinebreak = false
     private var oListNumber = 1
+    private var currentTextColor: Color?
     
-    func parse(_ markdownNodes: [MarkdownNode]) -> AttributedString {
+    func parse(_ markdownNodes: [MarkdownNode], _ post: Post) -> AttributedString {
+        let formatBuilder = FormatBuilder()
+        let nodes = formatBuilder.parse(markdownNodes, post)
+        return parse(nodes)
+    }
+    
+    private func parse(_ markdownNodes: [MarkdownNode]) -> AttributedString {
         var s = AttributedString()
         for markDownNode in markdownNodes {
             switch markDownNode {
@@ -20,7 +28,11 @@ class StringBuilder {
                 if afterLinebreak {
                     s.append(AttributedString(text.drop(while: { $0.isWhitespace })))
                 } else {
-                    s.append(AttributedString(text))
+                    var attributedString = AttributedString(text)
+                    if let currentTextColor {
+                        attributedString.foregroundColor = currentTextColor
+                    }
+                    s.append(attributedString)
                 }
             case .bold(let nodes):
                 //s.append(AttributedString("<strong>"))
@@ -39,9 +51,9 @@ class StringBuilder {
                 code.font = .body.monospaced()
                 s.append(code)
             case .color(let color, let nodes):
-                s.append(AttributedString("<span style=\"color:" + color + "\">"))
+                currentTextColor = color
                 s.append(parse(nodes))
-                s.append(AttributedString("</span>"))
+                currentTextColor = nil
             case .parenthesis(let nodes):
                 s.append(AttributedString("("))
                 s.append(parse(nodes))
