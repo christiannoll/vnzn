@@ -88,8 +88,7 @@ struct PostView: View {
             }
         }
         .onAppear {
-            modelContext.insert(HistoryItem(date: Date(), post: post))
-            try? modelContext.save()
+            SwiftDataService.shared.saveHistoryItem(post: post)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

@@ -7,6 +7,11 @@ struct vnznApp: App {
     private var router = Router()
     private var index = Index()
     private var tags = Tags()
+    private var modelContainer = createAppContainer()
+    
+    init() {
+        SwiftDataService.shared.setup(modelContext: modelContainer.mainContext)
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -15,6 +20,6 @@ struct vnznApp: App {
                 .environment(index)
                 .environment(tags)
         }
-        .modelContainer(appContainer)
+        .modelContainer(modelContainer)
     }
 }

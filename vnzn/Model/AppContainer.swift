@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-let appContainer: ModelContainer = {
+func createAppContainer() -> ModelContainer {
     do {
         let container = try ModelContainer(for: Post.self, HistoryItem.self)
         
@@ -23,7 +23,7 @@ let appContainer: ModelContainer = {
     } catch {
         fatalError("Failed to create container")
     }
-}()
+}
 
 func fetchLastUpdate() async -> Double {
     do {
