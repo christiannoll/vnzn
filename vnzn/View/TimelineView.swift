@@ -6,8 +6,7 @@ struct TimelineView: View {
     @State private var searchText = ""
     @State private var path = NavigationPath()
     @State private var selectedPost: Post? = nil
-    
-    let onlyFavourites: Bool
+    @State private var onlyFavourites = false
     
     @Environment(Tags.self) var tags: Tags
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
@@ -39,6 +38,20 @@ struct TimelineView: View {
             .task {
                 if tags.tagItems.isEmpty {
                     await tags.createTags(posts)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    VStack {
+                        Button {
+                            onlyFavourites.toggle()
+                        } label: {
+                            Image(systemName: onlyFavourites ? "star.fill" : "star")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        Spacer()
+                    }
+                    .padding(.trailing, 16)
                 }
             }
         }

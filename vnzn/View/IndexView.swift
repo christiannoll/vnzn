@@ -26,6 +26,8 @@ struct IndexView: View {
                     } label: {
                         Text(indexItem.linkTitle)
                     }
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }
             .task {
@@ -38,6 +40,8 @@ struct IndexView: View {
                 IndexItemView(posts: indexItem.posts, path: $path)
             }
             .scrollContentBackground(.hidden)
+            .navigationTitle("Index")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
