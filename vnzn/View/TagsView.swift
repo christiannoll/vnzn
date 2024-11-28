@@ -26,6 +26,8 @@ struct TagsView: View {
                     } label: {
                         Text(tagItem.tagTitle)
                     }
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
                 }
             }
             .task {
@@ -37,6 +39,8 @@ struct TagsView: View {
             .navigationDestination(for: TagItem.self) { tagItem in
                 TagItemView(posts: tagItem.posts, path: $path)
             }
+            .navigationTitle("Kategorien")
+            .navigationBarTitleDisplayMode(.inline)
             .scrollContentBackground(.hidden)
         }
     }
