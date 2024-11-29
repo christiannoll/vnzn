@@ -93,12 +93,18 @@ struct PostView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 VStack {
-                    Button {
-                        post.isFavourite.toggle()
-                        try? modelContext.save()
-                    } label: {
-                        Image(systemName: post.isFavourite ? "star.fill" : "star")
-                            .foregroundStyle(Color.accentColor)
+                    HStack {
+                        Button {
+                            post.isFavourite.toggle()
+                            try? modelContext.save()
+                        } label: {
+                            Image(systemName: post.isFavourite ? "star.fill" : "star")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        ShareLink(item: URL(string: "https://www.vnzn.de")!) {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundStyle(Color.accentColor)
+                        }
                     }
                     Spacer()
                 }
