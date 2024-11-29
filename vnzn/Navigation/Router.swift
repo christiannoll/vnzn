@@ -7,6 +7,7 @@ import Foundation
         case index
         case tags
         case history
+        case meta
     }
     
     var selectedTab = Tabs.timeline
