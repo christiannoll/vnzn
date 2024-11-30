@@ -5,14 +5,9 @@ class Tags {
     
     var tagItems: [TagItem] = []
     
-    /*var tagItems: [TagItem] {
-        get { return _tagItems }
-    }*/
-    
     var numberOfTagItems: Int {
         tagItems.count
     }
-    
     
     func sort() {
         tagItems.sort { $0.key < $1.key }
@@ -35,7 +30,7 @@ class Tags {
         tagItems.first { $0.key == key }
     }
     
-    fileprivate func getTagItems(_ post: Post) async -> [TagItem] {
+    internal func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
         for tag in post.tags {
             var found = false

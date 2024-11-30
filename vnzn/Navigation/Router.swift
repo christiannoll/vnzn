@@ -11,5 +11,5 @@ import Foundation
     }
     
     var selectedTab = Tabs.timeline
-    var postNavigationPath = [NavigationState]()
+    var metaNavigationPath = [NavigationState]()
 }
