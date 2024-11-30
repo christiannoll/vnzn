@@ -7,12 +7,14 @@ struct MetaView: View {
     @Environment(Serials.self) var serials: Serials
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
+    @State private var path = NavigationPath()
+
     var body: some View {
         @Bindable var router = router
-        NavigationStack(path: $router.metaNavigationPath) {
+        NavigationStack(path: $path) {
             List {
                 Button {
-                    router.metaNavigationPath.append(.serials)
+                    path.append(NavigationState.serials)
                 } label: {
                     Text("Serien")
                 }
@@ -24,7 +26,7 @@ struct MetaView: View {
             }
             .navigationDestination(for: NavigationState.self) { navState in
                 if case .serials = navState {
-                    SerialsView(serials: serials)
+                    SerialsView(path: $path, serials: serials)
                 }
             }
             .navigationTitle("Meta")
