@@ -3,14 +3,12 @@ import SwiftData
 
 struct MetaView: View {
 
-    @Environment(Router.self) var router: Router
     @Environment(Serials.self) var serials: Serials
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     @State private var path = NavigationPath()
 
     var body: some View {
-        @Bindable var router = router
         NavigationStack(path: $path) {
             List {
                 Button {
