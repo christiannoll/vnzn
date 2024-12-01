@@ -12,7 +12,7 @@ struct MetaView: View {
         NavigationStack(path: $path) {
             List {
                 Button {
-                    path.append(NavigationState.serials)
+                    path.append(NavigationTarget.serials)
                 } label: {
                     Text("Serien")
                 }
@@ -22,7 +22,7 @@ struct MetaView: View {
                     await serials.createSerials(posts)
                 }
             }
-            .navigationDestination(for: NavigationState.self) { navState in
+            .navigationDestination(for: NavigationTarget.self) { navState in
                 if case .serials = navState {
                     SerialsView(path: $path, serials: serials)
                 }
