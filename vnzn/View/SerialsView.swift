@@ -6,10 +6,8 @@ struct SerialsView: View {
     @State private var searchText = ""
 
     @Query(sort: \Post.date) var posts: [Post]
-
     @Binding var path: NavigationPath
-
-    let serials: Serials
+    @Environment(Serials.self) var serials: Serials
 
     var searchResults: [TagItem] {
         if searchText.isEmpty {

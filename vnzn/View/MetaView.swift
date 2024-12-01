@@ -24,11 +24,12 @@ struct MetaView: View {
             }
             .navigationDestination(for: NavigationTarget.self) { navState in
                 if case .serials = navState {
-                    SerialsView(path: $path, serials: serials)
+                    SerialsView(path: $path)
                 }
             }
             .navigationTitle("Meta")
             .navigationBarTitleDisplayMode(.inline)
+            .scrollContentBackground(.hidden)
         }
     }
 }

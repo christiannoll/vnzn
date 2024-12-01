@@ -1,6 +1,6 @@
 import Foundation
 
 enum NavigationTarget: Hashable {
-    case tag
+    case tag(TagItem)
     case serials
 }

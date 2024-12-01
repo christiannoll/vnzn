@@ -52,7 +52,7 @@ struct PostView: View {
                     ForEach(post.tags.map { $0 }, id: \.self) { tag in
                         Button {
                             if let tagItem = tags.getTagItem(tag) {
-                                path.append(tagItem)
+                                path.append(NavigationTarget.tag(tagItem))
                             }
                         } label: {
                             Text("#" + tag + " ")
@@ -66,7 +66,10 @@ struct PostView: View {
             }
             .padding(.horizontal)
             .environment(\.openURL, OpenURLAction { url in
-                if url.absoluteString.starts(with: "#") {
+                if url.absoluteString.starts(with: "#serials") {
+                    path.append(NavigationTarget.serials)
+                }
+                else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
                     }
@@ -83,8 +86,13 @@ struct PostView: View {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
             }
-            .navigationDestination(for: TagItem.self) { tagItem in
-                TagItemView(posts: tagItem.posts, path: $path)
+            .navigationDestination(for: NavigationTarget.self) { navTarget in
+                switch navTarget {
+                case .tag(let tagItem):
+                    TagItemView(posts: tagItem.posts, path: $path)
+                case .serials:
+                    SerialsView(path: $path)
+                }
             }
         }
         .onAppear {
