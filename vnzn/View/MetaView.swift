@@ -11,11 +11,20 @@ struct MetaView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                Button {
-                    path.append(NavigationTarget.serials)
-                } label: {
-                    Text("Serien")
+                Group {
+                    Button {
+                        path.append(NavigationTarget.serials)
+                    } label: {
+                        Text("Serien")
+                    }
+                    Button {
+                        path.append(NavigationTarget.archive)
+                    } label: {
+                        Text("Archiv")
+                    }
                 }
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
             }
             .task {
                 if serials.tagItems.isEmpty {
@@ -23,8 +32,13 @@ struct MetaView: View {
                 }
             }
             .navigationDestination(for: NavigationTarget.self) { navState in
-                if case .serials = navState {
+                switch navState {
+                case .serials:
                     SerialsView(path: $path)
+                case .archive:
+                    ArchiveView()
+                default:
+                    EmptyView()
                 }
             }
             .navigationTitle("Meta")

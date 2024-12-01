@@ -92,6 +92,8 @@ struct PostView: View {
                     TagItemView(posts: tagItem.posts, path: $path)
                 case .serials:
                     SerialsView(path: $path)
+                case .archive:
+                    ArchiveView()
                 }
             }
         }
