@@ -4,6 +4,7 @@ import SwiftData
 struct MetaView: View {
 
     @Environment(Serials.self) var serials: Serials
+    @Environment(Archive.self) var archive: Archive
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     @State private var path = NavigationPath()
@@ -29,6 +30,9 @@ struct MetaView: View {
             .task {
                 if serials.tagItems.isEmpty {
                     await serials.createSerials(posts)
+                }
+                if archive.years.isEmpty {
+                    await archive.createArchive(posts)
                 }
             }
             .navigationDestination(for: NavigationTarget.self) { navState in

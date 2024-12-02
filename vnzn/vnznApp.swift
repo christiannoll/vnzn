@@ -8,6 +8,7 @@ struct vnznApp: App {
     private var index = Index()
     private var tags = Tags()
     private var serials = Serials()
+    private var archive = Archive()
     private var modelContainer = createAppContainer()
     
     init() {
@@ -21,6 +22,7 @@ struct vnznApp: App {
                 .environment(index)
                 .environment(tags)
                 .environment(serials)
+                .environment(archive)
         }
         .modelContainer(modelContainer)
     }

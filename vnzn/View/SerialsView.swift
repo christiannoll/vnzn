@@ -18,6 +18,7 @@ struct SerialsView: View {
     }
 
     var body: some View {
+        
         List {
             ForEach(searchResults) { tagItem in
                 Button {
@@ -29,17 +30,18 @@ struct SerialsView: View {
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
             }
         }
+        .padding(.top, 50)
         .task {
             if serials.tagItems.isEmpty {
                 await serials.createSerials(posts)
             }
         }
+        .searchable(text: $searchText, prompt: "Serien durchsuchen")
         .navigationDestination(for: TagItem.self) { tagItem in
             TagItemView(posts: tagItem.posts, path: $path)
         }
-        .searchable(text: $searchText, prompt: "Serien durchsuchen")
+        .scrollContentBackground(.hidden)
         .navigationTitle("Serien")
         .navigationBarTitleDisplayMode(.inline)
-        .scrollContentBackground(.hidden)
     }
 }

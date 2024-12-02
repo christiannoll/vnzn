@@ -69,6 +69,9 @@ struct PostView: View {
                 if url.absoluteString.starts(with: "#serials") {
                     path.append(NavigationTarget.serials)
                 }
+                else if url.absoluteString.starts(with: "#archive") {
+                    path.append(NavigationTarget.archive)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
