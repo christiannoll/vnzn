@@ -1,6 +1,6 @@
 import Foundation
 
-class ArchiveYear {
+class ArchiveYear: Hashable {
     
     private var _year: Int
     private var _months: [ArchiveMonth] = []
@@ -42,4 +42,14 @@ class ArchiveYear {
         _months.append(month)
         return month
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(_year)
+    }
+}
+
+extension ArchiveYear: Equatable {}
+
+func ==(lhs: ArchiveYear, rhs: ArchiveYear) -> Bool {
+    lhs.year == rhs.year
 }
