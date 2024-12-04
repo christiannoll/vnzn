@@ -18,7 +18,6 @@ struct SerialsView: View {
     }
 
     var body: some View {
-        
         List {
             ForEach(searchResults) { tagItem in
                 Button {

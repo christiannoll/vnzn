@@ -4,7 +4,7 @@ class ArchiveMonth: Hashable {
 
     private var _month: Int
     private var _year: Int
-    private var posts: [Post] = []
+    var posts: [Post] = []
 
     var month: Int {
         get { return _month }

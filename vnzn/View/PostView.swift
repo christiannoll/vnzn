@@ -96,7 +96,9 @@ struct PostView: View {
                 case .serials:
                     SerialsView(path: $path)
                 case .archive:
-                    ArchiveView()
+                    ArchiveView(path: $path)
+                case .archiveMonth(let posts):
+                    ArchiveMonthView(posts: posts, path: $path)
                 }
             }
         }
