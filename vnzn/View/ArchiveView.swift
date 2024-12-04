@@ -10,6 +10,10 @@ struct ArchiveView: View {
         List {
             ForEach(archive.years, id: \.self) { year in
                 Text(year.name)
+                    .bold()
+                ForEach(year.months, id: \.self) { month in
+                    Text(month.monthName)
+                }
             }
         }
         .task {

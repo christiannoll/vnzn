@@ -1,7 +1,7 @@
 import Foundation
 
-class ArchiveMonth {
-    
+class ArchiveMonth: Hashable {
+
     private var _month: Int
     private var _year: Int
     private var posts: [Post] = []
@@ -41,4 +41,16 @@ class ArchiveMonth {
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: post.date!)
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(_year)
+        hasher.combine(_month)
+    }
 }
+
+extension ArchiveMonth: Equatable {}
+
+func ==(lhs: ArchiveMonth, rhs: ArchiveMonth) -> Bool {
+    lhs.month == rhs.month
+}
+
