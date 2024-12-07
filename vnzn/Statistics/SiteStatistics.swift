@@ -20,7 +20,10 @@ class SiteStatistics {
                 postData.imagePost = true
             }
             else {
-                postData.wordCount = calcWordCount(post)
+                let markdownNodes = MarkdownParser.parse(text: post.data)
+                parseLinks(post, markdownNodes)
+                parseYears(post, markdownNodes)
+                postData.wordCount = parseNumberOfWords(markdownNodes)
                 postData.linkCount = post.links.count
                 numberOfAllLinks += postData.linkCount
                 numberOfTextPosts += 1
@@ -46,12 +49,21 @@ class SiteStatistics {
         sortByLinkCount()
         calculateMaxLinkCountPost()
     }
-    
-    private func calcWordCount(_ post: Post) -> Int {
-        let markdownNodes = MarkdownParser.parse(text: post.data)
-        return parseNumberOfWords(markdownNodes)
+
+    private func parseLinks(_ post: Post, _ markdownNodes: [MarkdownNode]) {
+        let linkParser = LinkParser()
+        var links: [String: String] = [:]
+        linkParser.parse(markdownNodes, &links)
+        post.links = links
     }
-    
+
+    private func parseYears(_ post: Post, _ markdownNodes: [MarkdownNode]) {
+        let yearParser = YearParser()
+        var years: [Int] = []
+        yearParser.parse(markdownNodes, &years)
+        post.years = years
+    }
+
     private func convertDateToString(_ post: Post) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

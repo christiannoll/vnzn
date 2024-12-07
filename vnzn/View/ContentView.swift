@@ -46,7 +46,7 @@ struct ContentView: View {
                 .tag(Router.Tabs.history)
             MetaView()
                 .tabItem {
-                    if router.selectedTab == .history {
+                    if router.selectedTab == .meta {
                         Label("Meta", systemImage: "ellipsis.circle.fill")
                     } else {
                         Label("Meta", systemImage: "ellipsis.circle")

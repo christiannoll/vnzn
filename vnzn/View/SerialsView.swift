@@ -5,8 +5,8 @@ struct SerialsView: View {
 
     @State private var searchText = ""
 
-    @Query(sort: \Post.date) var posts: [Post]
     @Binding var path: NavigationPath
+    @Query(sort: \Post.date) var posts: [Post]
     @Environment(Serials.self) var serials: Serials
 
     var searchResults: [TagItem] {

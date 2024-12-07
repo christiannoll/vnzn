@@ -66,9 +66,10 @@ struct MetaView: View {
                     EmptyView()
                 }
             }
+            .scrollContentBackground(.hidden)
             .navigationTitle("Meta")
             .navigationBarTitleDisplayMode(.inline)
-            .scrollContentBackground(.hidden)
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }

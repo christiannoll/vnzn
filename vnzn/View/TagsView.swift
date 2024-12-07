@@ -42,6 +42,7 @@ struct TagsView: View {
             .navigationTitle("Kategorien")
             .navigationBarTitleDisplayMode(.inline)
             .scrollContentBackground(.hidden)
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }

@@ -38,6 +38,7 @@ struct HistoryView: View {
                     }
                 }
             }
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
     

@@ -42,6 +42,7 @@ struct IndexView: View {
             .scrollContentBackground(.hidden)
             .navigationTitle("Index")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }
