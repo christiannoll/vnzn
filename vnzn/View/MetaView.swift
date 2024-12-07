@@ -4,7 +4,10 @@ import SwiftData
 struct MetaView: View {
 
     @Environment(Serials.self) var serials: Serials
+    @Environment(Index.self) var index: Index
+    @Environment(Tags.self) var tags: Tags
     @Environment(Archive.self) var archive: Archive
+    @Environment(SiteStatistics.self) var statistics: SiteStatistics
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     @State private var path = NavigationPath()
@@ -31,8 +34,17 @@ struct MetaView: View {
                 if serials.tagItems.isEmpty {
                     await serials.createSerials(posts)
                 }
+                if tags.tagItems.isEmpty {
+                    await tags.createTags(posts)
+                }
+                if index.indexItems.isEmpty {
+                    await index.createIndex(posts)
+                }
                 if archive.years.isEmpty {
                     await archive.createArchive(posts)
+                }
+                if statistics.data.numberOfPosts == 0 {
+                    await statistics.createStatistics(posts, index: index, tags: tags, serials: serials)
                 }
             }
             .navigationDestination(for: NavigationTarget.self) { navState in
