@@ -104,6 +104,8 @@ struct PostView: View {
                     ArchiveMonthView(posts: posts, path: $path)
                 case .statistics:
                     StatisticsView(path: $path)
+                case .post:
+                    self
                 }
             }
         }

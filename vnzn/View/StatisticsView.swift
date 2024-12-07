@@ -22,9 +22,36 @@ struct StatisticsView: View {
                 Text("Durchschnittliche Anzahl an Wörtern: \(statistics.data.meanNumberOfWords)")
             }
             Section {
-                Text("Post mit den meisten Wörtern \(statistics.data.maxWordCountPostItem?.number ?? 0): \(statistics.data.maxWordCountPostItem?.post.title ?? "")")
-                Text("Post mit den wenigsten Wörtern \(statistics.data.minWordCountPostItem?.number ?? 0): \(statistics.data.minWordCountPostItem?.post.title ?? "")")
-                Text("Post mit den meisten Links \(statistics.data.maxLinkCountPostItem?.number ?? 0): \(statistics.data.maxLinkCountPostItem?.post.title ?? "")")
+                HStack {
+                    Text("Post mit den meisten Wörtern \(statistics.data.maxWordCountPostItem?.number ?? 0): ")
+                    Button {
+                        if let item = statistics.data.maxWordCountPostItem {
+                            path.append(NavigationTarget.post(item.post))
+                        }
+                    } label: {
+                        Text("\(statistics.data.maxWordCountPostItem?.post.title ?? "")")
+                    }
+                }
+                HStack {
+                    Text("Post mit den wenigsten Wörtern \(statistics.data.minWordCountPostItem?.number ?? 0): ")
+                    Button {
+                        if let item = statistics.data.minWordCountPostItem {
+                            path.append(NavigationTarget.post(item.post))
+                        }
+                    } label: {
+                        Text("\(statistics.data.minWordCountPostItem?.post.title ?? "")")
+                    }
+                }
+                HStack {
+                    Text("Post mit den meisten Links \(statistics.data.maxLinkCountPostItem?.number ?? 0): ")
+                    Button {
+                        if let item = statistics.data.maxLinkCountPostItem {
+                            path.append(NavigationTarget.post(item.post))
+                        }
+                    } label: {
+                        Text("\(statistics.data.maxLinkCountPostItem?.post.title ?? "")")
+                    }
+                }
             }
         }
         .scrollContentBackground(.hidden)

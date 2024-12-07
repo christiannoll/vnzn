@@ -62,6 +62,8 @@ struct MetaView: View {
                     ArchiveMonthView(posts: posts, path: $path)
                 case .statistics:
                     StatisticsView(path: $path)
+                case .post(let post):
+                    PostView(post: post, path: $path)
                 default:
                     EmptyView()
                 }
