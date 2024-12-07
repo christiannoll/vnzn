@@ -26,6 +26,11 @@ struct MetaView: View {
                     } label: {
                         Text("Archiv")
                     }
+                    Button {
+                        path.append(NavigationTarget.statistics)
+                    } label: {
+                        Text("Statistik")
+                    }
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
@@ -55,6 +60,8 @@ struct MetaView: View {
                     ArchiveView(path: $path)
                 case .archiveMonth(let posts):
                     ArchiveMonthView(posts: posts, path: $path)
+                case .statistics:
+                    StatisticsView(path: $path)
                 default:
                     EmptyView()
                 }

@@ -72,6 +72,9 @@ struct PostView: View {
                 else if url.absoluteString.starts(with: "#archive") {
                     path.append(NavigationTarget.archive)
                 }
+                else if url.absoluteString.starts(with: "#statistic") {
+                    path.append(NavigationTarget.statistics)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
@@ -99,6 +102,8 @@ struct PostView: View {
                     ArchiveView(path: $path)
                 case .archiveMonth(let posts):
                     ArchiveMonthView(posts: posts, path: $path)
+                case .statistics:
+                    StatisticsView(path: $path)
                 }
             }
         }
