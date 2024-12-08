@@ -12,6 +12,7 @@ struct MetaView: View {
     @Environment(Timeline.self) var timeline: Timeline
     @Environment(PersonsRegister.self) var persons: PersonsRegister
     @Environment(MoviesRegister.self) var movies: MoviesRegister
+    @Environment(BooksRegister.self) var books: BooksRegister
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -26,6 +27,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .timeline, title: "Timeline")
                     MetaViewButton(navigationTarget: .persons, title: "Personen")
                     MetaViewButton(navigationTarget: .movies, title: "Filme")
+                    MetaViewButton(navigationTarget: .books, title: "Bücher")
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
@@ -54,6 +56,9 @@ struct MetaView: View {
                 }
                 if movies.register.registerItems.isEmpty {
                     await movies.createMoviesRegister(posts)
+                }
+                if books.register.registerItems.isEmpty {
+                    await books.createBooksRegister(posts)
                 }
             }
             .selectNavigationDestination()

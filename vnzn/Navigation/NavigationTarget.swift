@@ -11,4 +11,5 @@ enum NavigationTarget: Hashable {
     case indexItem(IndexItem)
     case persons
     case movies
+    case books
 }

@@ -84,6 +84,9 @@ struct PostView: View {
                 else if url.absoluteString.starts(with: "#movies") {
                     router.currentNavigationPath.append(NavigationTarget.movies)
                 }
+                else if url.absoluteString.starts(with: "#books") {
+                    router.currentNavigationPath.append(NavigationTarget.books)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
