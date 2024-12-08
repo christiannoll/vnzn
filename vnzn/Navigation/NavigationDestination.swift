@@ -28,6 +28,8 @@ struct NavigationDestination: ViewModifier {
                     MoviesView()
                 case .books:
                     BooksView()
+                case .photos:
+                    PhotosView()
                 }
             }
     }
