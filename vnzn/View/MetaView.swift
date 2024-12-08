@@ -30,9 +30,10 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .books, title: "Bücher")
                     MetaViewButton(navigationTarget: .photos, title: "Fotos")
                     MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
+                    MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
                 }
-                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+                //.listRowSeparator(.hidden)
+                //.listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
             }
             .task {
                 if serials.tagItems.isEmpty {
@@ -64,7 +65,7 @@ struct MetaView: View {
                 }
             }
             .selectNavigationDestination()
-            .scrollContentBackground(.hidden)
+            //.scrollContentBackground(.hidden)
             .navigationTitle("Meta")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)

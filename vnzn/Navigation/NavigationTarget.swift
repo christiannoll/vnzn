@@ -15,4 +15,5 @@ enum NavigationTarget: Hashable {
     case photos
     case shortStories
     case experiments
+    case randomPost
 }

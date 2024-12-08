@@ -34,6 +34,8 @@ struct NavigationDestination: ViewModifier {
                     ShortStoriesView()
                 case .experiments:
                     EmptyView()
+                case .randomPost:
+                    RandomPostView()
                 }
             }
     }

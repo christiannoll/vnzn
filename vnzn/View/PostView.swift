@@ -96,6 +96,9 @@ struct PostView: View {
                 else if url.absoluteString.starts(with: "#experiments") {
                     router.currentNavigationPath.append(NavigationTarget.experiments)
                 }
+                else if url.absoluteString.starts(with: "#random") {
+                    router.currentNavigationPath.append(NavigationTarget.randomPost)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
