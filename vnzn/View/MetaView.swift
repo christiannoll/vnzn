@@ -18,26 +18,10 @@ struct MetaView: View {
         NavigationStack(path: $router.metaViewNavigationPath) {
             List {
                 Group {
-                    Button {
-                        router.currentNavigationPath.append(NavigationTarget.serials)
-                    } label: {
-                        Text("Serien")
-                    }
-                    Button {
-                        router.currentNavigationPath.append(NavigationTarget.archive)
-                    } label: {
-                        Text("Archiv")
-                    }
-                    Button {
-                        router.currentNavigationPath.append(NavigationTarget.statistics)
-                    } label: {
-                        Text("Statistik")
-                    }
-                    Button {
-                        router.currentNavigationPath.append(NavigationTarget.timeline)
-                    } label: {
-                        Text("Timeline")
-                    }
+                    MetaViewButton(navigationTarget: .serials, title: "Serien")
+                    MetaViewButton(navigationTarget: .archive, title: "Archiv")
+                    MetaViewButton(navigationTarget: .statistics, title: "Statistik")
+                    MetaViewButton(navigationTarget: .timeline, title: "Timeline")
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
@@ -67,6 +51,23 @@ struct MetaView: View {
             .navigationTitle("Meta")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
+        }
+    }
+}
+
+struct MetaViewButton: View {
+
+    let navigationTarget: NavigationTarget
+    let title: String
+
+    @Environment(Router.self) var router: Router
+
+    var body: some View {
+        @Bindable var router = router
+        Button {
+            router.currentNavigationPath.append(navigationTarget)
+        } label: {
+            Text(title)
         }
     }
 }
