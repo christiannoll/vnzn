@@ -3,12 +3,12 @@ import Foundation
 @Observable class Router {
     
     enum Tabs: Hashable {
-        case timeline
+        case posts
         case index
         case tags
         case history
         case meta
     }
     
-    var selectedTab = Tabs.timeline
+    var selectedTab = Tabs.posts
 }

@@ -7,15 +7,15 @@ struct ContentView: View {
     var body: some View {
         @Bindable var router = router
         TabView(selection: $router.selectedTab) {
-            TimelineView()
+            PostsView()
                 .tabItem {
-                    if router.selectedTab == .timeline {
-                        Label("Timeline", systemImage: "rectangle.stack.fill")
+                    if router.selectedTab == .posts {
+                        Label("Entdecken", systemImage: "rectangle.stack.fill")
                     } else {
-                        Label("Timeline", systemImage: "rectangle.stack")
+                        Label("Entdecken", systemImage: "rectangle.stack")
                     }
                 }
-                .tag(Router.Tabs.timeline)
+                .tag(Router.Tabs.posts)
             IndexView()
                 .tabItem {
                     if router.selectedTab == .index {

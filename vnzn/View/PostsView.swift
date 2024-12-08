@@ -1,7 +1,7 @@
 import SwiftUI
 import SwiftData
 
-struct TimelineView: View {
+struct PostsView: View {
     
     @State private var searchText = ""
     @State private var path = NavigationPath()
