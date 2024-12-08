@@ -18,4 +18,6 @@ enum NavigationTarget: Hashable {
     case randomPost
     case personsCloud
     case person(RegisterItem)
+    case topicsCloud
+    case topic(RegisterItem)
 }

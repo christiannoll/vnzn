@@ -1,11 +1,11 @@
 import SwiftUI
 import SwiftData
 
-struct PersonsCloudView: View {
+struct TopicsCloudView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
-    @Environment(PersonsRegister.self) var persons: PersonsRegister
+    @Environment(IndexRegister.self) var indices: IndexRegister
 
     let columns = [
         GridItem(.adaptive(minimum: 140))
@@ -14,10 +14,10 @@ struct PersonsCloudView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(persons.register.registerItems, id: \.self) { item in
+                ForEach(indices.register.registerItems, id: \.self) { item in
                     if item.numberOfPosts > 1 {
                         Button {
-                            router.currentNavigationPath.append(NavigationTarget.person(item))
+                            router.currentNavigationPath.append(NavigationTarget.topic(item))
                         } label: {
                             Text(item.getStyleAttributeText())
                         }
@@ -26,11 +26,11 @@ struct PersonsCloudView: View {
             }
             .padding(20)
             .task {
-                if persons.register.registerItems.isEmpty {
-                    await persons.createPersonsRegister(posts)
+                if indices.register.registerItems.isEmpty {
+                    await indices.createIndexRegister(posts)
                 }
             }
-            .navigationTitle("Personenwolke")
+            .navigationTitle("Themenwolke")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

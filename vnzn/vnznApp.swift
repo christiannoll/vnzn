@@ -14,6 +14,7 @@ struct vnznApp: App {
     private var persons = PersonsRegister()
     private var movies = MoviesRegister()
     private var books = BooksRegister()
+    private var indices = IndexRegister()
     private var modelContainer = createAppContainer()
     
     init() {
@@ -33,6 +34,7 @@ struct vnznApp: App {
                 .environment(persons)
                 .environment(movies)
                 .environment(books)
+                .environment(indices)
         }
         .modelContainer(modelContainer)
     }

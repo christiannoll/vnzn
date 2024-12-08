@@ -39,7 +39,11 @@ struct NavigationDestination: ViewModifier {
                 case .personsCloud:
                     PersonsCloudView()
                 case .person(let registerItem):
-                    PersonView(person: registerItem)
+                    RegisterItemView(item: registerItem)
+                case .topicsCloud:
+                    TopicsCloudView()
+                case .topic(let registerItem):
+                    RegisterItemView(item: registerItem)
                 }
             }
     }

@@ -13,6 +13,7 @@ struct MetaView: View {
     @Environment(PersonsRegister.self) var persons: PersonsRegister
     @Environment(MoviesRegister.self) var movies: MoviesRegister
     @Environment(BooksRegister.self) var books: BooksRegister
+    @Environment(IndexRegister.self) var indices: IndexRegister
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -30,6 +31,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .books, title: "Bücher")
                     MetaViewButton(navigationTarget: .photos, title: "Fotos")
                     MetaViewButton(navigationTarget: .personsCloud, title: "Personenwolke")
+                    MetaViewButton(navigationTarget: .topicsCloud, title: "Themenwolke")
                     MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
                     MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
                 }
@@ -63,6 +65,9 @@ struct MetaView: View {
                 }
                 if books.register.registerItems.isEmpty {
                     await books.createBooksRegister(posts)
+                }
+                if indices.register.registerItems.isEmpty {
+                    await indices.createIndexRegister(posts)
                 }
             }
             .selectNavigationDestination()

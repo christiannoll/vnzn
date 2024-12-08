@@ -102,6 +102,9 @@ struct PostView: View {
                 else if url.absoluteString.starts(with: "#personcloud") {
                     router.currentNavigationPath.append(NavigationTarget.personsCloud)
                 }
+                else if url.absoluteString.starts(with: "#wordcloud") {
+                    router.currentNavigationPath.append(NavigationTarget.topicsCloud)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
