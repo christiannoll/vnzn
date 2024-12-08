@@ -12,9 +12,6 @@ struct TagItemView: View {
                 PostRow(post: post, selectedPost: $selectedPost, path: $path)
             }
         }
-        .navigationDestination(for: Post.self) { post in
-            PostView(post: post, path: $path)
-        }
         .scrollContentBackground(.hidden)
     }
 }

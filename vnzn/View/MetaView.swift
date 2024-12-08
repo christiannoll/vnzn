@@ -61,8 +61,8 @@ struct MetaView: View {
                     await timeline.createTimeline(posts)
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navState in
-                switch navState {
+            .navigationDestination(for: NavigationTarget.self) { navTarget in
+                switch navTarget {
                 case .serials:
                     SerialsView(path: $path)
                 case .archive:

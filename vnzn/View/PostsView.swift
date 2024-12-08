@@ -26,8 +26,25 @@ struct PostsView: View {
                     PostRow(post: post, selectedPost: $selectedPost, path: $path)
                 }
             }
-            .navigationDestination(for: Post.self) { post in
-                PostView(post: post, path: $path)
+            .navigationDestination(for: NavigationTarget.self) { navTarget in
+                switch navTarget {
+                case .tag(let tagItem):
+                    TagItemView(posts: tagItem.posts, path: $path)
+                case .serials:
+                    SerialsView(path: $path)
+                case .archive:
+                    ArchiveView(path: $path)
+                case .archiveMonth(let posts):
+                    ArchiveMonthView(posts: posts, path: $path)
+                case .statistics:
+                    StatisticsView(path: $path)
+                case .timeline:
+                    TimelineView(path: $path)
+                case .post(let post):
+                    PostView(post: post, path: $path)
+                case .indexItem(let indexItem):
+                    IndexItemView(posts: indexItem.posts, path: $path)
+                }
             }
             .searchable(text: $searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)

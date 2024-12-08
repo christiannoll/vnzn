@@ -10,7 +10,7 @@ struct PostRow: View {
         if post.type == PostType.text {
             Button {
                 selectedPost = post
-                path.append(post)
+                path.append(NavigationTarget.post(post))
             } label: {
                 VStack(alignment: .leading) {
                     Text(post.title)
@@ -28,7 +28,7 @@ struct PostRow: View {
                     Spacer()
                     Button {
                         selectedPost = post
-                        path.append(post)
+                        path.append(NavigationTarget.post(post))
                     } label: {
                         PostImage(post: post)
                             .frame(width: 200, height: 200)

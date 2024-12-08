@@ -13,7 +13,7 @@ struct HistoryView: View {
             List {
                 ForEach(items) { item in
                     Button {
-                        path.append(item.post!)
+                        path.append(NavigationTarget.post(item.post!))
                     } label: {
                         HStack {
                             Text(item.post?.title ?? "")
@@ -26,8 +26,25 @@ struct HistoryView: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }
-            .navigationDestination(for: Post.self) { post in
-                PostView(post: post, path: $path)
+            .navigationDestination(for: NavigationTarget.self) { navTarget in
+                switch navTarget {
+                case .tag(let tagItem):
+                    TagItemView(posts: tagItem.posts, path: $path)
+                case .serials:
+                    SerialsView(path: $path)
+                case .archive:
+                    ArchiveView(path: $path)
+                case .archiveMonth(let posts):
+                    ArchiveMonthView(posts: posts, path: $path)
+                case .statistics:
+                    StatisticsView(path: $path)
+                case .timeline:
+                    TimelineView(path: $path)
+                case .post(let post):
+                    PostView(post: post, path: $path)
+                case .indexItem(let indexItem):
+                    IndexItemView(posts: indexItem.posts, path: $path)
+                }
             }
             .navigationTitle("Verlauf")
             .scrollContentBackground(.hidden)

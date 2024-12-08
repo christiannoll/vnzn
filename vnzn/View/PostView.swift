@@ -95,24 +95,6 @@ struct PostView: View {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts, path: $path)
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post:
-                    self
-                }
-            }
         }
         .onAppear {
             SwiftDataService.shared.saveHistoryItem(post: post)

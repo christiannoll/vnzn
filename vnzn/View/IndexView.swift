@@ -22,7 +22,7 @@ struct IndexView: View {
             List {
                 ForEach(searchResults) { indexItem in
                     Button {
-                        path.append(indexItem)
+                        path.append(NavigationTarget.indexItem(indexItem))
                     } label: {
                         Text(indexItem.linkTitle)
                     }
@@ -36,8 +36,25 @@ struct IndexView: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")
-            .navigationDestination(for: IndexItem.self) { indexItem in
-                IndexItemView(posts: indexItem.posts, path: $path)
+            .navigationDestination(for: NavigationTarget.self) { navTarget in
+                switch navTarget {
+                case .tag(let tagItem):
+                    TagItemView(posts: tagItem.posts, path: $path)
+                case .serials:
+                    SerialsView(path: $path)
+                case .archive:
+                    ArchiveView(path: $path)
+                case .archiveMonth(let posts):
+                    ArchiveMonthView(posts: posts, path: $path)
+                case .statistics:
+                    StatisticsView(path: $path)
+                case .timeline:
+                    TimelineView(path: $path)
+                case .post(let post):
+                    PostView(post: post, path: $path)
+                case .indexItem(let indexItem):
+                    IndexItemView(posts: indexItem.posts, path: $path)
+                }
             }
             .scrollContentBackground(.hidden)
             .navigationTitle("Index")
