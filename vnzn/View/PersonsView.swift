@@ -1,7 +1,32 @@
 import SwiftUI
+import SwiftData
 
 struct PersonsView: View {
+
+    @Query(sort: \Post.date) var posts: [Post]
+    @Environment(Router.self) var router: Router
+    @Environment(PersonsRegister.self) var persons: PersonsRegister
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(persons.register.registerItems, id: \.self) { item in
+                Text(item.content)
+                    .bold()
+                ForEach(item.posts, id: \.self) { post in
+                    Button {
+                        router.currentNavigationPath.append(NavigationTarget.post(post))
+                    } label: {
+                        Text(post.title)
+                    }
+                }
+            }
+        }
+        .task {
+            if persons.register.registerItems.isEmpty {
+                await persons.createPersonsRegister(posts)
+            }
+        }
+        .navigationTitle("Personen")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

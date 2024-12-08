@@ -10,6 +10,7 @@ struct MetaView: View {
     @Environment(Archive.self) var archive: Archive
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
     @Environment(Timeline.self) var timeline: Timeline
+    @Environment(PersonsRegister.self) var persons: PersonsRegister
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -45,6 +46,9 @@ struct MetaView: View {
                 }
                 if timeline.timelineItems.isEmpty {
                     await timeline.createTimeline(posts)
+                }
+                if persons.register.registerItems.isEmpty {
+                    await persons.createPersonsRegister(posts)
                 }
             }
             .selectNavigationDestination()
