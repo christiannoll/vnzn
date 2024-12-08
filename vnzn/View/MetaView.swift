@@ -8,8 +8,9 @@ struct MetaView: View {
     @Environment(Tags.self) var tags: Tags
     @Environment(Archive.self) var archive: Archive
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
-    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
+    @Environment(Timeline.self) var timeline: Timeline
 
+    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     @State private var path = NavigationPath()
 
     var body: some View {
@@ -31,6 +32,11 @@ struct MetaView: View {
                     } label: {
                         Text("Statistik")
                     }
+                    Button {
+                        path.append(NavigationTarget.timeline)
+                    } label: {
+                        Text("Timeline")
+                    }
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
@@ -51,6 +57,9 @@ struct MetaView: View {
                 if statistics.data.numberOfPosts == 0 {
                     await statistics.createStatistics(posts, index: index, tags: tags, serials: serials)
                 }
+                if timeline.timelineItems.isEmpty {
+                    await timeline.createTimeline(posts)
+                }
             }
             .navigationDestination(for: NavigationTarget.self) { navState in
                 switch navState {
@@ -62,6 +71,8 @@ struct MetaView: View {
                     ArchiveMonthView(posts: posts, path: $path)
                 case .statistics:
                     StatisticsView(path: $path)
+                case .timeline:
+                    TimelineView(path: $path)
                 case .post(let post):
                     PostView(post: post, path: $path)
                 default:
