@@ -30,6 +30,8 @@ struct NavigationDestination: ViewModifier {
                     BooksView()
                 case .photos:
                     PhotosView()
+                case .shortStories:
+                    ShortStoriesView()
                 }
             }
     }

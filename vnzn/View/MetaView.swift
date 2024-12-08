@@ -29,6 +29,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .movies, title: "Filme")
                     MetaViewButton(navigationTarget: .books, title: "Bücher")
                     MetaViewButton(navigationTarget: .photos, title: "Fotos")
+                    MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))

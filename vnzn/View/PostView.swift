@@ -90,6 +90,9 @@ struct PostView: View {
                 else if url.absoluteString.starts(with: "#tags/Foto") {
                     router.currentNavigationPath.append(NavigationTarget.photos)
                 }
+                else if url.absoluteString.starts(with: "#tags/Short-Story") {
+                    router.currentNavigationPath.append(NavigationTarget.shortStories)
+                }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {
                         post = foundPost
