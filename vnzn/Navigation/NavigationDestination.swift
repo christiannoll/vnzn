@@ -36,6 +36,10 @@ struct NavigationDestination: ViewModifier {
                     EmptyView()
                 case .randomPost:
                     RandomPostView()
+                case .personsCloud:
+                    PersonsCloudView()
+                case .person(let registerItem):
+                    PersonView(person: registerItem)
                 }
             }
     }

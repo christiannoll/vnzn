@@ -16,4 +16,6 @@ enum NavigationTarget: Hashable {
     case shortStories
     case experiments
     case randomPost
+    case personsCloud
+    case person(RegisterItem)
 }

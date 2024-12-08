@@ -4,7 +4,7 @@ import SwiftUI
 class FormatBuilder {
     
     private var colors: [Color] = []
-    private let randomColors: [Color] = [.pink, .blue, .yellow, .green, .red, .gray, .indigo, .orange, .purple, .teal]
+    static let randomColors: [Color] = [.pink, .blue, .yellow, .green, .red, .gray, .indigo, .orange, .purple, .teal]
     private let blueColors: [Color] = [.blue, .indigo, .teal, .mint]
     private var separateWords = true
     
@@ -12,11 +12,11 @@ class FormatBuilder {
         separateWords = true
         
         if post.textFormat == "randomWordColor" {
-            colors = randomColors
+            colors = Self.randomColors
             return parseText(elements: markdownNodes)
         }
         else if post.textFormat == "randomLinkColor" {
-            colors = randomColors
+            colors = Self.randomColors
             return parseLinks(elements: markdownNodes)
         }
         else if post.textFormat == "blueLinkColor" {
@@ -25,7 +25,7 @@ class FormatBuilder {
         }
         else if post.textFormat == "randomLinksColor" {
             separateWords = false
-            colors = randomColors
+            colors = Self.randomColors
             return parseLinks(elements: markdownNodes)
         }
         return markdownNodes

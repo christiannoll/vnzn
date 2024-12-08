@@ -29,6 +29,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .movies, title: "Filme")
                     MetaViewButton(navigationTarget: .books, title: "Bücher")
                     MetaViewButton(navigationTarget: .photos, title: "Fotos")
+                    MetaViewButton(navigationTarget: .personsCloud, title: "Personenwolke")
                     MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
                     MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
                 }
