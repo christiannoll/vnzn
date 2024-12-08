@@ -3,7 +3,7 @@ import SwiftData
 
 struct ArchiveView: View {
 
-    @Binding var path: NavigationPath
+    @Environment(Router.self) var router: Router
     @Environment(Archive.self) var archive: Archive
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -14,7 +14,7 @@ struct ArchiveView: View {
                     .bold()
                 ForEach(year.months, id: \.self) { month in
                     Button {
-                        path.append(NavigationTarget.archiveMonth(month.posts))
+                        router.currentNavigationPath.append(NavigationTarget.archiveMonth(month.posts))
                     } label: {
                         Text(month.monthName)
                     }

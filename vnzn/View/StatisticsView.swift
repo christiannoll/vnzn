@@ -3,8 +3,8 @@ import SwiftData
 
 struct StatisticsView: View {
 
-    @Binding var path: NavigationPath
     @Query(sort: \Post.date) var posts: [Post]
+    @Environment(Router.self) var router: Router
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
 
     var body: some View {
@@ -26,7 +26,7 @@ struct StatisticsView: View {
                     Text("Post mit den meisten Wörtern \(statistics.data.maxWordCountPostItem?.number ?? 0): ")
                     Button {
                         if let item = statistics.data.maxWordCountPostItem {
-                            path.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
                         }
                     } label: {
                         Text("\(statistics.data.maxWordCountPostItem?.post.title ?? "")")
@@ -36,7 +36,7 @@ struct StatisticsView: View {
                     Text("Post mit den wenigsten Wörtern \(statistics.data.minWordCountPostItem?.number ?? 0): ")
                     Button {
                         if let item = statistics.data.minWordCountPostItem {
-                            path.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
                         }
                     } label: {
                         Text("\(statistics.data.minWordCountPostItem?.post.title ?? "")")
@@ -46,7 +46,7 @@ struct StatisticsView: View {
                     Text("Post mit den meisten Links \(statistics.data.maxLinkCountPostItem?.number ?? 0): ")
                     Button {
                         if let item = statistics.data.maxLinkCountPostItem {
-                            path.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
                         }
                     } label: {
                         Text("\(statistics.data.maxLinkCountPostItem?.post.title ?? "")")

@@ -4,10 +4,10 @@ import SwiftData
 struct TagsView: View {
     
     @State private var searchText = ""
-    @State private var path = NavigationPath()
-    
-    @Environment(Tags.self) var tags: Tags
     @Query(sort: \Post.date) var posts: [Post]
+
+    @Environment(Tags.self) var tags: Tags
+    @Environment(Router.self) var router: Router
     
     var searchResults: [TagItem] {
         if searchText.isEmpty {
@@ -18,11 +18,12 @@ struct TagsView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        NavigationStack(path: $router.tagsViewNavigationPath) {
             List {
                 ForEach(searchResults) { tagItem in
                     Button {
-                        path.append(NavigationTarget.tag(tagItem))
+                        router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                     } label: {
                         Text(tagItem.tagTitle)
                     }
@@ -35,26 +36,7 @@ struct TagsView: View {
                     await tags.createTags(posts)
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts, path: $path)
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post(let post):
-                    PostView(post: post, path: $path)
-                case .indexItem(let indexItem):
-                    IndexItemView(posts: indexItem.posts, path: $path)
-                }
-            }
+            .selectNavigationDestination()
             .searchable(text: $searchText, prompt: "Kategorien durchsuchen")
             .navigationTitle("Kategorien")
             .navigationBarTitleDisplayMode(.inline)

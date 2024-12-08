@@ -4,11 +4,11 @@ import SwiftData
 struct IndexView: View {
     
     @State private var searchText = ""
-    @State private var path = NavigationPath()
-    
-    @Environment(Index.self) var index: Index
     @Query(sort: \Post.date) var posts: [Post]
-    
+
+    @Environment(Index.self) var index: Index
+    @Environment(Router.self) var router: Router
+
     var searchResults: [IndexItem] {
         if searchText.isEmpty {
             return index.indexItems
@@ -18,11 +18,12 @@ struct IndexView: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        NavigationStack(path: $router.indexViewNavigationPath) {
             List {
                 ForEach(searchResults) { indexItem in
                     Button {
-                        path.append(NavigationTarget.indexItem(indexItem))
+                        router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
                     } label: {
                         Text(indexItem.linkTitle)
                     }
@@ -36,26 +37,7 @@ struct IndexView: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts, path: $path)
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post(let post):
-                    PostView(post: post, path: $path)
-                case .indexItem(let indexItem):
-                    IndexItemView(posts: indexItem.posts, path: $path)
-                }
-            }
+            .selectNavigationDestination()
             .scrollContentBackground(.hidden)
             .navigationTitle("Index")
             .navigationBarTitleDisplayMode(.inline)

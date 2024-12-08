@@ -5,9 +5,9 @@ struct SerialsView: View {
 
     @State private var searchText = ""
 
-    @Binding var path: NavigationPath
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Serials.self) var serials: Serials
+    @Environment(Router.self) var router: Router
 
     var searchResults: [TagItem] {
         if searchText.isEmpty {
@@ -21,7 +21,7 @@ struct SerialsView: View {
         List {
             ForEach(searchResults) { tagItem in
                 Button {
-                    path.append(tagItem)
+                    router.currentNavigationPath.append(tagItem)
                 } label: {
                     Text(tagItem.tagTitle)
                 }
@@ -37,7 +37,7 @@ struct SerialsView: View {
         }
         .searchable(text: $searchText, prompt: "Serien durchsuchen")
         .navigationDestination(for: TagItem.self) { tagItem in
-            TagItemView(posts: tagItem.posts, path: $path)
+            TagItemView(posts: tagItem.posts)
         }
         .scrollContentBackground(.hidden)
         .navigationTitle("Serien")

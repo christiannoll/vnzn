@@ -4,13 +4,13 @@ import SwiftData
 struct PostView: View {
     
     @State var post: Post
-    @Binding var path: NavigationPath
     let postBuilder = PostBuilder()
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
     
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Tags.self) var tags: Tags
+    @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
 
     @State private var isSafariPresented = false
@@ -52,7 +52,7 @@ struct PostView: View {
                     ForEach(post.tags.map { $0 }, id: \.self) { tag in
                         Button {
                             if let tagItem = tags.getTagItem(tag) {
-                                path.append(NavigationTarget.tag(tagItem))
+                                router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                             }
                         } label: {
                             Text("#" + tag + " ")
@@ -67,16 +67,16 @@ struct PostView: View {
             .padding(.horizontal)
             .environment(\.openURL, OpenURLAction { url in
                 if url.absoluteString.starts(with: "#serials") {
-                    path.append(NavigationTarget.serials)
+                    router.currentNavigationPath.append(NavigationTarget.serials)
                 }
                 else if url.absoluteString.starts(with: "#archive") {
-                    path.append(NavigationTarget.archive)
+                    router.currentNavigationPath.append(NavigationTarget.archive)
                 }
                 else if url.absoluteString.starts(with: "#statistic") {
-                    path.append(NavigationTarget.statistics)
+                    router.currentNavigationPath.append(NavigationTarget.statistics)
                 }
                 else if url.absoluteString.starts(with: "#timeline") {
-                    path.append(NavigationTarget.timeline)
+                    router.currentNavigationPath.append(NavigationTarget.timeline)
                 }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {

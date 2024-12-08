@@ -3,8 +3,8 @@ import SwiftData
 
 struct TimelineView: View {
 
-    @Binding var path: NavigationPath
     @Query(sort: \Post.date) var posts: [Post]
+    @Environment(Router.self) var router: Router
     @Environment(Timeline.self) var timeline: Timeline
 
     var body: some View {
@@ -14,7 +14,7 @@ struct TimelineView: View {
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
                     Button {
-                        path.append(NavigationTarget.post(post))
+                        router.currentNavigationPath.append(NavigationTarget.post(post))
                     } label: {
                         Text(post.title)
                     }

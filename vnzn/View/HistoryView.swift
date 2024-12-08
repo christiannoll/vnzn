@@ -2,18 +2,19 @@ import SwiftUI
 import SwiftData
 
 struct HistoryView: View {
-    
-    @State private var path = NavigationPath()
-    
+
+    @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
+
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
     
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        NavigationStack(path: $router.historyViewNavigationPath) {
             List {
                 ForEach(items) { item in
                     Button {
-                        path.append(NavigationTarget.post(item.post!))
+                        router.currentNavigationPath.append(NavigationTarget.post(item.post!))
                     } label: {
                         HStack {
                             Text(item.post?.title ?? "")
@@ -26,26 +27,7 @@ struct HistoryView: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts, path: $path)
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post(let post):
-                    PostView(post: post, path: $path)
-                case .indexItem(let indexItem):
-                    IndexItemView(posts: indexItem.posts, path: $path)
-                }
-            }
+            .selectNavigationDestination()
             .navigationTitle("Verlauf")
             .scrollContentBackground(.hidden)
             .toolbar {

@@ -3,6 +3,7 @@ import SwiftData
 
 struct MetaView: View {
 
+    @Environment(Router.self) var router: Router
     @Environment(Serials.self) var serials: Serials
     @Environment(Index.self) var index: Index
     @Environment(Tags.self) var tags: Tags
@@ -11,29 +12,29 @@ struct MetaView: View {
     @Environment(Timeline.self) var timeline: Timeline
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
-    @State private var path = NavigationPath()
 
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        NavigationStack(path: $router.metaViewNavigationPath) {
             List {
                 Group {
                     Button {
-                        path.append(NavigationTarget.serials)
+                        router.currentNavigationPath.append(NavigationTarget.serials)
                     } label: {
                         Text("Serien")
                     }
                     Button {
-                        path.append(NavigationTarget.archive)
+                        router.currentNavigationPath.append(NavigationTarget.archive)
                     } label: {
                         Text("Archiv")
                     }
                     Button {
-                        path.append(NavigationTarget.statistics)
+                        router.currentNavigationPath.append(NavigationTarget.statistics)
                     } label: {
                         Text("Statistik")
                     }
                     Button {
-                        path.append(NavigationTarget.timeline)
+                        router.currentNavigationPath.append(NavigationTarget.timeline)
                     } label: {
                         Text("Timeline")
                     }
@@ -61,24 +62,7 @@ struct MetaView: View {
                     await timeline.createTimeline(posts)
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post(let post):
-                    PostView(post: post, path: $path)
-                default:
-                    EmptyView()
-                }
-            }
+            .selectNavigationDestination()
             .scrollContentBackground(.hidden)
             .navigationTitle("Meta")
             .navigationBarTitleDisplayMode(.inline)

@@ -4,13 +4,13 @@ struct PostRow: View {
     
     let post: Post
     @Binding var selectedPost: Post?
-    @Binding var path: NavigationPath
-    
+    @Environment(Router.self) var router: Router
+
     var body: some View {
         if post.type == PostType.text {
             Button {
                 selectedPost = post
-                path.append(NavigationTarget.post(post))
+                router.currentNavigationPath.append(NavigationTarget.post(post))
             } label: {
                 VStack(alignment: .leading) {
                     Text(post.title)
@@ -28,7 +28,7 @@ struct PostRow: View {
                     Spacer()
                     Button {
                         selectedPost = post
-                        path.append(NavigationTarget.post(post))
+                        router.currentNavigationPath.append(NavigationTarget.post(post))
                     } label: {
                         PostImage(post: post)
                             .frame(width: 200, height: 200)

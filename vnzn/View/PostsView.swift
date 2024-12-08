@@ -4,11 +4,11 @@ import SwiftData
 struct PostsView: View {
     
     @State private var searchText = ""
-    @State private var path = NavigationPath()
     @State private var selectedPost: Post? = nil
     @State private var onlyFavourites = false
     
     @Environment(Tags.self) var tags: Tags
+    @Environment(Router.self) var router: Router
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
     var searchResults: [Post] {
@@ -20,32 +20,14 @@ struct PostsView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $path) {
+        @Bindable var router = router
+        NavigationStack(path: $router.postsViewNavigationPath) {
             List {
                 ForEach (searchResults.filter { shouldInclude($0) }) { post in
-                    PostRow(post: post, selectedPost: $selectedPost, path: $path)
+                    PostRow(post: post, selectedPost: $selectedPost)
                 }
             }
-            .navigationDestination(for: NavigationTarget.self) { navTarget in
-                switch navTarget {
-                case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts, path: $path)
-                case .serials:
-                    SerialsView(path: $path)
-                case .archive:
-                    ArchiveView(path: $path)
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts, path: $path)
-                case .statistics:
-                    StatisticsView(path: $path)
-                case .timeline:
-                    TimelineView(path: $path)
-                case .post(let post):
-                    PostView(post: post, path: $path)
-                case .indexItem(let indexItem):
-                    IndexItemView(posts: indexItem.posts, path: $path)
-                }
-            }
+            .selectNavigationDestination()
             .searchable(text: $searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
             .navigationTitle("v.n.z.n")
