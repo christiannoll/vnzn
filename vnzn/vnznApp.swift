@@ -12,6 +12,7 @@ struct vnznApp: App {
     private var siteStatistics = SiteStatistics()
     private var timeline = Timeline()
     private var persons = PersonsRegister()
+    private var movies = MoviesRegister()
     private var modelContainer = createAppContainer()
     
     init() {
@@ -29,6 +30,7 @@ struct vnznApp: App {
                 .environment(siteStatistics)
                 .environment(timeline)
                 .environment(persons)
+                .environment(movies)
         }
         .modelContainer(modelContainer)
     }

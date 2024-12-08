@@ -24,6 +24,8 @@ struct NavigationDestination: ViewModifier {
                     IndexItemView(posts: indexItem.posts)
                 case .persons:
                     PersonsView()
+                case .movies:
+                    MoviesView()
                 }
             }
     }

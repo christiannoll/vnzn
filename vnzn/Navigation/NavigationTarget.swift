@@ -10,4 +10,5 @@ enum NavigationTarget: Hashable {
     case timeline
     case indexItem(IndexItem)
     case persons
+    case movies
 }

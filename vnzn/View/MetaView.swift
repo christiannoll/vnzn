@@ -11,6 +11,7 @@ struct MetaView: View {
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
     @Environment(Timeline.self) var timeline: Timeline
     @Environment(PersonsRegister.self) var persons: PersonsRegister
+    @Environment(MoviesRegister.self) var movies: MoviesRegister
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -24,6 +25,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .statistics, title: "Statistik")
                     MetaViewButton(navigationTarget: .timeline, title: "Timeline")
                     MetaViewButton(navigationTarget: .persons, title: "Personen")
+                    MetaViewButton(navigationTarget: .movies, title: "Filme")
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
@@ -49,6 +51,9 @@ struct MetaView: View {
                 }
                 if persons.register.registerItems.isEmpty {
                     await persons.createPersonsRegister(posts)
+                }
+                if movies.register.registerItems.isEmpty {
+                    await movies.createMoviesRegister(posts)
                 }
             }
             .selectNavigationDestination()
