@@ -22,6 +22,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .archive, title: "Archiv")
                     MetaViewButton(navigationTarget: .statistics, title: "Statistik")
                     MetaViewButton(navigationTarget: .timeline, title: "Timeline")
+                    MetaViewButton(navigationTarget: .persons, title: "Personen")
                 }
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))

@@ -22,6 +22,8 @@ struct NavigationDestination: ViewModifier {
                     PostView(post: post)
                 case .indexItem(let indexItem):
                     IndexItemView(posts: indexItem.posts)
+                case .persons:
+                    PersonsView()
                 }
             }
     }

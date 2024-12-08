@@ -9,4 +9,5 @@ enum NavigationTarget: Hashable {
     case post(Post)
     case timeline
     case indexItem(IndexItem)
+    case persons
 }
