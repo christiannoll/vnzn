@@ -15,7 +15,11 @@ class Index {
         }
         sort()
     }
-    
+
+    func getIndexItem(_ key: String) -> IndexItem? {
+        indexItems.first { $0.key == key }
+    }
+
     private func sort() {
         indexItems.sort { $0.key < $1.key }
     }

@@ -10,6 +10,7 @@ struct PostView: View {
     
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Tags.self) var tags: Tags
+    @Environment(Index.self) var index: Index
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
 
@@ -104,6 +105,23 @@ struct PostView: View {
                 }
                 else if url.absoluteString.starts(with: "#wordcloud") {
                     router.currentNavigationPath.append(NavigationTarget.topicsCloud)
+                }
+                else if url.absoluteString.starts(with: "#tags/") {
+                    let components = url.absoluteString.components(separatedBy: "/")
+                    if components.count == 3 {
+                        if let tagItem = tags.getTagItem(components[1]) {
+                            router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                        }
+                    }
+                }
+                else if url.absoluteString.starts(with: "#index/") {
+                    let components = url.absoluteString.components(separatedBy: "/")
+                    if components.count == 3 {
+                        let key = components[1].replacingOccurrences(of: "-", with: " ")
+                        if let indexItem = index.getIndexItem(key) {
+                            router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
+                        }
+                    }
                 }
                 else if url.absoluteString.starts(with: "#") {
                     if let foundPost = findPost(url: url) {

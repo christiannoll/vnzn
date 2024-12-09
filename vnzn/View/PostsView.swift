@@ -8,6 +8,7 @@ struct PostsView: View {
     @State private var onlyFavourites = false
     
     @Environment(Tags.self) var tags: Tags
+    @Environment(Index.self) var index: Index
     @Environment(Router.self) var router: Router
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
@@ -37,6 +38,9 @@ struct PostsView: View {
             .task {
                 if tags.tagItems.isEmpty {
                     await tags.createTags(posts)
+                }
+                if index.indexItems.isEmpty {
+                    await index.createIndex(posts)
                 }
             }
             .toolbar {
