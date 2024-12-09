@@ -7,7 +7,7 @@ struct NavigationDestination: ViewModifier {
             .navigationDestination(for: NavigationTarget.self) { navTarget in
                 switch navTarget {
                 case .tag(let tagItem):
-                    TagItemView(posts: tagItem.posts)
+                    TagItemView(tagItem: tagItem)
                 case .serials:
                     SerialsView()
                 case .archive:
@@ -21,7 +21,7 @@ struct NavigationDestination: ViewModifier {
                 case .post(let post):
                     PostView(post: post)
                 case .indexItem(let indexItem):
-                    IndexItemView(posts: indexItem.posts)
+                    IndexItemView(indexItem: indexItem)
                 case .persons:
                     PersonsView()
                 case .movies:

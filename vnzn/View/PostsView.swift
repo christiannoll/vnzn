@@ -39,9 +39,6 @@ struct PostsView: View {
                 if tags.tagItems.isEmpty {
                     await tags.createTags(posts)
                 }
-                if index.indexItems.isEmpty {
-                    await index.createIndex(posts)
-                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

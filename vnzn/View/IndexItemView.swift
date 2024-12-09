@@ -2,15 +2,17 @@ import SwiftUI
 
 struct IndexItemView: View {
     
-    let posts: [Post]
+    let indexItem: IndexItem
     @State private var selectedPost: Post? = nil
     
     var body: some View {
         List {
-            ForEach (posts) { post in
+            ForEach (indexItem.posts) { post in
                 PostRow(post: post, selectedPost: $selectedPost)
             }
         }
         .scrollContentBackground(.hidden)
+        .navigationTitle(indexItem.key)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

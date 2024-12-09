@@ -21,7 +21,7 @@ struct SerialsView: View {
         List {
             ForEach(searchResults) { tagItem in
                 Button {
-                    router.currentNavigationPath.append(tagItem)
+                    router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 } label: {
                     Text(tagItem.tagTitle)
                 }
@@ -36,9 +36,9 @@ struct SerialsView: View {
             }
         }
         .searchable(text: $searchText, prompt: "Serien durchsuchen")
-        .navigationDestination(for: TagItem.self) { tagItem in
+        /*.navigationDestination(for: TagItem.self) { tagItem in
             TagItemView(posts: tagItem.posts)
-        }
+        }*/
         .scrollContentBackground(.hidden)
         .navigationTitle("Serien")
         .navigationBarTitleDisplayMode(.inline)
