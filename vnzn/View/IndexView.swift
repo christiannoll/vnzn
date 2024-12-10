@@ -13,7 +13,7 @@ struct IndexView: View {
         if searchText.isEmpty {
             return index.indexItems
         } else {
-            return index.indexItems.filter { $0.key.contains(searchText) }
+            return index.indexItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
         }
     }
     

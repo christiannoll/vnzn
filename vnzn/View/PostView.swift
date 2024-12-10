@@ -71,7 +71,11 @@ struct PostView: View {
                     router.selectedTab = .meta
                     router.resetNavigation()
                 }
-                if url.absoluteString.starts(with: "#serials") {
+                else if url.absoluteString == "#" {
+                    router.selectedTab = .posts
+                    router.resetNavigation()
+                }
+                else if url.absoluteString.starts(with: "#serials") {
                     router.currentNavigationPath.append(NavigationTarget.serials)
                 }
                 else if url.absoluteString.starts(with: "#archive") {

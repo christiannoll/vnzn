@@ -13,7 +13,7 @@ struct TagsView: View {
         if searchText.isEmpty {
             return tags.tagItems
         } else {
-            return tags.tagItems.filter { $0.key.contains(searchText) }
+            return tags.tagItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
         }
     }
     

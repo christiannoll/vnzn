@@ -13,7 +13,7 @@ struct SerialsView: View {
         if searchText.isEmpty {
             return serials.tagItems
         } else {
-            return serials.tagItems.filter { $0.key.contains(searchText) }
+            return serials.tagItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
         }
     }
 
