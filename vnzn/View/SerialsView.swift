@@ -36,9 +36,6 @@ struct SerialsView: View {
             }
         }
         .searchable(text: $searchText, prompt: "Serien durchsuchen")
-        /*.navigationDestination(for: TagItem.self) { tagItem in
-            TagItemView(posts: tagItem.posts)
-        }*/
         .scrollContentBackground(.hidden)
         .navigationTitle("Serien")
         .navigationBarTitleDisplayMode(.inline)

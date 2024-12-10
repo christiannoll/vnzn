@@ -67,6 +67,10 @@ struct PostView: View {
             }
             .padding(.horizontal)
             .environment(\.openURL, OpenURLAction { url in
+                if url.absoluteString == "#beta/" {
+                    router.selectedTab = .meta
+                    router.resetNavigation()
+                }
                 if url.absoluteString.starts(with: "#serials") {
                     router.currentNavigationPath.append(NavigationTarget.serials)
                 }

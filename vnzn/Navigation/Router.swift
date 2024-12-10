@@ -49,4 +49,8 @@ import SwiftUI
             }
         }
     }
+
+    func resetNavigation() {
+        currentNavigationPath = NavigationPath()
+    }
 }
