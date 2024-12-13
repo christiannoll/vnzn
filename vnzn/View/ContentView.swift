@@ -10,12 +10,22 @@ struct ContentView: View {
             PostsView()
                 .tabItem {
                     if router.selectedTab == .posts {
-                        Label("Entdecken", systemImage: "rectangle.stack.fill")
+                        Label("Blog", systemImage: "rectangle.stack.fill")
                     } else {
-                        Label("Entdecken", systemImage: "rectangle.stack")
+                        Label("Blog", systemImage: "rectangle.stack")
                     }
                 }
                 .tag(Router.Tabs.posts)
+            DiscoverView()
+                .tabItem {
+                    if router.selectedTab == .discover {
+                        Label("Entdecken", systemImage: "globe")
+                            .foregroundStyle(Color.accentColor)
+                    } else {
+                        Label("Entdecken", systemImage: "globe")
+                    }
+                }
+                .tag(Router.Tabs.discover)
             IndexView()
                 .tabItem {
                     if router.selectedTab == .index {
@@ -26,15 +36,6 @@ struct ContentView: View {
                     }
                 }
                 .tag(Router.Tabs.index)
-            TagsView()
-                .tabItem {
-                    if router.selectedTab == .tags {
-                        Label("Kategorien", systemImage: "tag.fill")
-                    } else {
-                        Label("Kategorien", systemImage: "tag")
-                    }
-                }
-                .tag(Router.Tabs.tags)
             HistoryView()
                 .tabItem {
                     if router.selectedTab == .history {

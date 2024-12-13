@@ -22,6 +22,7 @@ struct MetaView: View {
         NavigationStack(path: $router.metaViewNavigationPath) {
             List {
                 Group {
+                    MetaViewButton(navigationTarget: .tags, title: "Kategorien")
                     MetaViewButton(navigationTarget: .serials, title: "Serien")
                     MetaViewButton(navigationTarget: .archive, title: "Archiv")
                     MetaViewButton(navigationTarget: .statistics, title: "Statistik")

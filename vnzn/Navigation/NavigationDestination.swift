@@ -44,6 +44,8 @@ struct NavigationDestination: ViewModifier {
                     TopicsCloudView()
                 case .topic(let registerItem):
                     RegisterItemView(item: registerItem)
+                case .tags:
+                    TagsView()
                 }
             }
     }

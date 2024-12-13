@@ -5,8 +5,8 @@ import SwiftUI
     
     enum Tabs: Hashable {
         case posts
+        case discover
         case index
-        case tags
         case history
         case meta
     }
@@ -15,7 +15,7 @@ import SwiftUI
 
     var postsViewNavigationPath = NavigationPath()
     var indexViewNavigationPath = NavigationPath()
-    var tagsViewNavigationPath = NavigationPath()
+    var discoverViewNavigationPath = NavigationPath()
     var historyViewNavigationPath = NavigationPath()
     var metaViewNavigationPath = NavigationPath()
 
@@ -26,8 +26,8 @@ import SwiftUI
                 postsViewNavigationPath
             case .index:
                 indexViewNavigationPath
-            case .tags:
-                tagsViewNavigationPath
+            case .discover:
+                discoverViewNavigationPath
             case .history:
                 historyViewNavigationPath
             case .meta:
@@ -40,8 +40,8 @@ import SwiftUI
                 postsViewNavigationPath = newValue
             case .index:
                 indexViewNavigationPath = newValue
-            case .tags:
-                tagsViewNavigationPath = newValue
+            case .discover:
+                discoverViewNavigationPath = newValue
             case .history:
                 historyViewNavigationPath = newValue
             case .meta:
