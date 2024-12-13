@@ -25,10 +25,12 @@ struct IndexView: View {
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
                     } label: {
-                        Text(indexItem.linkTitle)
+                        Text(indexItem.key)
+                        Spacer()
+                        Text(String(indexItem.numberOfPosts))
+                            .foregroundStyle(.secondary)
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+                    .buttonStyle(.plain)
                 }
             }
             .task {
@@ -38,7 +40,6 @@ struct IndexView: View {
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")
             .selectNavigationDestination()
-            .scrollContentBackground(.hidden)
             .navigationTitle("Index")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)

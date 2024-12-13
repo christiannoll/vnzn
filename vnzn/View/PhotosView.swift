@@ -18,7 +18,7 @@ struct PhotosView: View {
                 posts = tagItem.posts
             }
         }
-        .scrollContentBackground(.hidden)
+        .navigationTitle("Fotos")
     }
 }
 

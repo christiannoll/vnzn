@@ -14,7 +14,11 @@ class TagItem: Identifiable, Hashable {
         self._key = key
         self.folderName = folderName
     }
-    
+
+    var numberOfPosts: String {
+        "\(posts.count)"
+    }
+
     var tagTitle: String {
         key + " (" + String(posts.count) + ")"
     }

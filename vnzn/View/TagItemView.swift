@@ -11,7 +11,6 @@ struct TagItemView: View {
                 PostRow(post: post, selectedPost: $selectedPost)
             }
         }
-        .scrollContentBackground(.hidden)
         .navigationTitle(tagItem.key)
         .navigationBarTitleDisplayMode(.inline)
     }

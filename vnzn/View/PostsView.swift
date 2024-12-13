@@ -54,6 +54,7 @@ struct PostsView: View {
                     .padding(.trailing, 16)
                 }
             }
+            .toolbarBackground(.visible, for: .tabBar)
         }
     }
     

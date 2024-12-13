@@ -3,16 +3,29 @@ import SwiftData
 
 struct HistoryView: View {
 
+    @State private var searchText = ""
+
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
 
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
-    
+
+    var searchResults: [HistoryItem] {
+        if searchText.isEmpty {
+            return items
+        } else {
+            return items.filter {
+                let postTitle = $0.post?.title ?? ""
+                return postTitle.lowercased().contains(searchText.lowercased())
+            }
+        }
+    }
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.historyViewNavigationPath) {
             List {
-                ForEach(items) { item in
+                ForEach(searchResults) { item in
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.post(item.post!))
                     } label: {
@@ -20,20 +33,23 @@ struct HistoryView: View {
                             Text(item.post?.title ?? "")
                             Spacer()
                             Text(createPostDate(item.date))
+                                .foregroundStyle(.secondary)
                         }
                     }
                     .buttonStyle(.plain)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
             }
+            .searchable(text: $searchText, prompt: "Verlauf durchsuchen")
             .selectNavigationDestination()
             .navigationTitle("Verlauf")
-            .scrollContentBackground(.hidden)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Löschen") {
+                    Button {
                         deleteHistory()
+                    } label: {
+                        Image(systemName: "trash")
+                            .padding(.trailing, 10)
                     }
                 }
             }

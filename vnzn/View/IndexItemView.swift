@@ -11,7 +11,6 @@ struct IndexItemView: View {
                 PostRow(post: post, selectedPost: $selectedPost)
             }
         }
-        .scrollContentBackground(.hidden)
         .navigationTitle(indexItem.key)
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -25,10 +25,12 @@ struct TagsView: View {
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                     } label: {
-                        Text(tagItem.tagTitle)
+                        Text(tagItem.key)
+                        Spacer()
+                        Text(tagItem.numberOfPosts)
+                            .foregroundStyle(.secondary)
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0))
+                    .buttonStyle(.plain)
                 }
             }
             .task {
@@ -40,7 +42,6 @@ struct TagsView: View {
             .searchable(text: $searchText, prompt: "Kategorien durchsuchen")
             .navigationTitle("Kategorien")
             .navigationBarTitleDisplayMode(.inline)
-            .scrollContentBackground(.hidden)
             .toolbarBackground(.visible, for: .tabBar)
         }
     }

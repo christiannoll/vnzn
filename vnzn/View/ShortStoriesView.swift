@@ -18,6 +18,6 @@ struct ShortStoriesView: View {
                 posts = tagItem.posts
             }
         }
-        .scrollContentBackground(.hidden)
+        .navigationTitle("Kurzgeschichten")
     }
 }

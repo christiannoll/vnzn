@@ -10,20 +10,21 @@ struct StatisticsView: View {
     var body: some View {
         List {
             Section {
-                Text("Anzahl an Posts: \(statistics.data.numberOfPosts)")
-                Text("Anzahl davon Bilder: \(statistics.data.numberOfImages)")
-                Text("Index: \(statistics.data.numberOfIndexItems)")
-                Text("Kategorien: \(statistics.data.numberOfTagItems)")
-                Text("Serien: \(statistics.data.numberOfSerialItems)")
-                Text("Links: \(statistics.data.numberOfAllLinks)")
+                StatisticTextItem(title: "Anzahl an Posts:", value: statistics.data.numberOfPosts)
+                StatisticTextItem(title: "Anzahl davon Bilder:", value: statistics.data.numberOfImages)
+                StatisticTextItem(title: "Index:", value: statistics.data.numberOfIndexItems)
+                StatisticTextItem(title: "Kategorien:", value: statistics.data.numberOfTagItems)
+                StatisticTextItem(title: "Serien:", value: statistics.data.numberOfSerialItems)
+                StatisticTextItem(title: "Links:", value: statistics.data.numberOfAllLinks)
             }
             Section {
-                Text("Durchschnittliche Anzahl an Links: \(statistics.data.meanNumberOfLinks)")
-                Text("Durchschnittliche Anzahl an Wörtern: \(statistics.data.meanNumberOfWords)")
+                StatisticTextItem(title: "Durchschnittliche Anzahl an Links:", value: statistics.data.meanNumberOfLinks)
+                StatisticTextItem(title: "Durchschnittliche Anzahl an Wörtern:", value: statistics.data.meanNumberOfWords)
             }
             Section {
                 HStack {
                     Text("Post mit den meisten Wörtern \(statistics.data.maxWordCountPostItem?.number ?? 0): ")
+                    Spacer()
                     Button {
                         if let item = statistics.data.maxWordCountPostItem {
                             router.currentNavigationPath.append(NavigationTarget.post(item.post))
@@ -34,6 +35,7 @@ struct StatisticsView: View {
                 }
                 HStack {
                     Text("Post mit den wenigsten Wörtern \(statistics.data.minWordCountPostItem?.number ?? 0): ")
+                    Spacer()
                     Button {
                         if let item = statistics.data.minWordCountPostItem {
                             router.currentNavigationPath.append(NavigationTarget.post(item.post))
@@ -44,6 +46,7 @@ struct StatisticsView: View {
                 }
                 HStack {
                     Text("Post mit den meisten Links \(statistics.data.maxLinkCountPostItem?.number ?? 0): ")
+                    Spacer()
                     Button {
                         if let item = statistics.data.maxLinkCountPostItem {
                             router.currentNavigationPath.append(NavigationTarget.post(item.post))
@@ -54,10 +57,23 @@ struct StatisticsView: View {
                 }
             }
         }
-        .scrollContentBackground(.hidden)
         .navigationTitle("Statistik")
         .navigationBarTitleDisplayMode(.inline)
-        Spacer()
+    }
+}
+
+struct StatisticTextItem: View {
+
+    let title: String
+    let value: Int
+
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Text(String(value))
+                .foregroundStyle(.secondary)
+        }
     }
 }
 
