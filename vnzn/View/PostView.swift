@@ -4,8 +4,6 @@ import SwiftData
 struct PostView: View {
     
     @State var post: Post
-    let stringBuilder = StringBuilder()
-    let nodeParser = NodeParser()
     
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Tags.self) var tags: Tags
@@ -27,22 +25,8 @@ struct PostView: View {
                 }
                 .padding(.top, 60)
                 .padding(.bottom, 20)
-                if post.type == .text {
-                    ForEach(nodeParser.parse(post.data), id: \.self) { nodes in
-                        if case .curlybraces(_) = nodes.first {
-                            Text(stringBuilder.parse(nodes, post))
-                                .multilineTextAlignment(.center)
-                                .frame(maxWidth: .infinity)
-                                .padding(.bottom, 4)
-                        } else {
-                            Text(stringBuilder.parse(nodes, post))
-                                .multilineTextAlignment(.leading)
-                        }
-                    }
-                } else {
-                    PostImage(post: post)
-                        .frame(width: 300, height: 300)
-                }
+                PostDataView(post: $post, urlToOpen: $urlToOpen,
+                             isSafariPresented: $isSafariPresented, posts: posts)
                 HStack {
                     Text(createPostDate(post)).foregroundStyle(.secondary)
                     Spacer()
@@ -65,9 +49,6 @@ struct PostView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .environment(\.openURL, OpenURLAction { url in
-                return handleLink(url)
-            })
             .background(alignment: .trailing) {
                 if let urlToOpen {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
@@ -98,84 +79,6 @@ struct PostView: View {
                 .padding(.trailing, 16)
             }
         }
-    }
-
-    private func handleLink(_ url: URL) -> OpenURLAction.Result {
-        if url.absoluteString == "#beta/" {
-            router.selectedTab = .meta
-            router.resetNavigation()
-        }
-        else if url.absoluteString == "#" {
-            router.selectedTab = .posts
-            router.resetNavigation()
-        }
-        else if url.absoluteString.starts(with: "#serials") {
-            router.currentNavigationPath.append(NavigationTarget.serials)
-        }
-        else if url.absoluteString.starts(with: "#archive") {
-            router.currentNavigationPath.append(NavigationTarget.archive)
-        }
-        else if url.absoluteString.starts(with: "#statistic") {
-            router.currentNavigationPath.append(NavigationTarget.statistics)
-        }
-        else if url.absoluteString.starts(with: "#timeline") {
-            router.currentNavigationPath.append(NavigationTarget.timeline)
-        }
-        else if url.absoluteString.starts(with: "#persons") {
-            router.currentNavigationPath.append(NavigationTarget.persons)
-        }
-        else if url.absoluteString.starts(with: "#movies") {
-            router.currentNavigationPath.append(NavigationTarget.movies)
-        }
-        else if url.absoluteString.starts(with: "#books") {
-            router.currentNavigationPath.append(NavigationTarget.books)
-        }
-        else if url.absoluteString.starts(with: "#tags/Foto") {
-            router.currentNavigationPath.append(NavigationTarget.photos)
-        }
-        else if url.absoluteString.starts(with: "#tags/Short-Story") {
-            router.currentNavigationPath.append(NavigationTarget.shortStories)
-        }
-        else if url.absoluteString.starts(with: "#experiments") {
-            router.currentNavigationPath.append(NavigationTarget.experiments)
-        }
-        else if url.absoluteString.starts(with: "#random") {
-            router.currentNavigationPath.append(NavigationTarget.randomPost)
-        }
-        else if url.absoluteString.starts(with: "#personcloud") {
-            router.currentNavigationPath.append(NavigationTarget.personsCloud)
-        }
-        else if url.absoluteString.starts(with: "#wordcloud") {
-            router.currentNavigationPath.append(NavigationTarget.topicsCloud)
-        }
-        else if url.absoluteString.starts(with: "#tags/") {
-            let components = url.absoluteString.components(separatedBy: "/")
-            if components.count == 3 {
-                if let tagItem = tags.getTagItem(components[1]) {
-                    router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
-                }
-            }
-        }
-        else if url.absoluteString.starts(with: "#index/") {
-            let components = url.absoluteString.components(separatedBy: "/")
-            if components.count == 3 {
-                let key = components[1].replacingOccurrences(of: "-", with: " ")
-                if let indexItem = index.getIndexItem(key) {
-                    router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
-                }
-            }
-        }
-        else if url.absoluteString.starts(with: "#") {
-            if let foundPost = findPost(url: url) {
-                post = foundPost
-            }
-        } else {
-            urlToOpen = url
-            DispatchQueue.main.async {
-                isSafariPresented = true
-            }
-        }
-        return .handled
     }
 
     private func createPostDate(_ post: Post) -> String {
@@ -211,14 +114,6 @@ struct PostView: View {
         var attributedString = AttributedString(text + " ")
         attributedString.font = .body.bold()
         return Text(attributedString + attributedString)
-    }
-    
-    private func findPost(url: URL) -> Post? {
-        var foundPost: Post?
-        if let postUrl = URL(string: String(url.absoluteString.dropFirst())) {
-            foundPost = posts.first(where: { $0.name == postUrl.pathComponents.last! })
-        }
-        return foundPost
     }
 }
 
