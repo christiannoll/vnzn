@@ -4,7 +4,6 @@ import SwiftData
 struct PostView: View {
     
     @State var post: Post
-    let postBuilder = PostBuilder()
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
     
