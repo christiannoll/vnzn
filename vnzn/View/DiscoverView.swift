@@ -38,6 +38,11 @@ struct DiscoverView: View {
             .navigationTitle("Entdecken")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
+            .background(alignment: .trailing) {
+                if let urlToOpen {
+                    SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
+                }
+            }
         }
         .onAppear {
             selectedPost = posts[Int.random(in: 0..<posts.count)]
