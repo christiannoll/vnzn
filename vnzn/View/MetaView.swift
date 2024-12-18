@@ -92,7 +92,12 @@ struct MetaViewButton: View {
         Button {
             router.currentNavigationPath.append(navigationTarget)
         } label: {
-            Text(title)
+            HStack {
+                Text(title)
+                Spacer()
+            }
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
     }
 }

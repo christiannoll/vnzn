@@ -20,6 +20,10 @@ struct DiscoverView: View {
         _selectedPost = State(initialValue: Post())
     }
 
+    var facesTagItem: TagItem? {
+        serials.getTagItem("Fotos: Gesichter")
+    }
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
@@ -31,8 +35,8 @@ struct DiscoverView: View {
                         router.currentNavigationPath.append(NavigationTarget.post(selectedPost))
                     } label: {
                         PostDataView(post: $selectedPost, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented, reduceData: true, posts: posts)
+                            .contentShape(Rectangle())
                     }
-                    .background(.black.opacity(0.00001))
                     .buttonStyle(.plain)
                     Text(createPostDate(selectedPost))
                         .foregroundStyle(.secondary)
@@ -59,7 +63,7 @@ struct DiscoverView: View {
                 }
                 .listRowSeparator(.hidden)
                 .onTapGesture {
-                    if let tagItem = serials.getTagItem("Fotos: Gesichter") {
+                    if let tagItem = facesTagItem {
                         router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                     }
                 }
@@ -88,7 +92,7 @@ struct DiscoverView: View {
             if serials.tagItems.isEmpty {
                 await serials.createSerials(posts)
             }
-            if let tagItem = serials.getTagItem("Fotos: Gesichter") {
+            if let tagItem = facesTagItem {
                 facesPosts = tagItem.posts
             }
         }
