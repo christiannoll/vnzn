@@ -6,10 +6,15 @@ struct DiscoverView: View {
     @State private var selectedPost: Post
 
     @Query(sort: \Post.date) var posts: [Post]
+    @Environment(Serials.self) var serials: Serials
     @Environment(Router.self) var router: Router
 
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
+
+    @State private var facesPosts: [Post] = []
+
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     init() {
         _selectedPost = State(initialValue: Post())
@@ -33,7 +38,33 @@ struct DiscoverView: View {
                         .foregroundStyle(.secondary)
                 }
                 .listRowSeparator(.hidden)
+                Section("Fotoserie: Gesichter") {
+                    if facesPosts.count > 3 {
+                        Grid(horizontalSpacing: 30,
+                             verticalSpacing: 30) {
+                            GridRow {
+                                PostImage(post: facesPosts[0])
+                                    .frame(width: 100, height: 100)
+                                PostImage(post: facesPosts[1])
+                                    .frame(width: 100, height: 100)
+                            }
+                            GridRow {
+                                PostImage(post: facesPosts[2])
+                                    .frame(width: 100, height: 100)
+                                PostImage(post: facesPosts[3])
+                                    .frame(width: 100, height: 100)
+                            }
+                        }
+                    }
+                }
+                .listRowSeparator(.hidden)
+                .onTapGesture {
+                    if let tagItem = serials.getTagItem("Fotos: Gesichter") {
+                        router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                    }
+                }
             }
+            .environment(\.defaultMinListHeaderHeight, 0)
             .selectNavigationDestination()
             .navigationTitle("Entdecken")
             .navigationBarTitleDisplayMode(.inline)
@@ -45,7 +76,21 @@ struct DiscoverView: View {
             }
         }
         .onAppear {
-            selectedPost = posts[Int.random(in: 0..<posts.count)]
+            while true {
+                let post = posts[Int.random(in: 0..<posts.count)]
+                if post.type == .text {
+                    selectedPost = post
+                    break
+                }
+            }
+        }
+        .task {
+            if serials.tagItems.isEmpty {
+                await serials.createSerials(posts)
+            }
+            if let tagItem = serials.getTagItem("Fotos: Gesichter") {
+                facesPosts = tagItem.posts
+            }
         }
     }
 
