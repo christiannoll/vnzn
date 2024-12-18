@@ -28,7 +28,7 @@ struct DiscoverView: View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
             List {
-                Section("Zufälliger Post") {
+                Section("Post des Tages") {
                     Text(selectedPost.title)
                         .bold()
                     Button {
@@ -80,13 +80,7 @@ struct DiscoverView: View {
             }
         }
         .onAppear {
-            while true {
-                let post = posts[Int.random(in: 0..<posts.count)]
-                if post.type == .text {
-                    selectedPost = post
-                    break
-                }
-            }
+            initPostOfTheDay()
         }
         .task {
             if serials.tagItems.isEmpty {
@@ -107,5 +101,44 @@ struct DiscoverView: View {
         } else {
             return ""
         }
+    }
+
+    private func initPostOfTheDay() {
+        if let data = UserDefaults.standard.data(forKey: "postOfTheDay") {
+            do {
+                let decoder = JSONDecoder()
+                let postOfTheDay = try decoder.decode(RandomPosts.self, from: data)
+                let createdAt = Date(timeIntervalSince1970: postOfTheDay.createdAt)
+                if Date().noon > createdAt.noon {
+                    try setNewPostOfTheDayIndex()
+                } else {
+                    selectedPost = posts[postOfTheDay.posts[0]]
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                try setNewPostOfTheDayIndex()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func setNewPostOfTheDayIndex() throws {
+        var newIndex = 0
+        while true {
+            let index = Int.random(in: 0..<posts.count)
+            if posts[index].type == .text {
+                newIndex = index
+                break
+            }
+        }
+        let newPostOfTheDay = RandomPosts(createdAt: Date().timeIntervalSince1970, posts: [newIndex])
+        let encoder = JSONEncoder()
+        let encodedData = try encoder.encode(newPostOfTheDay)
+        UserDefaults.standard.set(encodedData, forKey: "postOfTheDay")
+        selectedPost = posts[newIndex]
     }
 }
