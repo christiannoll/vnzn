@@ -16,8 +16,14 @@ struct ArchiveView: View {
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.archiveMonth(month.posts))
                     } label: {
-                        Text(month.monthName)
+                        HStack {
+                            Text(month.monthName)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

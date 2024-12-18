@@ -16,8 +16,14 @@ struct BooksView: View {
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.post(post))
                     } label: {
-                        Text(post.title)
+                        HStack {
+                            Text(post.title)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

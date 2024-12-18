@@ -13,10 +13,13 @@ struct SerialsView: View {
                 Button {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 } label: {
-                    Text(tagItem.key)
-                    Spacer()
-                    Text(tagItem.numberOfPosts)
-                        .foregroundStyle(.secondary)
+                    HStack {
+                        Text(tagItem.key)
+                        Spacer()
+                        Text(tagItem.numberOfPosts)
+                            .foregroundStyle(.secondary)
+                    }
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
             }
