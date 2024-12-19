@@ -86,9 +86,7 @@ struct DiscoverView: View {
             if serials.tagItems.isEmpty {
                 await serials.createSerials(posts)
             }
-            if let tagItem = facesTagItem {
-                facesPosts = tagItem.posts
-            }
+            initFacesPosts()
         }
     }
 
@@ -100,6 +98,49 @@ struct DiscoverView: View {
             return dateFormatter.string(from: date)
         } else {
             return ""
+        }
+    }
+
+    private func initFacesPosts() {
+        if let data = UserDefaults.standard.data(forKey: "facesPosts") {
+            do {
+                let decoder = JSONDecoder()
+                let loadedPostIndices = try decoder.decode(RandomPosts.self, from: data)
+                let createdAt = Date(timeIntervalSince1970: loadedPostIndices.createdAt)
+                if Date().noon > createdAt.noon {
+                    try setNewFacesPostsIndices()
+                } else {
+                    if let tagItem = facesTagItem {
+                        facesPosts.removeAll()
+                        for loadedPostIndex in loadedPostIndices.posts {
+                            facesPosts.append(tagItem.posts[loadedPostIndex])
+                        }
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                try setNewFacesPostsIndices()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func setNewFacesPostsIndices() throws {
+        if let tagItem = facesTagItem {
+            var indices = (0..<tagItem.posts.count).map { index in index }
+            indices.shuffle()
+            let newFacesPostsIndices = RandomPosts(createdAt: Date().timeIntervalSince1970, posts: indices)
+            let encoder = JSONEncoder()
+            let encodedData = try encoder.encode(newFacesPostsIndices)
+            UserDefaults.standard.set(encodedData, forKey: "facesPosts")
+            facesPosts.removeAll()
+            for index in indices {
+                facesPosts.append(tagItem.posts[index])
+            }
         }
     }
 
