@@ -25,10 +25,13 @@ struct IndexView: View {
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
                     } label: {
-                        Text(indexItem.key)
-                        Spacer()
-                        Text(String(indexItem.numberOfPosts))
-                            .foregroundStyle(.secondary)
+                        HStack {
+                            Text(indexItem.key)
+                            Spacer()
+                            Text(String(indexItem.numberOfPosts))
+                                .foregroundStyle(.secondary)
+                        }
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
