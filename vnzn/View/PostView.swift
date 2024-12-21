@@ -33,7 +33,7 @@ struct PostView: View {
                 }
                 .padding(.top, 6)
                 HStack {
-                    ForEach(post.tags.map { $0 }, id: \.self) { tag in
+                    ForEach(tagStrings(), id: \.self) { tag in
                         Button {
                             if let tagItem = tags.getTagItem(tag) {
                                 router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
@@ -83,6 +83,10 @@ struct PostView: View {
                 .padding(.trailing, 16)
             }
         }
+    }
+
+    private func tagStrings() -> [String] {
+        post.tags.map { $0 }.sorted()
     }
 
     private func createPostDate(_ post: Post) -> String {
