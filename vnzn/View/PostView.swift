@@ -56,7 +56,9 @@ struct PostView: View {
             }
         }
         .onAppear {
-            SwiftDataService.shared.saveHistoryItem(post: post)
+            DispatchQueue.main.async {
+                SwiftDataService.shared.saveHistoryItem(post: post)
+            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -64,7 +66,9 @@ struct PostView: View {
                     HStack {
                         Button {
                             post.isFavourite.toggle()
-                            try? modelContext.save()
+                            DispatchQueue.main.async {
+                                try? modelContext.save()
+                            }
                         } label: {
                             Image(systemName: post.isFavourite ? "star.fill" : "star")
                                 .foregroundStyle(Color.accentColor)
