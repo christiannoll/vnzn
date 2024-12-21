@@ -15,10 +15,12 @@ class UpdateService {
         
         for item in items {
             var isFavourite = false
+            var visits: Int = 0
             if let loadedPost = loadedPost(item) {
                 isFavourite = loadedPost.isFavourite
+                visits = loadedPost.visits
             }
-            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: isFavourite)
+            let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: isFavourite, visits: visits)
             container.mainContext.insert(post)
         }
         

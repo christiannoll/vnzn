@@ -20,7 +20,12 @@ class SwiftDataService {
         }
         return modelContext
     }
-    
+
+    func incrementVisits(post: Post) {
+        post.visits += 1
+        try? modelContext.save()
+    }
+
     func saveHistoryItem(post: Post) {
         let postId = post.id
         let postPredicate = FetchDescriptor<HistoryItem>(predicate: #Predicate { historyItem in

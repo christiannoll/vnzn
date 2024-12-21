@@ -31,6 +31,7 @@ class SiteStatistics {
             }
             postData.publishDate = convertDateToString(post)
             postData.serialPost = post.serials.count > 0
+            postData.visits = post.visits
             data.postsData.append(postData)
             data.numberOfAllLinks = numberOfAllLinks
         }
@@ -48,6 +49,9 @@ class SiteStatistics {
         
         sortByLinkCount()
         calculateMaxLinkCountPost()
+
+        sortByVisits()
+        calculateMaxVisitsCountPost()
     }
 
     private func parseLinks(_ post: Post, _ markdownNodes: [MarkdownNode]) {
@@ -145,12 +149,22 @@ class SiteStatistics {
             data.maxLinkCountPostItem = StatisticPostItem(data.postsData.last!.postItem, data.postsData.last!.linkCount)
         }
     }
-    
+
+    private func calculateMaxVisitsCountPost() {
+        if !data.postsData.isEmpty {
+            data.maxVisitsPostItem = StatisticPostItem(data.postsData.last!.postItem, data.postsData.last!.visits)
+        }
+    }
+
     private func sortByWordCount() {
         data.postsData.sort { $0.wordCount < $1.wordCount }
     }
     
     private func sortByLinkCount() {
         data.postsData.sort { $0.linkCount < $1.linkCount }
+    }
+
+    private func sortByVisits() {
+        data.postsData.sort { $0.visits < $1.visits }
     }
 }

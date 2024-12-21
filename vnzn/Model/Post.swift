@@ -25,8 +25,9 @@ final class Post {
     var type: PostType
     var textFormat: String
     var isFavourite: Bool
-    
-    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, textFormat: String = "", isFavourite: Bool = false) {
+    var visits: Int
+
+    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, textFormat: String = "", isFavourite: Bool = false, visits: Int = 0) {
         self.id = id
         self.data = data
         self.name = name
@@ -43,5 +44,6 @@ final class Post {
         self.type = type
         self.textFormat = textFormat
         self.isFavourite = isFavourite
+        self.visits = visits
     }
 }

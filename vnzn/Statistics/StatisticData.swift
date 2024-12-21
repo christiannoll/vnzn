@@ -17,4 +17,5 @@ struct StatisticData {
     var minWordCountPostItem: StatisticPostItem?
     
     var maxLinkCountPostItem: StatisticPostItem?
+    var maxVisitsPostItem: StatisticPostItem?
 }

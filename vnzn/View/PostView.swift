@@ -58,6 +58,7 @@ struct PostView: View {
         .onAppear {
             DispatchQueue.main.async {
                 SwiftDataService.shared.saveHistoryItem(post: post)
+                SwiftDataService.shared.incrementVisits(post: post)
             }
         }
         .toolbar {

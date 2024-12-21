@@ -55,6 +55,17 @@ struct StatisticsView: View {
                         Text("\(statistics.data.maxLinkCountPostItem?.post.title ?? "")")
                     }
                 }
+                HStack {
+                    Text("Post mit den meisten Besuchen \(statistics.data.maxVisitsPostItem?.number ?? 0): ")
+                    Spacer()
+                    Button {
+                        if let item = statistics.data.maxVisitsPostItem {
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                        }
+                    } label: {
+                        Text("\(statistics.data.maxVisitsPostItem?.post.title ?? "")")
+                    }
+                }
             }
         }
         .navigationTitle("Statistik")
