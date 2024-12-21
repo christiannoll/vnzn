@@ -4,7 +4,6 @@ import SwiftData
 struct PostsView: View {
     
     @State private var searchText = ""
-    @State private var selectedPost: Post? = nil
     @State private var onlyFavourites = false
     
     @Environment(Tags.self) var tags: Tags
@@ -25,7 +24,7 @@ struct PostsView: View {
         NavigationStack(path: $router.postsViewNavigationPath) {
             List {
                 ForEach (searchResults.filter { shouldInclude($0) }) { post in
-                    PostRow(post: post, selectedPost: $selectedPost)
+                    PostRow(post: post)
                 }
             }
             .selectNavigationDestination()

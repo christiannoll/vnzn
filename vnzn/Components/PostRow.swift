@@ -3,13 +3,11 @@ import SwiftUI
 struct PostRow: View {
     
     let post: Post
-    @Binding var selectedPost: Post?
     @Environment(Router.self) var router: Router
 
     var body: some View {
         if post.type == PostType.text {
             Button {
-                selectedPost = post
                 router.currentNavigationPath.append(NavigationTarget.post(post))
             } label: {
                 VStack(alignment: .leading) {
@@ -27,7 +25,6 @@ struct PostRow: View {
                 HStack {
                     Spacer()
                     Button {
-                        selectedPost = post
                         router.currentNavigationPath.append(NavigationTarget.post(post))
                     } label: {
                         PostImage(post: post)

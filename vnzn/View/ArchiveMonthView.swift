@@ -3,12 +3,11 @@ import SwiftUI
 struct ArchiveMonthView: View {
 
     let posts: [Post]
-    @State private var selectedPost: Post? = nil
 
     var body: some View {
         List {
             ForEach (posts) { post in
-                PostRow(post: post, selectedPost: $selectedPost)
+                PostRow(post: post)
             }
         }
         .scrollContentBackground(.hidden)
