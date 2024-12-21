@@ -13,17 +13,15 @@ struct TimelineView: View {
                 Text(String(item.year))
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
-                    Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(post))
-                    } label: {
-                        HStack {
-                            Text(post.title)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                        .contentShape(Rectangle())
+                    HStack {
+                        Text(post.title)
+                            .foregroundStyle(.secondary)
+                        Spacer()
                     }
-                    .buttonStyle(.plain)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        router.currentNavigationPath.append(NavigationTarget.post(post))
+                    }
                 }
             }
         }

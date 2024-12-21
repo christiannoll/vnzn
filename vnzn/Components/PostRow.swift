@@ -7,16 +7,18 @@ struct PostRow: View {
 
     var body: some View {
         if post.type == PostType.text {
-            Button {
-                router.currentNavigationPath.append(NavigationTarget.post(post))
-            } label: {
-                VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
+                HStack {
                     Text(post.title)
                         .padding(.top, 20)
-                    Text(createPostDate(post)).foregroundStyle(.secondary)
+                    Spacer()
                 }
+                .contentShape(Rectangle())
+                Text(createPostDate(post)).foregroundStyle(.secondary)
             }
-            .buttonStyle(.plain)
+            .onTapGesture {
+                router.currentNavigationPath.append(NavigationTarget.post(post))
+            }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .listRowBackground(Color.clear)
@@ -34,7 +36,6 @@ struct PostRow: View {
                     Spacer()
                 }
                 Text(createPostDate(post)).foregroundStyle(.secondary)
-                
             }
             .listRowBackground(Color.clear)
         }
