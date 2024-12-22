@@ -15,7 +15,8 @@ struct PostsView: View {
         if searchText.isEmpty {
             return posts
         } else {
-            return posts.filter { $0.data.lowercased().contains(searchText.lowercased()) }
+            let searchTerm = searchText.lowercased()
+            return posts.filter { $0.data.lowercased().contains(searchTerm) || $0.title.lowercased().contains(searchTerm) }
         }
     }
 
