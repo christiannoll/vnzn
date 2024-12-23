@@ -43,10 +43,13 @@ struct YearParser {
     
     private func parseYear(text: String) -> Int {
         var year = -1
-        
-        let range = 4...4
-        if range.contains(text.count)  {
+
+        if text.count == 4  {
             year = Int(text) ?? -1
+        } else {
+            if let date = Date.parseDate(text) {
+                year = Calendar.current.dateComponents([.year], from: date).year ?? -1
+            }
         }
         return year
     }

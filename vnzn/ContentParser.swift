@@ -127,12 +127,7 @@ class ContentParser : NSObject, XMLParserDelegate {
     }
     
     private func parseDate(_ dateString: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        dateFormatter.locale = Locale.init(identifier: "de_DE")
-        
-        let date = dateFormatter.date(from: dateString)
-        return date
+        return Date.parseDate(dateString)
     }
     
     private func isPersonIndex(_ typeString: String) -> Bool {
