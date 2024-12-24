@@ -5,7 +5,8 @@ struct PostsView: View {
     
     @State private var searchText = ""
     @State private var onlyFavourites = false
-    
+    @State private var settingsVisible = false
+
     @Environment(Tags.self) var tags: Tags
     @Environment(Index.self) var index: Index
     @Environment(Router.self) var router: Router
@@ -44,20 +45,28 @@ struct PostsView: View {
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        onlyFavourites.toggle()
+                    } label: {
+                        Image(systemName: onlyFavourites ? "star.fill" : "star")
+                            .foregroundStyle(Color.accentColor)
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    VStack {
-                        Button {
-                            onlyFavourites.toggle()
-                        } label: {
-                            Image(systemName: onlyFavourites ? "star.fill" : "star")
-                                .foregroundStyle(Color.accentColor)
-                        }
-                        Spacer()
+                    Button {
+                        settingsVisible.toggle()
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(Color.accentColor)
                     }
                     .padding(.trailing, 16)
                 }
             }
             .toolbarBackground(.visible, for: .tabBar)
+            .sheet(isPresented: $settingsVisible) {
+                SettingsView()
+            }
         }
     }
     
