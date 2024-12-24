@@ -7,6 +7,8 @@ struct DiscoverView: View {
     @Environment(Serials.self) var serials: Serials
     @Environment(Router.self) var router: Router
 
+    @State private var settingsVisible = false
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
@@ -25,6 +27,24 @@ struct DiscoverView: View {
             .navigationTitle("Entdecken")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    VStack {
+                        Button {
+                            settingsVisible.toggle()
+                        } label: {
+                            Image(systemName: "gearshape")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        Spacer()
+                    }
+                    .padding(.trailing, 16)
+                }
+            }
+            .toolbarBackground(.visible, for: .tabBar)
+            .sheet(isPresented: $settingsVisible) {
+                SettingsView()
+            }
         }
     }
 }
