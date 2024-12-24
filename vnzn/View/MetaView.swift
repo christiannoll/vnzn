@@ -83,7 +83,7 @@ struct MetaView: View {
 struct MetaViewButton: View {
 
     let navigationTarget: NavigationTarget
-    let title: String
+    let title: LocalizedStringKey
 
     @Environment(Router.self) var router: Router
 

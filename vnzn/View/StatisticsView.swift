@@ -75,7 +75,7 @@ struct StatisticsView: View {
 
 struct StatisticTextItem: View {
 
-    let title: String
+    let title: LocalizedStringKey
     let value: Int
 
     var body: some View {
