@@ -1,14 +1,22 @@
 import SwiftUI
+import SwiftData
 
 struct SettingsView: View {
 
     @Environment(\.dismiss) var dismiss
+    @Query() var settings: [Settings]
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Entdecken") {
-
+                    if let appSettings = settings.first {
+                        @Bindable var appSettings = appSettings
+                        Toggle("Post des Tages anzeigen", isOn: $appSettings.showFacesPosts)
+                            .onChange(of: appSettings.showFacesPosts) {
+                                SwiftDataService.shared.save()
+                            }
+                    }
                 }
             }
             .navigationTitle("Einstellungen")

@@ -4,8 +4,8 @@ import SwiftData
 @MainActor
 func createAppContainer() -> ModelContainer {
     do {
-        let container = try ModelContainer(for: Post.self, HistoryItem.self)
-        
+        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self)
+
         Task {
             let lastUpdateKey = "lastUpdate"
             let lastUpdateFromServer = await fetchLastUpdate()
@@ -18,7 +18,15 @@ func createAppContainer() -> ModelContainer {
                 UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
             }
         }
-        
+
+        var settingsFetchDescriptor = FetchDescriptor<Settings>()
+        settingsFetchDescriptor.fetchLimit = 1
+        guard try container.mainContext.fetch(settingsFetchDescriptor).count == 0 else {
+            return container
+        }
+        let settings = Settings()
+        container.mainContext.insert(settings)
+
         return container
     } catch {
         fatalError("Failed to create container")

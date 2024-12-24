@@ -388,6 +388,9 @@
         }
       }
     },
+    "Post des Tages anzeigen" : {
+
+    },
     "Post mit den meisten Besuchen %lld: " : {
       "localizations" : {
         "de" : {

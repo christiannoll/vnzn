@@ -21,6 +21,10 @@ class SwiftDataService {
         return modelContext
     }
 
+    func save() {
+        try? modelContext.save()
+    }
+
     func incrementVisits(post: Post) {
         post.visits += 1
         try? modelContext.save()
