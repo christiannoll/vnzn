@@ -5,12 +5,12 @@ struct TagsView: View {
     
     @Query(sort: \Post.date) var posts: [Post]
 
-    @Environment(Tags.self) var tags: Tags
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
     
     var body: some View {
         List {
-            ForEach(tags.tagItems) { tagItem in
+            ForEach(metaData.tags.tagItems) { tagItem in
                 Button {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 } label: {
@@ -26,8 +26,8 @@ struct TagsView: View {
             }
         }
         .task {
-            if tags.tagItems.isEmpty {
-                await tags.createTags(posts)
+            if metaData.tags.tagItems.isEmpty {
+                await metaData.tags.createTags(posts)
             }
         }
         .selectNavigationDestination()

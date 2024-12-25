@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class Serials : Tags {
 
     func createSerials(_ posts: [Post]) async {

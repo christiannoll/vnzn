@@ -5,11 +5,11 @@ struct MoviesView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
-    @Environment(MoviesRegister.self) var movies: MoviesRegister
+    @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
-            ForEach(movies.register.registerItems, id: \.self) { item in
+            ForEach(metaData.movies.register.registerItems, id: \.self) { item in
                 Text(item.content)
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
@@ -28,8 +28,8 @@ struct MoviesView: View {
             }
         }
         .task {
-            if movies.register.registerItems.isEmpty {
-                await movies.createMoviesRegister(posts)
+            if metaData.movies.register.registerItems.isEmpty {
+                await metaData.movies.createMoviesRegister(posts)
             }
         }
         .navigationTitle("Filme")

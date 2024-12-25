@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class Tags {
     
     var tagItems: [TagItem] = []

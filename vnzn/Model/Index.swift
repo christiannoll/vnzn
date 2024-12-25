@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class Index {
     
     var indexItems: [IndexItem] = []

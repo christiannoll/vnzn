@@ -4,7 +4,7 @@ struct ShortStoriesView: View {
 
     @State private var posts: [Post] = []
 
-    @Environment(Tags.self) var tags: Tags
+    @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
@@ -13,7 +13,7 @@ struct ShortStoriesView: View {
             }
         }
         .onAppear {
-            if let tagItem = tags.getTagItem("Short Story") {
+            if let tagItem = metaData.tags.getTagItem("Short Story") {
                 posts = tagItem.posts
             }
         }

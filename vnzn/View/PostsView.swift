@@ -7,8 +7,7 @@ struct PostsView: View {
     @State private var onlyFavourites = false
     @State private var settingsVisible = false
 
-    @Environment(Tags.self) var tags: Tags
-    @Environment(Index.self) var index: Index
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
     
@@ -37,11 +36,11 @@ struct PostsView: View {
             .navigationBarTitleTextColor(.blue)
             .scrollContentBackground(.hidden)
             .task {
-                if tags.tagItems.isEmpty {
-                    await tags.createTags(posts)
+                if metaData.tags.tagItems.isEmpty {
+                    await metaData.tags.createTags(posts)
                 }
-                if index.indexItems.isEmpty {
-                    await index.createIndex(posts)
+                if metaData.index.indexItems.isEmpty {
+                    await metaData.index.createIndex(posts)
                 }
             }
             .toolbar {

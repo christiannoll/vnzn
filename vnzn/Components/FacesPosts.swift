@@ -4,7 +4,7 @@ struct FacesPosts: View {
 
     let posts: [Post]
 
-    @Environment(Serials.self) var serials: Serials
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
     @State private var facesPosts: [Post] = []
@@ -41,8 +41,8 @@ struct FacesPosts: View {
             }
         }
         .task {
-            if serials.tagItems.isEmpty {
-                await serials.createSerials(posts)
+            if metaData.serials.tagItems.isEmpty {
+                await metaData.serials.createSerials(posts)
             }
             initFacesPosts()
         }
@@ -93,6 +93,6 @@ struct FacesPosts: View {
     }
 
     private func facesTagItem() -> TagItem? {
-        serials.getTagItem("Fotos: Gesichter")
+        metaData.serials.getTagItem("Fotos: Gesichter")
     }
 }

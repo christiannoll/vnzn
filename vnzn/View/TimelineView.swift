@@ -5,11 +5,11 @@ struct TimelineView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
-    @Environment(Timeline.self) var timeline: Timeline
+    @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
-            ForEach(timeline.timelineItems, id: \.self) { item in
+            ForEach(metaData.timeline.timelineItems, id: \.self) { item in
                 Text(String(item.year))
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
@@ -26,8 +26,8 @@ struct TimelineView: View {
             }
         }
         .task {
-            if timeline.timelineItems.isEmpty {
-                await timeline.createTimeline(posts)
+            if metaData.timeline.timelineItems.isEmpty {
+                await metaData.timeline.createTimeline(posts)
             }
         }
         .navigationTitle("Timeline")

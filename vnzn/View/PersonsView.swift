@@ -5,11 +5,11 @@ struct PersonsView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
-    @Environment(PersonsRegister.self) var persons: PersonsRegister
+    @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
-            ForEach(persons.register.registerItems, id: \.self) { item in
+            ForEach(metaData.persons.register.registerItems, id: \.self) { item in
                 Text(item.content)
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
@@ -28,8 +28,8 @@ struct PersonsView: View {
             }
         }
         .task {
-            if persons.register.registerItems.isEmpty {
-                await persons.createPersonsRegister(posts)
+            if metaData.persons.register.registerItems.isEmpty {
+                await metaData.persons.createPersonsRegister(posts)
             }
         }
         .navigationTitle("Personen")

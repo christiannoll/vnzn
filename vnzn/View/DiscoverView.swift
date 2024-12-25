@@ -5,7 +5,7 @@ struct DiscoverView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Query() var settings: [Settings]
-    @Environment(Serials.self) var serials: Serials
+
     @Environment(Router.self) var router: Router
 
     var body: some View {

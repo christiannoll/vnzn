@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class Timeline {
 
     var timelineItems: [TimelineItem] = []

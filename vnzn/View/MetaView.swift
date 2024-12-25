@@ -4,16 +4,8 @@ import SwiftData
 struct MetaView: View {
 
     @Environment(Router.self) var router: Router
-    @Environment(Serials.self) var serials: Serials
-    @Environment(Index.self) var index: Index
-    @Environment(Tags.self) var tags: Tags
-    @Environment(Archive.self) var archive: Archive
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
-    @Environment(Timeline.self) var timeline: Timeline
-    @Environment(PersonsRegister.self) var persons: PersonsRegister
-    @Environment(MoviesRegister.self) var movies: MoviesRegister
-    @Environment(BooksRegister.self) var books: BooksRegister
-    @Environment(IndexRegister.self) var indices: IndexRegister
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
@@ -38,35 +30,35 @@ struct MetaView: View {
                 }
             }
             .task {
-                if serials.tagItems.isEmpty {
-                    await serials.createSerials(posts)
+                if metaData.serials.tagItems.isEmpty {
+                    await metaData.serials.createSerials(posts)
                 }
-                if tags.tagItems.isEmpty {
-                    await tags.createTags(posts)
+                if metaData.tags.tagItems.isEmpty {
+                    await metaData.tags.createTags(posts)
                 }
-                if index.indexItems.isEmpty {
-                    await index.createIndex(posts)
+                if metaData.index.indexItems.isEmpty {
+                    await metaData.index.createIndex(posts)
                 }
-                if archive.years.isEmpty {
-                    await archive.createArchive(posts)
+                if metaData.archive.years.isEmpty {
+                    await metaData.archive.createArchive(posts)
                 }
                 if statistics.data.numberOfPosts == 0 {
-                    await statistics.createStatistics(posts, index: index, tags: tags, serials: serials)
+                    await statistics.createStatistics(posts, index: metaData.index, tags: metaData.tags, serials: metaData.serials)
                 }
-                if timeline.timelineItems.isEmpty {
-                    await timeline.createTimeline(posts)
+                if metaData.timeline.timelineItems.isEmpty {
+                    await metaData.timeline.createTimeline(posts)
                 }
-                if persons.register.registerItems.isEmpty {
-                    await persons.createPersonsRegister(posts)
+                if metaData.persons.register.registerItems.isEmpty {
+                    await metaData.persons.createPersonsRegister(posts)
                 }
-                if movies.register.registerItems.isEmpty {
-                    await movies.createMoviesRegister(posts)
+                if metaData.movies.register.registerItems.isEmpty {
+                    await metaData.movies.createMoviesRegister(posts)
                 }
-                if books.register.registerItems.isEmpty {
-                    await books.createBooksRegister(posts)
+                if metaData.books.register.registerItems.isEmpty {
+                    await metaData.books.createBooksRegister(posts)
                 }
-                if indices.register.registerItems.isEmpty {
-                    await indices.createIndexRegister(posts)
+                if metaData.indices.register.registerItems.isEmpty {
+                    await metaData.indices.createIndexRegister(posts)
                 }
             }
             .selectNavigationDestination()

@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class BooksRegister {
 
     var register = Register()

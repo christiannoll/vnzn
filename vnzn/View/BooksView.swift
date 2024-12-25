@@ -5,11 +5,11 @@ struct BooksView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
-    @Environment(BooksRegister.self) var books: BooksRegister
+    @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
-            ForEach(books.register.registerItems, id: \.self) { item in
+            ForEach(metaData.books.register.registerItems, id: \.self) { item in
                 Text(item.content)
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
@@ -28,8 +28,8 @@ struct BooksView: View {
             }
         }
         .task {
-            if books.register.registerItems.isEmpty {
-                await books.createBooksRegister(posts)
+            if metaData.books.register.registerItems.isEmpty {
+                await metaData.books.createBooksRegister(posts)
             }
         }
         .navigationTitle("Bücher")

@@ -1,6 +1,5 @@
 import SwiftUI
 
-@Observable
 class IndexRegister {
 
     var register = Register()

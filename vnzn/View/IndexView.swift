@@ -6,14 +6,14 @@ struct IndexView: View {
     @State private var searchText = ""
     @Query(sort: \Post.date) var posts: [Post]
 
-    @Environment(Index.self) var index: Index
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
     var searchResults: [IndexItem] {
         if searchText.isEmpty {
-            return index.indexItems
+            return metaData.index.indexItems
         } else {
-            return index.indexItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
+            return metaData.index.indexItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
         }
     }
     
@@ -37,8 +37,8 @@ struct IndexView: View {
                 }
             }
             .task {
-                if index.indexItems.isEmpty {
-                    await index.createIndex(posts)
+                if metaData.index.indexItems.isEmpty {
+                    await metaData.index.createIndex(posts)
                 }
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")

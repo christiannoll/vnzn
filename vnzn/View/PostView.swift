@@ -6,8 +6,7 @@ struct PostView: View {
     @State var post: Post
     
     @Query(sort: \Post.date) var posts: [Post]
-    @Environment(Tags.self) var tags: Tags
-    @Environment(Index.self) var index: Index
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
 
@@ -35,7 +34,7 @@ struct PostView: View {
                 HStack {
                     ForEach(tagStrings(), id: \.self) { tag in
                         Button {
-                            if let tagItem = tags.getTagItem(tag) {
+                            if let tagItem = metaData.tags.getTagItem(tag) {
                                 router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                             }
                         } label: {

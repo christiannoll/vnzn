@@ -5,16 +5,8 @@ import SwiftData
 struct vnznApp: App {
     
     private var router = Router()
-    private var index = Index()
-    private var tags = Tags()
-    private var serials = Serials()
-    private var archive = Archive()
     private var siteStatistics = SiteStatistics()
-    private var timeline = Timeline()
-    private var persons = PersonsRegister()
-    private var movies = MoviesRegister()
-    private var books = BooksRegister()
-    private var indices = IndexRegister()
+    private var metaData = MetaData()
     private var modelContainer = createAppContainer()
     
     init() {
@@ -25,16 +17,8 @@ struct vnznApp: App {
         WindowGroup {
             ContentView()
                 .environment(router)
-                .environment(index)
-                .environment(tags)
-                .environment(serials)
-                .environment(archive)
+                .environment(metaData)
                 .environment(siteStatistics)
-                .environment(timeline)
-                .environment(persons)
-                .environment(movies)
-                .environment(books)
-                .environment(indices)
         }
         .modelContainer(modelContainer)
     }

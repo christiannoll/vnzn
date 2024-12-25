@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class Archive {
     
     var years: [ArchiveYear] = []

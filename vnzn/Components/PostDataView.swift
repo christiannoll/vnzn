@@ -11,8 +11,7 @@ struct PostDataView: View {
     let nodeParser = NodeParser()
     var reduceData = false
 
-    @Environment(Tags.self) var tags: Tags
-    @Environment(Index.self) var index: Index
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
     var posts: [Post]
@@ -92,7 +91,7 @@ struct PostDataView: View {
         else if url.absoluteString.starts(with: "#tags/") {
             let components = url.absoluteString.components(separatedBy: "/")
             if components.count == 3 {
-                if let tagItem = tags.getTagItem(components[1]) {
+                if let tagItem = metaData.tags.getTagItem(components[1]) {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 }
             }
@@ -101,7 +100,7 @@ struct PostDataView: View {
             let components = url.absoluteString.components(separatedBy: "/")
             if components.count == 3 {
                 let key = components[1].replacingOccurrences(of: "-", with: " ")
-                if let indexItem = index.getIndexItem(key) {
+                if let indexItem = metaData.index.getIndexItem(key) {
                     router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
                 }
             }

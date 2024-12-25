@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class MoviesRegister {
 
     var register = Register()

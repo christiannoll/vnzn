@@ -4,12 +4,12 @@ import SwiftData
 struct ArchiveView: View {
 
     @Environment(Router.self) var router: Router
-    @Environment(Archive.self) var archive: Archive
+    @Environment(MetaData.self) var metaData: MetaData
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     var body: some View {
         List {
-            ForEach(archive.years, id: \.self) { year in
+            ForEach(metaData.archive.years, id: \.self) { year in
                 Text(year.name)
                     .bold()
                 ForEach(year.months, id: \.self) { month in
@@ -28,8 +28,8 @@ struct ArchiveView: View {
             }
         }
         .task {
-            if archive.years.isEmpty {
-                await archive.createArchive(posts)
+            if metaData.archive.years.isEmpty {
+                await metaData.archive.createArchive(posts)
             }
         }
         .navigationTitle("Archiv")

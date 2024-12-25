@@ -1,6 +1,5 @@
 import Foundation
 
-@Observable
 class PersonsRegister {
 
     var register = Register()
