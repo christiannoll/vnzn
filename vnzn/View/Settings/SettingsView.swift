@@ -12,7 +12,11 @@ struct SettingsView: View {
                 Section("Entdecken") {
                     if let appSettings = settings.first {
                         @Bindable var appSettings = appSettings
-                        Toggle("Post des Tages anzeigen", isOn: $appSettings.showFacesPosts)
+                        Toggle("Post des Tages anzeigen", isOn: $appSettings.showPostOfTheDay)
+                            .onChange(of: appSettings.showPostOfTheDay) {
+                                SwiftDataService.shared.save()
+                            }
+                        Toggle("Fotoserie- Gesichter anzeigen", isOn: $appSettings.showFacesPosts)
                             .onChange(of: appSettings.showFacesPosts) {
                                 SwiftDataService.shared.save()
                             }

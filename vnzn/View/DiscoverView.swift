@@ -4,6 +4,7 @@ import SwiftData
 struct DiscoverView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
+    @Query() var settings: [Settings]
     @Environment(Serials.self) var serials: Serials
     @Environment(Router.self) var router: Router
 
@@ -11,14 +12,18 @@ struct DiscoverView: View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
             List {
-                Section("Post des Tages") {
-                    PostOfTheDay(posts: posts)
+                if postOfTheDayVisible() {
+                    Section("Post des Tages") {
+                        PostOfTheDay(posts: posts)
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
-                Section("Fotoserie: Gesichter") {
-                    FacesPosts(posts: posts)
+                if facesPostsVisible() {
+                    Section("Fotoserie: Gesichter") {
+                        FacesPosts(posts: posts)
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
             }
             .environment(\.defaultMinListHeaderHeight, 0)
             .selectNavigationDestination()
@@ -26,5 +31,19 @@ struct DiscoverView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
         }
+    }
+
+    private func postOfTheDayVisible() -> Bool {
+        if let appSettings = settings.first {
+            return appSettings.showPostOfTheDay
+        }
+        return true
+    }
+
+    private func facesPostsVisible() -> Bool {
+        if let appSettings = settings.first {
+            return appSettings.showFacesPosts
+        }
+        return true
     }
 }

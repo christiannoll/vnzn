@@ -196,6 +196,22 @@
         }
       }
     },
+    "Fotoserie- Gesichter anzeigen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fotoserie- Gesichter anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show faces photos"
+          }
+        }
+      }
+    },
     "Fotoserie: Gesichter" : {
       "localizations" : {
         "de" : {
@@ -389,7 +405,20 @@
       }
     },
     "Post des Tages anzeigen" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Post des Tages anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show post of the day"
+          }
+        }
+      }
     },
     "Post mit den meisten Besuchen %lld: " : {
       "localizations" : {
