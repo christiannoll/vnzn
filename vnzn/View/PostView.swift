@@ -73,7 +73,7 @@ struct PostView: View {
                             Image(systemName: post.isFavourite ? "star.fill" : "star")
                                 .foregroundStyle(Color.accentColor)
                         }
-                        ShareLink(item: URL(string: "https://www.vnzn.de")!) {
+                        ShareLink(item: URL(string: createPostUrl(post))!) {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundStyle(Color.accentColor)
                         }
@@ -95,7 +95,25 @@ struct PostView: View {
         dateFormatter.dateFormat = "dd MMM yyyy"
         return dateFormatter.string(from: post.date!)
     }
-    
+
+    private func createPostUrl(_ post: Post?) -> String {
+        guard let selectedPost = post else { return VnznEnv.baseUrl }
+        var url = VnznEnv.baseUrl
+
+        url.append(createDatePath(selectedPost))
+        url.append(selectedPost.name.trimmingCharacters(in: .whitespacesAndNewlines))
+        url.append("/")
+
+        return url
+    }
+
+    private func createDatePath(_ post: Post) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.dateFormat = "yyyy/MM/dd/"
+        return dateFormatter.string(from: post.date!)
+    }
+
     private func boldText(_ text: String) -> Text {
         /*let integers = (0...3)
         _ = integers.publisher
