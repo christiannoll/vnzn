@@ -96,24 +96,6 @@ struct PostView: View {
         return dateFormatter.string(from: post.date!)
     }
     
-    private func createPostUrl(_ post: Post?) -> String {
-        guard let selectedPost = post else { return VnznEnv.baseUrl }
-        var url = VnznEnv.baseUrl
-        
-        url.append(createDatePath(selectedPost))
-        url.append(selectedPost.name.trimmingCharacters(in: .whitespacesAndNewlines))
-        url.append("/")
-        
-        return url
-    }
-    
-    private func createDatePath(_ post: Post) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "yyyy/MM/dd/"
-        return dateFormatter.string(from: post.date!)
-    }
-
     private func boldText(_ text: String) -> Text {
         /*let integers = (0...3)
         _ = integers.publisher
