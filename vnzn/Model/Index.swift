@@ -4,6 +4,21 @@ class Index {
     
     var indexItems: [IndexItem] = []
     private let lock = NSLock()
+    private var currentSortOrder = SortOrder.alphabetical
+
+    private enum SortOrder {
+        case alphabetical
+        case mostPopular
+        case leastPopular
+
+        mutating func next() {
+            switch self {
+            case .alphabetical: self = .mostPopular
+            case .mostPopular: self = .leastPopular
+            case .leastPopular: self = .alphabetical
+            }
+        }
+    }
 
     var numberOfIndexItems: Int {
         get { return indexItems.count }
@@ -20,10 +35,33 @@ class Index {
         indexItems.first { $0.key == key }
     }
 
+    func sortByNextOrder() {
+        lock.lock()
+        currentSortOrder.next()
+        sort()
+        lock.unlock()
+    }
+
     private func sort() {
+        switch currentSortOrder {
+        case .alphabetical: sortAlphabetical()
+        case .mostPopular: sortMostPopular()
+        case .leastPopular: sortLeastPopular()
+        }
+    }
+
+    private func sortAlphabetical() {
         indexItems.sort { $0.key < $1.key }
     }
-    
+
+    private func sortMostPopular() {
+        indexItems.sort { $0.posts.count > $1.posts.count }
+    }
+
+    private func sortLeastPopular() {
+        indexItems.sort { $0.posts.count < $1.posts.count }
+    }
+
     private func addPost(_ post: Post) async {
         for indexItem in await getIndexItems(post) {
             indexItem.addPost(post)

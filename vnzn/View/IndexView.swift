@@ -46,6 +46,18 @@ struct IndexView: View {
             .navigationTitle("Index")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        metaData.index.sortByNextOrder()
+                        searchText = " "
+                        searchText = ""
+                    } label: {
+                        Image(systemName: "chevron.up.chevron.down")
+                            .padding(.trailing, 10)
+                    }
+                }
+            }
         }
     }
 }
