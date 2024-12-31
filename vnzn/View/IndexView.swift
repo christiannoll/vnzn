@@ -49,9 +49,7 @@ struct IndexView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        metaData.index.sortByNextOrder()
-                        searchText = " "
-                        searchText = ""
+                        sort()
                     } label: {
                         Image(systemName: "chevron.up.chevron.down")
                             .padding(.trailing, 10)
@@ -59,5 +57,11 @@ struct IndexView: View {
                 }
             }
         }
+    }
+
+    private func sort() {
+        metaData.index.sortByNextOrder()
+        searchText = " "
+        searchText = ""
     }
 }
