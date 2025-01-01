@@ -3,15 +3,37 @@ import Foundation
 class Tags {
     
     var tagItems: [TagItem] = []
-    
+    private var currentSortOrder = SortOrder.alphabetical
+
     var numberOfTagItems: Int {
         tagItems.count
     }
-    
+
+    func sortByNextOrder() {
+        currentSortOrder.next()
+        sort()
+    }
+
     func sort() {
+        switch currentSortOrder {
+        case .alphabetical: sortAlphabetical()
+        case .mostPopular: sortMostPopular()
+        case .leastPopular: sortLeastPopular()
+        }
+    }
+
+    private func sortAlphabetical() {
         tagItems.sort { $0.key < $1.key }
     }
-    
+
+    private func sortMostPopular() {
+        tagItems.sort { $0.posts.count > $1.posts.count }
+    }
+
+    private func sortLeastPopular() {
+        tagItems.sort { $0.posts.count < $1.posts.count }
+    }
+
     func addPost(_ post: Post) async {
         for tagItem in await getTagItems(post) {
             tagItem.addPost(post)

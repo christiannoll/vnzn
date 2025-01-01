@@ -6,8 +6,6 @@ class Index {
     private let lock = NSLock()
     private var currentSortOrder = SortOrder.alphabetical
 
-    
-
     var numberOfIndexItems: Int {
         get { return indexItems.count }
     }

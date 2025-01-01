@@ -292,6 +292,22 @@
         }
       }
     },
+    "Kategorien durchsuchen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorien durchsuchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Tags"
+          }
+        }
+      }
+    },
     "Kategorien:" : {
       "localizations" : {
         "de" : {

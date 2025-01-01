@@ -2,15 +2,24 @@ import SwiftUI
 import SwiftData
 
 struct TagsView: View {
-    
+
+    @State private var searchText = ""
     @Query(sort: \Post.date) var posts: [Post]
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
-    
+
+    var searchResults: [TagItem] {
+        if searchText.isEmpty {
+            return metaData.tags.tagItems
+        } else {
+            return metaData.tags.tagItems.filter { $0.key.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+
     var body: some View {
         List {
-            ForEach(metaData.tags.tagItems) { tagItem in
+            ForEach(searchResults) { tagItem in
                 Button {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 } label: {
@@ -30,8 +39,27 @@ struct TagsView: View {
                 await metaData.tags.createTags(posts)
             }
         }
+        .contentMargins(.top, 0)
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Kategorien durchsuchen")
         .selectNavigationDestination()
         .navigationTitle("Kategorien")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.visible, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    sort()
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .padding(.trailing, 10)
+                }
+            }
+        }
+    }
+
+    private func sort() {
+        metaData.tags.sortByNextOrder()
+        searchText = " "
+        searchText = ""
     }
 }
