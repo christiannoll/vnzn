@@ -6,19 +6,7 @@ class Index {
     private let lock = NSLock()
     private var currentSortOrder = SortOrder.alphabetical
 
-    private enum SortOrder {
-        case alphabetical
-        case mostPopular
-        case leastPopular
-
-        mutating func next() {
-            switch self {
-            case .alphabetical: self = .mostPopular
-            case .mostPopular: self = .leastPopular
-            case .leastPopular: self = .alphabetical
-            }
-        }
-    }
+    
 
     var numberOfIndexItems: Int {
         get { return indexItems.count }
