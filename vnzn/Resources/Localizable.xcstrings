@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%@" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "Anzahl an Posts:" : {
       "localizations" : {
@@ -32,6 +39,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Including number of images:"
+          }
+        }
+      }
+    },
+    "App" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App"
           }
         }
       }
@@ -200,7 +223,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fotoserie- Gesichter anzeigen"
           }
         },
@@ -227,6 +250,9 @@
           }
         }
       }
+    },
+    "Hello, World!" : {
+
     },
     "Index" : {
       "localizations" : {
@@ -424,7 +450,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Post des Tages anzeigen"
           }
         },
@@ -580,6 +606,22 @@
         }
       }
     },
+    "Über die App" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die App"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About the App"
+          }
+        }
+      }
+    },
     "v.n.z.n" : {
       "localizations" : {
         "de" : {
@@ -648,8 +690,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zufall"
+            "state" : "translated",
+            "value" : "Zufälliger Post"
           }
         },
         "en" : {

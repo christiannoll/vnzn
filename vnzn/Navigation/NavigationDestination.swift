@@ -46,6 +46,8 @@ struct NavigationDestination: ViewModifier {
                     RegisterItemView(item: registerItem)
                 case .tags:
                     TagsView()
+                case .appInfo:
+                    AppInfoView()
                 }
             }
     }

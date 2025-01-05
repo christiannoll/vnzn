@@ -18,6 +18,7 @@ import SwiftUI
     var discoverViewNavigationPath = NavigationPath()
     var historyViewNavigationPath = NavigationPath()
     var metaViewNavigationPath = NavigationPath()
+    var settingsViewNavigationPath = NavigationPath()
 
     var currentNavigationPath: NavigationPath {
         get {

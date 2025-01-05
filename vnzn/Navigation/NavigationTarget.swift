@@ -21,4 +21,5 @@ enum NavigationTarget: Hashable {
     case topicsCloud
     case topic(RegisterItem)
     case tags
+    case appInfo
 }
