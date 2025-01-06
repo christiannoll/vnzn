@@ -34,7 +34,7 @@ struct SettingsView: View {
                                     Text("Über die App")
                                     Spacer()
                                     Image(systemName: "chevron.right")
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(.tertiary)
                                 }
                                 .contentShape(Rectangle())
                             }

@@ -107,6 +107,9 @@
         }
       }
     },
+    "Datenschutzerklärung" : {
+
+    },
     "Durchschnittliche Anzahl an Links:" : {
       "localizations" : {
         "de" : {
@@ -251,9 +254,6 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "Index" : {
       "localizations" : {
         "de" : {
@@ -397,6 +397,9 @@
           }
         }
       }
+    },
+    "Nutzungsbedingungen" : {
+
     },
     "Personen" : {
       "localizations" : {
@@ -669,6 +672,9 @@
           }
         }
       }
+    },
+    "vnzn" : {
+
     },
     "vnzn durchsuchen" : {
       "localizations" : {
