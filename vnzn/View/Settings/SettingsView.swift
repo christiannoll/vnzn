@@ -22,6 +22,10 @@ struct SettingsView: View {
                             .onChange(of: appSettings.showFacesPosts) {
                                 SwiftDataService.shared.save()
                             }
+                        Toggle("Fotoserie- Poster anzeigen", isOn: $appSettings.showPosterPosts)
+                            .onChange(of: appSettings.showPosterPosts) {
+                                SwiftDataService.shared.save()
+                            }
                     }
                     Section("App") {
                         List {
