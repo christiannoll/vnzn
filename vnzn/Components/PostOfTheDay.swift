@@ -7,11 +7,13 @@ struct PostOfTheDay: View {
     @State private var selectedPost: Post
     @Environment(Router.self) var router: Router
 
-    @State private var urlToOpen: URL?
-    @State private var isSafariPresented = false
+    @Binding private var urlToOpen: URL?
+    @Binding private var isSafariPresented: Bool
 
-    init(posts: [Post]) {
+    init(posts: [Post], urlToOpen: Binding<URL?>, isSafariPresented: Binding<Bool>) {
         self.posts = posts
+        self._urlToOpen = urlToOpen
+        self._isSafariPresented = isSafariPresented
         _selectedPost = State(initialValue: Post())
     }
 
@@ -28,11 +30,6 @@ struct PostOfTheDay: View {
             .buttonStyle(.plain)
             Text(createPostDate(selectedPost))
                 .foregroundStyle(.secondary)
-        }
-        .background(alignment: .trailing) {
-            if let urlToOpen {
-                SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
-            }
         }
         .onAppear {
             initPostOfTheDay()

@@ -8,13 +8,16 @@ struct DiscoverView: View {
 
     @Environment(Router.self) var router: Router
 
+    @State private var urlToOpen: URL?
+    @State private var isSafariPresented = false
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
             List {
                 if postOfTheDayVisible() {
                     Section("Post des Tages") {
-                        PostOfTheDay(posts: posts)
+                        PostOfTheDay(posts: posts, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented)
                     }
                     .listRowSeparator(.hidden)
                 }
@@ -23,6 +26,11 @@ struct DiscoverView: View {
                         FacesPosts(posts: posts)
                     }
                     .listRowSeparator(.hidden)
+                }
+            }
+            .background(alignment: .trailing) {
+                if let urlToOpen {
+                    SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
             }
             .environment(\.defaultMinListHeaderHeight, 0)
