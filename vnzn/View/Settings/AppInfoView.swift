@@ -2,32 +2,44 @@ import SwiftUI
 
 struct AppInfoView: View {
     var body: some View {
+        
         List {
-            Button {
-            } label: {
-                HStack {
-                    Image(systemName: "lock")
-                        .foregroundStyle(Color.accentColor)
-                    Text("Datenschutzerklärung")
-                    Spacer()
+            Section("Version: \(AppVersionProvider.appVersion())") {
+                Button {
+                } label: {
+                    HStack {
+                        Image(systemName: "lock")
+                            .foregroundStyle(Color.accentColor)
+                        Text("Datenschutzerklärung")
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            Button {
-            } label: {
-                HStack {
-                    Image(systemName: "checkmark.shield")
-                        .foregroundStyle(Color.accentColor)
-                    Text("Nutzungsbedingungen")
-                    Spacer()
+                .buttonStyle(.plain)
+                Button {
+                } label: {
+                    HStack {
+                        Image(systemName: "checkmark.shield")
+                            .foregroundStyle(Color.accentColor)
+                        Text("Nutzungsbedingungen")
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
         }
-        .navigationTitle("vnzn")
+        .navigationTitle("App")
         .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+enum AppVersionProvider {
+    static func appVersion(in bundle: Bundle = .main) -> String {
+        guard let version = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+            fatalError("CFBundleShortVersionString should not be missing from info dictionary")
+        }
+        return version
     }
 }
 
