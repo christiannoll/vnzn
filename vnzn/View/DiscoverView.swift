@@ -23,7 +23,7 @@ struct DiscoverView: View {
                 }
                 if facesPostsVisible() {
                     Section("Fotoserie: Gesichter") {
-                        FacesPosts(posts: posts)
+                        PhotoPosts(posts: posts)
                     }
                     .listRowSeparator(.hidden)
                 }
