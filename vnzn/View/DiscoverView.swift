@@ -23,7 +23,13 @@ struct DiscoverView: View {
                 }
                 if facesPostsVisible() {
                     Section("Fotoserie: Gesichter") {
-                        PhotoPosts(posts: posts)
+                        PhotoPosts(posts: posts, dataKey: "facesPosts", tagItemKey: "Fotos: Gesichter")
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                if posterPostsVisible() {
+                    Section("Fotoserie: Poster") {
+                        PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: "Fotos: Poster")
                     }
                     .listRowSeparator(.hidden)
                 }
@@ -51,6 +57,13 @@ struct DiscoverView: View {
     private func facesPostsVisible() -> Bool {
         if let appSettings = settings.first {
             return appSettings.showFacesPosts
+        }
+        return true
+    }
+
+    private func posterPostsVisible() -> Bool {
+        if let appSettings = settings.first {
+            return appSettings.showPosterPosts
         }
         return true
     }

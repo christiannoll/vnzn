@@ -13,7 +13,7 @@ struct PhotoPosts: View {
     private let dataKey: String
     private let tagItemKey: String
 
-    init(posts: [Post], dataKey: String = "facesPosts", tagItemKey: String = "Fotos: Gesichter") {
+    init(posts: [Post], dataKey: String, tagItemKey: String) {
         self.posts = posts
         self.dataKey = dataKey
         self.tagItemKey = tagItemKey
