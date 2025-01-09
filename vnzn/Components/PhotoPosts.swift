@@ -45,9 +45,6 @@ struct PhotoPosts: View {
             }
         }
         .task {
-            if metaData.serials.tagItems.isEmpty {
-                await metaData.serials.createSerials(posts)
-            }
             initPhotoPosts()
         }
 

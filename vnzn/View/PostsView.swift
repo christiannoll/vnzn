@@ -42,6 +42,9 @@ struct PostsView: View {
                 if metaData.index.indexItems.isEmpty {
                     await metaData.index.createIndex(posts)
                 }
+                if metaData.serials.tagItems.isEmpty {
+                    await metaData.serials.createSerials(posts)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
