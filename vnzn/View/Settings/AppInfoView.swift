@@ -27,10 +27,28 @@ struct AppInfoView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                Button {
+                    sendEmail()
+                } label: {
+                    HStack {
+                        Image(systemName: "ant.circle")
+                            .foregroundStyle(Color.accentColor)
+                        Text("Einen Fehler melden")
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
             }
         }
         .navigationTitle("App")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func sendEmail() {
+        EmailController.sendEmail(address: "webmaster@vnzn.de",
+                                  subject: "BUG | v.n.z.n | iOS",
+                                  message: "")
     }
 }
 
