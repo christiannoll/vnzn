@@ -8,6 +8,7 @@ struct PhotoPosts: View {
     @Environment(Router.self) var router: Router
 
     @State private var tagItemPosts: [Post] = []
+    @State private var orientation = UIDeviceOrientation.unknown
 
     private let columns = [GridItem(.flexible()), GridItem(.flexible())]
     private let dataKey: String
@@ -21,20 +22,15 @@ struct PhotoPosts: View {
 
     var body: some View {
         VStack {
-            if tagItemPosts.count > 3 {
-                Grid(horizontalSpacing: 30,
-                     verticalSpacing: 30) {
-                    GridRow {
-                        PostImage(post: tagItemPosts[0])
-                            .frame(width: 100, height: 100)
-                        PostImage(post: tagItemPosts[1])
-                            .frame(width: 100, height: 100)
-                    }
-                    GridRow {
-                        PostImage(post: tagItemPosts[2])
-                            .frame(width: 100, height: 100)
-                        PostImage(post: tagItemPosts[3])
-                            .frame(width: 100, height: 100)
+            if tagItemPosts.count >= maxPostsCount {
+                HStack {
+                    ForEach(Array(tagItemPosts.enumerated()), id: \.offset) { index, post in
+                        if index < maxPostsCount {
+                            Spacer()
+                            PostImage(post: post)
+                                .frame(width: 100, height: 100)
+                            Spacer()
+                        }
                     }
                 }
             }
@@ -44,10 +40,12 @@ struct PhotoPosts: View {
                 router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
             }
         }
+        .onRotate { newOrientation in
+            orientation = newOrientation
+        }
         .task {
             initPhotoPosts()
         }
-
     }
 
     private func initPhotoPosts() {
@@ -96,4 +94,9 @@ struct PhotoPosts: View {
     private func photoTagItem() -> TagItem? {
         metaData.serials.getTagItem(tagItemKey)
     }
+
+    private var maxPostsCount: Int {
+        orientation.isPortrait ? 3 : 6
+    }
 }
+
