@@ -10,7 +10,6 @@ struct PhotoPosts: View {
     @State private var tagItemPosts: [Post] = []
     @State private var orientation = UIDeviceOrientation.unknown
 
-    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
     private let dataKey: String
     private let tagItemKey: String
 
@@ -96,7 +95,7 @@ struct PhotoPosts: View {
     }
 
     private var maxPostsCount: Int {
-        orientation.isPortrait ? 3 : 6
+        orientation.isLandscape ? 6 : 3
     }
 }
 
