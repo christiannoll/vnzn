@@ -37,6 +37,7 @@ struct PostRow: View {
                 }
                 Text(createPostDate(post)).foregroundStyle(.secondary)
             }
+            .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
         }
     }
