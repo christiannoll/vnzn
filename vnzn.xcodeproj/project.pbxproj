@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D6BED3F62D399C04005BF55C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F52D399C03005BF55C /* WidgetKit.framework */; };
+		D6BED3F82D399C04005BF55C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F72D399C04005BF55C /* SwiftUI.framework */; };
+		D6BED4052D399C06005BF55C /* vnznWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D604307D2CDFDD460073F921 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,17 +27,61 @@
 			remoteGlobalIDString = D604306B2CDFDD440073F921;
 			remoteInfo = vnzn;
 		};
+		D6BED4032D399C06005BF55C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D60430642CDFDD440073F921 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6BED3F22D399C03005BF55C;
+			remoteInfo = vnznWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6BED4062D399C06005BF55C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D6BED4052D399C06005BF55C /* vnznWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D604306C2CDFDD440073F921 /* vnzn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vnzn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D604307C2CDFDD460073F921 /* vnznTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vnznTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60430862CDFDD460073F921 /* vnznUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vnznUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = vnznWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6BED3F52D399C03005BF55C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		D6BED3F72D399C04005BF55C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D6BED4092D399C06005BF55C /* Exceptions for "vnznWidget" folder in "vnznWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D6BED3F22D399C03005BF55C /* vnznWidgetExtension */;
+		};
+		D6BED40C2D399DFE005BF55C /* Exceptions for "vnzn" folder in "vnznWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Model/Post.swift,
+			);
+			target = D6BED3F22D399C03005BF55C /* vnznWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D604306E2CDFDD440073F921 /* vnzn */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D6BED40C2D399DFE005BF55C /* Exceptions for "vnzn" folder in "vnznWidgetExtension" target */,
+			);
 			path = vnzn;
 			sourceTree = "<group>";
 		};
@@ -43,6 +93,14 @@
 		D60430892CDFDD460073F921 /* vnznUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = vnznUITests;
+			sourceTree = "<group>";
+		};
+		D6BED3F92D399C04005BF55C /* vnznWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D6BED4092D399C06005BF55C /* Exceptions for "vnznWidget" folder in "vnznWidgetExtension" target */,
+			);
+			path = vnznWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +127,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6BED3F02D399C03005BF55C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6BED3F82D399C04005BF55C /* SwiftUI.framework in Frameworks */,
+				D6BED3F62D399C04005BF55C /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +145,8 @@
 				D604306E2CDFDD440073F921 /* vnzn */,
 				D604307F2CDFDD460073F921 /* vnznTests */,
 				D60430892CDFDD460073F921 /* vnznUITests */,
+				D6BED3F92D399C04005BF55C /* vnznWidget */,
+				D6BED3F42D399C03005BF55C /* Frameworks */,
 				D604306D2CDFDD440073F921 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +157,18 @@
 				D604306C2CDFDD440073F921 /* vnzn.app */,
 				D604307C2CDFDD460073F921 /* vnznTests.xctest */,
 				D60430862CDFDD460073F921 /* vnznUITests.xctest */,
+				D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D6BED3F42D399C03005BF55C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6BED3F52D399C03005BF55C /* WidgetKit.framework */,
+				D6BED3F72D399C04005BF55C /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +181,12 @@
 				D60430682CDFDD440073F921 /* Sources */,
 				D60430692CDFDD440073F921 /* Frameworks */,
 				D604306A2CDFDD440073F921 /* Resources */,
+				D6BED4062D399C06005BF55C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D6BED4042D399C06005BF55C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D604306E2CDFDD440073F921 /* vnzn */,
@@ -163,6 +244,28 @@
 			productReference = D60430862CDFDD460073F921 /* vnznUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D6BED3F22D399C03005BF55C /* vnznWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6BED40A2D399C06005BF55C /* Build configuration list for PBXNativeTarget "vnznWidgetExtension" */;
+			buildPhases = (
+				D6BED3EF2D399C03005BF55C /* Sources */,
+				D6BED3F02D399C03005BF55C /* Frameworks */,
+				D6BED3F12D399C03005BF55C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D6BED3F92D399C04005BF55C /* vnznWidget */,
+			);
+			name = vnznWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = vnznWidgetExtension;
+			productReference = D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,7 +273,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					D604306B2CDFDD440073F921 = {
@@ -183,6 +286,9 @@
 					D60430852CDFDD460073F921 = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = D604306B2CDFDD440073F921;
+					};
+					D6BED3F22D399C03005BF55C = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -204,6 +310,7 @@
 				D604306B2CDFDD440073F921 /* vnzn */,
 				D604307B2CDFDD460073F921 /* vnznTests */,
 				D60430852CDFDD460073F921 /* vnznUITests */,
+				D6BED3F22D399C03005BF55C /* vnznWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -224,6 +331,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D60430842CDFDD460073F921 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6BED3F12D399C03005BF55C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -254,6 +368,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6BED3EF2D399C03005BF55C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -266,6 +387,11 @@
 			isa = PBXTargetDependency;
 			target = D604306B2CDFDD440073F921 /* vnzn */;
 			targetProxy = D60430872CDFDD460073F921 /* PBXContainerItemProxy */;
+		};
+		D6BED4042D399C06005BF55C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6BED3F22D399C03005BF55C /* vnznWidgetExtension */;
+			targetProxy = D6BED4032D399C06005BF55C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -523,6 +649,62 @@
 			};
 			name = Release;
 		};
+		D6BED4072D399C06005BF55C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ELG2TXRCNZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vnznWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = vnznWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = de.vnzn.vnzn.vnznWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6BED4082D399C06005BF55C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ELG2TXRCNZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vnznWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = vnznWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.9;
+				PRODUCT_BUNDLE_IDENTIFIER = de.vnzn.vnzn.vnznWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -558,6 +740,15 @@
 			buildConfigurations = (
 				D60430972CDFDD460073F921 /* Debug */,
 				D60430982CDFDD460073F921 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6BED40A2D399C06005BF55C /* Build configuration list for PBXNativeTarget "vnznWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6BED4072D399C06005BF55C /* Debug */,
+				D6BED4082D399C06005BF55C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
