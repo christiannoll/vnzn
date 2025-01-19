@@ -162,7 +162,20 @@
       }
     },
     "Einen Fehler melden" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Einen Fehler melden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a bug"
+          }
+        }
+      }
     },
     "Einstellungen" : {
       "localizations" : {
@@ -261,7 +274,20 @@
       }
     },
     "Fotoserie- Poster anzeigen" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fotoserie- Poster anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show poster photos"
+          }
+        }
+      }
     },
     "Fotoserie: Gesichter" : {
       "localizations" : {
@@ -280,7 +306,20 @@
       }
     },
     "Fotoserie: Poster" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fotoserie: Poster"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Serie: Poster"
+          }
+        }
+      }
     },
     "Index" : {
       "localizations" : {
@@ -374,6 +413,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tags:"
+          }
+        }
+      }
+    },
+    "Kurzgeschichte des Tages" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kurzgeschichte des Tages"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short Story of the day"
+          }
+        }
+      }
+    },
+    "Kurzgeschichte des Tages anzeigen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kurzgeschichte des Tages anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show short story of the day"
           }
         }
       }

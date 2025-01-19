@@ -7,6 +7,7 @@ struct DiscoverView: View {
     @Query() var settings: [Settings]
 
     @Environment(Router.self) var router: Router
+    @Environment(MetaData.self) var metaData: MetaData
 
     @State private var urlToOpen: URL?
     @State private var isSafariPresented = false
@@ -17,7 +18,9 @@ struct DiscoverView: View {
             List {
                 if postOfTheDayVisible() {
                     Section("Post des Tages") {
-                        PostOfTheDay(posts: posts, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented)
+                        PostOfTheDay(posts: posts, urlToOpen: $urlToOpen,
+                                     isSafariPresented: $isSafariPresented,
+                                     dataKey: "postOfTheDay")
                     }
                     .listRowSeparator(.hidden)
                 }
@@ -32,6 +35,19 @@ struct DiscoverView: View {
                         PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: "Fotos: Poster")
                     }
                     .listRowSeparator(.hidden)
+                }
+                if shortStoryOfTheDayVisible() {
+                    Section("Kurzgeschichte des Tages") {
+                        PostOfTheDay(posts: shortStories, urlToOpen: $urlToOpen,
+                                     isSafariPresented: $isSafariPresented,
+                                     dataKey: "shortStoryOfTheDay")
+                    }
+                    .listRowSeparator(.hidden)
+                }
+            }
+            .task {
+                if metaData.tags.tagItems.isEmpty {
+                    await metaData.tags.createTags(posts)
                 }
             }
             .background(alignment: .trailing) {
@@ -66,5 +82,19 @@ struct DiscoverView: View {
             return appSettings.showPosterPosts
         }
         return true
+    }
+
+    private func shortStoryOfTheDayVisible() -> Bool {
+        if let appSettings = settings.first {
+            return appSettings.showShortStoryOfTheDay
+        }
+        return true
+    }
+
+    private var shortStories: [Post] {
+        if let tagItem = metaData.tags.getTagItem("Short Story") {
+            return tagItem.posts
+        }
+        return []
     }
 }

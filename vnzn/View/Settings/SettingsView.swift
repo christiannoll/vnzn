@@ -26,6 +26,10 @@ struct SettingsView: View {
                             .onChange(of: appSettings.showPosterPosts) {
                                 SwiftDataService.shared.save()
                             }
+                        Toggle("Kurzgeschichte des Tages anzeigen", isOn: $appSettings.showShortStoryOfTheDay)
+                            .onChange(of: appSettings.showShortStoryOfTheDay) {
+                                SwiftDataService.shared.save()
+                            }
                     }
                     Section("App") {
                         List {
