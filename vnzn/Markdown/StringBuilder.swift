@@ -27,6 +27,7 @@ class StringBuilder {
             case .text(let text):
                 if afterLinebreak {
                     s.append(AttributedString(text.drop(while: { $0.isWhitespace })))
+                    afterLinebreak = false
                 } else {
                     var attributedString = AttributedString(text)
                     if let currentTextColor {
