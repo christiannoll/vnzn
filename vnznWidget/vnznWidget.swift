@@ -1,12 +1,6 @@
-//
-//  vnznWidget.swift
-//  vnznWidget
-//
-//  Created by Christian on 16.01.25.
-//
-
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -18,8 +12,23 @@ struct Provider: TimelineProvider {
         completion(entry)
     }
 
+    @MainActor
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
+
+        /*guard let modelContainer = try? ModelContainer(for: Day.self, Settings.self, NotificationSettings.self) else {
+            return defaultDay(today)
+        }*/
+
+        if let container = try? ModelContainer(for: Post.self) {
+            var postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
+            postFetchDescriptor.fetchLimit = 1
+            if let loadedPosts = try? container.mainContext.fetch(postFetchDescriptor) {
+                if loadedPosts.isEmpty == false {
+                    print(loadedPosts[0].date)
+                }
+            }
+        }
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
