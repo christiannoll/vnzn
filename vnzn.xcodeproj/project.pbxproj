@@ -71,7 +71,9 @@
 		D6BED40C2D399DFE005BF55C /* Exceptions for "vnzn" folder in "vnznWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Components/PostImage.swift,
 				Model/Post.swift,
+				VnznEnv.swift,
 			);
 			target = D6BED3F22D399C03005BF55C /* vnznWidgetExtension */;
 		};

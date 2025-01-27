@@ -3,12 +3,19 @@ import SwiftUI
 import SwiftData
 
 struct Provider: TimelineProvider {
+
+    var modelContainer: ModelContainer?
+
+    init() {
+            self.modelContainer = try? ModelContainer(for: Post.self)
+        }
+
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: Date(), post: Post())
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), post: Post())
         completion(entry)
     }
 
@@ -16,26 +23,25 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        /*guard let modelContainer = try? ModelContainer(for: Day.self, Settings.self, NotificationSettings.self) else {
-            return defaultDay(today)
-        }*/
 
-        if let container = try? ModelContainer(for: Post.self) {
+        var post = Post()
+
+        if let modelContainer {
             var postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
             postFetchDescriptor.fetchLimit = 1
-            if let loadedPosts = try? container.mainContext.fetch(postFetchDescriptor) {
+            if let loadedPosts = try? modelContainer.mainContext.fetch(postFetchDescriptor) {
                 if loadedPosts.isEmpty == false {
-                    print(loadedPosts[0].date)
+                    post = loadedPosts[0]
+
+                    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+                    let currentDate = Date()
+                    for hourOffset in 0 ..< 5 {
+                        let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+                        let entry = SimpleEntry(date: entryDate, post: post)
+                        entries.append(entry)
+                    }
                 }
             }
-        }
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -49,7 +55,7 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let emoji: String
+    let post: Post
 }
 
 struct vnznWidgetEntryView : View {
@@ -57,11 +63,18 @@ struct vnznWidgetEntryView : View {
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
+            if entry.post.type == .image {
+                if let url = URL(string: VnznEnv.baseRootUrl + "images/" + entry.post.data),
+                   let imageData = try? Data(contentsOf: url),
+                   let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 100)
+                }
+            } else {
+                Text(entry.post.title)
+            }
         }
     }
 }
@@ -88,6 +101,6 @@ struct vnznWidget: Widget {
 #Preview(as: .systemSmall) {
     vnznWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    SimpleEntry(date: .now, post: Post())
+    SimpleEntry(date: .now, post: Post())
 }
