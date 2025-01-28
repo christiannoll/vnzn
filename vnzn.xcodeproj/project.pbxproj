@@ -72,6 +72,12 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Components/PostImage.swift,
+				Markdown/FormatBuilder.swift,
+				Markdown/MarkdownNode.swift,
+				Markdown/MarkdownParser.swift,
+				Markdown/MarkdownTokenizer.swift,
+				Markdown/NodeParser.swift,
+				Markdown/StringBuilder.swift,
 				Model/Post.swift,
 				VnznEnv.swift,
 			);
