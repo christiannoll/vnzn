@@ -31,22 +31,11 @@ struct PostOfTheDay: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            Text(createPostDate(selectedPost))
+            Text(Date.createPostDate(selectedPost))
                 .foregroundStyle(.secondary)
         }
         .onAppear {
             initPostOfTheDay()
-        }
-    }
-
-    private func createPostDate(_ post: Post) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        if let date = post.date {
-            return dateFormatter.string(from: date)
-        } else {
-            return ""
         }
     }
 

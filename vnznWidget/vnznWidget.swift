@@ -60,47 +60,10 @@ struct SimpleEntry: TimelineEntry {
 
 struct vnznWidgetEntryView : View {
 
-    var entry: Provider.Entry
-    let nodeParser = NodeParser()
-    let stringBuilder = StringBuilder()
+    let entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            if entry.post.type == .image {
-                if let url = URL(string: VnznEnv.baseRootUrl + "images/" + entry.post.data),
-                   let imageData = try? Data(contentsOf: url),
-                   let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
-                }
-            } else {
-                ForEach(nodeParser.parse(postExcerpt(entry.post)), id: \.self) { nodes in
-                    if case .curlybraces(_) = nodes.first {
-                        Text(stringBuilder.parse(nodes, entry.post))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                            .padding(.bottom, 4)
-                    } else {
-                        Text(stringBuilder.parse(nodes, entry.post))
-                            .multilineTextAlignment(.leading)
-                    }
-                }
-            }
-        }
-    }
-
-    private func postExcerpt(_ post: Post) -> String {
-        let text = post.data
-        /*if text.components(separatedBy: "\t* ").count > 3 {
-            return text.components(separatedBy: "\t* ").prefix(3).joined(separator: "\t* ") + "\n..."
-        }*/
-        var excerpt = text.split(separator: "\t").first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        if excerpt != text {
-            excerpt += "\n..."
-        }
-        return excerpt
+        vnznWidgetView(post: entry.post)
     }
 }
 

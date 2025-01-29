@@ -14,4 +14,15 @@ extension Date {
         let date = dateFormatter.date(from: dateString)
         return date
     }
+
+    static func createPostDate(_ post: Post) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        if let date = post.date {
+            return dateFormatter.string(from: date)
+        } else {
+            return ""
+        }
+    }
 }
