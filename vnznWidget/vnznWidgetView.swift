@@ -11,44 +11,72 @@ struct vnznWidgetView : View {
     var body: some View {
         VStack {
             if post.type == .image {
-                if let url = URL(string: VnznEnv.baseRootUrl + "images/" + post.data),
-                   let imageData = try? Data(contentsOf: url),
-                   let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
-                }
+                image(post: post)
             } else {
-                /*ForEach(nodeParser.parse(postExcerpt(post)), id: \.self) { nodes in
-                    if case .curlybraces(_) = nodes.first {
-                        Text(stringBuilder.parse(nodes, post))
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity)
-                            .padding(.bottom, 4)
-                    } else {
-                        Text(stringBuilder.parse(nodes, post))
-                            .multilineTextAlignment(.leading)
-                    }
-                }*/
                 text(post: post)
             }
         }
     }
 
     @ViewBuilder
+    private func image(post: Post) -> some View {
+        if let url = URL(string: VnznEnv.baseRootUrl + "images/" + post.data),
+           let imageData = try? Data(contentsOf: url),
+           let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+        }
+    }
+
+    @ViewBuilder
     private func text(post: Post) -> some View {
         if widgetFamily == .systemSmall {
-            VStack(alignment: .leading) {
-                Text("v.n.z.n")
-                    .foregroundStyle(.blue)
-                    .padding(.bottom, 20)
-                Text(post.title)
-                    .padding(.bottom, 10)
-                Text(Date.createPostDate(post))
-                    .foregroundStyle(.secondary)
-                    .font(.subheadline)
+            smallText(post: post)
+        } else {
+            largeText(post: post)
+        }
+    }
+
+    @ViewBuilder
+    private func smallText(post: Post) -> some View {
+        VStack(alignment: .leading) {
+            Text("v.n.z.n")
+                .foregroundStyle(.blue)
+                .padding(.bottom, 20)
+            Text(post.title)
+                .padding(.bottom, 10)
+            Text(Date.createPostDate(post))
+                .foregroundStyle(.secondary)
+                .font(.subheadline)
+        }
+    }
+
+    @ViewBuilder
+    private func largeText(post: Post) -> some View {
+        VStack(alignment: .leading) {
+            Text("v.n.z.n")
+                .foregroundStyle(.blue)
+                .padding(.bottom, 20)
+            Text(post.title)
+                .padding(.bottom, 10)
+            ForEach(nodeParser.parse(postExcerpt(post)), id: \.self) { nodes in
+                if case .curlybraces(_) = nodes.first {
+                    Text(stringBuilder.parse(nodes, post))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, 4)
+                } else {
+                    Text(stringBuilder.parse(nodes, post))
+                        .multilineTextAlignment(.leading)
+                }
             }
+            .padding(.bottom, 10)
+            Text(Date.createPostDate(post))
+                .foregroundStyle(.secondary)
+                .font(.subheadline)
+            Spacer()
         }
     }
 
