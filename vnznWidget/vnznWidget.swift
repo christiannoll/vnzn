@@ -64,6 +64,7 @@ struct vnznWidgetEntryView : View {
 
     var body: some View {
         vnznWidgetView(post: entry.post)
+            .widgetURL(URL(string: "vnznapp://view-post?id=\(entry.post.id)"))
     }
 }
 

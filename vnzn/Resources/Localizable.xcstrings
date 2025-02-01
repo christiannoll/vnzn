@@ -417,6 +417,9 @@
         }
       }
     },
+    "Kein passender Post gefunden!" : {
+
+    },
     "Kurzgeschichte des Tages" : {
       "localizations" : {
         "de" : {
