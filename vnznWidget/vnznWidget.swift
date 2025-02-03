@@ -8,15 +8,18 @@ struct Provider: TimelineProvider {
 
     init() {
             self.modelContainer = try? ModelContainer(for: Post.self)
-        }
+    }
+
+    private var placeholderEntry: SimpleEntry {
+        SimpleEntry(date: Date(), post: Post(title: "Title"))
+    }
 
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), post: Post())
+        placeholderEntry
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), post: Post())
-        completion(entry)
+        completion(placeholderEntry)
     }
 
     @MainActor
@@ -82,8 +85,8 @@ struct vnznWidget: Widget {
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("v.n.z.n Widget")
+        .description("Shows the last post")
     }
 }
 
