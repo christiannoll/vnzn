@@ -11,7 +11,7 @@ struct Provider: TimelineProvider {
     }
 
     private var placeholderEntry: SimpleEntry {
-        SimpleEntry(date: Date(), post: Post(title: "Title"))
+        SimpleEntry(date: Date(), post: Post(title: String(localized: "Title")))
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
