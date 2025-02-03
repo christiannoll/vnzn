@@ -165,7 +165,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Einen Fehler melden"
           }
         },
@@ -277,7 +277,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fotoserie- Poster anzeigen"
           }
         },
@@ -309,7 +309,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fotoserie: Poster"
           }
         },
@@ -418,13 +418,26 @@
       }
     },
     "Kein passender Post gefunden!" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Keinen passenden Post gefunden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No matching post found!"
+          }
+        }
+      }
     },
     "Kurzgeschichte des Tages" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kurzgeschichte des Tages"
           }
         },
@@ -440,7 +453,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kurzgeschichte des Tages anzeigen"
           }
         },
