@@ -421,7 +421,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Keinen passenden Post gefunden"
           }
         },
@@ -481,6 +481,22 @@
         }
       }
     },
+    "Link teilen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share link"
+          }
+        }
+      }
+    },
     "Links:" : {
       "localizations" : {
         "de" : {
@@ -525,6 +541,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terms of Use"
+          }
+        }
+      }
+    },
+    "Öffnen mit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen mit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open with"
           }
         }
       }

@@ -73,7 +73,26 @@ struct PostView: View {
                             Image(systemName: post.isFavourite ? "star.fill" : "star")
                                 .foregroundStyle(Color.accentColor)
                         }
-                        ShareLink(item: URL(string: createPostUrl(post))!) {
+                        Menu {
+                            Button {
+                                if let url = URL(string: createPostUrl(post)) {
+                                    let items: [Any] = [url]
+                                    let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                                    showShareSheet(activityVC)
+                                }
+                            } label: {
+                                Text("Link teilen")
+                            }
+                            Button {
+                                let textToShare = "Hier ist ein Text, den ich teilen möchte."
+                                let items: [Any] = [textToShare]
+                                let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+
+                                showShareSheet(activityVC)
+                            } label: {
+                                Text("Öffnen mit")
+                            }
+                        } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundStyle(Color.accentColor)
                         }
@@ -82,6 +101,12 @@ struct PostView: View {
                 }
                 .padding(.trailing, 16)
             }
+        }
+    }
+
+    private func showShareSheet(_ activityVC: UIActivityViewController) {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first {
+            window.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
     }
 
