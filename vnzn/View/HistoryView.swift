@@ -15,7 +15,7 @@ struct HistoryView: View {
             return items
         } else {
             return items.filter {
-                let postTitle = $0.post?.title ?? ""
+                let postTitle = $0.post.title
                 return postTitle.lowercased().contains(searchText.lowercased())
             }
         }
@@ -27,10 +27,10 @@ struct HistoryView: View {
             List {
                 ForEach(searchResults) { item in
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(item.post!))
+                        router.currentNavigationPath.append(NavigationTarget.post(item.post))
                     } label: {
                         HStack {
-                            Text(item.post?.title ?? "")
+                            Text(item.post.title)
                             Spacer()
                             Text(Date.createPostDate(item.date))
                                 .foregroundStyle(.secondary)

@@ -5,6 +5,7 @@ import SwiftData
 func createAppContainer() -> ModelContainer {
     do {
         let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self)
+        container.mainContext.autosaveEnabled = false
 
         Task {
             let lastUpdateKey = "lastUpdate"
@@ -46,4 +47,14 @@ func fetchLastUpdate() async -> Double {
         print(error)
     }
     return 0
+}
+
+extension ModelContext {
+    var sqliteCommand: String {
+        if let url = container.configurations.first?.url.path(percentEncoded: false) {
+            "sqlite3 \"\(url)\""
+        } else {
+            "No SQLite database found."
+        }
+    }
 }

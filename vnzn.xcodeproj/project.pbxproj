@@ -79,7 +79,9 @@
 				Markdown/MarkdownTokenizer.swift,
 				Markdown/NodeParser.swift,
 				Markdown/StringBuilder.swift,
+				Model/HistoryItem.swift,
 				Model/Post.swift,
+				Model/Settings.swift,
 				VnznEnv.swift,
 			);
 			target = D6BED3F22D399C03005BF55C /* vnznWidgetExtension */;
