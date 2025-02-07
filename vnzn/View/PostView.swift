@@ -27,7 +27,7 @@ struct PostView: View {
                 PostDataView(post: $post, urlToOpen: $urlToOpen,
                              isSafariPresented: $isSafariPresented, posts: posts)
                 HStack {
-                    Text(createPostDate(post)).foregroundStyle(.secondary)
+                    Text(Date.createPostDate(post)).foregroundStyle(.secondary)
                     Spacer()
                 }
                 .padding(.top, 6)
@@ -112,13 +112,6 @@ struct PostView: View {
 
     private func tagStrings() -> [String] {
         post.tags.map { $0 }.sorted()
-    }
-
-    private func createPostDate(_ post: Post) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        return dateFormatter.string(from: post.date!)
     }
 
     private func createPostUrl(_ post: Post?) -> String {

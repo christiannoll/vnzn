@@ -33,7 +33,7 @@ struct NavigationDestination: ViewModifier {
                 case .shortStories:
                     ShortStoriesView()
                 case .experiments:
-                    EmptyView()
+                    ExperimentsView()
                 case .randomPost:
                     RandomPostView()
                 case .personsCloud:
@@ -50,6 +50,8 @@ struct NavigationDestination: ViewModifier {
                     AppInfoView()
                 case .widgetPost(let url):
                     PostWidgetView(url: url)
+                case .past:
+                    PastView()
                 }
             }
     }

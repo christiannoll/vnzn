@@ -14,7 +14,7 @@ struct PostRow: View {
                     Spacer()
                 }
                 .contentShape(Rectangle())
-                Text(createPostDate(post)).foregroundStyle(.secondary)
+                Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
             .onTapGesture {
                 router.currentNavigationPath.append(NavigationTarget.post(post))
@@ -35,18 +35,11 @@ struct PostRow: View {
                     }
                     Spacer()
                 }
-                Text(createPostDate(post)).foregroundStyle(.secondary)
+                Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
         }
-    }
-    
-    private func createPostDate(_ post: Post) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        return dateFormatter.string(from: post.date!)
     }
 }
 

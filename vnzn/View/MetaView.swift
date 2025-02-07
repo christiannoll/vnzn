@@ -26,13 +26,13 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .personsCloud, title: "Personenwolke")
                     MetaViewButton(navigationTarget: .topicsCloud, title: "Themenwolke")
                     MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
+                    MetaViewButton(navigationTarget: .experiments, title: "Experimente")
                     MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
                 }
             }
             .task {
                 if metaData.serials.tagItems.isEmpty {
-                    await metaData.serials.createSerials(posts)
-                }
+                    await metaData.serials.createSerials(posts)                }
                 if metaData.tags.tagItems.isEmpty {
                     await metaData.tags.createTags(posts)
                 }

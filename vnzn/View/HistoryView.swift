@@ -32,9 +32,10 @@ struct HistoryView: View {
                         HStack {
                             Text(item.post?.title ?? "")
                             Spacer()
-                            Text(createPostDate(item.date))
+                            Text(Date.createPostDate(item.date))
                                 .foregroundStyle(.secondary)
                         }
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
@@ -62,17 +63,6 @@ struct HistoryView: View {
             try modelContext.delete(model: HistoryItem.self)
         } catch {
             print("Failed to delete all schools.")
-        }
-    }
-    
-    private func createPostDate(_ date: Date?) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        if let date {
-            return dateFormatter.string(from: date)
-        } else {
-            return ""
         }
     }
 }

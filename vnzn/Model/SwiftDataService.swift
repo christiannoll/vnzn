@@ -22,12 +22,16 @@ class SwiftDataService {
     }
 
     func save() {
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     func incrementVisits(post: Post) {
         post.visits += 1
-        try? modelContext.save()
+        save()
     }
 
     func saveHistoryItem(post: Post) {
@@ -38,7 +42,7 @@ class SwiftDataService {
         let posts = try? modelContext.fetch(postPredicate)
         if let posts, posts.filter({ $0.date?.noon == Date().noon }).isEmpty {
             modelContext.insert(HistoryItem(date: Date(), post: post))
-            try? modelContext.save()
+            save()
         }
     }
 }

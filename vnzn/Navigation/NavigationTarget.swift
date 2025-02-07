@@ -23,4 +23,5 @@ enum NavigationTarget: Hashable {
     case tags
     case appInfo
     case widgetPost(URL)
+    case past
 }

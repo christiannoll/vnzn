@@ -16,10 +16,14 @@ extension Date {
     }
 
     static func createPostDate(_ post: Post) -> String {
+        createPostDate(post.date)
+    }
+
+    static func createPostDate(_ date: Date?) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "dd MMM yyyy"
-        if let date = post.date {
+        if let date {
             return dateFormatter.string(from: date)
         } else {
             return ""
