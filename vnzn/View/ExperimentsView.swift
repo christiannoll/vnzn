@@ -11,7 +11,6 @@ struct ExperimentsView: View {
             } label: {
                 HStack {
                     Text("Reise in die Vergangenheit")
-                        .foregroundStyle(.secondary)
                     Spacer()
                 }
                 .contentShape(Rectangle())

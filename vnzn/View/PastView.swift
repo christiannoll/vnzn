@@ -6,28 +6,31 @@ struct PastView: View {
     @Query(sort: \Post.date) var posts: [Post]
 
     var body: some View {
-        if let post = fetchPosts() {
-            VStack {
-                Text(post.title)
-                Text(Date.createPostDate(post))
-                    .foregroundStyle(.secondary)
+        List {
+            ForEach (fetchPosts()) { post in
+                PostRow(post: post)
             }
-
         }
     }
 
-    private func fetchPosts() -> Post? {
+    private func fetchPosts() -> [Post] {
+        var matchingPosts: [Post] = []
         let today = Date()
-        for i in 1...5 {
+
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: today)
+        let yearUpperBound = currentYear - 2019
+
+        for i in 1...yearUpperBound {
             if let sameDay = Calendar.current.date(byAdding: .year, value: -i, to: today) {
                 let sameDayNoon = sameDay.noon
                 for post in posts {
                     if post.date?.noon == sameDayNoon {
-                        return post
+                        matchingPosts.append(post)
                     }
                 }
             }
         }
-        return nil
+        return matchingPosts
     }
 }
