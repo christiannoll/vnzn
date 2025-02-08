@@ -210,7 +210,20 @@
       }
     },
     "Experimente" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experimente"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experiments"
+          }
+        }
+      }
     },
     "Fertig" : {
       "localizations" : {
@@ -325,7 +338,20 @@
       }
     },
     "Heute" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        }
+      }
     },
     "Index" : {
       "localizations" : {
@@ -696,7 +722,20 @@
       }
     },
     "Reise in die Vergangenheit" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reise in die Vergangenheit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journey into the Past"
+          }
+        }
+      }
     },
     "Serien" : {
       "localizations" : {

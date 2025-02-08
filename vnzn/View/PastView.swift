@@ -7,7 +7,7 @@ struct PastView: View {
 
     var body: some View {
         List {
-            ForEach (fetchPosts()) { post in
+            ForEach (findMatchingPosts()) { post in
                 Text(calcYearDistance(post))
                     .foregroundStyle(Color.secondary)
                     .font(.subheadline)
@@ -18,7 +18,7 @@ struct PastView: View {
         .navigationTitle("Heute")
     }
 
-    private func fetchPosts() -> [Post] {
+    private func findMatchingPosts() -> [Post] {
         var matchingPosts: [Post] = []
         let today = Date()
 
