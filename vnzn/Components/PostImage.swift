@@ -5,7 +5,7 @@ struct PostImage: View {
     let post: Post
     
     var body: some View {
-        AsyncImage(url: URL(string: VnznEnv.baseRootUrl + "images/" + post.data)) { phase in
+        /*AsyncImage(url: URL(string: VnznEnv.baseRootUrl + "images/" + post.data)) { phase in
             if let image = phase.image {
                 image
                     .resizable()
@@ -17,6 +17,12 @@ struct PostImage: View {
             } else {
                 ProgressView()
             }
+        }*/
+
+        if let imageData = post.image, let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
         }
     }
 }

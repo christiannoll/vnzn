@@ -24,6 +24,17 @@ class Client {
         }*/
     }
 
+    func fetchRawData(fromURL: String) async -> Data? {
+        do {
+            guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return data
+        } catch {
+            print("Error fetching data: \(error)")
+            return nil
+        }
+    }
+
     func fetchData(fromUrl: String) async throws -> String {
         guard let downloadedData: String = await Client().downloadData(fromURL: fromUrl) else {return ""}
 

@@ -26,8 +26,9 @@ final class Post {
     var textFormat: String
     var isFavourite: Bool
     var visits: Int
+    @Attribute(.externalStorage) var image: Data?
 
-    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, textFormat: String = "", isFavourite: Bool = false, visits: Int = 0) {
+    init(id: Int = -1, data: String = "", name: String = "", title: String = "", date: Date? = nil, tags: Set<String> = [], indices: Set<String> = [], serials: Set<String> = [], links: [String : String] = [:], years: [Int] = [], persons: Set<String> = [], movies: Set<String> = [], books: Set<String> = [], type: PostType = PostType.text, textFormat: String = "", isFavourite: Bool = false, visits: Int = 0, image: Data? = nil) {
         self.id = id
         self.data = data
         self.name = name
@@ -45,5 +46,6 @@ final class Post {
         self.textFormat = textFormat
         self.isFavourite = isFavourite
         self.visits = visits
+        self.image = image
     }
 }
