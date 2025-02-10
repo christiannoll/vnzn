@@ -84,7 +84,7 @@ struct PostView: View {
                                 Text("Link teilen")
                             }
                             Button {
-                                let textToShare = "Hier ist ein Text, den ich teilen möchte."
+                                let textToShare = String(sharedText(post).characters)
                                 let items: [Any] = [textToShare]
                                 let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
 
@@ -130,6 +130,17 @@ struct PostView: View {
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy/MM/dd/"
         return dateFormatter.string(from: post.date!)
+    }
+
+    private func sharedText(_ post: Post) -> AttributedString {
+        let stringBuilder = StringBuilder()
+        let nodeParser = NodeParser()
+        var text = AttributedString()
+
+        for nodes in nodeParser.parse(post.data) {
+            text.append(stringBuilder.parse(nodes, post))
+        }
+        return text
     }
 
     private func boldText(_ text: String) -> Text {
