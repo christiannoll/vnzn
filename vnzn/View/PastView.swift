@@ -5,14 +5,43 @@ struct PastView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
 
+    @Environment(Router.self) var router: Router
+
     var body: some View {
         List {
             ForEach (findMatchingPosts()) { post in
-                Text(calcYearDistance(post))
-                    .foregroundStyle(Color.secondary)
-                    .font(.subheadline)
-                    .listRowBackground(Color.clear)
-                PostRow(post: post)
+                Section(calcYearDistance(post)) {
+                    if post.type == PostType.text {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text(post.title)
+                                Spacer()
+                            }
+                            .contentShape(Rectangle())
+                            Text(Date.createPostDate(post)).foregroundStyle(.secondary)
+                        }
+                        .listRowInsets(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
+                        .onTapGesture {
+                            router.currentNavigationPath.append(NavigationTarget.post(post))
+                        }
+                    } else {
+                        VStack(alignment: .center) {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    router.currentNavigationPath.append(NavigationTarget.post(post))
+                                } label: {
+                                    PostImage(post: post)
+                                        .frame(width: 200, height: 200)
+                                        .padding(.top, 30)
+                                }
+                                Spacer()
+                            }
+                            Text(Date.createPostDate(post)).foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                .listRowSeparator(.hidden)
             }
         }
         .navigationTitle("Heute")
