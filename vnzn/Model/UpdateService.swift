@@ -5,14 +5,27 @@ class UpdateService {
     
     let contentParser = ContentParser()
     var loadedPosts: [Post] = []
-    
+
     @MainActor
-    func update(container: ModelContainer) async throws {
+    func fetchUpdates(modelContext: ModelContext) async throws {
+        let lastUpdateKey = "lastUpdate"
+        let lastUpdateFromServer = await fetchLastUpdate()
+
+        let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
+        if lastUpdateFromServer > lastUpdateLocal {
+            let updateService = UpdateService()
+            try await updateService.update(modelContext)
+            UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
+        }
+    }
+
+    @MainActor
+    private func update(_ modelContext:  ModelContext) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
         
         let postFetchDescriptor = FetchDescriptor<Post>()
-        loadedPosts = try container.mainContext.fetch(postFetchDescriptor)
-        
+        loadedPosts = try modelContext.fetch(postFetchDescriptor)
+
         for item in items.reversed() {
             var isFavourite = false
             var visits: Int = 0
@@ -26,10 +39,10 @@ class UpdateService {
                 image = await fetchImageData(item: item)
             }
             let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: isFavourite, visits: visits, image: image)
-            container.mainContext.insert(post)
+            modelContext.insert(post)
         }
         
-        try container.mainContext.save()
+        try modelContext.save()
     }
 
     private func fetchImageData(item: Item) async -> Data? {

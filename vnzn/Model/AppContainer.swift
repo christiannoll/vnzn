@@ -8,16 +8,8 @@ func createAppContainer() -> ModelContainer {
         container.mainContext.autosaveEnabled = false
 
         Task {
-            let lastUpdateKey = "lastUpdate"
-            let lastUpdateFromServer = await fetchLastUpdate()
-            
-            
-            let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
-            if lastUpdateFromServer > lastUpdateLocal {
-                let updateService = UpdateService()
-                try await updateService.update(container: container)
-                UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
-            }
+            let updateService = UpdateService()
+            try await updateService.fetchUpdates(modelContext: container.mainContext)
         }
 
         var settingsFetchDescriptor = FetchDescriptor<Settings>()

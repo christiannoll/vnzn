@@ -35,6 +35,12 @@ struct PostsView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.blue)
             .scrollContentBackground(.hidden)
+            .refreshable {
+                Task {
+                    let updateService = UpdateService()
+                    try await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
+                }
+            }
             .task {
                 if metaData.tags.tagItems.isEmpty {
                     await metaData.tags.createTags(posts)
