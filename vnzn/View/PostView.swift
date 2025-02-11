@@ -6,7 +6,6 @@ struct PostView: View {
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
-    @Environment(\.modelContext) private var modelContext
 
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
@@ -71,7 +70,7 @@ struct PostView: View {
                         Button {
                             viewModel.post.isFavourite.toggle()
                             DispatchQueue.main.async {
-                                try? modelContext.save()
+                                SwiftDataService.shared.save()
                             }
                         } label: {
                             Image(systemName: viewModel.post.isFavourite ? "star.fill" : "star")
