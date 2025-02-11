@@ -63,6 +63,7 @@ struct PostOfTheDay: View {
     }
 
     private func setNewPostOfTheDayIndex() throws {
+        guard posts.count > 0 else { return }
         var newIndex = 0
         while true {
             let index = Int.random(in: 0..<posts.count)
