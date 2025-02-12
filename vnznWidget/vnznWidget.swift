@@ -11,7 +11,7 @@ struct Provider: TimelineProvider {
     }
 
     private var placeholderEntry: SimpleEntry {
-        SimpleEntry(date: Date(), post: Post(title: String(localized: "Title")))
+        SimpleEntry(date: Date(), post: createPlaceholderPost())
     }
 
     func placeholder(in context: Context) -> SimpleEntry {
@@ -20,6 +20,12 @@ struct Provider: TimelineProvider {
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         completion(placeholderEntry)
+    }
+
+    private func createPlaceholderPost() -> Post {
+        let post = Post(title: String(localized: "Title"))
+        post.data = "Fragmente aus Vergangenheit, Gegenwart und Zukunft"
+        return post
     }
 
     @MainActor
