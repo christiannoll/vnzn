@@ -2,14 +2,15 @@ import SwiftUI
 
 struct ArchiveMonthView: View {
 
-    let posts: [Post]
+    let archiveMonth: ArchiveMonth
 
     var body: some View {
         List {
-            ForEach (posts) { post in
+            ForEach (archiveMonth.posts) { post in
                 PostRow(post: post)
             }
         }
         .scrollContentBackground(.hidden)
+        .navigationTitle(archiveMonth.monthName)
     }
 }

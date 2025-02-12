@@ -4,7 +4,7 @@ enum NavigationTarget: Hashable {
     case tag(TagItem)
     case serials
     case archive
-    case archiveMonth([Post])
+    case archiveMonth(ArchiveMonth)
     case statistics
     case post(Post)
     case timeline

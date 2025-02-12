@@ -42,9 +42,6 @@ struct MetaView: View {
                 if metaData.archive.years.isEmpty {
                     await metaData.archive.createArchive(posts)
                 }
-                if statistics.data.numberOfPosts == 0 {
-                    await statistics.createStatistics(posts, index: metaData.index, tags: metaData.tags, serials: metaData.serials)
-                }
                 if metaData.timeline.timelineItems.isEmpty {
                     await metaData.timeline.createTimeline(posts)
                 }
@@ -59,6 +56,9 @@ struct MetaView: View {
                 }
                 if metaData.indices.register.registerItems.isEmpty {
                     await metaData.indices.createIndexRegister(posts)
+                }
+                if statistics.data.numberOfPosts == 0 {
+                    await statistics.createStatistics(posts, index: metaData.index, tags: metaData.tags, serials: metaData.serials)
                 }
             }
             .selectNavigationDestination()

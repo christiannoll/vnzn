@@ -12,8 +12,8 @@ struct NavigationDestination: ViewModifier {
                     SerialsView()
                 case .archive:
                     ArchiveView()
-                case .archiveMonth(let posts):
-                    ArchiveMonthView(posts: posts)
+                case .archiveMonth(let archiveMonth):
+                    ArchiveMonthView(archiveMonth: archiveMonth)
                 case .statistics:
                     StatisticsView()
                 case .timeline:

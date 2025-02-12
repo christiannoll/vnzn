@@ -14,7 +14,7 @@ struct ArchiveView: View {
                     .bold()
                 ForEach(year.months, id: \.self) { month in
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.archiveMonth(month.posts))
+                        router.currentNavigationPath.append(NavigationTarget.archiveMonth(month))
                     } label: {
                         HStack {
                             Text(month.monthName)
