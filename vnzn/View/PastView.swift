@@ -4,26 +4,17 @@ import SwiftData
 struct PastView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
-
     @Environment(Router.self) var router: Router
+
+    @State private var urlToOpen: URL?
+    @State private var isSafariPresented = false
 
     var body: some View {
         List {
             ForEach (findMatchingPosts()) { post in
                 Section(calcYearDistance(post)) {
                     if post.type == PostType.text {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(post.title)
-                                Spacer()
-                            }
-                            .contentShape(Rectangle())
-                            Text(Date.createPostDate(post)).foregroundStyle(.secondary)
-                        }
-                        .listRowInsets(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
-                        .onTapGesture {
-                            router.currentNavigationPath.append(NavigationTarget.post(post))
-                        }
+                        PostDetailView(posts: posts, selectedPost: post, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented)
                     } else {
                         VStack(alignment: .center) {
                             HStack {
@@ -45,6 +36,11 @@ struct PastView: View {
             }
         }
         .navigationTitle("Heute")
+        .background(alignment: .trailing) {
+            if let urlToOpen {
+                SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
+            }
+        }
     }
 
     private func findMatchingPosts() -> [Post] {
