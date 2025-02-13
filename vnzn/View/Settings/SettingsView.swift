@@ -9,7 +9,7 @@ struct SettingsView: View {
 
     var body: some View {
         @Bindable var router = router
-        NavigationStack(path: $router.settingsViewNavigationPath) {
+        NavigationStack(path: $router.currentNavigationPath) {
             Form {
                 if let appSettings = settings.first {
                     @Bindable var appSettings = appSettings
@@ -34,7 +34,7 @@ struct SettingsView: View {
                     Section("App") {
                         List {
                             Button {
-                                router.settingsViewNavigationPath.append(NavigationTarget.appInfo)
+                                router.currentNavigationPath.append(NavigationTarget.appInfo)
                             } label: {
                                 HStack {
                                     Image(systemName: "info.circle")

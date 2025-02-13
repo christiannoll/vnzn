@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct AppInfoView: View {
+
+    @Environment(Router.self) var router: Router
+
     var body: some View {
-        
         List {
             Section("Version: \(AppVersionProvider.appVersion())") {
                 Button {
@@ -17,6 +19,7 @@ struct AppInfoView: View {
                 }
                 .buttonStyle(.plain)
                 Button {
+                    router.currentNavigationPath.append(NavigationTarget.privacy)
                 } label: {
                     HStack {
                         Image(systemName: "lock")

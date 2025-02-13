@@ -52,6 +52,8 @@ struct NavigationDestination: ViewModifier {
                     PostWidgetView(url: url)
                 case .past:
                     PastView()
+                case .privacy:
+                    PrivacyView()
                 }
             }
     }

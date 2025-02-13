@@ -469,7 +469,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Keinen passenden Post gefunden. 🙁"
           }
         },
@@ -738,7 +738,20 @@
       }
     },
     "Posts: www.vnzn.blog" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posts: www.vnzn.blog"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posts: www.vnzn.blog"
+          }
+        }
+      }
     },
     "Reise in die Vergangenheit" : {
       "localizations" : {
@@ -928,6 +941,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search blog"
+          }
+        }
+      }
+    },
+    "VnznApp sammelt oder verarbeitet keine persönlichen Daten seiner Benutzer. Die App wird verwendet, um eine Verbindung zu Vnzn-Servern herzustellen, die möglicherweise persönliche Daten sammeln und nicht von dieser Datenschutzrichtlinie abgedeckt sind." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VnznApp sammelt oder verarbeitet keine persönlichen Daten seiner Benutzer. Die App wird verwendet, um eine Verbindung zu vnzn-Servern herzustellen, die möglicherweise persönliche Daten sammeln und nicht von dieser Datenschutzrichtlinie abgedeckt sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VnznApp does not collect or process any personal information from its users. The app is used to connect to vnzn servers that may or may not collect personal information and are not covered by this privacy policy."
           }
         }
       }
