@@ -8,6 +8,17 @@ struct AppInfoView: View {
                 Button {
                 } label: {
                     HStack {
+                        Image(systemName: "house")
+                            .foregroundStyle(Color.accentColor)
+                        Text("Posts: www.vnzn.blog")
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                Button {
+                } label: {
+                    HStack {
                         Image(systemName: "lock")
                             .foregroundStyle(Color.accentColor)
                         Text("Datenschutzerklärung")
