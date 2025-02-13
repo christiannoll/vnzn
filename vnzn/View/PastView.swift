@@ -11,7 +11,8 @@ struct PastView: View {
 
     var body: some View {
         List {
-            ForEach (findMatchingPosts()) { post in
+            let matchingPosts = findMatchingPosts()
+            ForEach (matchingPosts) { post in
                 Section(calcYearDistance(post)) {
                     if post.type == PostType.text {
                         PostDetailView(posts: posts, selectedPost: post, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented)
@@ -33,6 +34,9 @@ struct PastView: View {
                     }
                 }
                 .listRowSeparator(.hidden)
+            }
+            if matchingPosts.isEmpty {
+                Text("Keinen passenden Post gefunden. 🙁")
             }
         }
         .navigationTitle("Heute")

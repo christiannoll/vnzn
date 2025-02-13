@@ -465,6 +465,22 @@
         }
       }
     },
+    "Keinen passenden Post gefunden. 🙁" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Keinen passenden Post gefunden. 🙁"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No appropriate post exists in the past. 🙁"
+          }
+        }
+      }
+    },
     "Kurzgeschichte des Tages" : {
       "localizations" : {
         "de" : {
