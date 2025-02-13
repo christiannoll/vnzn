@@ -25,4 +25,5 @@ enum NavigationTarget: Hashable {
     case widgetPost(URL)
     case past
     case privacy
+    case termsOfUse
 }

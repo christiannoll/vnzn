@@ -129,6 +129,22 @@
         }
       }
     },
+    "Die Nutzung von VnznApp unterliegt Apples Standard-EULA für Apps. In VnznApp bereitgestellte Trinkgelder schalten keine zusätzlichen Inhalte in der App frei." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Nutzung von VnznApp unterliegt Apples Standard-EULA für Apps. In VnznApp bereitgestellte Trinkgelder schalten keine zusätzlichen Inhalte in der App frei."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use of VnznApp is governed by Apple’s Standard EULA for apps. Tips provided in VnznApp do no unlock any additional content in the app."
+          }
+        }
+      }
+    },
     "Durchschnittliche Anzahl an Links:" : {
       "localizations" : {
         "de" : {

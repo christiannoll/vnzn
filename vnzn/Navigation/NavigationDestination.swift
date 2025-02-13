@@ -54,6 +54,8 @@ struct NavigationDestination: ViewModifier {
                     PastView()
                 case .privacy:
                     PrivacyView()
+                case .termsOfUse:
+                    TermsOfUseView()
                 }
             }
     }

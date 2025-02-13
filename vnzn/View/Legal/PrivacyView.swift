@@ -8,6 +8,6 @@ struct PrivacyView: View {
                 .padding()
             Spacer()
         }
-            .navigationTitle("Datenschutzerklärung")
+        .navigationTitle("Datenschutzerklärung")
     }
 }

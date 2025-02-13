@@ -31,6 +31,7 @@ struct AppInfoView: View {
                 }
                 .buttonStyle(.plain)
                 Button {
+                    router.currentNavigationPath.append(NavigationTarget.termsOfUse)
                 } label: {
                     HStack {
                         Image(systemName: "checkmark.shield")
