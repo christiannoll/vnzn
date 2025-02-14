@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6AD301C2D5E850000E4457F /* vnznSearchIntent.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = D6AD30132D5E850000E4457F /* vnznSearchIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D6BED3F62D399C04005BF55C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F52D399C03005BF55C /* WidgetKit.framework */; };
 		D6BED3F82D399C04005BF55C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F72D399C04005BF55C /* SwiftUI.framework */; };
 		D6BED4052D399C06005BF55C /* vnznWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -27,6 +28,13 @@
 			remoteGlobalIDString = D604306B2CDFDD440073F921;
 			remoteInfo = vnzn;
 		};
+		D6AD301A2D5E850000E4457F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D60430642CDFDD440073F921 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6AD30122D5E850000E4457F;
+			remoteInfo = vnznSearchIntent;
+		};
 		D6BED4032D399C06005BF55C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D60430642CDFDD440073F921 /* Project object */;
@@ -37,6 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D6AD301D2D5E850000E4457F /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				D6AD301C2D5E850000E4457F /* vnznSearchIntent.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6BED4062D399C06005BF55C /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,6 +73,7 @@
 		D604306C2CDFDD440073F921 /* vnzn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vnzn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D604307C2CDFDD460073F921 /* vnznTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vnznTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60430862CDFDD460073F921 /* vnznUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vnznUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6AD30132D5E850000E4457F /* vnznSearchIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = vnznSearchIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = vnznWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BED3F52D399C03005BF55C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D6BED3F72D399C04005BF55C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -61,6 +81,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D6AD30202D5E850000E4457F /* Exceptions for "vnznSearchIntent" folder in "vnznSearchIntent" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D6AD30122D5E850000E4457F /* vnznSearchIntent */;
+		};
 		D6BED4092D399C06005BF55C /* Exceptions for "vnznWidget" folder in "vnznWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -107,6 +134,14 @@
 			path = vnznUITests;
 			sourceTree = "<group>";
 		};
+		D6AD30142D5E850000E4457F /* vnznSearchIntent */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D6AD30202D5E850000E4457F /* Exceptions for "vnznSearchIntent" folder in "vnznSearchIntent" target */,
+			);
+			path = vnznSearchIntent;
+			sourceTree = "<group>";
+		};
 		D6BED3F92D399C04005BF55C /* vnznWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -139,6 +174,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6AD30102D5E850000E4457F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6BED3F02D399C03005BF55C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +201,7 @@
 				D604307F2CDFDD460073F921 /* vnznTests */,
 				D60430892CDFDD460073F921 /* vnznUITests */,
 				D6BED3F92D399C04005BF55C /* vnznWidget */,
+				D6AD30142D5E850000E4457F /* vnznSearchIntent */,
 				D6BED3F42D399C03005BF55C /* Frameworks */,
 				D604306D2CDFDD440073F921 /* Products */,
 			);
@@ -171,6 +214,7 @@
 				D604307C2CDFDD460073F921 /* vnznTests.xctest */,
 				D60430862CDFDD460073F921 /* vnznUITests.xctest */,
 				D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */,
+				D6AD30132D5E850000E4457F /* vnznSearchIntent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,11 +239,13 @@
 				D60430692CDFDD440073F921 /* Frameworks */,
 				D604306A2CDFDD440073F921 /* Resources */,
 				D6BED4062D399C06005BF55C /* Embed Foundation Extensions */,
+				D6AD301D2D5E850000E4457F /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D6BED4042D399C06005BF55C /* PBXTargetDependency */,
+				D6AD301B2D5E850000E4457F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D604306E2CDFDD440073F921 /* vnzn */,
@@ -257,6 +303,28 @@
 			productReference = D60430862CDFDD460073F921 /* vnznUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D6AD30122D5E850000E4457F /* vnznSearchIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6AD30212D5E850000E4457F /* Build configuration list for PBXNativeTarget "vnznSearchIntent" */;
+			buildPhases = (
+				D6AD300F2D5E850000E4457F /* Sources */,
+				D6AD30102D5E850000E4457F /* Frameworks */,
+				D6AD30112D5E850000E4457F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D6AD30142D5E850000E4457F /* vnznSearchIntent */,
+			);
+			name = vnznSearchIntent;
+			packageProductDependencies = (
+			);
+			productName = vnznSearchIntent;
+			productReference = D6AD30132D5E850000E4457F /* vnznSearchIntent.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
+		};
 		D6BED3F22D399C03005BF55C /* vnznWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6BED40A2D399C06005BF55C /* Build configuration list for PBXNativeTarget "vnznWidgetExtension" */;
@@ -300,6 +368,9 @@
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = D604306B2CDFDD440073F921;
 					};
+					D6AD30122D5E850000E4457F = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					D6BED3F22D399C03005BF55C = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -324,6 +395,7 @@
 				D604307B2CDFDD460073F921 /* vnznTests */,
 				D60430852CDFDD460073F921 /* vnznUITests */,
 				D6BED3F22D399C03005BF55C /* vnznWidgetExtension */,
+				D6AD30122D5E850000E4457F /* vnznSearchIntent */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +416,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D60430842CDFDD460073F921 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6AD30112D5E850000E4457F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -381,6 +460,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6AD300F2D5E850000E4457F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6BED3EF2D399C03005BF55C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +486,11 @@
 			isa = PBXTargetDependency;
 			target = D604306B2CDFDD440073F921 /* vnzn */;
 			targetProxy = D60430872CDFDD460073F921 /* PBXContainerItemProxy */;
+		};
+		D6AD301B2D5E850000E4457F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6AD30122D5E850000E4457F /* vnznSearchIntent */;
+			targetProxy = D6AD301A2D5E850000E4457F /* PBXContainerItemProxy */;
 		};
 		D6BED4042D399C06005BF55C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -664,6 +755,58 @@
 			};
 			name = Release;
 		};
+		D6AD301E2D5E850000E4457F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ELG2TXRCNZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vnznSearchIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = vnznSearchIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.vnzn.vnzn.vnznSearchIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6AD301F2D5E850000E4457F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ELG2TXRCNZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vnznSearchIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = vnznSearchIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.vnzn.vnzn.vnznSearchIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D6BED4072D399C06005BF55C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -757,6 +900,15 @@
 			buildConfigurations = (
 				D60430972CDFDD460073F921 /* Debug */,
 				D60430982CDFDD460073F921 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6AD30212D5E850000E4457F /* Build configuration list for PBXNativeTarget "vnznSearchIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6AD301E2D5E850000E4457F /* Debug */,
+				D6AD301F2D5E850000E4457F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
