@@ -8,9 +8,12 @@ struct vnznSearchIntent: AppIntent {
     static let description: LocalizedStringResource = "Find a post"
     static var openAppWhenRun: Bool { true }
 
+    @Parameter(title: "Search term")
+    var searchTerm: String
+
     @MainActor
     func perform() async throws -> some IntentResult & OpensIntent {
-        let url = URL(string: "vnznapp://search-post?q=test")!
+        let url = URL(string: "vnznapp://search-post?q=\(searchTerm)")!
         EnvironmentValues().openURL(url)
         return .result()
     }
