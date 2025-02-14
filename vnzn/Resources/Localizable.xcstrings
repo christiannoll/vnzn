@@ -273,6 +273,9 @@
         }
       }
     },
+    "Find a post" : {
+
+    },
     "Fotos" : {
       "localizations" : {
         "de" : {
@@ -784,6 +787,12 @@
           }
         }
       }
+    },
+    "Search" : {
+
+    },
+    "Search for a post" : {
+
     },
     "Serien" : {
       "localizations" : {

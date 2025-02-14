@@ -81,6 +81,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D65EDA322D5F401400954018 /* Exceptions for "vnznSearchIntent" folder in "vnzn" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				vnznSearchIntent.swift,
+			);
+			target = D604306B2CDFDD440073F921 /* vnzn */;
+		};
 		D6AD30202D5E850000E4457F /* Exceptions for "vnznSearchIntent" folder in "vnznSearchIntent" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -137,6 +144,7 @@
 		D6AD30142D5E850000E4457F /* vnznSearchIntent */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				D65EDA322D5F401400954018 /* Exceptions for "vnznSearchIntent" folder in "vnzn" target */,
 				D6AD30202D5E850000E4457F /* Exceptions for "vnznSearchIntent" folder in "vnznSearchIntent" target */,
 			);
 			path = vnznSearchIntent;
