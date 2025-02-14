@@ -49,13 +49,13 @@ struct PostRow: View {
         }
     }
 
-    private func text() -> String {
+    private func text() -> AttributedString {
         var text = AttributedString()
 
         for nodes in nodeParser.parse(post.data) {
             text.append(stringBuilder.parse(nodes, post))
         }
-        return String(text.characters)
+        return text
     }
 }
 
