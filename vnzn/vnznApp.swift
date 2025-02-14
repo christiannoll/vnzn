@@ -20,6 +20,7 @@ struct vnznApp: App {
                 .environment(metaData)
                 .environment(siteStatistics)
                 .onOpenURL { url in
+                    print(url)
                     router.currentNavigationPath.append(NavigationTarget.widgetPost(url))
                 }
         }
