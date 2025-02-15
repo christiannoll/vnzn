@@ -55,9 +55,8 @@ import SwiftUI
     }
 
     func navigate(to url: URL) {
-        var id = -1
-
         guard url.scheme == "vnznapp" else {
+            print("Invalid URL scheme")
             return
         }
 
@@ -66,18 +65,22 @@ import SwiftUI
             return
         }
 
-        guard let action = components.host, action == "view-post" else {
+        let action = components.host
+        switch action {
+        case "view-post":
+            handleViewPostLink(components)
+        default:
             print("Unknown URL, we can't handle this one!")
-            return
         }
+    }
 
+    private func handleViewPostLink(_ components: URLComponents) {
         guard let postIdString = components.queryItems?.first(where: { $0.name == "id" })?.value else {
-            print("Recipe name not found")
+            print("Id not found")
             return
         }
 
-        id = Int(postIdString) ?? -1
-
+        let id = Int(postIdString) ?? -1
         currentNavigationPath.append(NavigationTarget.widgetPost(id))
     }
 }
