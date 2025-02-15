@@ -56,8 +56,8 @@ struct NavigationDestination: ViewModifier {
                     PrivacyView()
                 case .termsOfUse:
                     TermsOfUseView()
-                case .searchIntent:
-                    SearchIntentView()
+                case .searchIntent(let searchTerm):
+                    SearchIntentView(searchTerm: searchTerm)
                 }
             }
     }

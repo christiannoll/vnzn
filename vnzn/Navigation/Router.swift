@@ -69,6 +69,8 @@ import SwiftUI
         switch action {
         case "view-post":
             handleViewPostLink(components)
+        case "search-post":
+            handleSearchPostLink(components)
         default:
             print("Unknown URL, we can't handle this one!")
         }
@@ -82,5 +84,14 @@ import SwiftUI
 
         let id = Int(postIdString) ?? -1
         currentNavigationPath.append(NavigationTarget.widgetPost(id))
+    }
+
+    private func handleSearchPostLink(_ components: URLComponents) {
+        guard let queryString = components.queryItems?.first(where: { $0.name == "q" })?.value else {
+            print("Query not found")
+            return
+        }
+        
+        currentNavigationPath.append(NavigationTarget.searchIntent(queryString))
     }
 }

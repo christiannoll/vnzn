@@ -356,9 +356,6 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "Heute" : {
       "localizations" : {
         "de" : {
