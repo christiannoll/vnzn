@@ -48,14 +48,16 @@ struct NavigationDestination: ViewModifier {
                     TagsView()
                 case .appInfo:
                     AppInfoView()
-                case .widgetPost(let url):
-                    PostWidgetView(url: url)
+                case .widgetPost(let postId):
+                    PostWidgetView(id: postId)
                 case .past:
                     PastView()
                 case .privacy:
                     PrivacyView()
                 case .termsOfUse:
                     TermsOfUseView()
+                case .searchIntent:
+                    SearchIntentView()
                 }
             }
     }
