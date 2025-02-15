@@ -4,7 +4,7 @@ import SwiftData
 @MainActor
 func createAppContainer() -> ModelContainer {
     do {
-        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self)
+        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self)
         container.mainContext.autosaveEnabled = false
 
         Task {

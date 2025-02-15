@@ -122,6 +122,7 @@
 				Markdown/StringBuilder.swift,
 				Model/HistoryItem.swift,
 				Model/Post.swift,
+				Model/SearchItem.swift,
 				Model/Settings.swift,
 				VnznEnv.swift,
 			);

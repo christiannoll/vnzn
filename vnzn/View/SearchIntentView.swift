@@ -6,5 +6,8 @@ struct SearchIntentView: View {
 
     var body: some View {
         PostsView(searchText: searchTerm)
+            .onAppear {
+                SwiftDataService.shared.saveSearchItem(searchTerm: searchTerm)
+            }
     }
 }

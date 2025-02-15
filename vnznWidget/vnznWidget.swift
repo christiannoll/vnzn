@@ -7,7 +7,7 @@ struct Provider: TimelineProvider {
     var modelContainer: ModelContainer?
 
     init() {
-        self.modelContainer = try? ModelContainer(for: Post.self, HistoryItem.self, Settings.self)
+        self.modelContainer = try? ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self)
     }
 
     private var placeholderEntry: SimpleEntry {
