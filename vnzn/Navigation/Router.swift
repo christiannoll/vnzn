@@ -54,6 +54,7 @@ import SwiftUI
         currentNavigationPath = NavigationPath()
     }
 
+    @MainActor
     func navigate(to url: URL) {
         guard url.scheme == "vnznapp" else {
             print("Invalid URL scheme")
@@ -86,6 +87,7 @@ import SwiftUI
         currentNavigationPath.append(NavigationTarget.widgetPost(id))
     }
 
+    @MainActor
     private func handleSearchPostLink(_ components: URLComponents) {
         guard let queryString = components.queryItems?.first(where: { $0.name == "q" })?.value else {
             print("Query not found")
@@ -93,5 +95,6 @@ import SwiftUI
         }
         
         currentNavigationPath.append(NavigationTarget.searchIntent(queryString))
+        SwiftDataService.shared.saveSearchItem(searchTerm: queryString)
     }
 }
