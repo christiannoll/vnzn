@@ -3,7 +3,7 @@ import SwiftData
 
 struct PostsView: View {
     
-    @State private var searchText = ""
+    @State var searchText = ""
     @State private var onlyFavourites = false
     @State private var settingsVisible = false
 
