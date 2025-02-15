@@ -1,13 +1,29 @@
 import SwiftUI
+import SwiftData
 
 struct SearchIntentView: View {
 
-    let searchTerm: String
+    let searchText: String
+
+    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
+
+    var searchResults: [Post] {
+        if searchText.isEmpty {
+            return posts
+        } else {
+            let searchTerm = searchText.lowercased()
+            return posts.filter { $0.data.lowercased().contains(searchTerm) || $0.title.lowercased().contains(searchTerm) }
+        }
+    }
 
     var body: some View {
-        PostsView(searchText: searchTerm)
-            .onAppear {
-                SwiftDataService.shared.saveSearchItem(searchTerm: searchTerm)
+        List {
+            ForEach (searchResults) { post in
+                PostRow(post: post)
             }
+        }
+        .selectNavigationDestination()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(searchText)
     }
 }

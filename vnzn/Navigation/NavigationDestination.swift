@@ -57,7 +57,7 @@ struct NavigationDestination: ViewModifier {
                 case .termsOfUse:
                     TermsOfUseView()
                 case .searchIntent(let searchTerm):
-                    SearchIntentView(searchTerm: searchTerm)
+                    SearchIntentView(searchText: searchTerm)
                 }
             }
     }
