@@ -16,6 +16,16 @@ struct ExperimentsView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+            Button {
+                router.currentNavigationPath.append(NavigationTarget.searchHistory)
+            } label: {
+                HStack {
+                    Text("Suchverlauf")
+                    Spacer()
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
         }
         .navigationTitle("Experimente")
         .navigationBarTitleDisplayMode(.inline)
