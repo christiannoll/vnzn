@@ -5,7 +5,7 @@ import SwiftUI
 struct vnznSearchIntent: AppIntent {
 
     static var title: LocalizedStringResource = "Search"
-    static let description: LocalizedStringResource = "Find a post"
+    static let description: LocalizedStringResource = "Search for posts"
     static var openAppWhenRun: Bool { true }
 
     @Parameter(title: "Search term")
@@ -24,9 +24,9 @@ struct vnznAppShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: vnznSearchIntent(),
             phrases: [
-                "Find a \(.applicationName) post"
+                "Search for \(.applicationName) posts"
             ],
-            shortTitle: "Search for a post",
+            shortTitle: "Search for posts",
             systemImageName: "magnifyingglass"
         )
     }

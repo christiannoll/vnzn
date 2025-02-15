@@ -273,9 +273,6 @@
         }
       }
     },
-    "Find a post" : {
-
-    },
     "Fotos" : {
       "localizations" : {
         "de" : {
@@ -789,13 +786,52 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
     },
-    "Search for a post" : {
-
+    "Search for posts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche nach Posts"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for posts"
+          }
+        }
+      }
     },
     "Search term" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchbegriff"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search term"
+          }
+        }
+      }
     },
     "Serien" : {
       "localizations" : {
