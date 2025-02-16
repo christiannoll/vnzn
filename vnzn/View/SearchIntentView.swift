@@ -22,7 +22,6 @@ struct SearchIntentView: View {
                 PostRow(post: post)
             }
         }
-        .selectNavigationDestination()
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(searchText)
     }
