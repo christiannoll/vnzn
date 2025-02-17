@@ -20,21 +20,19 @@ struct vnznWidgetView : View {
 
     @ViewBuilder
     private func image(post: Post) -> some View {
-        if let url = URL(string: VnznEnv.baseRootUrl + "images/" + post.data),
-           let imageData = try? Data(contentsOf: url),
-           let uiImage = UIImage(data: imageData) {
-            Text("v.n.z.n")
-                .foregroundStyle(.blue)
-                .padding(.top, 6)
+        Text("v.n.z.n")
+            .foregroundStyle(.blue)
+            .padding(.top, 6)
+        if let imageData = post.image, let uiImage = UIImage(data: imageData) {
             Image(uiImage: uiImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 80)
-            Text(Date.createPostDate(post))
-                .foregroundStyle(.secondary)
-                .font(.subheadline)
-            Spacer()
+                .frame(width: imageSize, height: imageSize)
         }
+        Text(Date.createPostDate(post))
+            .foregroundStyle(.secondary)
+            .font(.subheadline)
+        Spacer()
     }
 
     @ViewBuilder
@@ -44,6 +42,10 @@ struct vnznWidgetView : View {
         } else {
             largeText(post: post)
         }
+    }
+
+    private var imageSize: CGFloat {
+        widgetFamily == .systemLarge ? 240 : 80
     }
 
     @ViewBuilder
