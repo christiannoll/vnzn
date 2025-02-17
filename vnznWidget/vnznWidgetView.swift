@@ -23,10 +23,17 @@ struct vnznWidgetView : View {
         if let url = URL(string: VnznEnv.baseRootUrl + "images/" + post.data),
            let imageData = try? Data(contentsOf: url),
            let uiImage = UIImage(data: imageData) {
+            Text("v.n.z.n")
+                .foregroundStyle(.blue)
+                .padding(.top, 6)
             Image(uiImage: uiImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
+                .frame(width: 80, height: 80)
+            Text(Date.createPostDate(post))
+                .foregroundStyle(.secondary)
+                .font(.subheadline)
+            Spacer()
         }
     }
 
