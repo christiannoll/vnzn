@@ -882,7 +882,14 @@
       }
     },
     "Suchverlauf" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchverlauf"
+          }
+        }
+      }
     },
     "Themenwolke" : {
       "localizations" : {
