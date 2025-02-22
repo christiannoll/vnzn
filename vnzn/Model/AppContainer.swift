@@ -7,11 +7,6 @@ func createAppContainer() -> ModelContainer {
         let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self)
         container.mainContext.autosaveEnabled = false
 
-        Task {
-            let updateService = UpdateService()
-            try await updateService.fetchUpdates(modelContext: container.mainContext)
-        }
-
         var settingsFetchDescriptor = FetchDescriptor<Settings>()
         settingsFetchDescriptor.fetchLimit = 1
         guard try container.mainContext.fetch(settingsFetchDescriptor).count == 0 else {
@@ -19,6 +14,11 @@ func createAppContainer() -> ModelContainer {
         }
         let settings = Settings()
         container.mainContext.insert(settings)
+
+        Task {
+            let updateService = UpdateService()
+            try await updateService.fetchUpdates(modelContext: container.mainContext)
+        }
 
         return container
     } catch {
