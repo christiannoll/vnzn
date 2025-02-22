@@ -22,7 +22,16 @@ class TagItem: Identifiable, Hashable {
     var tagTitle: String {
         key + " (" + String(posts.count) + ")"
     }
-    
+
+    func isImageTag() -> Bool {
+        for post in posts {
+            if post.type == .text {
+                return false
+            }
+        }
+        return true
+    }
+
     func addPost(_ post: Post) {
         posts.append(post)
     }
