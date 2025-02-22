@@ -7,7 +7,7 @@ public enum PostType: Int, Codable, CodingKey {
 }
 
 @Model
-final class Post {
+final class Post: @unchecked Sendable, Identifiable {
     
     @Attribute(.unique) var id: Int
     var data: String

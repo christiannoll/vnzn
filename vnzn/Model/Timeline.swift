@@ -4,6 +4,7 @@ class Timeline {
 
     var timelineItems: [TimelineItem] = []
 
+    @MainActor
     func createTimeline(_ posts: [Post]) async {
         for post in posts {
             addPost(post)

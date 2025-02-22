@@ -2,6 +2,7 @@ import Foundation
 
 class Serials : Tags {
 
+    @MainActor
     func createSerials(_ posts: [Post]) async {
         for post in posts {
             await addPost(post)

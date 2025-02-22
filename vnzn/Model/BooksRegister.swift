@@ -4,6 +4,7 @@ class BooksRegister {
 
     var register = Register()
 
+    @MainActor
     func createBooksRegister(_ posts: [Post]) async {
         for post in posts {
             addPost(post)

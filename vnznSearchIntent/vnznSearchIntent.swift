@@ -4,7 +4,7 @@ import SwiftUI
 
 struct vnznSearchIntent: AppIntent {
 
-    static var title: LocalizedStringResource = "Search"
+    static let title: LocalizedStringResource = "Search"
     static let description: LocalizedStringResource = "Search for posts"
     static var openAppWhenRun: Bool { true }
 

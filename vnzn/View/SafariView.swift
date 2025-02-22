@@ -23,13 +23,14 @@ struct SafariViewControllerPresenter: UIViewControllerRepresentable {
         Coordinator(self)
     }
     
-    class Coordinator: NSObject, SFSafariViewControllerDelegate {
+    class Coordinator: NSObject, @preconcurrency SFSafariViewControllerDelegate {
         var parent: SafariViewControllerPresenter
         
         init(_ parent: SafariViewControllerPresenter) {
             self.parent = parent
         }
         
+        @MainActor
         func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
             // This will be called when the user taps 'Done' in the Safari view
             parent.isPresented = false

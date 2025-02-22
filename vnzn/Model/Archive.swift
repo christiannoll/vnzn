@@ -3,12 +3,14 @@ import Foundation
 class Archive {
     
     var years: [ArchiveYear] = []
-    
+
+    @MainActor
     private func addPost(_ post: Post) async {
         let year = getYear(post)
         year.addPost(post)
     }
 
+    @MainActor
     func createArchive(_ posts: [Post]) async {
         for post in posts {
             await addPost(post)

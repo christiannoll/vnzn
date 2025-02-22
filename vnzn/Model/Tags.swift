@@ -37,12 +37,14 @@ class Tags {
         tagItems.sort { $0.posts.count < $1.posts.count }
     }
 
+    @MainActor
     func addPost(_ post: Post) async {
         for tagItem in await getTagItems(post) {
             tagItem.addPost(post)
         }
     }
-    
+
+    @MainActor
     func createTags(_ posts: [Post]) async {
         for post in posts {
             await addPost(post)
@@ -53,7 +55,8 @@ class Tags {
     func getTagItem(_ key: String) -> TagItem? {
         tagItems.first { $0.key == key }
     }
-    
+
+    @MainActor
     internal func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
         lock.withLock() {

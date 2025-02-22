@@ -27,7 +27,7 @@ struct ArchiveView: View {
                 }
             }
         }
-        .task {
+        .task { 
             if metaData.archive.years.isEmpty {
                 await metaData.archive.createArchive(posts)
             }

@@ -36,7 +36,7 @@ struct IndexView: View {
                     .buttonStyle(.plain)
                 }
             }
-            .task {
+            .task { 
                 if metaData.index.indexItems.isEmpty {
                     await metaData.index.createIndex(posts)
                 }

@@ -9,7 +9,8 @@ class Index {
     var numberOfIndexItems: Int {
         get { return indexItems.count }
     }
-    
+
+    @MainActor
     func createIndex(_ posts: [Post]) async {
         for post in posts {
             await addPost(post)
@@ -48,12 +49,14 @@ class Index {
         indexItems.sort { $0.posts.count < $1.posts.count }
     }
 
+    @MainActor
     private func addPost(_ post: Post) async {
         for indexItem in await getIndexItems(post) {
             indexItem.addPost(post)
         }
     }
-    
+
+    @MainActor
     private func getIndexItems(_ post: Post) async -> [IndexItem] {
         var _indexItems: [IndexItem] = []
         lock.withLock {

@@ -5,6 +5,7 @@ class SiteStatistics {
 
     var data = StatisticData()
 
+    @MainActor
     func createStatistics(_ posts: [Post], index: Index, tags: Tags, serials: Serials) async {
         data.numberOfPosts = posts.count
         var numberOfAllLinks = 0

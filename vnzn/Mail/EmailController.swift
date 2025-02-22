@@ -2,6 +2,7 @@ import UIKit
 
 public struct EmailController {
 
+    @MainActor
     public static func sendEmail(address: String, subject: String = "", message: String = "") {
         var components = URLComponents()
         components.scheme = "mailto"

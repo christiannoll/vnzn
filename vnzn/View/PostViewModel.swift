@@ -25,6 +25,7 @@ class PostViewModel {
         post.tags.map { $0 }.sorted()
     }
 
+    @MainActor
     func showShareSheet(_ activityVC: UIActivityViewController) {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first {
             window.rootViewController?.present(activityVC, animated: true, completion: nil)

@@ -4,6 +4,7 @@ class MoviesRegister {
 
     var register = Register()
 
+    @MainActor
     func createMoviesRegister(_ posts: [Post]) async {
         for post in posts {
             addPost(post)

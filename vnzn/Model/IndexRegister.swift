@@ -4,6 +4,7 @@ class IndexRegister {
 
     var register = Register()
 
+    @MainActor
     func createIndexRegister(_ posts: [Post]) async {
         for post in posts {
             addPost(post)

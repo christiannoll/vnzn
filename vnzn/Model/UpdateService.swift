@@ -6,7 +6,7 @@ class UpdateService {
     let contentParser = ContentParser()
     var loadedPosts: [Post] = []
 
-    @MainActor
+    //@MainActor
     func fetchUpdates(modelContext: ModelContext) async throws {
         let lastUpdateKey = "lastUpdate"
         let lastUpdateFromServer = await fetchLastUpdate()
@@ -19,7 +19,7 @@ class UpdateService {
         }
     }
 
-    @MainActor
+    //@MainActor
     private func update(_ modelContext:  ModelContext) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
         
