@@ -3,7 +3,7 @@ import Foundation
 struct VnznEnv {
     
     static var baseUrl: String {
-        if let lang = Locale.preferredLanguages.first {
+        if let lang = Locale.currentLanguage {
             if lang.contains("en") {
                 return "http://localhost:8000/en/"
                 // return "https://www.vnzn.de/en/"

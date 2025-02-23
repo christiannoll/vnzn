@@ -48,7 +48,10 @@ struct PostOfTheDay: View {
                 if Date().noon > createdAt.noon {
                     try setNewPostOfTheDayIndex()
                 } else {
-                    selectedPost = posts[postOfTheDay.posts[0]]
+                    let index = postOfTheDay.posts[0]
+                    if posts.count > index {
+                        selectedPost = posts[index]
+                    }
                 }
             } catch {
                 print(error.localizedDescription)

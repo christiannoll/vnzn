@@ -7,12 +7,12 @@ class UpdateService {
     var loadedPosts: [Post] = []
 
     //@MainActor
-    func fetchUpdates(modelContext: ModelContext) async throws {
+    func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
         let lastUpdateKey = "lastUpdate"
         let lastUpdateFromServer = await fetchLastUpdate()
 
         let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
-        if lastUpdateFromServer > lastUpdateLocal {
+        if lastUpdateFromServer > lastUpdateLocal || languageChanged {
             let updateService = UpdateService()
             try await updateService.update(modelContext)
             UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
