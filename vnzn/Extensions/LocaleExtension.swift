@@ -7,4 +7,13 @@ extension Locale {
     public static var currentLanguage: String? {
         Locale.preferredLanguages.first
     }
+
+    public static var isEnglish: Bool {
+        if let lang = Locale.currentLanguage {
+            if lang.contains("en") {
+                return true
+            }
+        }
+        return false
+    }
 }

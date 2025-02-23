@@ -26,13 +26,13 @@ struct DiscoverView: View {
                 }
                 if facesPostsVisible() {
                     Section("Fotoserie: Gesichter") {
-                        PhotoPosts(posts: posts, dataKey: "facesPosts", tagItemKey: "Fotos: Gesichter")
+                        PhotoPosts(posts: posts, dataKey: "facesPosts", tagItemKey: facesTagItemKey)
                     }
                     .listRowSeparator(.hidden)
                 }
                 if posterPostsVisible() {
                     Section("Fotoserie: Poster") {
-                        PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: "Fotos: Poster")
+                        PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: posterTagItemKey)
                     }
                     .listRowSeparator(.hidden)
                 }
@@ -61,6 +61,14 @@ struct DiscoverView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
         }
+    }
+
+    private var facesTagItemKey: String {
+        Locale.isEnglish ? "Photos: Faces" : "Fotos: Gesichter"
+    }
+
+    private var posterTagItemKey: String {
+        Locale.isEnglish ? "Photos: Poster" : "Fotos: Poster"
     }
 
     private func postOfTheDayVisible() -> Bool {
