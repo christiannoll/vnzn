@@ -481,6 +481,22 @@
         }
       }
     },
+    "Keinen Historyeintrag gefunden. 🙁" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Keinen Historyeintrag gefunden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No history item found. 🙁"
+          }
+        }
+      }
+    },
     "Keinen passenden Post gefunden. 🙁" : {
       "localizations" : {
         "de" : {
@@ -493,6 +509,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No appropriate post exists in the past. 🙁"
+          }
+        }
+      }
+    },
+    "Keinen Sucheintrag gefunden. 🙁" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Keinen Sucheintrag gefunden. 🙁"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No search item found. 🙁"
           }
         }
       }

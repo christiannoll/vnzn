@@ -39,6 +39,9 @@ struct HistoryView: View {
                     }
                     .buttonStyle(.plain)
                 }
+                if items.isEmpty {
+                    Text("Keinen Historyeintrag gefunden. 🙁")
+                }
             }
             .searchable(text: $searchText, prompt: "Verlauf durchsuchen")
             .selectNavigationDestination()

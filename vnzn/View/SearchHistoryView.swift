@@ -22,6 +22,9 @@ struct SearchHistoryView: View {
                 }
                 .buttonStyle(.plain)
             }
+            if items.isEmpty {
+                Text("Keinen Sucheintrag gefunden. 🙁")
+            }
         }
         .navigationTitle("Suchverlauf")
     }
