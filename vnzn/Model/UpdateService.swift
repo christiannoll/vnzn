@@ -26,6 +26,8 @@ class UpdateService {
         let postFetchDescriptor = FetchDescriptor<Post>()
         loadedPosts = try modelContext.fetch(postFetchDescriptor)
 
+        try modelContext.delete(model: Post.self)
+
         for item in items.reversed() {
             var isFavourite = false
             var visits: Int = 0
