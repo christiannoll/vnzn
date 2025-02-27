@@ -16,33 +16,35 @@ struct DiscoverView: View {
         @Bindable var router = router
         NavigationStack(path: $router.discoverViewNavigationPath) {
             List {
-                if postOfTheDayVisible() {
-                    Section("Post des Tages") {
-                        PostOfTheDay(posts: posts, urlToOpen: $urlToOpen,
-                                     isSafariPresented: $isSafariPresented,
-                                     dataKey: "postOfTheDay")
+                if posts.isEmpty == false {
+                    if postOfTheDayVisible() {
+                        Section("Post des Tages") {
+                            PostOfTheDay(posts: posts, urlToOpen: $urlToOpen,
+                                         isSafariPresented: $isSafariPresented,
+                                         dataKey: "postOfTheDay")
+                        }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
-                }
-                if facesPostsVisible() {
-                    Section("Fotoserie: Gesichter") {
-                        PhotoPosts(posts: posts, dataKey: "facesPosts", tagItemKey: facesTagItemKey)
+                    if facesPostsVisible() {
+                        Section("Fotoserie: Gesichter") {
+                            PhotoPosts(posts: posts, dataKey: "facesPosts", tagItemKey: facesTagItemKey)
+                        }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
-                }
-                if posterPostsVisible() {
-                    Section("Fotoserie: Poster") {
-                        PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: posterTagItemKey)
+                    if posterPostsVisible() {
+                        Section("Fotoserie: Poster") {
+                            PhotoPosts(posts: posts, dataKey: "posterPosts", tagItemKey: posterTagItemKey)
+                        }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
-                }
-                if shortStoryOfTheDayVisible() {
-                    Section("Kurzgeschichte des Tages") {
-                        PostOfTheDay(posts: shortStories, urlToOpen: $urlToOpen,
-                                     isSafariPresented: $isSafariPresented,
-                                     dataKey: "shortStoryOfTheDay")
+                    if shortStoryOfTheDayVisible() {
+                        Section("Kurzgeschichte des Tages") {
+                            PostOfTheDay(posts: shortStories, urlToOpen: $urlToOpen,
+                                         isSafariPresented: $isSafariPresented,
+                                         dataKey: "shortStoryOfTheDay")
+                        }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
                 }
             }
             .task {
