@@ -60,6 +60,8 @@ struct NavigationDestination: ViewModifier {
                     SearchIntentView(searchText: searchTerm)
                 case .searchHistory:
                     SearchHistoryView()
+                case .quotes:
+                    QuotesView()
                 }
             }
     }

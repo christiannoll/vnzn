@@ -28,4 +28,5 @@ enum NavigationTarget: Hashable {
     case termsOfUse
     case searchIntent(String)
     case searchHistory
+    case quotes
 }

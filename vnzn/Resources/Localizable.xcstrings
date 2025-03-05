@@ -802,6 +802,7 @@
       }
     },
     "Reise in die Vergangenheit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1066,6 +1067,9 @@
           }
         }
       }
+    },
+    "Zitate" : {
+
     },
     "Zufall" : {
       "localizations" : {
