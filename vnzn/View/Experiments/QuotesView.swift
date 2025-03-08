@@ -8,7 +8,7 @@ struct QuotesView: View {
 
     var body: some View {
         Group {
-            if let indexItem = metaData.index.getIndexItem("Zitat") {
+            if let indexItem = metaData.index.getIndexItem(itemKey) {
                 IndexItemView(indexItem: indexItem)
             } else {
                 Text("Keinen passenden Post gefunden. 🙁")
@@ -19,5 +19,9 @@ struct QuotesView: View {
                 await metaData.index.createIndex(posts)
             }
         }
+    }
+
+    private var itemKey: String {
+        Locale.isEnglish ? "Quote" : "Zitat"
     }
 }

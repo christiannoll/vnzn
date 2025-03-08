@@ -20,7 +20,7 @@ struct ExperimentButton: View {
 
     @Environment(Router.self) var router: Router
     let navigationTarget: NavigationTarget
-    let title: String
+    let title: LocalizedStringKey
 
     var body: some View {
         Button {

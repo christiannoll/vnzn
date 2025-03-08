@@ -485,8 +485,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Keinen Historyeintrag gefunden."
+            "state" : "translated",
+            "value" : "Keinen Historyeintrag gefunden. 🙁"
           }
         },
         "en" : {
@@ -517,7 +517,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Keinen Sucheintrag gefunden. 🙁"
           }
         },
@@ -802,7 +802,7 @@
       }
     },
     "Reise in die Vergangenheit" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -921,6 +921,12 @@
             "state" : "translated",
             "value" : "Suchverlauf"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search History"
+          }
         }
       }
     },
@@ -1015,7 +1021,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search History"
+            "value" : "Search history items"
           }
         }
       }
@@ -1064,6 +1070,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "VnznApp does not collect or process any personal information from its users. The app is used to connect to vnzn servers that may or may not collect personal information and are not covered by this privacy policy."
+          }
+        }
+      }
+    },
+    "Zitate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zitat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quote"
           }
         }
       }
