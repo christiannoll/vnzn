@@ -123,6 +123,7 @@
 				Markdown/StringBuilder.swift,
 				Model/HistoryItem.swift,
 				Model/Post.swift,
+				Model/RandomColors.swift,
 				Model/SearchItem.swift,
 				Model/Settings.swift,
 				VnznEnv.swift,

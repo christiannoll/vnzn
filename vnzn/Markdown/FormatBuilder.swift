@@ -3,29 +3,24 @@ import SwiftUI
 
 class FormatBuilder {
     
-    private var colors: [Color] = []
-    static let randomColors: [Color] = [.pink, .blue, .yellow, .green, .red, .gray, .indigo, .orange, .purple, .teal]
+    static let randomColors = RandomColors.colors
     private let blueColors: [Color] = [.blue, .indigo, .teal, .mint]
     private var separateWords = true
-    
+
     func parse(_ markdownNodes: [MarkdownNode], _ post: Post) -> [MarkdownNode] {
         separateWords = true
-        
+
         if post.textFormat == "randomWordColor" {
-            colors = Self.randomColors
             return parseText(elements: markdownNodes)
         }
         else if post.textFormat == "randomLinkColor" {
-            colors = Self.randomColors
             return parseLinks(elements: markdownNodes)
         }
         else if post.textFormat == "blueLinkColor" {
-            colors = blueColors
             return parseLinks(elements: markdownNodes)
         }
         else if post.textFormat == "randomLinksColor" {
             separateWords = false
-            colors = Self.randomColors
             return parseLinks(elements: markdownNodes)
         }
         return markdownNodes
@@ -64,15 +59,17 @@ class FormatBuilder {
         var colorNodes: [MarkdownNode] = []
         
         let words = separateWords ? text.components(separatedBy: CharacterSet.whitespaces) : [text]
+        var index = 0
         for word in words {
             if word.count > 1 {
-                colorNodes.append(.color(colors[Int.random(in: 0 ..< colors.count)], [.text(word)]))
+                colorNodes.append(.color(RandomColors.color(for: text.hashValue, index: index), [.text(word)]))
             }
             else {
                 colorNodes.append(.text(word))
             }
             
             colorNodes.append(.text(" "))
+            index += 1
         }
         colorNodes.removeLast()
         
