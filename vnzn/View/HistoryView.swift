@@ -30,7 +30,13 @@ struct HistoryView: View {
                         router.currentNavigationPath.append(NavigationTarget.post(item.post))
                     } label: {
                         HStack {
-                            Text(item.post.title)
+                            if item.post.type == PostType.text {
+                                Text(item.post.title)
+                            } else {
+                                PostImage(post: item.post)
+                                    .frame(width: 37, height: 37)
+                                    .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
+                            }
                             Spacer()
                             Text(Date.createPostDate(item.date))
                                 .foregroundStyle(.secondary)

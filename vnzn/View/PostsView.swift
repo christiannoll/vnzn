@@ -34,7 +34,6 @@ struct PostsView: View {
             .navigationTitle("v.n.z.n")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleTextColor(.blue)
-            .scrollContentBackground(.hidden)
             .refreshable {
                 Task {
                     let updateService = UpdateService()

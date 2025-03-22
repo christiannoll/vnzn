@@ -38,6 +38,7 @@ struct PhotosView: View {
             }
         }
         .navigationTitle("Fotos")
+        .scrollContentBackground(.hidden)
     }
 }
 

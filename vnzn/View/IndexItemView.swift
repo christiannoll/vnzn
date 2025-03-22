@@ -12,5 +12,6 @@ struct IndexItemView: View {
         }
         .navigationTitle(indexItem.key)
         .navigationBarTitleDisplayMode(.inline)
+        .scrollContentBackground(.hidden)
     }
 }

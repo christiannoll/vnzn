@@ -18,5 +18,6 @@ struct ShortStoriesView: View {
             }
         }
         .navigationTitle("Kurzgeschichten")
+        .scrollContentBackground(.hidden)
     }
 }

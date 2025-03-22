@@ -32,5 +32,6 @@ struct TagItemView: View {
         }
         .navigationTitle(tagItem.key)
         .navigationBarTitleDisplayMode(.inline)
+        .scrollContentBackground(.hidden)
     }
 }
