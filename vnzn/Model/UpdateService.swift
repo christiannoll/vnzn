@@ -26,7 +26,13 @@ class UpdateService {
         let postFetchDescriptor = FetchDescriptor<Post>()
         loadedPosts = try modelContext.fetch(postFetchDescriptor)
 
+        let historyItemFetchDescriptor = FetchDescriptor<HistoryItem>()
+        let fetchedHistoryItems = try modelContext.fetch(historyItemFetchDescriptor)
+
         try modelContext.delete(model: Post.self)
+        try modelContext.delete(model: HistoryItem.self)
+
+        var newPosts: [Post] = []
 
         for item in items.reversed() {
             var isFavourite = false
@@ -42,8 +48,15 @@ class UpdateService {
             }
             let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: isFavourite, visits: visits, image: image)
             modelContext.insert(post)
+            newPosts.append(post)
         }
-        
+
+        for fetchedHistoryItem in fetchedHistoryItems {
+            if let post = newPosts.first(where: { $0.id == fetchedHistoryItem.post.id }) {
+                modelContext.insert(HistoryItem(date: fetchedHistoryItem.date, post: post))
+            }
+        }
+
         try modelContext.save()
     }
 

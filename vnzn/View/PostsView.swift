@@ -28,6 +28,8 @@ struct PostsView: View {
                     PostRow(post: post)
                 }
             }
+            //.id(searchText)
+            .autocorrectionDisabled()
             .selectNavigationDestination()
             .searchable(text: $searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
