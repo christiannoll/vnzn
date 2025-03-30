@@ -36,9 +36,11 @@ class SiteStatistics {
             data.postsData.append(postData)
             data.numberOfAllLinks = numberOfAllLinks
         }
-        
-        data.meanNumberOfLinks = numberOfAllLinks / numberOfTextPosts
-        data.meanNumberOfWords = numberOfAllWords / numberOfTextPosts
+
+        if numberOfTextPosts > 0 {
+            data.meanNumberOfLinks = numberOfAllLinks / numberOfTextPosts
+            data.meanNumberOfWords = numberOfAllWords / numberOfTextPosts
+        }
 
         data.numberOfIndexItems = index.numberOfIndexItems
         data.numberOfTagItems = tags.numberOfTagItems
