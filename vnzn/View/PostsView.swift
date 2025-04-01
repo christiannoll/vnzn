@@ -1,37 +1,56 @@
 import SwiftUI
 import SwiftData
+import Combine
+
+@MainActor
+class ListViewModel: ObservableObject {
+    @Published var searchText: String = ""
+    @Published var filteredItems: [Post] = []
+
+    var posts: [Post] = []
+
+    private var cancellable: AnyCancellable?
+
+    init() {
+        do {
+            let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
+            posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
+
+            $searchText
+                .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Vermeidet ständiges Updaten
+                .removeDuplicates()
+                .map { searchText in
+                    searchText.isEmpty ? self.posts : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) }
+                }
+                .assign(to: &$filteredItems)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+}
 
 struct PostsView: View {
-    
-    @State var searchText = ""
+
+    @StateObject private var viewModel = ListViewModel()
+
     @State private var onlyFavourites = false
     @State private var settingsVisible = false
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
-    
-    var searchResults: [Post] {
-        if searchText.isEmpty {
-            return posts
-        } else {
-            let searchTerm = searchText.lowercased()
-            return posts.filter { $0.data.lowercased().contains(searchTerm) || $0.title.lowercased().contains(searchTerm) }
-        }
-    }
 
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.postsViewNavigationPath) {
             List {
-                ForEach (searchResults.filter { shouldInclude($0) }) { post in
+                ForEach (viewModel.filteredItems.filter { shouldInclude($0) }) { post in
                     PostRow(post: post)
                 }
             }
-            //.id(searchText)
             .autocorrectionDisabled()
             .selectNavigationDestination()
-            .searchable(text: $searchText, prompt: "vnzn durchsuchen")
+            .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
             .navigationTitle("v.n.z.n")
             .navigationBarTitleDisplayMode(.large)
@@ -44,13 +63,13 @@ struct PostsView: View {
             }
             .task {
                 if metaData.tags.tagItems.isEmpty {
-                    await metaData.tags.createTags(posts)
+                    await metaData.tags.createTags(viewModel.posts)
                 }
                 if metaData.index.indexItems.isEmpty {
-                    await metaData.index.createIndex(posts)
+                    await metaData.index.createIndex(viewModel.posts)
                 }
                 if metaData.serials.tagItems.isEmpty {
-                    await metaData.serials.createSerials(posts)
+                    await metaData.serials.createSerials(viewModel.posts)
                 }
             }
             .toolbar {
