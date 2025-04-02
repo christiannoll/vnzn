@@ -4,6 +4,7 @@ import Combine
 
 @MainActor
 class PostsViewModel: ObservableObject {
+    
     @Published var searchText: String = ""
     @Published var filteredItems: [Post] = []
 

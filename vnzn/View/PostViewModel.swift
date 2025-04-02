@@ -1,7 +1,6 @@
 import SwiftUI
 
-@Observable
-class PostViewModel {
+class PostViewModel: ObservableObject {
 
     var post: Post
 
@@ -10,6 +9,12 @@ class PostViewModel {
 
     init(post: Post) {
         self.post = post
+    }
+
+    @MainActor
+    func toggleIsFavourite() {
+        post.isFavourite.toggle()
+        SwiftDataService.shared.save()
     }
 
     func sharedText() -> String {

@@ -10,10 +10,10 @@ struct PostView: View {
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
 
-    @State private var viewModel: PostViewModel
+    @StateObject private var viewModel: PostViewModel
 
     init(post: Post) {
-        viewModel = PostViewModel(post: post)
+        _viewModel = StateObject(wrappedValue: PostViewModel(post: post))
     }
 
     var body: some View {
@@ -68,10 +68,7 @@ struct PostView: View {
                 VStack {
                     HStack {
                         Button {
-                            viewModel.post.isFavourite.toggle()
-                            DispatchQueue.main.async {
-                                SwiftDataService.shared.save()
-                            }
+                            viewModel.toggleIsFavourite()
                         } label: {
                             Image(systemName: viewModel.post.isFavourite ? "star.fill" : "star")
                                 .foregroundStyle(Color.accentColor)
