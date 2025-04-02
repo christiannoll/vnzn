@@ -20,7 +20,8 @@ class ListViewModel: ObservableObject {
                 .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Vermeidet ständiges Updaten
                 .removeDuplicates()
                 .map { searchText in
-                    searchText.isEmpty ? self.posts : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) }
+                    searchText.isEmpty ? self.posts : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) ||
+                        $0.title.localizedCaseInsensitiveContains(searchText)}
                 }
                 .assign(to: &$filteredItems)
         } catch {
