@@ -9,8 +9,6 @@ class PostsViewModel: ObservableObject {
 
     var posts: [Post] = []
 
-    private var cancellable: AnyCancellable?
-
     init() {
         do {
             let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
