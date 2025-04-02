@@ -1,45 +1,14 @@
 import SwiftUI
-import SwiftData
-import Combine
-
-@MainActor
-class ListViewModel: ObservableObject {
-    @Published var searchText: String = ""
-    @Published var filteredItems: [Post] = []
-
-    var posts: [Post] = []
-
-    private var cancellable: AnyCancellable?
-
-    init() {
-        do {
-            let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
-            posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
-
-            $searchText
-                .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Vermeidet ständiges Updaten
-                .removeDuplicates()
-                .map { searchText in
-                    searchText.isEmpty ? self.posts : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) ||
-                        $0.title.localizedCaseInsensitiveContains(searchText)}
-                }
-                .assign(to: &$filteredItems)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-}
 
 struct PostsView: View {
 
-    @StateObject private var viewModel = ListViewModel()
+    @StateObject private var viewModel = PostsViewModel()
 
     @State private var onlyFavourites = false
     @State private var settingsVisible = false
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
-    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     var body: some View {
         @Bindable var router = router
