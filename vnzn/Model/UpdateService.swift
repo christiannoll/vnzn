@@ -61,6 +61,7 @@ class UpdateService {
         }
 
         try modelContext.save()
+        await NotificationCenter.post(.fetchPosts)
     }
 
     private func fetchImageData(item: Item) async -> Data? {

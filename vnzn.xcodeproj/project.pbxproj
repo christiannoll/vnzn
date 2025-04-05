@@ -115,6 +115,7 @@
 				Components/PostImage.swift,
 				Extensions/DateExtension.swift,
 				Extensions/LocaleExtension.swift,
+				Extensions/NotificationExtension.swift,
 				Markdown/FormatBuilder.swift,
 				Markdown/MarkdownNode.swift,
 				Markdown/MarkdownParser.swift,

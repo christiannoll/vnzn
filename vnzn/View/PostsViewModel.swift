@@ -11,6 +11,10 @@ class PostsViewModel: ObservableObject {
     var posts: [Post] = []
 
     init() {
+        fetchPosts()
+    }
+
+    func fetchPosts() {
         do {
             let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
             posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)

@@ -65,6 +65,9 @@ struct PostsView: View {
             .sheet(isPresented: $settingsVisible) {
                 SettingsView()
             }
+            .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
+                viewModel.fetchPosts()
+            }
         }
     }
     
