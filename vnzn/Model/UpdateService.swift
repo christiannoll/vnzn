@@ -5,6 +5,7 @@ class UpdateService {
     
     let contentParser = ContentParser()
     var loadedPosts: [Post] = []
+    var fetchedHistoryItems: [HistoryItem] = []
 
     //@MainActor
     func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
@@ -14,23 +15,25 @@ class UpdateService {
         let lastUpdateLocal = UserDefaults.standard.double(forKey: lastUpdateKey)
         if lastUpdateFromServer > lastUpdateLocal || languageChanged {
             let updateService = UpdateService()
-            try await updateService.update(modelContext)
+            try await updateService.update(modelContext, languageChanged)
             UserDefaults.standard.set(lastUpdateFromServer, forKey: lastUpdateKey)
         }
     }
 
     //@MainActor
-    private func update(_ modelContext:  ModelContext) async throws {
+    private func update(_ modelContext:  ModelContext, _ languageChanged: Bool) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
-        
-        let postFetchDescriptor = FetchDescriptor<Post>()
-        loadedPosts = try modelContext.fetch(postFetchDescriptor)
 
-        let historyItemFetchDescriptor = FetchDescriptor<HistoryItem>()
-        let fetchedHistoryItems = try modelContext.fetch(historyItemFetchDescriptor)
+        if languageChanged == false {
+            let postFetchDescriptor = FetchDescriptor<Post>()
+            loadedPosts = try modelContext.fetch(postFetchDescriptor)
 
-        try modelContext.delete(model: Post.self)
-        try modelContext.delete(model: HistoryItem.self)
+            let historyItemFetchDescriptor = FetchDescriptor<HistoryItem>()
+            fetchedHistoryItems = try modelContext.fetch(historyItemFetchDescriptor)
+
+            try modelContext.delete(model: Post.self)
+            try modelContext.delete(model: HistoryItem.self)
+        }
 
         var newPosts: [Post] = []
 
