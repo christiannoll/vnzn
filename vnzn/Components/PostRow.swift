@@ -23,6 +23,9 @@ struct PostRow: View {
                 .contentShape(Rectangle())
                 Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
+            .environment(\.openURL, OpenURLAction { _ in
+                return handleLink()
+            })
             .onTapGesture {
                 router.currentNavigationPath.append(NavigationTarget.post(post))
             }
@@ -56,6 +59,11 @@ struct PostRow: View {
             text.append(stringBuilder.parse(nodes, post))
         }
         return text
+    }
+
+    private func handleLink() -> OpenURLAction.Result {
+        router.currentNavigationPath.append(NavigationTarget.post(post))
+        return .handled
     }
 }
 
