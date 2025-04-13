@@ -3,4 +3,4 @@
 
 <img src="vnznApp.png" width="auto" height="400"/>
 
-An iOS App that is based on [vnzn.blog](htpps://www.vnzn.blog). 
+An iOS App that is based on [vnzn.blog](https://www.vnzn.blog). 
