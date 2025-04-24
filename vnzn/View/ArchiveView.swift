@@ -3,37 +3,28 @@ import SwiftData
 
 struct ArchiveView: View {
 
-    @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     var body: some View {
-        List {
-            ForEach(metaData.archive.years, id: \.self) { year in
-                Text(year.name)
-                    .bold()
-                ForEach(year.months, id: \.self) { month in
+        ArchiveListView(metaData: metaData)
+            .navigationTitle("Archiv")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.archiveMonth(month))
+                        metaData.archive.years.reverse()
                     } label: {
-                        HStack {
-                            Text(month.monthName)
-                                .foregroundStyle(.secondary)
-                            Spacer()
-                        }
-                        .contentShape(Rectangle())
+                        Image(systemName: "chevron.up.chevron.down")
+                            .padding(.trailing, 10)
                     }
-                    .buttonStyle(.plain)
                 }
             }
-        }
-        .task { 
-            if metaData.archive.years.isEmpty {
-                await metaData.archive.createArchive(posts)
+            .task {
+                if metaData.archive.years.isEmpty {
+                    await metaData.archive.createArchive(posts)
+                }
             }
-        }
-        .navigationTitle("Archiv")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
