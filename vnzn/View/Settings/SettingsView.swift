@@ -47,6 +47,19 @@ struct SettingsView: View {
                                 .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
+                            Button {
+                                router.currentNavigationPath.append(NavigationTarget.notificationSettings)
+                            } label: {
+                                HStack {
+                                    Image(systemName: "bell.badge")
+                                        .foregroundStyle(Color.accentColor)
+                                    Text("Mitteilungen")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundStyle(.tertiary)
+                                }
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                 }

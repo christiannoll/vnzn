@@ -62,6 +62,8 @@ struct NavigationDestination: ViewModifier {
                     SearchHistoryView()
                 case .quotes:
                     QuotesView()
+                case .notificationSettings:
+                    NotificationSettingsView()
                 }
             }
     }
