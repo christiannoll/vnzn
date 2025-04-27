@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import NotificationCenter
 
 struct SettingsView: View {
 
@@ -48,7 +49,9 @@ struct SettingsView: View {
                             }
                             .buttonStyle(.plain)
                             Button {
-                                router.currentNavigationPath.append(NavigationTarget.notificationSettings)
+                                Task {
+                                    await openNotificationSettings()
+                                }
                             } label: {
                                 HStack {
                                     Image(systemName: "bell.badge")
@@ -58,6 +61,7 @@ struct SettingsView: View {
                                     Image(systemName: "chevron.right")
                                         .foregroundStyle(.tertiary)
                                 }
+                                .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
                         }
@@ -80,6 +84,33 @@ struct SettingsView: View {
                     }
                     .padding(.trailing, 16)
                 }
+            }
+        }
+    }
+
+    func openNotificationSettings() async {
+        let center = UNUserNotificationCenter.current()
+
+        await center.getNotificationSettingsAndHandle()
+    }
+}
+
+private extension UNUserNotificationCenter {
+    func getNotificationSettingsAndHandle() async {
+        let settings = await self.notificationSettings()
+
+        if case .notDetermined = settings.authorizationStatus {
+            do {
+                _ = try await self.requestAuthorization(options: [.badge, .sound, .alert])
+            } catch {
+                print("Authorization request failed: \(error)")
+            }
+        } else {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if await UIApplication.shared.canOpenURL(settingsUrl) {
+                await UIApplication.shared.open(settingsUrl, completionHandler: { _ in })
             }
         }
     }
