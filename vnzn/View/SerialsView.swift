@@ -24,6 +24,16 @@ struct SerialsView: View {
                 .buttonStyle(.plain)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    sort()
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .padding(.trailing, 10)
+                }
+            }
+        }
         .task {
             if metaData.serials.tagItems.isEmpty {
                 await metaData.serials.createSerials(posts)
@@ -31,5 +41,9 @@ struct SerialsView: View {
         }
         .navigationTitle("Serien")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func sort() {
+        metaData.serials.sortByNextOrder()
     }
 }
