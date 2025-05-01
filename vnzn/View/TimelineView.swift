@@ -25,6 +25,16 @@ struct TimelineView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    metaData.timeline.timelineItems.reverse()
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .padding(.trailing, 10)
+                }
+            }
+        }
         .task {
             if metaData.timeline.timelineItems.isEmpty {
                 await metaData.timeline.createTimeline(posts)
