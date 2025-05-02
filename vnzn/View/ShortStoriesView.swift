@@ -17,6 +17,16 @@ struct ShortStoriesView: View {
                 posts = tagItem.posts
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    posts.reverse()
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .padding(.trailing, 10)
+                }
+            }
+        }
         .navigationTitle("Kurzgeschichten")
         .scrollContentBackground(.hidden)
     }
