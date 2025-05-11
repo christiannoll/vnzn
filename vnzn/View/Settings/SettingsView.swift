@@ -31,6 +31,10 @@ struct SettingsView: View {
                             .onChange(of: appSettings.showShortStoryOfTheDay) {
                                 SwiftDataService.shared.save()
                             }
+                        Toggle("Zitat des Tages anzeigen", isOn: $appSettings.showQuoteOfTheDay)
+                            .onChange(of: appSettings.showQuoteOfTheDay) {
+                                SwiftDataService.shared.save()
+                            }
                     }
                     Section("App") {
                         List {

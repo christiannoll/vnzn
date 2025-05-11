@@ -626,7 +626,14 @@
       }
     },
     "Mitteilungen" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen"
+          }
+        }
+      }
     },
     "Nutzungsbedingungen" : {
       "localizations" : {
@@ -1077,18 +1084,50 @@
         }
       }
     },
-    "Zitate" : {
+    "Zitat des Tages" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zitat"
+            "value" : "Zitat des Tages"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quote"
+            "value" : "Quote of the Day"
+          }
+        }
+      }
+    },
+    "Zitat des Tages anzeigen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zitat des Tages anpassen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show quote of the day"
+          }
+        }
+      }
+    },
+    "Zitate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zitate"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quotes"
           }
         }
       }

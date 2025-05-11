@@ -45,6 +45,14 @@ struct DiscoverView: View {
                         }
                         .listRowSeparator(.hidden)
                     }
+                    if quoteOfTheDayVisible() {
+                        Section("Zitat des Tages") {
+                            PostOfTheDay(posts: quotes, urlToOpen: $urlToOpen,
+                                         isSafariPresented: $isSafariPresented,
+                                         dataKey: "quoteOfTheDay")
+                        }
+                        .listRowSeparator(.hidden)
+                    }
                 }
             }
             .task {
@@ -71,6 +79,10 @@ struct DiscoverView: View {
 
     private var posterTagItemKey: String {
         Locale.isEnglish ? "Photos: Poster" : "Fotos: Poster"
+    }
+
+    private var quoteTagItemKey: String {
+        Locale.isEnglish ? "Quote" : "Zitat"
     }
 
     private func postOfTheDayVisible() -> Bool {
@@ -101,9 +113,23 @@ struct DiscoverView: View {
         return true
     }
 
+    private func quoteOfTheDayVisible() -> Bool {
+        if let appSettings = settings.first {
+            return appSettings.showQuoteOfTheDay
+        }
+        return true
+    }
+
     private var shortStories: [Post] {
         if let tagItem = metaData.tags.getTagItem("Short Story") {
             return tagItem.posts
+        }
+        return []
+    }
+
+    private var quotes: [Post] {
+        if let index = metaData.index.getIndexItem(quoteTagItemKey) {
+            return index.posts
         }
         return []
     }
