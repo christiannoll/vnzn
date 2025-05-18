@@ -17,6 +17,12 @@
         }
       }
     },
+    "© Copyright 2019-2025 – Urheberrechtshinweis" : {
+
+    },
+    "Alle Inhalte dieses Internetangebotes, insbesondere Texte, Fotografien, Bilder und Grafiken sind urheberrechtlich geschützt. Das Urheberrecht liegt, soweit nicht ausdrücklich anders gekennzeichnet, bei Christian Noll. Bitte fragen Sie mich, falls Sie die Inhalte dieses Internetangebotes verwenden möchten." : {
+
+    },
     "Anzahl an Posts:" : {
       "localizations" : {
         "de" : {
@@ -113,6 +119,9 @@
         }
       }
     },
+    "Copyright" : {
+
+    },
     "Datenschutzerklärung" : {
       "localizations" : {
         "de" : {
@@ -178,6 +187,7 @@
       }
     },
     "Einen Fehler melden" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -208,6 +218,9 @@
           }
         }
       }
+    },
+    "Email: webmaster (at) vnzn (punkt) de\nGitHub: [christiannoll](https://github.com/christiannoll/vnzn)\nMastodon: [@vnzn@mas.to](https://mas.to/@vnzn)" : {
+
     },
     "Entdecken" : {
       "localizations" : {
@@ -368,6 +381,9 @@
           }
         }
       }
+    },
+    "Impressum" : {
+
     },
     "Index" : {
       "localizations" : {
@@ -1003,6 +1019,9 @@
           }
         }
       }
+    },
+    "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig" : {
+
     },
     "Verlauf" : {
       "localizations" : {

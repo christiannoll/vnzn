@@ -18,42 +18,21 @@ struct AppInfoView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                Button {
+                AppInfoButton(action: {
+                    router.currentNavigationPath.append(NavigationTarget.imprint)
+                }, imageName: "scroll", title: "Impressum")
+                AppInfoButton(action: {
+                    router.currentNavigationPath.append(NavigationTarget.copyright)
+                }, imageName: "c.circle", title: "Copyright")
+                AppInfoButton(action: {
                     router.currentNavigationPath.append(NavigationTarget.privacy)
-                } label: {
-                    HStack {
-                        Image(systemName: "lock")
-                            .foregroundStyle(Color.accentColor)
-                        Text("Datenschutzerklärung")
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                Button {
+                }, imageName: "lock", title: "Datenschutzerklärung")
+                AppInfoButton(action: {
                     router.currentNavigationPath.append(NavigationTarget.termsOfUse)
-                } label: {
-                    HStack {
-                        Image(systemName: "checkmark.shield")
-                            .foregroundStyle(Color.accentColor)
-                        Text("Nutzungsbedingungen")
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                Button {
+                }, imageName: "checkmark.shield", title: "Nutzungsbedingungen")
+                AppInfoButton(action: {
                     sendEmail()
-                } label: {
-                    HStack {
-                        Image(systemName: "ant.circle")
-                            .foregroundStyle(Color.accentColor)
-                        Text("Einen Fehler melden")
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
+                }, imageName: "ant.circle", title: "Einen Fehler melden")
             }
         }
         .navigationTitle("App")
@@ -64,6 +43,28 @@ struct AppInfoView: View {
         EmailController.sendEmail(address: "webmaster@vnzn.de",
                                   subject: "BUG | v.n.z.n | iOS",
                                   message: "")
+    }
+}
+
+struct AppInfoButton: View {
+
+    let action: () -> Void
+    let imageName: String
+    let title: String
+
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            HStack {
+                Image(systemName: imageName)
+                    .foregroundStyle(Color.accentColor)
+                Text(title)
+                Spacer()
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 }
 
