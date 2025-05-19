@@ -11,6 +11,7 @@ struct DiscoverView: View {
 
     @State private var urlToOpen: URL?
     @State private var isSafariPresented = false
+    @State private var settingsVisible = false
 
     var body: some View {
         @Bindable var router = router
@@ -60,10 +61,24 @@ struct DiscoverView: View {
                     await metaData.tags.createTags(posts)
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        settingsVisible.toggle()
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(Color.accentColor)
+                    }
+                    .padding(.trailing, 16)
+                }
+            }
             .background(alignment: .trailing) {
                 if let urlToOpen {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
+            }
+            .sheet(isPresented: $settingsVisible) {
+                SettingsView()
             }
             .environment(\.defaultMinListHeaderHeight, 0)
             .selectNavigationDestination()
