@@ -56,6 +56,17 @@ struct PostView: View {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
             }
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        // Detect left swipe
+                        if value.translation.width < -100 {
+                            if let nextPost = nextPost(viewModel.post.id) {
+                                router.currentNavigationPath.append(NavigationTarget.post(nextPost))
+                            }
+                        }
+                    }
+            )
         }
         .onAppear {
             DispatchQueue.main.async {
@@ -102,6 +113,10 @@ struct PostView: View {
                 .padding(.trailing, 16)
             }
         }
+    }
+
+    private func nextPost(_ currentId: Int) -> Post? {
+        posts.first { $0.id == viewModel.post.id - 1 }
     }
 }
 
