@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "#Ähnliche Posts" : {
+
+    },
     "%@" : {
       "localizations" : {
         "de" : {
@@ -18,6 +21,9 @@
       }
     },
     "© Copyright 2019-2025 – Urheberrechtshinweis" : {
+
+    },
+    "Ähnliche Posts" : {
 
     },
     "Alle Inhalte dieses Internetangebotes, insbesondere Texte, Fotografien, Bilder und Grafiken sind urheberrechtlich geschützt. Das Urheberrecht liegt, soweit nicht ausdrücklich anders gekennzeichnet, bei Christian Noll. Bitte fragen Sie mich, falls Sie die Inhalte dieses Internetangebotes verwenden möchten." : {

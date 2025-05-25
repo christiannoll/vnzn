@@ -31,4 +31,5 @@ enum NavigationTarget: Hashable {
     case quotes
     case imprint
     case copyright
+    case similarPosts(Post)
 }

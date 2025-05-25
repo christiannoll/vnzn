@@ -46,6 +46,16 @@ struct PostView: View {
                                 .font(.footnote)
                         }
                     }
+                    if viewModel.post.type == .text {
+                        Button {
+                            router.currentNavigationPath.append(NavigationTarget.similarPosts(viewModel.post))
+                        } label: {
+                            Text("#Ähnliche Posts")
+                                .foregroundStyle(Color.accentColor)
+                                .font(.footnote)
+                                .lineLimit(1)
+                        }
+                    }
                 }
                 .padding(.top, 6)
                 Spacer()

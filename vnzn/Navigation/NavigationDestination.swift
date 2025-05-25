@@ -66,6 +66,8 @@ struct NavigationDestination: ViewModifier {
                     ImprintView()
                 case .copyright:
                     CopyrightView()
+                case .similarPosts(let post):
+                    SimilarPostsView(post: post)
                 }
             }
     }
