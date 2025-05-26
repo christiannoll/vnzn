@@ -3,12 +3,10 @@ import SwiftData
 
 struct SimilarPostsView: View {
 
-    let post: Post
-    var similarPosts: [Post] = []
+    @State private var similarPosts: [Post]
 
     init(post: Post) {
-        self.post = post
-        fetchSimilarPosts()
+        similarPosts = Self.fetchSimilarPosts(post: post)
     }
 
     var body: some View {
@@ -20,11 +18,22 @@ struct SimilarPostsView: View {
                 Text("Keinen passenden Post gefunden. 🙁")
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    similarPosts.reverse()
+                } label: {
+                    Image(systemName: "chevron.up.chevron.down")
+                        .padding(.trailing, 10)
+                }
+            }
+        }
         .navigationTitle("Ähnliche Posts")
         .scrollContentBackground(.hidden)
     }
 
-    mutating func fetchSimilarPosts() {
+    static func fetchSimilarPosts(post: Post) -> [Post] {
+        var fetchedSimilarPosts: [Post] = []
         do {
             let postFetchDescriptor = FetchDescriptor<Post>(predicate: #Predicate {
                 $0.image == nil
@@ -33,11 +42,12 @@ struct SimilarPostsView: View {
             for fetchedPost in fetchedPosts {
                 if fetchedPost.id == post.id { continue }
                 if fetchedPost.indices.contains(where: post.indices.contains) {
-                    similarPosts.append(fetchedPost)
+                    fetchedSimilarPosts.append(fetchedPost)
                 }
             }
         } catch {
             print(error.localizedDescription)
         }
+        return fetchedSimilarPosts
     }
 }
