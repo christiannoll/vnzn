@@ -10,14 +10,17 @@ struct HistoryView: View {
 
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
 
+    @State private var sortOrderReversed: Bool = false
+
     var searchResults: [HistoryItem] {
         if searchText.isEmpty {
-            return items
+            return sortOrderReversed ? items.reversed() : items
         } else {
-            return items.filter {
+            let filteredItems = items.filter {
                 let postTitle = $0.post.title
                 return postTitle.lowercased().contains(searchText.lowercased())
             }
+            return sortOrderReversed ? filteredItems.reversed() : filteredItems
         }
     }
 
@@ -54,11 +57,19 @@ struct HistoryView: View {
             .navigationTitle("Verlauf")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
                     Button {
                         deleteHistory()
                     } label: {
                         Image(systemName: "trash")
+                            .padding(.trailing, 10)
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        sortOrderReversed.toggle()
+                    } label: {
+                        Image(systemName: "chevron.up.chevron.down")
                             .padding(.trailing, 10)
                     }
                 }
