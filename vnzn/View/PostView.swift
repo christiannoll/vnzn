@@ -67,10 +67,10 @@ struct PostView: View {
                 }
             }
             .gesture(
-                DragGesture()
+                DragGesture(minimumDistance: 100)
                     .onEnded { value in
                         // Detect left swipe
-                        if value.translation.width < -100 {
+                        if value.location.x - value.startLocation.x < 0 {
                             if let nextPost = nextPost(viewModel.post.id) {
                                 router.currentNavigationPath.append(NavigationTarget.post(nextPost))
                             }
