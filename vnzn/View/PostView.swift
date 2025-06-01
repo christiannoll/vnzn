@@ -3,7 +3,7 @@ import SwiftData
 
 struct PostView: View {
 
-    @Query(sort: \Post.date) var posts: [Post]
+    let posts: [Post]
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
@@ -12,8 +12,9 @@ struct PostView: View {
 
     @StateObject private var viewModel: PostViewModel
 
-    init(post: Post) {
+    init(post: Post, posts: [Post]) {
         _viewModel = StateObject(wrappedValue: PostViewModel(post: post))
+        self.posts = posts
     }
 
     var body: some View {
@@ -72,7 +73,7 @@ struct PostView: View {
                         // Detect left swipe
                         if value.location.x - value.startLocation.x < 0 {
                             if let nextPost = nextPost(viewModel.post.id) {
-                                router.currentNavigationPath.append(NavigationTarget.post(nextPost))
+                                router.currentNavigationPath.append(NavigationTarget.post(nextPost, posts))
                             }
                         }
                     }

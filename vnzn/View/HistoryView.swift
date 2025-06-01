@@ -8,6 +8,7 @@ struct HistoryView: View {
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
 
+    @Query(sort: \Post.date) var posts: [Post]
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
 
     @State private var sortOrderReversed: Bool = false
@@ -30,7 +31,7 @@ struct HistoryView: View {
             List {
                 ForEach(searchResults) { item in
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                        router.currentNavigationPath.append(NavigationTarget.post(item.post, posts))
                     } label: {
                         HStack {
                             if item.post.type == PostType.text {

@@ -21,7 +21,7 @@ struct PastView: View {
                             HStack {
                                 Spacer()
                                 Button {
-                                    router.currentNavigationPath.append(NavigationTarget.post(post))
+                                    router.currentNavigationPath.append(NavigationTarget.post(post, posts))
                                 } label: {
                                     PostImage(post: post)
                                         .frame(width: 200, height: 200)

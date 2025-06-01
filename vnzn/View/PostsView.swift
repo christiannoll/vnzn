@@ -14,8 +14,9 @@ struct PostsView: View {
         @Bindable var router = router
         NavigationStack(path: $router.postsViewNavigationPath) {
             List {
-                ForEach (viewModel.filteredItems.filter { shouldInclude($0) }) { post in
-                    PostRow(post: post)
+                let filteredItems = viewModel.filteredItems.filter { shouldInclude($0) }
+                ForEach (filteredItems) { post in
+                    PostRow(post: post, posts: filteredItems)
                 }
             }
             .autocorrectionDisabled()

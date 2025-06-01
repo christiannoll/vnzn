@@ -3,6 +3,7 @@ import SwiftUI
 struct PostRow: View {
     
     let post: Post
+    let posts: [Post]
     @Environment(Router.self) var router: Router
 
     let stringBuilder = StringBuilder()
@@ -27,7 +28,7 @@ struct PostRow: View {
                 return handleLink()
             })
             .onTapGesture {
-                router.currentNavigationPath.append(NavigationTarget.post(post))
+                router.currentNavigationPath.append(NavigationTarget.post(post, posts))
             }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -37,7 +38,7 @@ struct PostRow: View {
                 HStack {
                     Spacer()
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(post))
+                        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
                     } label: {
                         PostImage(post: post)
                             .frame(width: 200, height: 200)
@@ -62,7 +63,7 @@ struct PostRow: View {
     }
 
     private func handleLink() -> OpenURLAction.Result {
-        router.currentNavigationPath.append(NavigationTarget.post(post))
+        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
         return .handled
     }
 }

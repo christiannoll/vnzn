@@ -9,7 +9,7 @@ struct PostWidgetView: View {
 
     var body: some View {
         if let post = findPost() {
-            PostView(post: post)
+            PostView(post: post, posts: posts)
         } else {
             Text("Kein passender Post gefunden!")
         }

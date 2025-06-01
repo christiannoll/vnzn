@@ -25,7 +25,7 @@ struct PostOfTheDay: View {
             Text(selectedPost.title)
                 .bold()
             Button {
-                router.currentNavigationPath.append(NavigationTarget.post(selectedPost))
+                router.currentNavigationPath.append(NavigationTarget.post(selectedPost, posts))
             } label: {
                 PostDataView(post: $selectedPost, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented, reduceData: true, posts: posts)
                     .contentShape(Rectangle())

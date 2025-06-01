@@ -27,7 +27,7 @@ struct StatisticsView: View {
                     Spacer()
                     Button {
                         if let item = statistics.data.maxWordCountPostItem {
-                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post, posts))
                         }
                     } label: {
                         Text("\(statistics.data.maxWordCountPostItem?.post.title ?? "")")
@@ -38,7 +38,7 @@ struct StatisticsView: View {
                     Spacer()
                     Button {
                         if let item = statistics.data.minWordCountPostItem {
-                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post, posts))
                         }
                     } label: {
                         Text("\(statistics.data.minWordCountPostItem?.post.title ?? "")")
@@ -49,7 +49,7 @@ struct StatisticsView: View {
                     Spacer()
                     Button {
                         if let item = statistics.data.maxLinkCountPostItem {
-                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post, posts))
                         }
                     } label: {
                         Text("\(statistics.data.maxLinkCountPostItem?.post.title ?? "")")
@@ -60,7 +60,7 @@ struct StatisticsView: View {
                     Spacer()
                     Button {
                         if let item = statistics.data.maxVisitsPostItem {
-                            router.currentNavigationPath.append(NavigationTarget.post(item.post))
+                            router.currentNavigationPath.append(NavigationTarget.post(item.post, posts))
                         }
                     } label: {
                         Text("\(statistics.data.maxVisitsPostItem?.post.title ?? "")")

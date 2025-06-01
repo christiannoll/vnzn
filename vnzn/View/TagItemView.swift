@@ -15,14 +15,14 @@ struct TagItemView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach (tagItem.posts) { post in
-                            PostRow(post: post)
+                            PostRow(post: post, posts: tagItem.posts)
                         }
                     }
                 }
             } else {
                 List {
                     ForEach (tagItem.posts) { post in
-                        PostRow(post: post)
+                        PostRow(post: post, posts: tagItem.posts)
                     }
                 }
             }

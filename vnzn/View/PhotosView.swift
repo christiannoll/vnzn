@@ -17,14 +17,14 @@ struct PhotosView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach (posts) { post in
-                            PostRow(post: post)
+                            PostRow(post: post, posts: posts)
                         }
                     }
                 }
             } else {
                 List {
                     ForEach (posts) { post in
-                        PostRow(post: post)
+                        PostRow(post: post, posts: posts)
                     }
                 }
             }

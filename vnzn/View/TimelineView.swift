@@ -20,7 +20,7 @@ struct TimelineView: View {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        router.currentNavigationPath.append(NavigationTarget.post(post))
+                        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
                     }
                 }
             }

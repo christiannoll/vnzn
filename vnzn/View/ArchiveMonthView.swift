@@ -7,7 +7,7 @@ struct ArchiveMonthView: View {
     var body: some View {
         List {
             ForEach (archiveMonth.posts) { post in
-                PostRow(post: post)
+                PostRow(post: post, posts: archiveMonth.posts)
             }
         }
         .scrollContentBackground(.hidden)

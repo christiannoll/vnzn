@@ -18,8 +18,8 @@ struct NavigationDestination: ViewModifier {
                     StatisticsView()
                 case .timeline:
                     TimelineView()
-                case .post(let post):
-                    PostView(post: post)
+                case .post(let post, let posts):
+                    PostView(post: post, posts: posts)
                 case .indexItem(let indexItem):
                     IndexItemView(indexItem: indexItem)
                 case .persons:

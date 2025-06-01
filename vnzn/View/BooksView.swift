@@ -14,7 +14,7 @@ struct BooksView: View {
                     .bold()
                 ForEach(item.posts, id: \.self) { post in
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(post))
+                        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
                     } label: {
                         HStack {
                             Text(post.title)
