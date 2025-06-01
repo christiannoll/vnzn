@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 class StringBuilder {
-    
+
     private var firstListElement = false
     private var afterLinebreak = false
     private var oListNumber = 1

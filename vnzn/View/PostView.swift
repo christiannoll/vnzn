@@ -7,13 +7,15 @@ struct PostView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
+    @Environment(\.createDataHandler) private var createDataHandler
+
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
 
-    @StateObject private var viewModel: PostViewModel
+    @State private var viewModel: PostViewModel
 
     init(post: Post) {
-        _viewModel = StateObject(wrappedValue: PostViewModel(post: post))
+        _viewModel = State(initialValue: PostViewModel(post: post))
     }
 
     var body: some View {
@@ -27,7 +29,7 @@ struct PostView: View {
                 }
                 .padding(.top, 60)
                 .padding(.bottom, 20)
-                PostDataView(post: $viewModel.post, urlToOpen: $urlToOpen,
+                PostDataView(post: viewModel.post, urlToOpen: $urlToOpen,
                              isSafariPresented: $isSafariPresented, posts: posts)
                 HStack {
                     Text(Date.createPostDate(viewModel.post)).foregroundStyle(.secondary)
@@ -79,9 +81,16 @@ struct PostView: View {
             )
         }
         .onAppear {
-            DispatchQueue.main.async {
+            /*DispatchQueue.main.async {
                 SwiftDataService.shared.saveHistoryItem(post: viewModel.post)
                 SwiftDataService.shared.incrementVisits(post: viewModel.post)
+            }*/
+            let createDataHandler = createDataHandler
+            Task.detached(priority: .background) {
+                if let dataHandler = await createDataHandler() {
+                    await dataHandler.saveHistoryItem(post: viewModel.post)
+                    await dataHandler.incrementVisits(post: viewModel.post)
+                }
             }
         }
         .toolbar {

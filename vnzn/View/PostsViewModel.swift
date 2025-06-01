@@ -17,7 +17,8 @@ class PostsViewModel: ObservableObject {
     func fetchPosts() {
         do {
             let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
-            posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
+            //posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
+            posts = try DataProvider.shared.sharedModelContainer.mainContext.fetch(postFetchDescriptor)
 
             $searchText
                 .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Vermeidet ständiges Updaten

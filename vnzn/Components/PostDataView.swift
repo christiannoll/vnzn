@@ -3,7 +3,7 @@ import SwiftData
 
 struct PostDataView: View {
 
-    @Binding var post: Post
+    @State var post: Post
     @Binding var urlToOpen: URL?
     @Binding var isSafariPresented: Bool
 

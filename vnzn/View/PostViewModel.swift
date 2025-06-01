@@ -1,10 +1,10 @@
 import SwiftUI
 
-class PostViewModel: ObservableObject {
+@Observable
+final class PostViewModel: Sendable {
 
-    var post: Post
+    let post: Post
 
-    let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
 
     init(post: Post) {
@@ -19,6 +19,7 @@ class PostViewModel: ObservableObject {
 
     func sharedText() -> String {
         var text = AttributedString()
+        let stringBuilder = StringBuilder()
 
         for nodes in nodeParser.parse(post.data) {
             text.append(stringBuilder.parse(nodes, post))
