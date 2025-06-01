@@ -3,7 +3,7 @@ import SwiftData
 
 struct DiscoverView: View {
 
-    @Query(sort: \Post.date) var posts: [Post]
+    var posts: [Post] = []
     @Query() var settings: [Settings]
 
     @Environment(Router.self) var router: Router
@@ -12,6 +12,15 @@ struct DiscoverView: View {
     @State private var urlToOpen: URL?
     @State private var isSafariPresented = false
     @State private var settingsVisible = false
+
+    init() {
+        do {
+            let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
+            posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 
     var body: some View {
         @Bindable var router = router
