@@ -67,17 +67,6 @@ struct PostView: View {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
                 }
             }
-            .gesture(
-                DragGesture(minimumDistance: 100)
-                    .onEnded { value in
-                        // Detect left swipe
-                        if value.location.x - value.startLocation.x < 0 {
-                            if let nextPost = nextPost(viewModel.post.id) {
-                                router.currentNavigationPath.append(NavigationTarget.post(nextPost, posts))
-                            }
-                        }
-                    }
-            )
         }
         .onAppear {
             DispatchQueue.main.async {
