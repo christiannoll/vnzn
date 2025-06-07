@@ -49,9 +49,6 @@ struct PostDataView: View {
             router.selectedTab = .posts
             router.resetNavigation()
         }
-        else if url.absoluteString.starts(with: "#serials") {
-            router.currentNavigationPath.append(NavigationTarget.serials)
-        }
         else if url.absoluteString.starts(with: "#archive") {
             router.currentNavigationPath.append(NavigationTarget.archive)
         }
@@ -94,6 +91,20 @@ struct PostDataView: View {
                 if let tagItem = metaData.tags.getTagItem(components[1]) {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 }
+            }
+        }
+        else if url.absoluteString.starts(with: "#serials/") {
+            var found = false
+            let components = url.absoluteString.components(separatedBy: "/")
+            if components.count == 3 {
+                let key = components[1].replacingOccurrences(of: "--", with: ": ")
+                if let tagItem = metaData.serials.getTagItem(key) {
+                    found = true
+                    router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                }
+            }
+            if found == false {
+                router.currentNavigationPath.append(NavigationTarget.serials)
             }
         }
         else if url.absoluteString.starts(with: "#index/") {
