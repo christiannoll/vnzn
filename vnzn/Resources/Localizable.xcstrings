@@ -503,6 +503,23 @@
         }
       }
     },
+    "Keine neuen Einträge gefunden!" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine neuen Blogeinträge gefunden!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No new entries!"
+          }
+        }
+      }
+    },
     "Keinen Historyeintrag gefunden. 🙁" : {
       "localizations" : {
         "de" : {

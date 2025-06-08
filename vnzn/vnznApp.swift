@@ -38,13 +38,13 @@ struct vnznApp: App {
             }
         }
         .backgroundTask(.appRefresh(Self.appRefreshIdentifier)) {
-            // TODO: do something when the task is invoked
+            await UserNotificationController.shared.sendNotification(message: "Keine neuen Einträge gefunden!", title: "Background task", sound: true)
         }
     }
 
     private func scheduleAppRefreshTask() {
         let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshIdentifier)
-        request.earliestBeginDate = .now.addingTimeInterval(24 * 3600)
+        request.earliestBeginDate = .now.addingTimeInterval(5)//(24 * 3600)
         do {
             try BGTaskScheduler.shared.submit(request)
             print("[BGTaskScheduler] submitted task with id: \(request.identifier)")
