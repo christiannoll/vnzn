@@ -32,7 +32,11 @@ struct vnznApp: App {
         .onChange(of: scenePhase) {
             switch scenePhase {
             case .background:
-                scheduleAppRefreshTask()
+                Task {
+                    if await UserNotificationController.shared.areNotificationsAuthorized() {
+                        scheduleAppRefreshTask()
+                    }
+                }
             default:
                 break
             }

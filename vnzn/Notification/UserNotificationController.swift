@@ -31,4 +31,11 @@ final class UserNotificationController: Sendable {
             logger.debug("Unhandled authorization status")
         }
     }
+
+    public func areNotificationsAuthorized() async -> Bool {
+        let center = UNUserNotificationCenter.current()
+        let settings = await center.notificationSettings()
+
+        return settings.authorizationStatus == .authorized
+    }
 }
