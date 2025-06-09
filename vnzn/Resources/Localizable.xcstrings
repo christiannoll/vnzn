@@ -126,7 +126,14 @@
       }
     },
     "Copyright" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copyright"
+          }
+        }
+      }
     },
     "Datenschutzerklärung" : {
       "localizations" : {
@@ -188,23 +195,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Average number of words:"
-          }
-        }
-      }
-    },
-    "Einen Fehler melden" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einen Fehler melden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Report a bug"
           }
         }
       }
@@ -389,7 +379,14 @@
       }
     },
     "Impressum" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impressum"
+          }
+        }
+      }
     },
     "Index" : {
       "localizations" : {
@@ -499,23 +496,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No matching post found!"
-          }
-        }
-      }
-    },
-    "Keine neuen Einträge gefunden!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keine neuen Blogeinträge gefunden!"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No new entries!"
           }
         }
       }
@@ -670,6 +650,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mitteilungen"
+          }
+        }
+      }
+    },
+    "Neue Posts verfügbar!" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Posts verfügbar!"
           }
         }
       }
@@ -1044,7 +1035,14 @@
       }
     },
     "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig"
+          }
+        }
+      }
     },
     "Verlauf" : {
       "localizations" : {

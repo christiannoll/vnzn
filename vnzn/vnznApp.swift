@@ -38,7 +38,9 @@ struct vnznApp: App {
             }
         }
         .backgroundTask(.appRefresh(Self.appRefreshIdentifier)) {
-            await UserNotificationController.shared.sendNotification(message: "Keine neuen Einträge gefunden!", title: "Background task", sound: true)
+            if await newItemsAvailable() {
+                await UserNotificationController.shared.sendNotification(message: "Neue Posts verfügbar!", title: "Background task", sound: true)
+            }
         }
     }
 
@@ -51,5 +53,12 @@ struct vnznApp: App {
         } catch {
             print("[BGTaskScheduler] error:", error)
         }
+    }
+
+    private func newItemsAvailable() async -> Bool {
+        let lastUpdateFromServer = await fetchLastUpdate()
+
+        let lastUpdateLocal = UserDefaults.standard.double(forKey: UpdateService.lastUpdateKey)
+        return lastUpdateFromServer > lastUpdateLocal
     }
 }
