@@ -22,11 +22,13 @@ struct PostDataView: View {
                 ForEach(nodeParser.parse(data(post)), id: \.self) { nodes in
                     if case .curlybraces(_) = nodes.first {
                         Text(stringBuilder.parse(nodes, post))
+                            .textSelection(.enabled)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
                             .padding(.bottom, 4)
                     } else {
                         Text(stringBuilder.parse(nodes, post))
+                            .textSelection(.enabled)
                             .multilineTextAlignment(.leading)
                     }
                 }
