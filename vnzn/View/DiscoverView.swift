@@ -78,7 +78,6 @@ struct DiscoverView: View {
                         Image(systemName: "gearshape")
                             .foregroundStyle(Color.accentColor)
                     }
-                    .padding(.trailing, 16)
                 }
             }
             .background(alignment: .trailing) {

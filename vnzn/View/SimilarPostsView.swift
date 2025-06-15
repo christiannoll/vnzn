@@ -24,7 +24,7 @@ struct SimilarPostsView: View {
                     similarPosts.reverse()
                 } label: {
                     Image(systemName: "chevron.up.chevron.down")
-                        .padding(.trailing, 10)
+                        .padding(.leading, 5)
                 }
             }
         }

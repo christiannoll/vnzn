@@ -77,16 +77,12 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    VStack {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text("Fertig")
-                                .foregroundStyle(Color.accentColor)
-                        }
-                        Spacer()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Fertig")
+                            .foregroundStyle(Color.accentColor)
                     }
-                    .padding(.trailing, 16)
                 }
             }
         }

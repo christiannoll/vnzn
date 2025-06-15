@@ -59,7 +59,6 @@ struct PostsView: View {
                         Image(systemName: "gearshape")
                             .foregroundStyle(Color.accentColor)
                     }
-                    .padding(.trailing, 16)
                 }
             }
             .toolbarBackground(.visible, for: .tabBar)

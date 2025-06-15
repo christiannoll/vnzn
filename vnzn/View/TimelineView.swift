@@ -31,7 +31,6 @@ struct TimelineView: View {
                     metaData.timeline.timelineItems.reverse()
                 } label: {
                     Image(systemName: "chevron.up.chevron.down")
-                        .padding(.trailing, 10)
                 }
             }
         }

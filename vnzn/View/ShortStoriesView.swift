@@ -23,7 +23,6 @@ struct ShortStoriesView: View {
                     posts.reverse()
                 } label: {
                     Image(systemName: "chevron.up.chevron.down")
-                        .padding(.trailing, 10)
                 }
             }
         }

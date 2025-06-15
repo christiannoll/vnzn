@@ -51,7 +51,6 @@ struct TagsView: View {
                     sort()
                 } label: {
                     Image(systemName: "chevron.up.chevron.down")
-                        .padding(.trailing, 10)
                 }
             }
         }

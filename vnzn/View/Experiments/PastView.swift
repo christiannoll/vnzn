@@ -25,7 +25,6 @@ struct PastView: View {
                                 } label: {
                                     PostImage(post: post)
                                         .frame(width: 200, height: 200)
-                                        .padding(.top, 30)
                                 }
                                 Spacer()
                             }

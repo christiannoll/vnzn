@@ -63,7 +63,6 @@ struct HistoryView: View {
                         deleteHistory()
                     } label: {
                         Image(systemName: "trash")
-                            .padding(.trailing, 10)
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -71,7 +70,6 @@ struct HistoryView: View {
                         sortOrderReversed.toggle()
                     } label: {
                         Image(systemName: "chevron.up.chevron.down")
-                            .padding(.trailing, 10)
                     }
                 }
             }
