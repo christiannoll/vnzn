@@ -5,7 +5,7 @@ actor RandomColors {
 
     static let colors: [Color] = [.pink, .blue, .yellow, .green, .red, .gray, .indigo, .orange, .purple, .teal]
 
-    private static var indices: [Int: [Int]] = [:]
+    nonisolated(unsafe) private static var indices: [Int: [Int]] = [:]
 
     static func color(for hashValue: Int, index: Int) -> Color {
         if var indicesForPost = indices[hashValue] {
