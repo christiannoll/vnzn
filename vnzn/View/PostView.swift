@@ -75,37 +75,40 @@ struct PostView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack {
-                    Button {
-                        viewModel.toggleIsFavourite()
-                    } label: {
-                        Image(systemName: viewModel.post.isFavourite ? "star.fill" : "star")
-                            .foregroundStyle(Color.accentColor)
-                    }
-                    Menu {
-                        Button {
-                            if let url = URL(string: viewModel.createPostUrl()) {
-                                let items: [Any] = [url]
-                                let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                                viewModel.showShareSheet(activityVC)
-                            }
-                        } label: {
-                            Text("Link teilen")
-                        }
-                        Button {
-                            let textToShare = viewModel.sharedText()
-                            let items: [Any] = [textToShare]
-                            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    viewModel.toggleIsFavourite()
+                } label: {
+                    Image(systemName: viewModel.post.isFavourite ? "star.fill" : "star")
+                        .foregroundStyle(Color.accentColor)
+                }
+            }
 
+            ToolbarSpacer(.fixed, placement: .primaryAction)
+
+            ToolbarItem(placement: .primaryAction) {
+                Menu {
+                    Button {
+                        if let url = URL(string: viewModel.createPostUrl()) {
+                            let items: [Any] = [url]
+                            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
                             viewModel.showShareSheet(activityVC)
-                        } label: {
-                            Text("Öffnen mit")
                         }
                     } label: {
-                        Image(systemName: "square.and.arrow.up")
-                            .foregroundStyle(Color.accentColor)
+                        Text("Link teilen")
                     }
+                    Button {
+                        let textToShare = viewModel.sharedText()
+                        let items: [Any] = [textToShare]
+                        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+
+                        viewModel.showShareSheet(activityVC)
+                    } label: {
+                        Text("Öffnen mit")
+                    }
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundStyle(Color.accentColor)
                 }
             }
         }
