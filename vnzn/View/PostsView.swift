@@ -45,19 +45,13 @@ struct PostsView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
+                    Button("favourites", systemImage: onlyFavourites ? "star.fill" : "star") {
                         onlyFavourites.toggle()
-                    } label: {
-                        Image(systemName: onlyFavourites ? "star.fill" : "star")
-                            .foregroundStyle(Color.accentColor)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    Button("settings", systemImage: "gearshape") {
                         settingsVisible.toggle()
-                    } label: {
-                        Image(systemName: "gearshape")
-                            .foregroundStyle(Color.accentColor)
                     }
                 }
             }

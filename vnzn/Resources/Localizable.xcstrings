@@ -250,6 +250,9 @@
         }
       }
     },
+    "favourites" : {
+
+    },
     "Fertig" : {
       "localizations" : {
         "de" : {
@@ -628,6 +631,9 @@
         }
       }
     },
+    "menu" : {
+
+    },
     "Meta" : {
       "localizations" : {
         "de" : {
@@ -938,6 +944,9 @@
         }
       }
     },
+    "settings" : {
+
+    },
     "Statistik" : {
       "localizations" : {
         "de" : {
@@ -969,6 +978,9 @@
           }
         }
       }
+    },
+    "test" : {
+
     },
     "Themenwolke" : {
       "localizations" : {

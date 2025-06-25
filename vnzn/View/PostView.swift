@@ -1,4 +1,5 @@
 import SwiftUI
+import WebKit
 import SwiftData
 
 struct PostView: View {
@@ -62,9 +63,15 @@ struct PostView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .background(alignment: .trailing) {
+            /*.background(alignment: .trailing) {
                 if let urlToOpen {
                     SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
+                }
+            }*/
+            .onChange(of: isSafariPresented) {
+                if let urlToOpen, isSafariPresented {
+                    router.currentNavigationPath.append(NavigationTarget.web(urlToOpen))
+                    isSafariPresented = false
                 }
             }
         }
@@ -75,27 +82,24 @@ struct PostView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button {
+            ToolbarItem {
+                Button("test", systemImage: viewModel.post.isFavourite ? "star.fill" : "star") {
                     viewModel.toggleIsFavourite()
-                } label: {
-                    Image(systemName: viewModel.post.isFavourite ? "star.fill" : "star")
-                        .foregroundStyle(Color.accentColor)
                 }
             }
 
-            ToolbarSpacer(.fixed, placement: .primaryAction)
+            ToolbarSpacer(.fixed)
 
-            ToolbarItem(placement: .primaryAction) {
-                Menu {
-                    Button {
+            ToolbarItem {
+                Menu("menu", systemImage: "ellipsis.circle") {
+                    Button() {
                         if let url = URL(string: viewModel.createPostUrl()) {
                             let items: [Any] = [url]
                             let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
                             viewModel.showShareSheet(activityVC)
                         }
                     } label: {
-                        Text("Link teilen")
+                        Label("Link teilen", systemImage: "square.and.arrow.up")
                     }
                     Button {
                         let textToShare = viewModel.sharedText()
@@ -106,9 +110,6 @@ struct PostView: View {
                     } label: {
                         Text("Öffnen mit")
                     }
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundStyle(Color.accentColor)
                 }
             }
         }
@@ -116,6 +117,15 @@ struct PostView: View {
 
     private func nextPost(_ currentId: Int) -> Post? {
         posts.first { $0.id == viewModel.post.id - 1 }
+    }
+}
+
+struct MyWebView: View {
+
+    let url: URL
+
+    var body: some View {
+        WebView(url: url)
     }
 }
 

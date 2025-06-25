@@ -43,7 +43,6 @@ struct SettingsView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "info.circle")
-                                        .foregroundStyle(Color.accentColor)
                                     Text("Über die App")
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -59,7 +58,6 @@ struct SettingsView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "bell.badge")
-                                        .foregroundStyle(Color.accentColor)
                                     Text("Mitteilungen")
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -77,11 +75,8 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    Button("Fertig") {
                         dismiss()
-                    } label: {
-                        Text("Fertig")
-                            .foregroundStyle(Color.accentColor)
                     }
                 }
             }

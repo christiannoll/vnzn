@@ -11,7 +11,6 @@ struct AppInfoView: View {
                 } label: {
                     HStack {
                         Image(systemName: "house")
-                            .foregroundStyle(Color.accentColor)
                         Text("Posts: www.vnzn.blog")
                         Spacer()
                     }
@@ -58,7 +57,6 @@ struct AppInfoButton: View {
         } label: {
             HStack {
                 Image(systemName: imageName)
-                    .foregroundStyle(Color.accentColor)
                 Text(title)
                 Spacer()
             }
