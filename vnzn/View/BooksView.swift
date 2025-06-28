@@ -27,6 +27,18 @@ struct BooksView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortDown", systemImage: "chevron.down") {
+                    metaData.books.register.registerItems.sort()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortUp", systemImage: "chevron.up") {
+                    metaData.books.register.registerItems.sort(by: >)
+                }
+            }
+        }
         .task {
             if metaData.books.register.registerItems.isEmpty {
                 await metaData.books.createBooksRegister(posts)

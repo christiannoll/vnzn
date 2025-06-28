@@ -1,7 +1,7 @@
 import Foundation
 
-class TimelineItem: PostListItem, Identifiable, Hashable {
-    
+class TimelineItem: PostListItem, Identifiable, Hashable, Comparable {
+
     private let _year: Int
  
     init(_ year: Int) {
@@ -21,4 +21,12 @@ extension TimelineItem: Equatable {}
 
 func ==(lhs: TimelineItem, rhs: TimelineItem) -> Bool {
     lhs.year == rhs.year
+}
+
+func <(lhs: TimelineItem, rhs: TimelineItem) -> Bool {
+    lhs.year < rhs.year
+}
+
+func >(lhs: TimelineItem, rhs: TimelineItem) -> Bool {
+    lhs.year > rhs.year
 }

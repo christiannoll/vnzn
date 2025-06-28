@@ -27,6 +27,18 @@ struct PersonsView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortDown", systemImage: "chevron.down") {
+                    metaData.persons.register.registerItems.sort()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortUp", systemImage: "chevron.up") {
+                    metaData.persons.register.registerItems.sort(by: >)
+                }
+            }
+        }
         .task {
             if metaData.persons.register.registerItems.isEmpty {
                 await metaData.persons.createPersonsRegister(posts)

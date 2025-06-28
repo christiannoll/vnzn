@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-class RegisterItem : PostListItem, Identifiable, Hashable {
-    
+class RegisterItem : PostListItem, Identifiable, Hashable, Comparable {
+
     private let _content: String
  
     init(_ content: String) {
@@ -34,4 +34,12 @@ extension RegisterItem: Equatable {}
 
 func ==(lhs: RegisterItem, rhs: RegisterItem) -> Bool {
     lhs.content == rhs.content
+}
+
+func <(lhs: RegisterItem, rhs: RegisterItem) -> Bool {
+    lhs.content < rhs.content
+}
+
+func >(lhs: RegisterItem, rhs: RegisterItem) -> Bool {
+    lhs.content > rhs.content
 }

@@ -947,6 +947,12 @@
     "settings" : {
 
     },
+    "sortDown" : {
+
+    },
+    "sortUp" : {
+
+    },
     "Statistik" : {
       "localizations" : {
         "de" : {

@@ -27,10 +27,13 @@ struct TimelineView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    metaData.timeline.timelineItems.reverse()
-                } label: {
-                    Image(systemName: "chevron.up.chevron.down")
+                Button("sortDown", systemImage: "chevron.down") {
+                    metaData.timeline.timelineItems.sort()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortUp", systemImage: "chevron.up") {
+                    metaData.timeline.timelineItems.sort(by: >)
                 }
             }
         }

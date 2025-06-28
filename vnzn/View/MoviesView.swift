@@ -27,6 +27,18 @@ struct MoviesView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortDown", systemImage: "chevron.down") {
+                    metaData.movies.register.registerItems.sort()
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sortUp", systemImage: "chevron.up") {
+                    metaData.movies.register.registerItems.sort(by: >)
+                }
+            }
+        }
         .task {
             if metaData.movies.register.registerItems.isEmpty {
                 await metaData.movies.createMoviesRegister(posts)

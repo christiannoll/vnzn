@@ -1,5 +1,6 @@
 import Foundation
 
+@Observable
 class Register {
 
     var registerItems: [RegisterItem] = []
