@@ -72,11 +72,8 @@ struct DiscoverView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    Button("settings", systemImage: "gearshape") {
                         settingsVisible.toggle()
-                    } label: {
-                        Image(systemName: "gearshape")
-                            .foregroundStyle(Color.accentColor)
                     }
                 }
             }
