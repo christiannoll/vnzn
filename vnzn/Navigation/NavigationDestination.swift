@@ -69,7 +69,7 @@ struct NavigationDestination: ViewModifier {
                 case .similarPosts(let post):
                     SimilarPostsView(post: post)
                 case .web(let url):
-                    MyWebView(url: url)
+                    SafariWebView(url: url)
                 }
             }
     }

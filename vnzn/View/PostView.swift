@@ -1,5 +1,4 @@
 import SwiftUI
-import WebKit
 import SwiftData
 
 struct PostView: View {
@@ -120,13 +119,5 @@ struct PostView: View {
     }
 }
 
-struct MyWebView: View {
-
-    let url: URL
-
-    var body: some View {
-        WebView(url: url)
-    }
-}
 
 
