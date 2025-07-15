@@ -9,6 +9,7 @@ struct IndexItemView: View {
             ForEach (indexItem.posts) { post in
                 PostRow(post: post, posts: indexItem.posts)
             }
+            Spacer() // avoid clipping last date in list
         }
         .navigationTitle(indexItem.key)
         .navigationBarTitleDisplayMode(.inline)
