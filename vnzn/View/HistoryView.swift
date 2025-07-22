@@ -37,9 +37,12 @@ struct HistoryView: View {
                             if item.post.type == PostType.text {
                                 Text(item.post.title)
                             } else {
-                                PostImage(post: item.post)
-                                    .frame(width: 37, height: 37)
-                                    .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
+                                HStack {
+                                    PostImage(post: item.post)
+                                        .frame(width: 37, height: 37)
+                                        .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
+                                    Text(item.post.title)
+                                }
                             }
                             Spacer()
                             Text(Date.createPostDate(item.date))
