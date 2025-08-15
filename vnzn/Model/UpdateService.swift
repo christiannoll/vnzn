@@ -1,6 +1,7 @@
 import Foundation
 import SwiftData
 
+@MainActor
 class UpdateService {
     
     let contentParser = ContentParser()
@@ -62,7 +63,7 @@ class UpdateService {
         }
 
         try modelContext.save()
-        await NotificationCenter.post(.fetchPosts)
+        NotificationCenter.post(.fetchPosts)
     }
 
     private func fetchImageData(item: Item) async -> Data? {

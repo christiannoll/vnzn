@@ -2,7 +2,7 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-struct Provider: TimelineProvider {
+struct Provider: @MainActor TimelineProvider {
 
     var modelContainer: ModelContainer?
 
