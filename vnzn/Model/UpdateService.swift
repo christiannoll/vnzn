@@ -46,7 +46,7 @@ class UpdateService {
             if let loadedPost = loadedPost(item) {
                 isFavourite = loadedPost.isFavourite
                 visits = loadedPost.visits
-                image = loadedPost.image
+                //image = loadedPost.image
             }
             if item.itemType() == .image && image == nil {
                 image = await fetchImageData(item: item)
