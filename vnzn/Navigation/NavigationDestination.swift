@@ -32,6 +32,8 @@ struct NavigationDestination: ViewModifier {
                     PhotosView()
                 case .shortStories:
                     ShortStoriesView()
+                case .ai:
+                    AiView()
                 case .experiments:
                     ExperimentsView()
                 case .randomPost:

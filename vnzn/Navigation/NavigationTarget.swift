@@ -14,6 +14,7 @@ enum NavigationTarget: Hashable {
     case books
     case photos
     case shortStories
+    case ai
     case experiments
     case randomPost
     case personsCloud

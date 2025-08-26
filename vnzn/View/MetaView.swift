@@ -26,6 +26,7 @@ struct MetaView: View {
                     MetaViewButton(navigationTarget: .personsCloud, title: "Personenwolke")
                     MetaViewButton(navigationTarget: .topicsCloud, title: "Themenwolke")
                     MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
+                    MetaViewButton(navigationTarget: .ai, title: "Artificial Intelligence")
                     MetaViewButton(navigationTarget: .experiments, title: "Experimente")
                     MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
                 }
