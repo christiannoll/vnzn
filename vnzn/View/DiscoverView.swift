@@ -3,8 +3,8 @@ import SwiftData
 
 struct DiscoverView: View {
 
-    var posts: [Post] = []
     @Query() var settings: [Settings]
+    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
     @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
@@ -12,15 +12,6 @@ struct DiscoverView: View {
     @State private var urlToOpen: URL?
     @State private var isSafariPresented = false
     @State private var settingsVisible = false
-
-    init() {
-        do {
-            let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])
-            posts = try SwiftDataService.shared.context.fetch(postFetchDescriptor)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
 
     var body: some View {
         @Bindable var router = router
@@ -66,8 +57,14 @@ struct DiscoverView: View {
                 }
             }
             .task {
+                if metaData.index.indexItems.isEmpty {
+                    await metaData.index.createIndex(posts)
+                }
                 if metaData.tags.tagItems.isEmpty {
                     await metaData.tags.createTags(posts)
+                }
+                if metaData.serials.tagItems.isEmpty {
+                    await metaData.serials.createSerials(posts)
                 }
             }
             .toolbar {

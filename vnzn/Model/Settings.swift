@@ -10,7 +10,7 @@ final class Settings {
     var showShortStoryOfTheDay: Bool
     var showQuoteOfTheDay: Bool
 
-    init(showPostOfTheDay: Bool = true, showFacesPosts: Bool = true, showPosterPosts: Bool = true, showShortStoryOfTheDay: Bool = true, showQuoteOfTheDay: Bool = false) {
+    init(showPostOfTheDay: Bool = true, showFacesPosts: Bool = true, showPosterPosts: Bool = true, showShortStoryOfTheDay: Bool = true, showQuoteOfTheDay: Bool = true) {
         self.showPostOfTheDay = showPostOfTheDay
         self.showFacesPosts = showFacesPosts
         self.showPosterPosts = showPosterPosts
