@@ -11,7 +11,7 @@ class PostsViewModel: ObservableObject {
     var posts: [Post] = []
 
     init() {
-        fetchPosts()
+        //fetchPosts()
     }
 
     func fetchPosts() {

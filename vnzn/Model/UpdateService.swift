@@ -19,6 +19,8 @@ class UpdateService {
             let updateService = UpdateService()
             try await updateService.update(modelContext, languageChanged)
             UserDefaults.standard.set(lastUpdateFromServer, forKey: Self.lastUpdateKey)
+        } else {
+            NotificationCenter.post(.fetchPosts)
         }
     }
 
