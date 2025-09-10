@@ -32,17 +32,6 @@ struct PostsView: View {
                     try await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
                 }
             }
-            .task {
-                if metaData.tags.tagItems.isEmpty {
-                    await metaData.tags.createTags(viewModel.posts)
-                }
-                if metaData.index.indexItems.isEmpty {
-                    await metaData.index.createIndex(viewModel.posts)
-                }
-                if metaData.serials.tagItems.isEmpty {
-                    await metaData.serials.createSerials(viewModel.posts)
-                }
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("favourites", systemImage: onlyFavourites ? "star.fill" : "star") {
@@ -61,6 +50,7 @@ struct PostsView: View {
             }
             .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
                 viewModel.fetchPosts()
+                initMetaData()
             }
         }
     }
@@ -70,6 +60,20 @@ struct PostsView: View {
             return false
         }
         return true
+    }
+
+    private func initMetaData() {
+        Task {
+            if metaData.tags.tagItems.isEmpty {
+                await metaData.tags.createTags(viewModel.posts)
+            }
+            if metaData.index.indexItems.isEmpty {
+                await metaData.index.createIndex(viewModel.posts)
+            }
+            if metaData.serials.tagItems.isEmpty {
+                await metaData.serials.createSerials(viewModel.posts)
+            }
+        }
     }
 }
 
