@@ -18,6 +18,7 @@ struct PostsView: View {
                 ForEach (filteredItems) { post in
                     PostRow(post: post, posts: filteredItems)
                 }
+                Spacer() // avoid clipped corners of the last list item
             }
             .autocorrectionDisabled()
             .selectNavigationDestination()
