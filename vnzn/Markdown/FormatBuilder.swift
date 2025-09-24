@@ -2,9 +2,14 @@ import Foundation
 import SwiftUI
 
 class FormatBuilder {
-    
+
+    private enum ColorType {
+        case random
+        case blue
+    }
+
     static let randomColors = RandomColors.colors
-    private let blueColors: [Color] = [.blue, .indigo, .teal, .mint]
+    private var colorType = ColorType.random
     private var separateWords = true
 
     func parse(_ markdownNodes: [MarkdownNode], _ post: Post) -> [MarkdownNode] {
@@ -17,6 +22,7 @@ class FormatBuilder {
             return parseLinks(elements: markdownNodes)
         }
         else if post.textFormat == "blueLinkColor" {
+            colorType = ColorType.blue
             return parseLinks(elements: markdownNodes)
         }
         else if post.textFormat == "randomLinksColor" {
@@ -62,7 +68,7 @@ class FormatBuilder {
         var index = 0
         for word in words {
             if word.count > 1 {
-                colorNodes.append(.color(RandomColors.color(for: text.hashValue, index: index), [.text(word)]))
+                colorNodes.append(.color(randomColor(for: text, index: index), [.text(word)]))
             }
             else {
                 colorNodes.append(.text(word))
@@ -135,5 +141,12 @@ class FormatBuilder {
             }
         }
         return combinedText
+    }
+
+    private func randomColor(for text: String, index: Int) -> Color {
+        switch colorType {
+            case .random: RandomColors.color(for: text.hashValue, index: index)
+            case .blue: RandomBlueColors.color(for: text.hashValue, index: index)
+        }
     }
 }
