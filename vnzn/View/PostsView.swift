@@ -6,6 +6,7 @@ struct PostsView: View {
 
     @State private var onlyFavourites = false
     @State private var settingsVisible = false
+    @State private var isLoading = true
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
@@ -14,13 +15,14 @@ struct PostsView: View {
         @Bindable var router = router
         NavigationStack(path: $router.postsViewNavigationPath) {
             List {
+                if isLoading {
+                    LoadingView()
+                }
                 let filteredItems = viewModel.filteredItems.filter { shouldInclude($0) }
                 ForEach (filteredItems) { post in
                     PostRow(post: post, posts: filteredItems)
                 }
             }
-            .listStyle(.plain)
-            .autocorrectionDisabled()
             .selectNavigationDestination()
             .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
@@ -50,8 +52,10 @@ struct PostsView: View {
                 SettingsView()
             }
             .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
+                //isLoading = true
                 viewModel.fetchPosts()
                 initMetaData()
+                isLoading = false
             }
         }
     }
