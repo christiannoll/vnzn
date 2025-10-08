@@ -31,7 +31,7 @@ struct PostRow: View {
                 router.currentNavigationPath.append(NavigationTarget.post(post, posts))
             }
             .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             .listRowBackground(Color.clear)
         } else {
             VStack(alignment: .center) {
