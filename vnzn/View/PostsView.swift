@@ -37,8 +37,12 @@ struct PostsView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("favourites", systemImage: onlyFavourites ? "star.fill" : "star") {
-                        onlyFavourites.toggle()
+                    Menu("menu", systemImage: "ellipsis") {
+                        Button() {
+                            onlyFavourites.toggle()
+                        } label: {
+                            Label("Favoriten", systemImage: onlyFavourites ? "star.fill" : "star")
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -52,7 +56,6 @@ struct PostsView: View {
                 SettingsView()
             }
             .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
-                //isLoading = true
                 viewModel.fetchPosts()
                 initMetaData()
                 isLoading = false
