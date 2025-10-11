@@ -17,6 +17,7 @@ struct PostsView: View {
             List {
                 if isLoading {
                     LoadingView()
+                        .listRowBackground(Color.clear)
                 }
                 let filteredItems = viewModel.filteredItems.filter { shouldInclude($0) }
                 ForEach (filteredItems) { post in
