@@ -1,15 +1,20 @@
 import SwiftUI
+import SwiftData
 
 struct PostsView: View {
 
     @StateObject private var viewModel = PostsViewModel()
 
-    @State private var onlyFavourites = false
     @State private var settingsVisible = false
     @State private var isLoading = true
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
+
+    @Query() var postsVisibilities: [PostsVisibility]
+    var postsVisibility: PostsVisibility? {
+        postsVisibilities.first
+    }
 
     var body: some View {
         @Bindable var router = router
@@ -40,9 +45,14 @@ struct PostsView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Menu("menu", systemImage: "ellipsis") {
                         Button() {
-                            onlyFavourites.toggle()
+                            if let postsVisibility {
+                                postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                                SwiftDataService.shared.save()
+                            }
                         } label: {
-                            Label("Favoriten", systemImage: onlyFavourites ? "star.fill" : "star")
+                            if let postsVisibility {
+                                Label("Favoriten", systemImage: postsVisibility.onlyFavourites ? "star.fill" : "star")
+                            }
                         }
                     }
                 }
@@ -65,8 +75,10 @@ struct PostsView: View {
     }
     
     private func shouldInclude(_ post: Post) -> Bool {
-        if onlyFavourites && !post.isFavourite {
-            return false
+        if let postsVisibility {
+            if postsVisibility.onlyFavourites && !post.isFavourite {
+                return false
+            }
         }
         return true
     }

@@ -4,7 +4,7 @@ import SwiftData
 @MainActor
 func createAppContainer() -> ModelContainer {
     do {
-        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self)
+        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self, PostsVisibility.self)
         container.mainContext.autosaveEnabled = false
 
         let languageChanged = resetIfLanguageChanged(container.mainContext)
@@ -14,6 +14,13 @@ func createAppContainer() -> ModelContainer {
         if try container.mainContext.fetch(settingsFetchDescriptor).count == 0 {
             let settings = Settings()
             container.mainContext.insert(settings)
+        }
+
+        var postsVisibilityFetchDescriptor = FetchDescriptor<PostsVisibility>()
+        postsVisibilityFetchDescriptor.fetchLimit = 1
+        if try container.mainContext.fetch(postsVisibilityFetchDescriptor).count == 0 {
+            let postsVisibility = PostsVisibility()
+            container.mainContext.insert(postsVisibility)
         }
 
         Task {
