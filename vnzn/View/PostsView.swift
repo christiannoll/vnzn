@@ -54,6 +54,16 @@ struct PostsView: View {
                                 Label("Favoriten", systemImage: postsVisibility.onlyFavourites ? "star.fill" : "star")
                             }
                         }
+                        Button() {
+                            if let postsVisibility {
+                                postsVisibility.oldestFirst.toggle()
+                                SwiftDataService.shared.save()
+                            }
+                        } label: {
+                            if let postsVisibility {
+                                Label("Älteste zuerst", systemImage: postsVisibility.oldestFirst ? "arrow.up.arrow.down.circle.fill" : "arrow.up.arrow.down.circle")
+                            }
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
