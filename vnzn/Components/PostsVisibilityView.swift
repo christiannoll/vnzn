@@ -34,42 +34,42 @@ struct PostsVisibilityView: ToolbarContent {
                 Divider()
                 Button() {
                     if let postsVisibility {
-                        postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                        postsVisibility.postsLimit = .ten
                         SwiftDataService.shared.save()
                     }
                 } label: {
                     if let postsVisibility {
-                        Label("10 Posts", systemImage: postsVisibility.onlyFavourites ? "checkmark.square" : "square")
+                        Label("10 Posts", systemImage: postsVisibility.postsLimit == .ten ? "checkmark.square" : "square")
                     }
                 }
                 Button() {
                     if let postsVisibility {
-                        postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                        postsVisibility.postsLimit = .twenty
                         SwiftDataService.shared.save()
                     }
                 } label: {
                     if let postsVisibility {
-                        Label("20 Posts", systemImage: postsVisibility.onlyFavourites ? "checkmark.square" : "square")
+                        Label("20 Posts", systemImage: postsVisibility.postsLimit == .twenty ? "checkmark.square" : "square")
                     }
                 }
                 Button() {
                     if let postsVisibility {
-                        postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                        postsVisibility.postsLimit = .fifty
                         SwiftDataService.shared.save()
                     }
                 } label: {
                     if let postsVisibility {
-                        Label("50 Posts", systemImage: postsVisibility.onlyFavourites ? "checkmark.square" : "square")
+                        Label("50 Posts", systemImage: postsVisibility.postsLimit == .fifty ? "checkmark.square" : "square")
                     }
                 }
                 Button() {
                     if let postsVisibility {
-                        postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                        postsVisibility.postsLimit = .all
                         SwiftDataService.shared.save()
                     }
                 } label: {
                     if let postsVisibility {
-                        Label("Alle", systemImage: !postsVisibility.onlyFavourites ? "checkmark.square" : "square")
+                        Label("Alle", systemImage: postsVisibility.postsLimit == .all ? "checkmark.square" : "square")
                     }
                 }
             }
