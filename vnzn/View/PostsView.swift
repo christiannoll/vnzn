@@ -24,7 +24,8 @@ struct PostsView: View {
                     LoadingView()
                         .listRowBackground(Color.clear)
                 }
-                let filteredItems = viewModel.filteredItems.filter { shouldInclude($0) }
+                let sortedItems = postsVisibility?.oldestFirst ?? false ? viewModel.filteredItems.reversed() : viewModel.filteredItems
+                let filteredItems = sortedItems.filter { shouldInclude($0) }
                 ForEach (filteredItems) { post in
                     PostRow(post: post, posts: filteredItems)
                 }
