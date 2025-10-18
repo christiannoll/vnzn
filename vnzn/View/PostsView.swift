@@ -26,7 +26,8 @@ struct PostsView: View {
                 }
                 let sortedItems = postsVisibility?.oldestFirst ?? false ? viewModel.filteredItems.reversed() : viewModel.filteredItems
                 let filteredItems = sortedItems.filter { shouldInclude($0) }
-                ForEach (filteredItems) { post in
+                let slicedItems = slice(items: filteredItems)
+                ForEach (slicedItems) { post in
                     PostRow(post: post, posts: filteredItems)
                 }
             }
@@ -83,6 +84,22 @@ struct PostsView: View {
                 await metaData.serials.createSerials(viewModel.posts)
             }
         }
+    }
+
+    private func slice(items: [Post]) -> [Post] {
+        if let postsVisibility {
+            switch postsVisibility.postsLimit {
+            case .all:
+                return items
+            case .ten:
+                return Array(items.prefix(10))
+            case .twenty:
+                return Array(items.prefix(20))
+            case .fifty:
+                return Array(items.prefix(50))
+            }
+        }
+        return items
     }
 }
 
