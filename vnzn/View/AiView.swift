@@ -11,7 +11,6 @@ struct AiView: View {
             ForEach (aiIndexItem.posts) { post in
                 PostRow(post: post, posts: aiIndexItem.posts)
             }
-            Spacer() // avoid clipping last date in list
         }
         .onAppear {
             aiIndexItem = metaData.index.indexItems.first { $0.key == "Artificial Intelligence"} ?? IndexItem("")
