@@ -10,19 +10,6 @@ enum NetworkError: Error {
 }
 
 class Client {
-    @MainActor
-    func updateDataInDatabase(modelContext: ModelContext) async {
-        /*do {
-            let itemData: [ItemDTO] = try await fetchData(fromUrl: "https://jsonplaceholder.typicode.com/albums/1/photos")
-            for eachItem in itemData {
-                let itemToStore = PhotoObject(item: eachItem)
-                modelContext.insert(itemToStore)
-            }
-        } catch {
-            print("Error fetching data")
-            print(error.localizedDescription)
-        }*/
-    }
 
     func fetchRawData(fromURL: String) async -> Data? {
         do {
