@@ -13,14 +13,17 @@ struct ContentView: View {
             Tab("Entdecken", systemImage: "globe", value: .discover) {
                 DiscoverView()
             }
-            Tab("Index", systemImage: "list.bullet", value: .index) {
+            /*Tab("Index", systemImage: "list.bullet", value: .index) {
                 IndexView()
-            }
+            }*/
             Tab("Verlauf", systemImage: "clock", value: .history) {
                 HistoryView()
             }
             Tab("Meta", systemImage: "ellipsis.circle", value: .meta) {
                 MetaView()
+            }
+            Tab(value: .index, role: .search) {
+                IndexView()
             }
         }
     }

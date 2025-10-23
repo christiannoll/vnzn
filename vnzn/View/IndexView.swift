@@ -9,6 +9,8 @@ struct IndexView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
+    @FocusState private var isSearchFieldFocused: Bool
+
     var searchResults: [IndexItem] {
         if searchText.isEmpty {
             return metaData.index.indexItems
@@ -21,6 +23,9 @@ struct IndexView: View {
         @Bindable var router = router
         NavigationStack(path: $router.indexViewNavigationPath) {
             List {
+                if isSearchFieldFocused {
+                    Text("isSearching")
+                }
                 ForEach(searchResults) { indexItem in
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.indexItem(indexItem))
@@ -42,6 +47,7 @@ struct IndexView: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Index durchsuchen")
+            .searchFocused($isSearchFieldFocused)
             .selectNavigationDestination()
             .navigationTitle("Index")
             .navigationBarTitleDisplayMode(.inline)

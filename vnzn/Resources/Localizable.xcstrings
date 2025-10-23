@@ -473,6 +473,9 @@
         }
       }
     },
+    "isSearching" : {
+
+    },
     "Kategorien" : {
       "localizations" : {
         "de" : {
