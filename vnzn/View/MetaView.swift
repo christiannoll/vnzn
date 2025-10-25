@@ -65,7 +65,6 @@ struct MetaView: View {
             }
             .selectNavigationDestination()
             .navigationTitle("Meta")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
         }
     }

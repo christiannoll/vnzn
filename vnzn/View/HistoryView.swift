@@ -59,7 +59,6 @@ struct HistoryView: View {
             .searchable(text: $searchText, prompt: "Verlauf durchsuchen")
             .selectNavigationDestination()
             .navigationTitle("Verlauf")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {

@@ -73,7 +73,6 @@ struct SearchView: View {
                 }
             }
             .navigationTitle("Suchen")
-            .navigationBarTitleDisplayMode(.inline)
             .selectNavigationDestination()
             .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .searchFocused($isSearchFieldFocused)

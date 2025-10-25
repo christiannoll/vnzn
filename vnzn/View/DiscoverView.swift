@@ -85,7 +85,6 @@ struct DiscoverView: View {
             .environment(\.defaultMinListHeaderHeight, 0)
             .selectNavigationDestination()
             .navigationTitle("Entdecken")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .tabBar)
         }
     }

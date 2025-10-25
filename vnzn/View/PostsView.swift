@@ -32,11 +32,9 @@ struct PostsView: View {
                 }
             }
             .selectNavigationDestination()
-            .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
+            //.searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
             .navigationTitle("v.n.z.n")
-            .navigationBarTitleDisplayMode(.large)
-            .navigationBarTitleTextColor(.blue)
             .refreshable {
                 Task {
                     let updateService = UpdateService()
@@ -100,15 +98,5 @@ struct PostsView: View {
             }
         }
         return items
-    }
-}
-
-extension View {
-    @available(iOS 14, *)
-    func navigationBarTitleTextColor(_ color: Color) -> some View {
-        let uiColor = UIColor(color)
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: uiColor ]
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: uiColor ]
-        return self
     }
 }
