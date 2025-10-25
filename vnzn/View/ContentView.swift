@@ -22,8 +22,8 @@ struct ContentView: View {
             Tab("Meta", systemImage: "ellipsis.circle", value: .meta) {
                 MetaView()
             }
-            Tab(value: .index, role: .search) {
-                IndexView()
+            Tab(value: .search, role: .search) {
+                SearchView()
             }
         }
     }

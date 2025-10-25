@@ -15,6 +15,7 @@ struct MetaView: View {
             List {
                 Group {
                     MetaViewButton(navigationTarget: .tags, title: "Kategorien")
+                    MetaViewButton(navigationTarget: .index, title: "Index")
                     MetaViewButton(navigationTarget: .serials, title: "Serien")
                     MetaViewButton(navigationTarget: .archive, title: "Archiv")
                     MetaViewButton(navigationTarget: .statistics, title: "Statistik")

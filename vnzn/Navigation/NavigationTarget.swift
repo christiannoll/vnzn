@@ -8,6 +8,7 @@ enum NavigationTarget: Hashable {
     case statistics
     case post(Post, [Post])
     case timeline
+    case index
     case indexItem(IndexItem)
     case persons
     case movies

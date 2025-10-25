@@ -21,7 +21,7 @@ struct IndexView: View {
     
     var body: some View {
         @Bindable var router = router
-        NavigationStack(path: $router.indexViewNavigationPath) {
+        //NavigationStack(path: $router.indexViewNavigationPath) {
             List {
                 if isSearchFieldFocused {
                     Text("isSearching")
@@ -61,7 +61,7 @@ struct IndexView: View {
                     }
                 }
             }
-        }
+        //}
     }
 
     private func sort() {
