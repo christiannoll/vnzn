@@ -22,6 +22,7 @@ struct SearchView: View {
                 ) {
                     ForEach (metaData.tags.tagItems) { tagItem in
                         Button {
+                            router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                         } label: {
                             VStack(alignment: .leading) {
                                 HStack {
@@ -57,6 +58,7 @@ struct SearchView: View {
             }
             .navigationTitle("Suchen")
             .navigationBarTitleDisplayMode(.inline)
+            .selectNavigationDestination()
         }
     }
 }
