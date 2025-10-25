@@ -3,8 +3,7 @@ import SwiftData
 
 struct SearchView: View {
 
-    @State private var searchText = ""
-    @Query(sort: \Post.date) var posts: [Post]
+    @StateObject private var viewModel = PostsViewModel()
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
@@ -16,7 +15,14 @@ struct SearchView: View {
         NavigationStack(path: $router.searchViewNavigationPath) {
             Group {
                 if isSearchFieldFocused {
-                    
+                    List {
+                        if viewModel.searchText.isEmpty == false {
+                            let filteredItems = viewModel.filteredItems
+                            ForEach (filteredItems) { post in
+                                PostRow(post: post, posts: filteredItems)
+                            }
+                        }
+                    }
                 } else {
                     ScrollView {
                         LazyVGrid(
@@ -59,8 +65,9 @@ struct SearchView: View {
                         .padding()
                     }
                     .task {
+                        viewModel.fetchPosts()
                         if metaData.tags.tagItems.isEmpty {
-                            await metaData.tags.createTags(posts)
+                            await metaData.tags.createTags(viewModel.posts)
                         }
                     }
                 }
@@ -68,7 +75,7 @@ struct SearchView: View {
             .navigationTitle("Suchen")
             .navigationBarTitleDisplayMode(.inline)
             .selectNavigationDestination()
-            .searchable(text: $searchText, prompt: "Inhalt durchsuchen")
+            .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .searchFocused($isSearchFieldFocused)
         }
     }
