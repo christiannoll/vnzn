@@ -1,6 +1,6 @@
 import SwiftData
 
-enum PostsLimit: String, Codable, CodingKey {
+enum PostsLimit: Int, Codable, CodingKey {
     case ten
     case twenty
     case fifty
