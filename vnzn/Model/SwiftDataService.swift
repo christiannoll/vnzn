@@ -47,8 +47,8 @@ class SwiftDataService {
         }
     }
 
-    func saveSearchItem(searchTerm: String) {
-        let item = SearchItem(date: Date(), searchTerm: searchTerm)
+    func saveSearchItem(searchTerm: String, post: Post = Post()) {
+        let item = SearchItem(date: Date(), searchTerm: searchTerm, post: post)
         modelContext.insert(item)
         save()
     }

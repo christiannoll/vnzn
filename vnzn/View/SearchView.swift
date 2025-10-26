@@ -10,6 +10,8 @@ struct SearchView: View {
 
     @FocusState private var isSearchFieldFocused: Bool
 
+    @Query(sort: \SearchItem.date, order: .reverse) var searchItems: [SearchItem]
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.searchViewNavigationPath) {
@@ -18,15 +20,24 @@ struct SearchView: View {
                     List {
                         if viewModel.searchText.isEmpty {
                             Text("Zuletzt gesucht")
-                                .font(.footnote)
+                                .font(.subheadline)
                                 .bold()
-                            Divider()
+                            ForEach (searchItems) { searchItem in
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(searchItem.post.title)
+                                            .bold()
+                                        Spacer()
+                                    }
+                                    Text(Date.createPostDate(searchItem.post)).foregroundStyle(.secondary).font(.footnote)
+                                }
+                            }
                         }
                         else {
                             let filteredItems = viewModel.filteredItems
                             ForEach (filteredItems) { post in
                                 PostRow(post: post, posts: filteredItems, action: {
-                                    print("Selected: \(post.title)") })
+                                    SwiftDataService.shared.saveSearchItem(searchTerm: viewModel.searchText, post: post) })
                             }
                         }
                     }
