@@ -7,7 +7,7 @@ struct IndexItemView: View {
     var body: some View {
         List {
             ForEach (indexItem.posts) { post in
-                PostRow(post: post, posts: indexItem.posts)
+                PostRow(post: post, posts: indexItem.posts, action: {})
             }
         }
         .navigationTitle(indexItem.key)

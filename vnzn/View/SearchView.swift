@@ -16,10 +16,17 @@ struct SearchView: View {
             Group {
                 if isSearchFieldFocused {
                     List {
-                        if viewModel.searchText.isEmpty == false {
+                        if viewModel.searchText.isEmpty {
+                            Text("Zuletzt gesucht")
+                                .font(.footnote)
+                                .bold()
+                            Divider()
+                        }
+                        else {
                             let filteredItems = viewModel.filteredItems
                             ForEach (filteredItems) { post in
-                                PostRow(post: post, posts: filteredItems)
+                                PostRow(post: post, posts: filteredItems, action: {
+                                    print("Selected: \(post.title)") })
                             }
                         }
                     }

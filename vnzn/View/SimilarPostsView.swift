@@ -12,7 +12,7 @@ struct SimilarPostsView: View {
     var body: some View {
         List {
             ForEach (similarPosts) { similarPost in
-                PostRow(post: similarPost, posts: similarPosts)
+                PostRow(post: similarPost, posts: similarPosts, action: {})
             }
             if similarPosts.isEmpty {
                 Text("Keinen passenden Post gefunden. 🙁")

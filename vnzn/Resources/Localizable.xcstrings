@@ -1244,6 +1244,9 @@
           }
         }
       }
+    },
+    "Zuletzt gesucht" : {
+
     }
   },
   "version" : "1.0"

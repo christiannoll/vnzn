@@ -4,6 +4,8 @@ struct PostRow: View {
     
     let post: Post
     let posts: [Post]
+    let action: () -> Void
+
     @Environment(Router.self) var router: Router
 
     let stringBuilder = StringBuilder()
@@ -25,10 +27,12 @@ struct PostRow: View {
                 Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
             .environment(\.openURL, OpenURLAction { _ in
+                action()
                 return handleLink()
             })
             .onTapGesture {
                 router.currentNavigationPath.append(NavigationTarget.post(post, posts))
+                action()
             }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 10, trailing: 6))

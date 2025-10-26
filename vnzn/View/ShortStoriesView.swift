@@ -9,7 +9,7 @@ struct ShortStoriesView: View {
     var body: some View {
         List {
             ForEach (posts) { post in
-                PostRow(post: post, posts: posts)
+                PostRow(post: post, posts: posts, action: {})
             }
         }
         .onAppear {

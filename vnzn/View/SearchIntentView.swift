@@ -19,7 +19,7 @@ struct SearchIntentView: View {
     var body: some View {
         List {
             ForEach (searchResults) { post in
-                PostRow(post: post, posts: searchResults)
+                PostRow(post: post, posts: searchResults, action: {})
             }
         }
         .navigationBarTitleDisplayMode(.inline)

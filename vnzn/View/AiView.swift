@@ -9,7 +9,7 @@ struct AiView: View {
     var body: some View {
         List {
             ForEach (aiIndexItem.posts) { post in
-                PostRow(post: post, posts: aiIndexItem.posts)
+                PostRow(post: post, posts: aiIndexItem.posts, action: {})
             }
         }
         .onAppear {

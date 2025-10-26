@@ -28,7 +28,7 @@ struct PostsView: View {
                 let filteredItems = sortedItems.filter { shouldInclude($0) }
                 let slicedItems = slice(items: filteredItems)
                 ForEach (slicedItems) { post in
-                    PostRow(post: post, posts: filteredItems)
+                    PostRow(post: post, posts: filteredItems, action: {})
                 }
             }
             .selectNavigationDestination()
