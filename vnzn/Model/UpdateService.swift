@@ -7,6 +7,7 @@ class UpdateService {
     let contentParser = ContentParser()
     var loadedPosts: [Post] = []
     var fetchedHistoryItems: [HistoryItem] = []
+    var fetchedSearchItems: [SearchItem] = []
 
     static let lastUpdateKey = "lastUpdate"
 
@@ -35,8 +36,12 @@ class UpdateService {
             let historyItemFetchDescriptor = FetchDescriptor<HistoryItem>()
             fetchedHistoryItems = try modelContext.fetch(historyItemFetchDescriptor)
 
+            let searchItemFetchDescriptor = FetchDescriptor<SearchItem>()
+            fetchedSearchItems = try modelContext.fetch(searchItemFetchDescriptor)
+
             try modelContext.delete(model: Post.self)
             try modelContext.delete(model: HistoryItem.self)
+            try modelContext.delete(model: SearchItem.self)
         }
 
         var newPosts: [Post] = []
@@ -61,6 +66,12 @@ class UpdateService {
         for fetchedHistoryItem in fetchedHistoryItems {
             if let post = newPosts.first(where: { $0.id == fetchedHistoryItem.post.id }) {
                 modelContext.insert(HistoryItem(date: fetchedHistoryItem.date, post: post))
+            }
+        }
+
+        for fetchedSearchItem in fetchedSearchItems {
+            if let post = newPosts.first(where: { $0.id == fetchedSearchItem.post.id }) {
+                modelContext.insert(SearchItem(date: fetchedSearchItem.date, searchTerm: fetchedSearchItem.searchTerm, post: post))
             }
         }
 

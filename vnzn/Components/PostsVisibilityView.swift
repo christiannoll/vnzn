@@ -13,7 +13,7 @@ struct PostsVisibilityView: ToolbarContent {
             Menu("menu", systemImage: "ellipsis") {
                 Button() {
                     if let postsVisibility {
-                        postsVisibility.onlyFavourites = !postsVisibility.onlyFavourites
+                        postsVisibility.onlyFavourites.toggle()
                         SwiftDataService.shared.save()
                     }
                 } label: {
