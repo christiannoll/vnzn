@@ -69,7 +69,6 @@ struct StatisticsView: View {
             }
         }
         .navigationTitle("Statistik")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

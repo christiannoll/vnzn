@@ -473,9 +473,6 @@
         }
       }
     },
-    "isSearching" : {
-
-    },
     "Kategorien" : {
       "localizations" : {
         "de" : {
@@ -635,6 +632,9 @@
           }
         }
       }
+    },
+    "Lade Daten" : {
+
     },
     "Link teilen" : {
       "localizations" : {

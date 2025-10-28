@@ -31,7 +31,6 @@ struct PersonsCloudView: View {
                 }
             }
             .navigationTitle("Personenwolke")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

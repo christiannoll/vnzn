@@ -9,7 +9,6 @@ struct ArchiveView: View {
     var body: some View {
         ArchiveListView(metaData: metaData)
             .navigationTitle("Archiv")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

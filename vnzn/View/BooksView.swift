@@ -45,6 +45,5 @@ struct BooksView: View {
             }
         }
         .navigationTitle("Bücher")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

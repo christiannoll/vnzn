@@ -31,7 +31,6 @@ struct TopicsCloudView: View {
                 }
             }
             .navigationTitle("Themenwolke")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

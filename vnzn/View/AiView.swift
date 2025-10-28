@@ -16,7 +16,6 @@ struct AiView: View {
             aiIndexItem = metaData.index.indexItems.first { $0.key == "Artificial Intelligence"} ?? IndexItem("")
         }
         .navigationTitle(aiIndexItem.key)
-        .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
     }
 }

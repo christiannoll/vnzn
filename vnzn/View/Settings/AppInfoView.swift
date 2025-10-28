@@ -35,7 +35,6 @@ struct AppInfoView: View {
             }
         }
         .navigationTitle("App")
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func sendEmail() {

@@ -43,7 +43,6 @@ struct TagsView: View {
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Kategorien durchsuchen")
         .selectNavigationDestination()
         .navigationTitle("Kategorien")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.visible, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

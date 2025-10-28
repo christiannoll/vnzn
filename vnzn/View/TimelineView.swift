@@ -43,6 +43,5 @@ struct TimelineView: View {
             }
         }
         .navigationTitle("Timeline")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

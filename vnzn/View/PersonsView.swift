@@ -45,6 +45,5 @@ struct PersonsView: View {
             }
         }
         .navigationTitle("Personen")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

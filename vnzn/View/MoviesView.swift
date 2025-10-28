@@ -45,6 +45,5 @@ struct MoviesView: View {
             }
         }
         .navigationTitle("Filme")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

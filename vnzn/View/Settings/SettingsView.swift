@@ -72,7 +72,6 @@ struct SettingsView: View {
             }
             .selectNavigationDestination()
             .navigationTitle("Einstellungen")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Fertig") {

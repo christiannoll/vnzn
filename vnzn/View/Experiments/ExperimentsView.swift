@@ -11,7 +11,6 @@ struct ExperimentsView: View {
             ExperimentButton(navigationTarget: NavigationTarget.quotes, title: "Zitate")
         }
         .navigationTitle("Experimente")
-        .navigationBarTitleDisplayMode(.inline)
         .buttonStyle(.plain)
     }
 }

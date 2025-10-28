@@ -39,7 +39,6 @@ struct SerialsView: View {
             }
         }
         .navigationTitle("Serien")
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func sort() {
