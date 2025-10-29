@@ -8,12 +8,9 @@ class PostsViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var filteredItems: [Post] = []
 
-    var filterMode: Bool
-
     var posts: [Post] = []
 
-    init(filterMode: Bool = true) {
-        self.filterMode = filterMode
+    init() {
         //fetchPosts()
     }
 
@@ -26,7 +23,7 @@ class PostsViewModel: ObservableObject {
                 .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main) // Vermeidet ständiges Updaten
                 .removeDuplicates()
                 .map { searchText in
-                    searchText.isEmpty ? (self.filterMode ? self.posts : []) : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) ||
+                    searchText.isEmpty ? self.posts : self.posts.filter { $0.data.localizedCaseInsensitiveContains(searchText) ||
                         $0.title.localizedCaseInsensitiveContains(searchText)}
                 }
                 .assign(to: &$filteredItems)

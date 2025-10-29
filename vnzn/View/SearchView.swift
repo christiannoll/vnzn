@@ -3,7 +3,7 @@ import SwiftData
 
 struct SearchView: View {
 
-    @StateObject private var viewModel = PostsViewModel(filterMode: false)
+    @StateObject private var viewModel = PostsViewModel()
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
@@ -15,14 +15,20 @@ struct SearchView: View {
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.searchViewNavigationPath) {
-            Group {
-                if isSearchFieldFocused {
-                    List {
+            ScrollView {
+                if isSearchFieldFocused || !viewModel.searchText.isEmpty {
+                    LazyVGrid(columns: [GridItem(.flexible())]) {
                         if viewModel.searchText.isEmpty {
-                            Text("Zuletzt gesucht")
-                                .font(.subheadline)
-                                .bold()
+                            HStack {
+                                Text("Zuletzt gesucht")
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.vertical)
+                                Spacer()
+                            }
                             ForEach (searchItems) { searchItem in
+                                Divider()
+                                    .padding(.vertical, 4)
                                 VStack(alignment: .leading) {
                                     HStack {
                                         Text(searchItem.post.title)
@@ -32,17 +38,17 @@ struct SearchView: View {
                                     Text(Date.createPostDate(searchItem.post)).foregroundStyle(.secondary).font(.footnote)
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             let filteredItems = viewModel.filteredItems
                             ForEach (filteredItems) { post in
-                                PostRow(post: post, posts: filteredItems, action: {
-                                    SwiftDataService.shared.saveSearchItem(searchTerm: viewModel.searchText, post: post) })
+                                PostRow(post: post, posts: filteredItems, action: { SwiftDataService.shared.saveSearchItem(searchTerm: viewModel.searchText, post: post)
+                                })
                             }
                         }
                     }
+                    .padding()
                 } else {
-                    ScrollView {
+                    //ScrollView {
                         LazyVGrid(
                             columns: [
                                 GridItem(.flexible(minimum: 50, maximum: .infinity)),
@@ -81,19 +87,24 @@ struct SearchView: View {
                             }
                         }
                         .padding()
-                    }
-                    .task {
-                        viewModel.fetchPosts()
-                        if metaData.tags.tagItems.isEmpty {
-                            await metaData.tags.createTags(viewModel.posts)
-                        }
-                    }
+                    //}
                 }
             }
-            .navigationTitle("Suchen")
             .selectNavigationDestination()
             .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
+            .scrollContentBackground(.hidden)
+            .navigationTitle("Suchen")
             .searchFocused($isSearchFieldFocused)
+            .task {
+                viewModel.fetchPosts()
+                await initMetaData()
+            }
+        }
+    }
+
+    private func initMetaData() async {
+        if metaData.tags.tagItems.isEmpty {
+            await metaData.tags.createTags(viewModel.posts)
         }
     }
 }
