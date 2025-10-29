@@ -3,7 +3,7 @@ import SwiftData
 
 struct SearchView: View {
 
-    @StateObject private var viewModel = PostsViewModel()
+    @StateObject private var viewModel = PostsViewModel(filterMode: false)
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
