@@ -56,7 +56,7 @@ struct HistoryView: View {
                     Text("Keinen Historyeintrag gefunden. 🙁")
                 }
             }
-            .searchable(text: $searchText, prompt: "Verlauf durchsuchen")
+            .searchable(text: $searchText, placement: .automatic, prompt: "Verlauf durchsuchen")
             .selectNavigationDestination()
             .navigationTitle("Verlauf")
             .toolbar {
