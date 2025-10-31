@@ -7,6 +7,7 @@ struct SearchView: View {
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
+    @Environment(\.modelContext) private var modelContext
 
     @FocusState private var isSearchFieldFocused: Bool
 
@@ -23,8 +24,14 @@ struct SearchView: View {
                                 Text("Zuletzt gesucht")
                                     .font(.subheadline)
                                     .bold()
-                                    .padding(.vertical)
+                                    .padding(4)
                                 Spacer()
+                                Button("Löschen", role: .destructive) {
+                                    deleteSearchHistory()
+                                }
+                                .font(.subheadline)
+                                .bold()
+                                .padding(4)
                             }
                             ForEach (searchItems) { searchItem in
                                 Divider()
@@ -105,6 +112,14 @@ struct SearchView: View {
     private func initMetaData() async {
         if metaData.tags.tagItems.isEmpty {
             await metaData.tags.createTags(viewModel.posts)
+        }
+    }
+
+    private func deleteSearchHistory() {
+        do {
+            try modelContext.delete(model: SearchItem.self)
+        } catch {
+            print("Failed to delete all history items.")
         }
     }
 }

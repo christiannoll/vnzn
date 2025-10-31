@@ -86,7 +86,7 @@ struct HistoryView: View {
         do {
             try modelContext.delete(model: HistoryItem.self)
         } catch {
-            print("Failed to delete all schools.")
+            print("Failed to delete all history items.")
         }
     }
 }
