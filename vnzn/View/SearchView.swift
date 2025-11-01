@@ -11,6 +11,7 @@ struct SearchView: View {
 
     @FocusState private var isSearchFieldFocused: Bool
 
+    @Query(sort: \Post.date) var posts: [Post]
     @Query(sort: \SearchItem.date, order: .reverse) var searchItems: [SearchItem]
 
     var body: some View {
@@ -26,9 +27,10 @@ struct SearchView: View {
                                     .bold()
                                     .padding(4)
                                 Spacer()
-                                Button("Löschen", role: .destructive) {
+                                Button("Löschen") {
                                     deleteSearchHistory()
                                 }
+                                .foregroundStyle(.secondary)
                                 .font(.subheadline)
                                 .bold()
                                 .padding(4)
@@ -44,6 +46,9 @@ struct SearchView: View {
                                     }
                                     Text(Date.createPostDate(searchItem.post)).foregroundStyle(.secondary).font(.footnote)
                                 }
+                                .onTapGesture {
+                                    router.currentNavigationPath.append(NavigationTarget.post(searchItem.post, posts))
+                                }
                             }
                         } else {
                             let filteredItems = viewModel.filteredItems
@@ -55,46 +60,44 @@ struct SearchView: View {
                     }
                     .padding()
                 } else {
-                    //ScrollView {
-                        LazyVGrid(
-                            columns: [
-                                GridItem(.flexible(minimum: 50, maximum: .infinity)),
-                                GridItem(.flexible(minimum: 50, maximum: .infinity))
-                            ],
-                            alignment: .leading,
-                            spacing: 10
-                        ) {
-                            ForEach (metaData.tags.tagItems) { tagItem in
-                                Button {
-                                    router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
-                                } label: {
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Spacer()
-                                            Image(systemName: "star")
-                                                .padding(.horizontal)
-                                                .foregroundStyle(.background)
-                                        }
-                                        Text(tagItem.tagTitle)
-                                            .bold()
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible(minimum: 50, maximum: .infinity)),
+                            GridItem(.flexible(minimum: 50, maximum: .infinity))
+                        ],
+                        alignment: .leading,
+                        spacing: 10
+                    ) {
+                        ForEach (metaData.tags.tagItems) { tagItem in
+                            Button {
+                                router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Spacer()
+                                        Image(systemName: "star")
                                             .padding(.horizontal)
-                                            .padding(.top, 4)
-                                            .foregroundColor(.white)
+                                            .foregroundStyle(.background)
                                     }
-                                    .frame(height: 70)
-                                    .frame(maxWidth: .infinity)
+                                    Text(tagItem.tagTitle)
+                                        .bold()
+                                        .padding(.horizontal)
+                                        .padding(.top, 4)
+                                        .foregroundColor(.white)
                                 }
-                                .background(
-                                    Color.purple.gradient.opacity(0.8),
-                                    in: RoundedRectangle(
-                                        cornerRadius: 16,
-                                        style: .continuous
-                                    )
-                                )
+                                .frame(height: 70)
+                                .frame(maxWidth: .infinity)
                             }
+                            .background(
+                                Color.purple.gradient.opacity(0.8),
+                                in: RoundedRectangle(
+                                    cornerRadius: 16,
+                                    style: .continuous
+                                )
+                            )
                         }
-                        .padding()
-                    //}
+                    }
+                    .padding()
                 }
             }
             .selectNavigationDestination()
