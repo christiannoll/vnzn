@@ -570,6 +570,7 @@
       }
     },
     "Keinen Sucheintrag gefunden. 🙁" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
