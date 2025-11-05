@@ -69,7 +69,7 @@ struct DiscoverView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("settings", systemImage: "gearshape") {
+                    Button("settings", systemImage: "ellipsis") {
                         settingsVisible.toggle()
                     }
                 }

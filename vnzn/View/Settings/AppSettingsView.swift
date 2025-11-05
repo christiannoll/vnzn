@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 import NotificationCenter
 
-struct SettingsView: View {
+struct AppSettingsView: View {
 
     @Environment(\.dismiss) var dismiss
     @Environment(Router.self) var router: Router

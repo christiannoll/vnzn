@@ -51,7 +51,7 @@ struct PostsView: View {
             }
             .toolbarBackground(.visible, for: .tabBar)
             .sheet(isPresented: $settingsVisible) {
-                SettingsView()
+                AppSettingsView()
             }
             .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
                 viewModel.fetchPosts()
