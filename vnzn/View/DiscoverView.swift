@@ -80,7 +80,7 @@ struct DiscoverView: View {
                 }
             }
             .sheet(isPresented: $settingsVisible) {
-                SettingsView()
+                DiscoverSettingsView()
             }
             .environment(\.defaultMinListHeaderHeight, 0)
             .selectNavigationDestination()
