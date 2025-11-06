@@ -9,6 +9,7 @@ struct SearchView: View {
     @Environment(Router.self) var router: Router
 
     @FocusState private var isSearchFieldFocused: Bool
+    @State private var dataRetrieved = false
 
     var body: some View {
         @Bindable var router = router
@@ -38,8 +39,11 @@ struct SearchView: View {
             .navigationTitle("Suchen")
             .searchFocused($isSearchFieldFocused)
             .task {
-                viewModel.fetchPosts()
-                await initMetaData()
+                if dataRetrieved == false {
+                    viewModel.fetchPosts()
+                    await initMetaData()
+                    dataRetrieved = true
+                }
             }
         }
     }
