@@ -11,6 +11,7 @@
 		D6BED3F62D399C04005BF55C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F52D399C03005BF55C /* WidgetKit.framework */; };
 		D6BED3F82D399C04005BF55C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BED3F72D399C04005BF55C /* SwiftUI.framework */; };
 		D6BED4052D399C06005BF55C /* vnznWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D6C7A67B2EC0DD4F000B07EE /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = D6C7A67A2EC0DD4F000B07EE /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		D6BED3F32D399C03005BF55C /* vnznWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = vnznWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6BED3F52D399C03005BF55C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D6BED3F72D399C04005BF55C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		D6C7A67A2EC0DD4F000B07EE /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		D6C7C3222D4638AA001F7312 /* vnznWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = vnznWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +218,7 @@
 		D60430632CDFDD440073F921 = {
 			isa = PBXGroup;
 			children = (
+				D6C7A67A2EC0DD4F000B07EE /* AppIcon.icon */,
 				D6C7C3222D4638AA001F7312 /* vnznWidgetExtension.entitlements */,
 				D604306E2CDFDD440073F921 /* vnzn */,
 				D604307F2CDFDD460073F921 /* vnznTests */,
@@ -425,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C7A67B2EC0DD4F000B07EE /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
