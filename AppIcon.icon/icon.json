@@ -14,6 +14,7 @@
   ],
   "groups" : [
     {
+      "blur-material" : null,
       "layers" : [
         {
           "fill" : "none",
@@ -21,12 +22,14 @@
           "name" : "icon_circle"
         }
       ],
+      "lighting" : "individual",
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.5
       },
+      "specular" : true,
       "translucency" : {
-        "enabled" : true,
+        "enabled" : false,
         "value" : 0.5
       }
     }
