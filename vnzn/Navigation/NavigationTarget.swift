@@ -29,7 +29,6 @@ enum NavigationTarget: Hashable {
     case privacy
     case termsOfUse
     case searchIntent(String)
-    case searchHistory
     case quotes
     case imprint
     case copyright

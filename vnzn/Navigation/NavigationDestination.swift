@@ -62,8 +62,6 @@ struct NavigationDestination: ViewModifier {
                     TermsOfUseView()
                 case .searchIntent(let searchTerm):
                     SearchIntentView(searchText: searchTerm)
-                case .searchHistory:
-                    SearchHistoryView()
                 case .quotes:
                     QuotesView()
                 case .imprint:
