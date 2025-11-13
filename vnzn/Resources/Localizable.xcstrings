@@ -473,6 +473,9 @@
         }
       }
     },
+    "Inhalt teilen" : {
+
+    },
     "Kategorien" : {
       "localizations" : {
         "de" : {
@@ -728,6 +731,7 @@
       }
     },
     "Öffnen mit" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

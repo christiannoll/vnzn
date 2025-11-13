@@ -107,7 +107,7 @@ struct PostView: View {
 
                         viewModel.showShareSheet(activityVC)
                     } label: {
-                        Text("Öffnen mit")
+                        Label("Inhalt teilen", systemImage: "square.and.arrow.up")
                     }
                 }
             }
