@@ -91,23 +91,9 @@ struct PostView: View {
 
             ToolbarItem {
                 Menu("menu", systemImage: "ellipsis.circle") {
-                    Button() {
-                        if let url = URL(string: viewModel.createPostUrl()) {
-                            let items: [Any] = [url]
-                            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-                            viewModel.showShareSheet(activityVC)
-                        }
-                    } label: {
-                        Label("Link teilen", systemImage: "square.and.arrow.up")
-                    }
-                    Button {
-                        let textToShare = viewModel.sharedText()
-                        let items: [Any] = [textToShare]
-                        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-
-                        viewModel.showShareSheet(activityVC)
-                    } label: {
-                        Label("Inhalt teilen", systemImage: "square.and.arrow.up")
+                    if let url = URL(string: viewModel.createPostUrl()) {
+                        ShareLink("Link teilen", item: url)
+                        ShareLink("Inhalt teilen", item: viewModel.sharedText())
                     }
                 }
             }
