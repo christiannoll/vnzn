@@ -24,6 +24,9 @@ class PostViewModel: ObservableObject {
     func sharedText() -> String {
         var text = AttributedString()
 
+        text.append(AttributedString(post.title))
+        text.append(AttributedString("\n\n"))
+
         for nodes in nodeParser.parse(post.data) {
             text.append(stringBuilder.parse(nodes, post))
         }
