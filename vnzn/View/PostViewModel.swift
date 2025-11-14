@@ -17,6 +17,10 @@ class PostViewModel: ObservableObject {
         SwiftDataService.shared.save()
     }
 
+    var contentType: PostType {
+        post.type
+    }
+
     func sharedText() -> String {
         var text = AttributedString()
 
@@ -24,6 +28,18 @@ class PostViewModel: ObservableObject {
             text.append(stringBuilder.parse(nodes, post))
         }
         return String(text.characters)
+    }
+
+    func sharedImage() -> ShareableImagePost {
+        var imagePost = ShareableImagePost()
+
+        if let imageData = post.image, let uiImage = UIImage(data: imageData) {
+            imagePost = ShareableImagePost(
+                image: Image(uiImage: uiImage),
+                title: post.title
+            )
+        }
+        return imagePost
     }
 
     func tagStrings() -> [String] {
@@ -58,3 +74,19 @@ class PostViewModel: ObservableObject {
         return Text(attributedString + attributedString)
     }
 }
+
+struct ShareableImagePost: Transferable {
+
+    static var transferRepresentation: some TransferRepresentation {
+        ProxyRepresentation(exporting: \.title)
+    }
+
+    public var image: Image
+    public var title: String
+
+    init(image: Image = .init(uiImage: UIImage()), title: String = "") {
+        self.image = image
+        self.title = title
+    }
+}
+

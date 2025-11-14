@@ -93,7 +93,12 @@ struct PostView: View {
                 Menu("menu", systemImage: "ellipsis.circle") {
                     if let url = URL(string: viewModel.createPostUrl()) {
                         ShareLink("Link teilen", item: url)
+                    }
+                    if viewModel.contentType == .text {
                         ShareLink("Inhalt teilen", item: viewModel.sharedText())
+                    } else {
+                        let sharedImage = viewModel.sharedImage()
+                        ShareLink("Inhalt teilen", item: sharedImage, preview: SharePreview(sharedImage.title, image: sharedImage.image))
                     }
                 }
             }
