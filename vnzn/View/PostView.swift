@@ -90,7 +90,7 @@ struct PostView: View {
             ToolbarSpacer(.fixed)
 
             ToolbarItem {
-                Menu("menu", systemImage: "ellipsis.circle") {
+                Menu("menu", systemImage: "ellipsis") {
                     if let url = URL(string: viewModel.createPostUrl()) {
                         ShareLink("Link teilen", item: url)
                     }

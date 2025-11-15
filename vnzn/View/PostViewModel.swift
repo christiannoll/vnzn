@@ -81,7 +81,7 @@ class PostViewModel: ObservableObject {
 struct ShareableImagePost: Transferable {
 
     static var transferRepresentation: some TransferRepresentation {
-        ProxyRepresentation(exporting: \.title)
+        ProxyRepresentation(exporting: \.image)
     }
 
     public var image: Image
