@@ -82,7 +82,7 @@ struct PostView: View {
         }
         .toolbar {
             ToolbarItem {
-                Button("test", systemImage: viewModel.post.isFavourite ? "star.fill" : "star") {
+                Button("Favourite", systemImage: viewModel.post.isFavourite ? "star.fill" : "star") {
                     viewModel.toggleIsFavourite()
                 }
             }
