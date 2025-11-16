@@ -5,8 +5,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "#Ähnliche Posts"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#Similar Posts"
           }
         }
       }
@@ -31,8 +37,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "© Copyright 2019-2025 – Urheberrechtshinweis"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "© Copyright 2019-2025"
           }
         }
       }
@@ -40,6 +52,12 @@
     "10 Posts" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Posts"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "10 Posts"
@@ -54,12 +72,24 @@
             "state" : "translated",
             "value" : "20 Posts"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20 Posts"
+          }
         }
       }
     },
     "50 Posts" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 Posts"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "50 Posts"
@@ -71,8 +101,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Ähnliche Posts"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Similar Posts"
           }
         }
       }
@@ -81,8 +117,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Alle"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
           }
         }
       }
@@ -184,6 +226,12 @@
             "state" : "translated",
             "value" : "Artificial Intelligence"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artificial Intelligence"
+          }
         }
       }
     },
@@ -222,6 +270,12 @@
     "Copyright" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copyright"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copyright"
@@ -316,6 +370,12 @@
             "state" : "translated",
             "value" : "Email: webmaster (at) vnzn (punkt) de\nGitHub: [christiannoll](https://github.com/christiannoll/vnzn)\nMastodon: [@vnzn@mas.to](https://mas.to/@vnzn)"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email: webmaster (at) vnzn (punkt) de\nGitHub: [christiannoll](https://github.com/christiannoll/vnzn)\nMastodon: [@vnzn@mas.to](https://mas.to/@vnzn)"
+          }
         }
       }
     },
@@ -355,14 +415,27 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Favoriten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourites"
           }
         }
       }
     },
     "Favourite" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourite"
+          }
+        }
+      }
     },
     "Fertig" : {
       "localizations" : {
@@ -401,6 +474,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "Find"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Find"
           }
         }
@@ -506,8 +585,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Impressum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact"
           }
         }
       }
@@ -564,8 +649,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Inhalt teilen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Content"
           }
         }
       }
@@ -718,8 +809,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Lade Daten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load data"
           }
         }
       }
@@ -760,8 +857,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
           }
         }
       }
@@ -769,6 +872,12 @@
     "menu" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Menu"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menu"
@@ -796,8 +905,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Mitteilungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messages"
           }
         }
       }
@@ -806,8 +921,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Neue Posts verfügbar!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New posts available!"
           }
         }
       }
@@ -1073,8 +1194,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "settings"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
           }
         }
       }
@@ -1083,8 +1210,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "sortDown"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SortDown"
           }
         }
       }
@@ -1093,8 +1226,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "sortUp"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SortUp"
           }
         }
       }
@@ -1119,19 +1258,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Suchen"
           }
-        }
-      }
-    },
-    "test" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "test"
+            "value" : "Search"
           }
         }
       }
@@ -1203,6 +1337,12 @@
     "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig" : {
       "localizations" : {
         "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v.n.z.n (Christian Noll)\nBautzner Straße 7b\n24837 Schleswig"
@@ -1358,8 +1498,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Zuletzt gesucht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last searched"
           }
         }
       }
