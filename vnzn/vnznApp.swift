@@ -50,7 +50,7 @@ struct vnznApp: App {
 
     private func scheduleAppRefreshTask() {
         let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshIdentifier)
-        request.earliestBeginDate = .now.addingTimeInterval(5)//(24 * 3600)
+        request.earliestBeginDate = .now.addingTimeInterval(30 * 60)//(24 * 3600)
         do {
             try BGTaskScheduler.shared.submit(request)
             print("[BGTaskScheduler] submitted task with id: \(request.identifier)")
