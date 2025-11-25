@@ -2,7 +2,7 @@ import SwiftUI
 
 class PostViewModel: ObservableObject {
 
-    var post: Post
+    @Published var post: Post
 
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
