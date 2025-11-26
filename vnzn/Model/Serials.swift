@@ -4,7 +4,9 @@ class Serials : Tags {
 
     @MainActor
     func createSerials(_ posts: [Post]) async {
-        for post in posts {
+        let reversedPosts = posts.reversed()
+
+        for post in reversedPosts {
             await addPost(post)
         }
 
