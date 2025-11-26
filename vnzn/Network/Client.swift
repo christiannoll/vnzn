@@ -32,7 +32,7 @@ class Client {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }
             let configuration = URLSessionConfiguration.default
-            //configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+            configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
             let urlSession = URLSession(configuration: configuration)
             
             let (data, response) = try await urlSession.data(from: url)
