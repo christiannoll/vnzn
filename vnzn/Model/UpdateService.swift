@@ -10,15 +10,24 @@ class UpdateService {
     var fetchedSearchItems: [SearchItem] = []
 
     static let lastUpdateKey = "lastUpdate"
+    static let lastFullSyncKey = "lastFullSync"
 
     //@MainActor
     func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
         let lastUpdateFromServer = await fetchLastUpdate()
+        let lastFullSyncFromServer = await fetchLastFullSync()
 
         let lastUpdateLocal = UserDefaults.standard.double(forKey: Self.lastUpdateKey)
+        let lastFullSyncLocal = UserDefaults.standard.double(forKey: Self.lastFullSyncKey)
+
         if lastUpdateFromServer > lastUpdateLocal || languageChanged {
             let updateService = UpdateService()
-            try await updateService.update(modelContext, languageChanged)
+            if lastFullSyncFromServer > lastFullSyncLocal {
+                try await updateService.update(modelContext, languageChanged)
+                UserDefaults.standard.set(lastFullSyncFromServer, forKey: Self.lastFullSyncKey)
+            } else {
+                try await updateService.update(modelContext, languageChanged)
+            }
             UserDefaults.standard.set(lastUpdateFromServer, forKey: Self.lastUpdateKey)
         } else {
             NotificationCenter.post(.fetchPosts)
