@@ -12,7 +12,6 @@ class UpdateService {
     static let lastUpdateKey = "lastUpdate"
     static let lastFullSyncKey = "lastFullSync"
 
-    //@MainActor
     func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
         let lastUpdateFromServer = await fetchLastUpdate()
         let lastFullSyncFromServer = await fetchLastFullSync()
@@ -23,10 +22,10 @@ class UpdateService {
         if lastUpdateFromServer > lastUpdateLocal || languageChanged {
             let updateService = UpdateService()
             if lastFullSyncFromServer > lastFullSyncLocal {
-                try await updateService.update(modelContext, languageChanged)
+                try await updateService.fullSync(modelContext, languageChanged)
                 UserDefaults.standard.set(lastFullSyncFromServer, forKey: Self.lastFullSyncKey)
             } else {
-                try await updateService.update(modelContext, languageChanged)
+                try await updateService.fullSync(modelContext, languageChanged)
             }
             UserDefaults.standard.set(lastUpdateFromServer, forKey: Self.lastUpdateKey)
         } else {
@@ -34,8 +33,7 @@ class UpdateService {
         }
     }
 
-    //@MainActor
-    private func update(_ modelContext:  ModelContext, _ languageChanged: Bool) async throws {
+    private func fullSync(_ modelContext:  ModelContext, _ languageChanged: Bool) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
 
         if languageChanged == false {
