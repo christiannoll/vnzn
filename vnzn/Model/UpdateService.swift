@@ -21,16 +21,41 @@ class UpdateService {
 
         if lastUpdateFromServer > lastUpdateLocal || languageChanged {
             let updateService = UpdateService()
-            if lastFullSyncFromServer > lastFullSyncLocal {
+            if lastFullSyncFromServer > lastFullSyncLocal || languageChanged {
                 try await updateService.fullSync(modelContext, languageChanged)
                 UserDefaults.standard.set(lastFullSyncFromServer, forKey: Self.lastFullSyncKey)
             } else {
-                try await updateService.fullSync(modelContext, languageChanged)
+                try await updateService.update(modelContext)
             }
             UserDefaults.standard.set(lastUpdateFromServer, forKey: Self.lastUpdateKey)
         } else {
             NotificationCenter.post(.fetchPosts)
         }
+    }
+
+    private func update(_ modelContext: ModelContext) async throws {
+        let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
+
+        let postFetchDescriptor = FetchDescriptor<Post>()
+        loadedPosts = try modelContext.fetch(postFetchDescriptor)
+
+        var newPosts: [Post] = []
+
+        for item in items.reversed() {
+            if loadedPost(item) == nil {
+                var image: Data? = nil
+
+                if item.itemType() == .image && image == nil {
+                    image = await fetchImageData(item: item)
+                }
+                let post = Post(id: item.id, data: item.data, name: item.name, title: item.title, date: item.date, tags: item.tags, indices: item.indices, serials: item.serials, links: item.links, years: item.years, persons: item.persons, movies: item.movies, books: item.books, type: item.postType(), textFormat: item.textFormat(), isFavourite: false, visits: 0, image: image)
+                modelContext.insert(post)
+                newPosts.append(post)
+            }
+        }
+
+        try modelContext.save()
+        NotificationCenter.post(.fetchPosts)
     }
 
     private func fullSync(_ modelContext:  ModelContext, _ languageChanged: Bool) async throws {
