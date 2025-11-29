@@ -10,10 +10,10 @@ struct PostView: View {
     @State private var isSafariPresented = false
     @State private var urlToOpen: URL?
 
-    @StateObject private var viewModel: PostViewModel
+    @State private var viewModel: PostViewModel
 
     init(post: Post, posts: [Post]) {
-        _viewModel = StateObject(wrappedValue: PostViewModel(post: post))
+        _viewModel = State(wrappedValue: PostViewModel(post: post))
         self.posts = posts
     }
 

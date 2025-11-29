@@ -1,8 +1,9 @@
 import SwiftUI
 
-class PostViewModel: ObservableObject {
+@Observable
+class PostViewModel {
 
-    @Published var post: Post
+    var post: Post
 
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
