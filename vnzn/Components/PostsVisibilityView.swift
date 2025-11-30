@@ -10,7 +10,7 @@ struct PostsVisibilityView: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
-            Menu("menu", systemImage: "ellipsis") {
+            Menu("menu", systemImage: "line.3.horizontal.decrease") {
                 Button() {
                     if let postsVisibility {
                         postsVisibility.onlyFavourites.toggle()
