@@ -43,7 +43,7 @@ struct vnznApp: App {
         }
         .backgroundTask(.appRefresh(Self.appRefreshIdentifier)) {
             if await newItemsAvailable() {
-                await UserNotificationController.shared.sendNotification(message: String(localized: "Neue Posts verfügbar!"), title: "Background task", sound: true)
+                await UserNotificationController.shared.sendNotification(message: String(localized: "Neue Posts verfügbar!"), title: "vnzn.app", sound: true)
             }
         }
     }
