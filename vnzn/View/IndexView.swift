@@ -42,7 +42,8 @@ struct IndexView: View {
         }
         .selectNavigationDestination()
         .navigationTitle("Index")
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Index durchsuchen")
+        .searchable(text: $searchText, placement: .toolbar, prompt: "Index durchsuchen")
+        .searchToolbarBehavior(.minimize)
         .toolbarBackground(.visible, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
