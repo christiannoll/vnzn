@@ -102,8 +102,9 @@ struct PostDataView: View {
             var found = false
             let components = url.absoluteString.components(separatedBy: "/")
             if components.count == 3 {
-                let key = components[1].replacingOccurrences(of: "--", with: ": ")
-                if let tagItem = metaData.serials.getTagItem(key) {
+                var key = components[1].replacing("--", with: ": ")
+                key = key.replacing("-", with: " ")
+                if let tagItem = metaData.serials.getSerialsTagItem(key) {
                     found = true
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 }

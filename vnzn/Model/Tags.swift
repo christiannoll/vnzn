@@ -57,6 +57,11 @@ class Tags {
         tagItems.first { $0.key == key }
     }
 
+    func getSerialsTagItem(_ key: String) -> TagItem? {
+        // needed for serials/Komplexitat/
+        tagItems.first { $0.key.folding(options: .diacriticInsensitive, locale: .current) == key }
+    }
+
     @MainActor
     internal func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
