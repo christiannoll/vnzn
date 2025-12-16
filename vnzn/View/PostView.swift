@@ -45,6 +45,7 @@ struct PostView: View {
                             Text("#" + tag + " ")
                                 .foregroundStyle(Color.accentColor)
                                 .font(.footnote)
+                                .lineLimit(1)
                         }
                     }
                     if viewModel.post.type == .text {
