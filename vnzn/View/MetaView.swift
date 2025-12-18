@@ -9,27 +9,19 @@ struct MetaView: View {
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
+    private var metaItems = [MetaItem]()
+
+    init() {
+        setupItems()
+    }
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.metaViewNavigationPath) {
+            let _ = print(metaItems)
             List {
-                Group {
-                    MetaViewButton(navigationTarget: .tags, title: "Kategorien")
-                    MetaViewButton(navigationTarget: .index, title: "Index")
-                    MetaViewButton(navigationTarget: .serials, title: "Serien")
-                    MetaViewButton(navigationTarget: .archive, title: "Archiv")
-                    MetaViewButton(navigationTarget: .statistics, title: "Statistik")
-                    MetaViewButton(navigationTarget: .timeline, title: "Timeline")
-                    MetaViewButton(navigationTarget: .persons, title: "Personen")
-                    MetaViewButton(navigationTarget: .movies, title: "Filme")
-                    MetaViewButton(navigationTarget: .books, title: "Bücher")
-                    MetaViewButton(navigationTarget: .photos, title: "Fotos")
-                    MetaViewButton(navigationTarget: .personsCloud, title: "Personenwolke")
-                    MetaViewButton(navigationTarget: .topicsCloud, title: "Themenwolke")
-                    MetaViewButton(navigationTarget: .shortStories, title: "Kurzgeschichten")
-                    MetaViewButton(navigationTarget: .ai, title: "Artificial Intelligence")
-                    MetaViewButton(navigationTarget: .experiments, title: "Experimente")
-                    MetaViewButton(navigationTarget: .randomPost, title: "Zufall")
+                ForEach(metaItems, id: \.navigationTarget) { item in
+                    MetaViewButton(metaItem: item)
                 }
             }
             .task {
@@ -68,22 +60,45 @@ struct MetaView: View {
             .toolbarBackground(.visible, for: .tabBar)
         }
     }
+
+    private mutating func setupItems() {
+        metaItems.append(MetaItem(navigationTarget: .tags, title: "Kategorien"))
+        metaItems.append(MetaItem(navigationTarget: .index, title: "Index"))
+        metaItems.append(MetaItem(navigationTarget: .serials, title: "Serien"))
+        metaItems.append(MetaItem(navigationTarget: .archive, title: "Archiv"))
+        metaItems.append(MetaItem(navigationTarget: .statistics, title: "Statistik"))
+        metaItems.append(MetaItem(navigationTarget: .timeline, title: "Timeline"))
+        metaItems.append(MetaItem(navigationTarget: .persons, title: "Personen"))
+        metaItems.append(MetaItem(navigationTarget: .movies, title: "Filme"))
+        metaItems.append(MetaItem(navigationTarget: .books, title: "Bücher"))
+        metaItems.append(MetaItem(navigationTarget: .photos, title: "Fotos"))
+        metaItems.append(MetaItem(navigationTarget: .personsCloud, title: "Personenwolke"))
+        metaItems.append(MetaItem(navigationTarget: .topicsCloud, title: "Themenwolke"))
+        metaItems.append(MetaItem(navigationTarget: .shortStories, title: "Kurzgeschichten"))
+        metaItems.append(MetaItem(navigationTarget: .ai, title: "Artificial Intelligence"))
+        metaItems.append(MetaItem(navigationTarget: .experiments, title: "Experimente"))
+        metaItems.append(MetaItem(navigationTarget: .randomPost, title: "Zufall"))
+    }
+}
+
+struct MetaItem {
+    let navigationTarget: NavigationTarget
+    let title: LocalizedStringKey
 }
 
 struct MetaViewButton: View {
 
-    let navigationTarget: NavigationTarget
-    let title: LocalizedStringKey
+    let metaItem: MetaItem
 
     @Environment(Router.self) var router: Router
 
     var body: some View {
         @Bindable var router = router
         Button {
-            router.currentNavigationPath.append(navigationTarget)
+            router.currentNavigationPath.append(metaItem.navigationTarget)
         } label: {
             HStack {
-                Text(title)
+                Text(metaItem.title)
                 Spacer()
             }
             .contentShape(Rectangle())
