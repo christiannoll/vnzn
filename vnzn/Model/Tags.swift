@@ -5,7 +5,7 @@ class Tags {
     
     var tagItems: [TagItem] = []
     internal let lock = NSLock()
-    private var currentSortOrder = SortOrder.alphabetical
+    private var currentSortOrder = PopularSortOrder.alphabetical
 
     var numberOfTagItems: Int {
         tagItems.count

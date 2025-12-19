@@ -7,26 +7,23 @@ struct MetaView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
 
+    @State private var searchText = ""
+    @State private var viewModel = MetaViewModel()
+
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
-
-    private var metaItems = [MetaItem]()
-
-    init() {
-        setupItems()
-    }
 
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.metaViewNavigationPath) {
-            let _ = print(metaItems)
             List {
-                ForEach(metaItems, id: \.navigationTarget) { item in
+                ForEach(viewModel.metaItems, id: \.navigationTarget) { item in
                     MetaViewButton(metaItem: item)
                 }
             }
             .task {
                 if metaData.serials.tagItems.isEmpty {
-                    await metaData.serials.createSerials(posts)                }
+                    await metaData.serials.createSerials(posts)
+                }
                 if metaData.tags.tagItems.isEmpty {
                     await metaData.tags.createTags(posts)
                 }
@@ -57,34 +54,23 @@ struct MetaView: View {
             }
             .selectNavigationDestination()
             .navigationTitle("Meta")
+            .searchable(text: $searchText, placement: .toolbar, prompt: "Meta durchsuchen")
+            .searchToolbarBehavior(.minimize)
             .toolbarBackground(.visible, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        viewModel.sortByNextOrder()
+                        searchText = ""
+                    } label: {
+                        Image(systemName: "chevron.up.chevron.down")
+                    }
+                }
+            }
         }
     }
-
-    private mutating func setupItems() {
-        metaItems.append(MetaItem(navigationTarget: .tags, title: "Kategorien"))
-        metaItems.append(MetaItem(navigationTarget: .index, title: "Index"))
-        metaItems.append(MetaItem(navigationTarget: .serials, title: "Serien"))
-        metaItems.append(MetaItem(navigationTarget: .archive, title: "Archiv"))
-        metaItems.append(MetaItem(navigationTarget: .statistics, title: "Statistik"))
-        metaItems.append(MetaItem(navigationTarget: .timeline, title: "Timeline"))
-        metaItems.append(MetaItem(navigationTarget: .persons, title: "Personen"))
-        metaItems.append(MetaItem(navigationTarget: .movies, title: "Filme"))
-        metaItems.append(MetaItem(navigationTarget: .books, title: "Bücher"))
-        metaItems.append(MetaItem(navigationTarget: .photos, title: "Fotos"))
-        metaItems.append(MetaItem(navigationTarget: .personsCloud, title: "Personenwolke"))
-        metaItems.append(MetaItem(navigationTarget: .topicsCloud, title: "Themenwolke"))
-        metaItems.append(MetaItem(navigationTarget: .shortStories, title: "Kurzgeschichten"))
-        metaItems.append(MetaItem(navigationTarget: .ai, title: "Artificial Intelligence"))
-        metaItems.append(MetaItem(navigationTarget: .experiments, title: "Experimente"))
-        metaItems.append(MetaItem(navigationTarget: .randomPost, title: "Zufall"))
-    }
 }
 
-struct MetaItem {
-    let navigationTarget: NavigationTarget
-    let title: LocalizedStringKey
-}
 
 struct MetaViewButton: View {
 
@@ -98,7 +84,7 @@ struct MetaViewButton: View {
             router.currentNavigationPath.append(metaItem.navigationTarget)
         } label: {
             HStack {
-                Text(metaItem.title)
+                Text(LocalizedStringKey(metaItem.title))
                 Spacer()
             }
             .contentShape(Rectangle())

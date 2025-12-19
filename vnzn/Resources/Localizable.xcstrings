@@ -220,6 +220,7 @@
       }
     },
     "Artificial Intelligence" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -901,6 +902,9 @@
         }
       }
     },
+    "Meta durchsuchen" : {
+
+    },
     "Mitteilungen" : {
       "localizations" : {
         "de" : {
@@ -1479,6 +1483,7 @@
       }
     },
     "Zufall" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

@@ -5,7 +5,7 @@ class Index {
     
     var indexItems: [IndexItem] = []
     private let lock = NSLock()
-    private var currentSortOrder = SortOrder.alphabetical
+    private var currentSortOrder = PopularSortOrder.alphabetical
 
     var numberOfIndexItems: Int {
         get { return indexItems.count }
