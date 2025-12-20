@@ -12,11 +12,19 @@ struct MetaView: View {
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
 
+    var searchResults: [MetaItem] {
+        if searchText.isEmpty {
+            return viewModel.metaItems
+        } else {
+            return viewModel.metaItems.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.metaViewNavigationPath) {
             List {
-                ForEach(viewModel.metaItems, id: \.navigationTarget) { item in
+                ForEach(searchResults, id: \.navigationTarget) { item in
                     MetaViewButton(metaItem: item)
                 }
             }
