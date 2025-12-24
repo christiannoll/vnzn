@@ -48,7 +48,7 @@ struct AppInfoButton: View {
 
     let action: () -> Void
     let imageName: String
-    let title: String
+    let title: LocalizedStringKey
 
     var body: some View {
         Button {

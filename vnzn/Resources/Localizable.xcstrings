@@ -133,8 +133,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Alle Inhalte dieses Internetangebotes, insbesondere Texte, Fotografien, Bilder und Grafiken sind urheberrechtlich geschützt. Das Urheberrecht liegt, soweit nicht ausdrücklich anders gekennzeichnet, bei Christian Noll. Bitte fragen Sie mich, falls Sie die Inhalte dieses Internetangebotes verwenden möchten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All contents of this website, in particular texts, photographs, images and graphics, are protected by copyright. The copyright is, unless otherwise expressly indicated, with Christian Noll. Please ask me if you would like to use the contents of this website."
           }
         }
       }
@@ -304,14 +310,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Die Nutzung von VnznApp unterliegt Apples Standard-EULA für Apps. In VnznApp bereitgestellte Trinkgelder schalten keine zusätzlichen Inhalte in der App frei."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use of VnznApp is governed by Apple’s Standard EULA for apps. Tips provided in VnznApp do no unlock any additional content in the app."
+            "value" : "Use of Vnzn.app is governed by Apple’s Standard EULA for apps. Tips provided in Vnzn.app do no unlock any additional content in the app."
           }
         }
       }
@@ -344,6 +350,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Average number of words:"
+          }
+        }
+      }
+    },
+    "Einen Fehler melden" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report a bug"
           }
         }
       }
@@ -1422,14 +1438,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "VnznApp sammelt oder verarbeitet keine persönlichen Daten seiner Benutzer. Die App wird verwendet, um eine Verbindung zu vnzn-Servern herzustellen, die möglicherweise persönliche Daten sammeln und nicht von dieser Datenschutzrichtlinie abgedeckt sind."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "VnznApp does not collect or process any personal information from its users. The app is used to connect to vnzn servers that may or may not collect personal information and are not covered by this privacy policy."
+            "value" : "Vnzn.app does not collect or process any personal information from its users. The app is used to connect to vnzn servers that may or may not collect personal information and are not covered by this privacy policy."
           }
         }
       }
