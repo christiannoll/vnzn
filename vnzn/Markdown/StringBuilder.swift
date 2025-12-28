@@ -71,7 +71,7 @@ class StringBuilder {
             case .olistelement(let nodes):
                 var lb = AttributedString(firstListElement ? "" : "\n\n")
                 lb.font = .systemFont(ofSize: 6)
-                let li = lb + AttributedString("  \(oListNumber). ") + parse(nodes)
+                let li = lb + AttributedString("\(oListNumber). ") + parse(nodes)
                 firstListElement = false
                 oListNumber += 1
                 s.append(li)
@@ -79,7 +79,7 @@ class StringBuilder {
             case .ulistelement(let nodes):
                 var lb = AttributedString(firstListElement ? "" : "\n\n")
                 lb.font = .systemFont(ofSize: 6)
-                let li = lb + AttributedString("  • ") + parse(nodes)
+                let li = lb + AttributedString("• ") + parse(nodes)
                 firstListElement = false
                 /*let paragraphStyle = NSMutableParagraphStyle()
                 paragraphStyle.paragraphSpacing = 40
