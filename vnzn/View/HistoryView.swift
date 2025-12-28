@@ -41,6 +41,7 @@ struct HistoryView: View {
                                     PostImage(post: item.post)
                                         .frame(width: 37, height: 37)
                                         .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
+                                        .cornerRadius(8)
                                     Text(item.post.title)
                                 }
                             }
