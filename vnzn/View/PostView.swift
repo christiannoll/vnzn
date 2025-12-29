@@ -63,11 +63,6 @@ struct PostView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            /*.background(alignment: .trailing) {
-                if let urlToOpen {
-                    SafariViewControllerPresenter(url: urlToOpen, isPresented: $isSafariPresented)
-                }
-            }*/
             .onChange(of: isSafariPresented) {
                 if let urlToOpen, isSafariPresented {
                     router.currentNavigationPath.append(NavigationTarget.web(urlToOpen))
@@ -91,15 +86,21 @@ struct PostView: View {
             ToolbarSpacer(.fixed)
 
             ToolbarItem {
-                Menu("menu", systemImage: "ellipsis") {
+                Menu("menu", systemImage: "square.and.arrow.up") {
                     if let url = URL(string: viewModel.createPostUrl()) {
-                        ShareLink("Link teilen", item: url)
+                        ShareLink(item: url) {
+                            Label("Link teilen", systemImage: "link")
+                        }
                     }
                     if viewModel.contentType == .text {
-                        ShareLink("Inhalt teilen", item: viewModel.sharedText())
+                        ShareLink(item: viewModel.sharedText()) {
+                            Label("Inhalt teilen", systemImage: "text.alignleft")
+                        }
                     } else {
                         let sharedImage = viewModel.sharedImage()
-                        ShareLink("Inhalt teilen", item: sharedImage, preview: SharePreview(sharedImage.title, image: sharedImage.image))
+                        ShareLink(item: sharedImage, preview: SharePreview(sharedImage.title, image: sharedImage.image)) {
+                            Label("Inhalt teilen", systemImage: "photo")
+                        }
                     }
                 }
             }

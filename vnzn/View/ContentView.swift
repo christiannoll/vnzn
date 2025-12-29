@@ -13,9 +13,6 @@ struct ContentView: View {
             Tab("Entdecken", systemImage: "globe", value: .discover) {
                 DiscoverView()
             }
-            /*Tab("Index", systemImage: "list.bullet", value: .index) {
-                IndexView()
-            }*/
             Tab("Verlauf", systemImage: "clock", value: .history) {
                 HistoryView()
             }
