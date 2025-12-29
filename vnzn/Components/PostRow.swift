@@ -43,6 +43,7 @@ struct PostRow: View {
                     Spacer()
                     Button {
                         router.currentNavigationPath.append(NavigationTarget.post(post, posts))
+                        action()
                     } label: {
                         PostImage(post: post)
                             .frame(width: 200, height: 200)
