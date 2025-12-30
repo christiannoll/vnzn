@@ -5,7 +5,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "#Ähnliche Posts"
           }
         },
@@ -37,14 +37,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "© Copyright 2019-2025 – Urheberrechtshinweis"
+            "state" : "translated",
+            "value" : "© Copyright 2019-2026 – Urheberrechtshinweis"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "© Copyright 2019-2025"
+            "value" : "© Copyright 2019-2026"
           }
         }
       }
@@ -101,7 +101,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ähnliche Posts"
           }
         },
@@ -117,7 +117,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Alle"
           }
         },
@@ -133,7 +133,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Alle Inhalte dieses Internetangebotes, insbesondere Texte, Fotografien, Bilder und Grafiken sind urheberrechtlich geschützt. Das Urheberrecht liegt, soweit nicht ausdrücklich anders gekennzeichnet, bei Christian Noll. Bitte fragen Sie mich, falls Sie die Inhalte dieses Internetangebotes verwenden möchten."
           }
         },
@@ -293,7 +293,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Die Nutzung von VnznApp unterliegt Apples Standard-EULA für Apps. In VnznApp bereitgestellte Trinkgelder schalten keine zusätzlichen Inhalte in der App frei."
           }
         },
@@ -339,6 +339,12 @@
     },
     "Einen Fehler melden" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einen Fehler melden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -415,7 +421,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Favoriten"
           }
         },
@@ -429,6 +435,12 @@
     },
     "Favourite" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorit"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -473,8 +485,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Find"
+            "state" : "translated",
+            "value" : "Suchen"
           }
         },
         "en" : {
@@ -585,7 +597,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Impressum"
           }
         },
@@ -649,7 +661,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Inhalt teilen"
           }
         },
@@ -809,7 +821,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Lade Daten"
           }
         },
@@ -857,7 +869,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Löschen"
           }
         },
@@ -873,8 +885,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Menu"
+            "state" : "translated",
+            "value" : "Menü"
           }
         },
         "en" : {
@@ -903,6 +915,12 @@
     },
     "Meta durchsuchen" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meta durchsuchen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,7 +933,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mitteilungen"
           }
         },
@@ -931,7 +949,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Neue Posts verfügbar!"
           }
         },
@@ -1204,8 +1222,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "settings"
+            "state" : "translated",
+            "value" : "Einstellungen"
           }
         },
         "en" : {
@@ -1220,7 +1238,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "sortDown"
           }
         },
@@ -1236,7 +1254,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "sortUp"
           }
         },
@@ -1268,7 +1286,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Suchen"
           }
         },
@@ -1428,7 +1446,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "VnznApp sammelt oder verarbeitet keine persönlichen Daten seiner Benutzer. Die App wird verwendet, um eine Verbindung zu vnzn-Servern herzustellen, die möglicherweise persönliche Daten sammeln und nicht von dieser Datenschutzrichtlinie abgedeckt sind."
           }
         },
@@ -1492,7 +1510,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Zuletzt gesucht"
           }
         },
