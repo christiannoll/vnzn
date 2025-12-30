@@ -50,17 +50,17 @@ class MetaViewModel {
     private func sort() {
         switch currentSortOrder {
         case .original: sortOriginal()
-        case .ascending: metaItems = sortAscending()
-        case .descending: metaItems = sortDescending()
+        case .ascending: sortAscending()
+        case .descending: sortDescending()
         }
     }
 
-    private func sortAscending() -> [MetaItem] {
-        return metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedAscending }
+    private func sortAscending() {
+        metaItems.sort { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedAscending }
     }
 
-    private func sortDescending() -> [MetaItem] {
-        return metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedDescending }
+    private func sortDescending() {
+        metaItems.sort { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedDescending }
     }
 
     private func sortOriginal() {
