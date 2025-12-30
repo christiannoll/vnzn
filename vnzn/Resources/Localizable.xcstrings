@@ -225,23 +225,6 @@
         }
       }
     },
-    "Artificial Intelligence" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Artificial Intelligence"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Artificial Intelligence"
-          }
-        }
-      }
-    },
     "Blog" : {
       "localizations" : {
         "de" : {
@@ -1501,23 +1484,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quotes"
-          }
-        }
-      }
-    },
-    "Zufall" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zufälliger Post"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Random Post"
           }
         }
       }
