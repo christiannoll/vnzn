@@ -16,7 +16,7 @@ struct MetaView: View {
         if searchText.isEmpty {
             return viewModel.metaItems
         } else {
-            return viewModel.metaItems.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+            return viewModel.metaItems.filter { $0.localizedValue.lowercased().contains(searchText.lowercased()) }
         }
     }
 

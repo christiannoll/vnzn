@@ -919,7 +919,14 @@
       }
     },
     "Meta durchsuchen" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search meta"
+          }
+        }
+      }
     },
     "Mitteilungen" : {
       "localizations" : {
