@@ -3,6 +3,13 @@ import SwiftUI
 struct MetaItem {
     let navigationTarget: NavigationTarget
     let title: String
+    let localizedValue: String
+
+    init(navigationTarget: NavigationTarget, title: String) {
+        self.navigationTarget = navigationTarget
+        self.title = title
+        self.localizedValue = String(localized: String.LocalizationValue(title))
+    }
 }
 
 @Observable
@@ -43,17 +50,17 @@ class MetaViewModel {
     private func sort() {
         switch currentSortOrder {
         case .original: sortOriginal()
-        case .ascending: sortAscending()
-        case .descending: sortDescending()
+        case .ascending: metaItems = sortAscending()
+        case .descending: metaItems = sortDescending()
         }
     }
 
-    private func sortAscending() {
-        metaItems.sort { $0.title < $1.title }
+    private func sortAscending() -> [MetaItem] {
+        return metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedAscending }
     }
 
-    private func sortDescending() {
-        metaItems.sort { $0.title > $1.title }
+    private func sortDescending() -> [MetaItem] {
+        return metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedDescending }
     }
 
     private func sortOriginal() {
