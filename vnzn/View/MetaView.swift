@@ -67,11 +67,9 @@ struct MetaView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
+                    Button("sort", systemImage: "chevron.up.chevron.down") {
                         viewModel.sortByNextOrder()
                         searchText = ""
-                    } label: {
-                        Image(systemName: "chevron.up.chevron.down")
                     }
                 }
             }

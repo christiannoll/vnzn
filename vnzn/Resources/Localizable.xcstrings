@@ -1234,6 +1234,9 @@
         }
       }
     },
+    "sort" : {
+
+    },
     "sortDown" : {
       "localizations" : {
         "de" : {
