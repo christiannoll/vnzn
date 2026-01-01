@@ -20,10 +20,11 @@ class MetaViewModel {
     private var currentSortOrder = MetaSortOrder.original
 
     init() {
-        setupItems()
+        metaItems = setupItems()
     }
 
-    private func setupItems() {
+    private func setupItems() -> [MetaItem] {
+        var metaItems: [MetaItem] = []
         metaItems.append(MetaItem(navigationTarget: .tags, title: "Kategorien"))
         metaItems.append(MetaItem(navigationTarget: .index, title: "Index"))
         metaItems.append(MetaItem(navigationTarget: .serials, title: "Serien"))
@@ -40,6 +41,7 @@ class MetaViewModel {
         metaItems.append(MetaItem(navigationTarget: .ai, title: "Artificial Intelligence"))
         metaItems.append(MetaItem(navigationTarget: .experiments, title: "Experimente"))
         metaItems.append(MetaItem(navigationTarget: .randomPost, title: "Zufall"))
+        return metaItems
     }
 
     func sortByNextOrder() {
@@ -49,22 +51,22 @@ class MetaViewModel {
 
     private func sort() {
         switch currentSortOrder {
-        case .original: sortOriginal()
-        case .ascending: sortAscending()
-        case .descending: sortDescending()
+        case .original: metaItems = sortOriginal()
+        case .ascending: metaItems = sortAscending()
+        case .descending: metaItems = sortDescending()
         }
     }
 
-    private func sortAscending() {
-        metaItems.sort { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedAscending }
+    private func sortAscending() -> [MetaItem] {
+        metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedAscending }
     }
 
-    private func sortDescending() {
-        metaItems.sort { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedDescending }
+    private func sortDescending()  -> [MetaItem] {
+        metaItems.sorted { $0.localizedValue.localizedStandardCompare($1.localizedValue) == .orderedDescending }
     }
 
-    private func sortOriginal() {
+    private func sortOriginal()  -> [MetaItem] {
         metaItems.removeAll()
-        setupItems()
+        return setupItems()
     }
 }
