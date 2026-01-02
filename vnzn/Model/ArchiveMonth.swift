@@ -51,6 +51,6 @@ class ArchiveMonth: Hashable {
 extension ArchiveMonth: Equatable {}
 
 func ==(lhs: ArchiveMonth, rhs: ArchiveMonth) -> Bool {
-    lhs.month == rhs.month
+    lhs.month == rhs.month && lhs.yearName == rhs.yearName
 }
 
