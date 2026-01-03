@@ -37,6 +37,13 @@ struct PhotosView: View {
                 posts = tagItem.posts
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sort", systemImage: "chevron.up.chevron.down") {
+                    posts.reverse()
+                }
+            }
+        }
         .navigationTitle("Fotos")
         .scrollContentBackground(.hidden)
     }
