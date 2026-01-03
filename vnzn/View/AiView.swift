@@ -2,20 +2,30 @@ import SwiftUI
 
 struct AiView: View {
 
-    @State private var aiIndexItem = IndexItem("")
+    private let key = "Artificial Intelligence"
+    @State private var posts: [Post] = []
 
     @Environment(MetaData.self) var metaData: MetaData
 
     var body: some View {
         List {
-            ForEach (aiIndexItem.posts) { post in
-                PostRow(post: post, posts: aiIndexItem.posts, action: {})
+            ForEach (posts) { post in
+                PostRow(post: post, posts: posts, action: {})
             }
         }
         .onAppear {
-            aiIndexItem = metaData.index.indexItems.first { $0.key == "Artificial Intelligence"} ?? IndexItem("")
+            if let aiIndexItem = metaData.index.indexItems.first( where: { $0.key == key }) {
+                posts = aiIndexItem.posts
+            }
         }
-        .navigationTitle(aiIndexItem.key)
+        .navigationTitle(key)
         .scrollContentBackground(.hidden)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("sort", systemImage: "chevron.up.chevron.down") {
+                    posts.reverse()
+                }
+            }
+        }
     }
 }
