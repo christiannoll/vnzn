@@ -19,10 +19,8 @@ struct ShortStoriesView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
+                Button("sort", systemImage: "chevron.up.chevron.down") {
                     posts.reverse()
-                } label: {
-                    Image(systemName: "chevron.up.chevron.down")
                 }
             }
         }
