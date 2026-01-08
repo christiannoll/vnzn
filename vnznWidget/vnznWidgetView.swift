@@ -28,6 +28,7 @@ struct vnznWidgetView : View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: imageSize, height: imageSize)
+                .cornerRadius(16)
         }
         Text(Date.createPostDate(post))
             .foregroundStyle(.secondary)
