@@ -18,6 +18,7 @@ final class UserNotificationController: Sendable {
             content.title = title
             content.body = NSLocalizedString(message, comment: "")
             content.sound = sound ? .default : nil
+            content.interruptionLevel = .active
             let uuidString = UUID().uuidString
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
             let notificationCenter = UNUserNotificationCenter.current()
