@@ -70,13 +70,8 @@ struct HistoryView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("sortDown", systemImage: "chevron.down") {
-                        sortOrderReversed = false
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("sortUp", systemImage: "chevron.up") {
-                        sortOrderReversed = true
+                    Button("sort", systemImage: "chevron.up.chevron.down") {
+                        sortOrderReversed.toggle()
                     }
                 }
             }
