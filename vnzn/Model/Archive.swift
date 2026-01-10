@@ -7,8 +7,9 @@ class Archive {
 
     @MainActor
     private func addPost(_ post: Post) async {
-        let year = getYear(post)
-        year.addPost(post)
+        if let year = getYear(post) {
+            year.addPost(post)
+        }
     }
 
     @MainActor
@@ -18,18 +19,25 @@ class Archive {
         }
     }
 
-    private func getYear(_ post: Post) -> ArchiveYear {
+    private func getYear(_ post: Post) -> ArchiveYear? {
         for year in years {
-            let comps = Calendar.current.dateComponents([.year], from: post.date!)
-            if comps.year! == year.year {
-                return year
+            if let date = post.date {
+                let comps = Calendar.current.dateComponents([.year], from: date)
+                if comps.year! == year.year {
+                    return year
+                }
             }
         }
         return createYear(post)
     }
-    
-    private func createYear(_ post: Post) -> ArchiveYear {
-        let comps = Calendar.current.dateComponents([.year], from: post.date!)
+
+    private func createYear(_ post: Post) -> ArchiveYear? {
+        guard let date = post.date else {
+            //assert(false , "Post without date")
+            return nil
+        }
+
+        let comps = Calendar.current.dateComponents([.year], from: date)
         let year = ArchiveYear(comps.year!)
         years.append(year)
         return year

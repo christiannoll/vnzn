@@ -75,8 +75,9 @@ class SiteStatistics {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         dateFormatter.locale = Locale.init(identifier: "de_DE")
-        
-        return dateFormatter.string(from: post.date!)
+
+        guard let date = post.date else { return "" }
+        return dateFormatter.string(from: date)
     }
     
     private func parseNumberOfWords(_ markdownNodes: [MarkdownNode]) -> Int {
