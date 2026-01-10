@@ -7,6 +7,8 @@ struct TimelineView: View {
     @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
 
+    @State private var sortOrderReversed: Bool = false
+
     var body: some View {
         List {
             ForEach(metaData.timeline.timelineItems, id: \.self) { item in
@@ -27,13 +29,8 @@ struct TimelineView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("sortDown", systemImage: "chevron.down") {
-                    metaData.timeline.timelineItems.sort()
-                }
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("sortUp", systemImage: "chevron.up") {
-                    metaData.timeline.timelineItems.sort(by: >)
+                Button("sort", systemImage: "chevron.up.chevron.down") {
+                    sort()
                 }
             }
         }
@@ -43,5 +40,14 @@ struct TimelineView: View {
             }
         }
         .navigationTitle("Timeline")
+    }
+
+    private func sort() {
+        sortOrderReversed.toggle()
+        if sortOrderReversed {
+            metaData.timeline.timelineItems.sort(by: >)
+        } else {
+            metaData.timeline.timelineItems.sort()
+        }
     }
 }
