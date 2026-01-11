@@ -79,12 +79,13 @@ public class MarkdownParser {
         
         // Convert orphaned opening delimiters to plain text
         while openingDelimiters.count > 0 {
-            let openingDelimiter = openingDelimiters.popLast()!
-            
-            if openingDelimiter == delimiter || openingDelimiter == CharacterSet.getLeftDelimiter(rightDelimiter:delimiter) {
-                break
-            } else {
-                newElements.insert(.text(String(openingDelimiter)), at: 0)
+            if let openingDelimiter = openingDelimiters.popLast() {
+
+                if openingDelimiter == delimiter || openingDelimiter == CharacterSet.getLeftDelimiter(rightDelimiter:delimiter) {
+                    break
+                } else {
+                    newElements.insert(.text(String(openingDelimiter)), at: 0)
+                }
             }
         }
         
@@ -111,14 +112,16 @@ public class MarkdownParser {
         for element in elements {
             switch element {
             case .brackets:
-                if bracketsNode != nil {
-                    nodes.append(bracketsNode!)
+                if let bracketsNode {
+                    nodes.append(bracketsNode)
                 }
                 bracketsNode = element
             case .parenthesis(let parenthesisElements):
-                if bracketsNode != nil {
-                    let newElements: [MarkdownNode] = [element, bracketsNode!]
-                    nodes.append(MarkdownNode(delimiter: " ", children: newElements)!)
+                if let bracketsNode {
+                    let newElements: [MarkdownNode] = [element, bracketsNode]
+                    if let newNode = MarkdownNode(delimiter: " ", children: newElements) {
+                        nodes.append(newNode)
+                    }
                 }
                 else {
                     nodes.append(.parenthesis(parseLinks(elements: parenthesisElements)))
@@ -133,16 +136,16 @@ public class MarkdownParser {
             case .italic(let italicElements):
                 nodes.append(.italic(parseLinks(elements: italicElements)))
             default:
-                if bracketsNode != nil {
-                    nodes.append(bracketsNode!)
+                if let bracketsNode {
+                    nodes.append(bracketsNode)
                 }
                 nodes.append(element)
                 bracketsNode = nil
             }
         }
         
-        if bracketsNode != nil {
-            nodes.append(bracketsNode!)
+        if let bracketsNode {
+            nodes.append(bracketsNode)
         }
         
         return nodes

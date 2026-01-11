@@ -138,7 +138,7 @@ struct PostDataView: View {
     private func findPost(url: URL) -> Post? {
         var foundPost: Post?
         if let postUrl = URL(string: String(url.absoluteString.dropFirst())) {
-            foundPost = posts.first(where: { $0.name == postUrl.pathComponents.last! })
+            foundPost = posts.first(where: { $0.name == postUrl.pathComponents.last ?? "" })
         }
         return foundPost
     }
