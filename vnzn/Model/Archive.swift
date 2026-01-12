@@ -38,7 +38,8 @@ class Archive {
         }
 
         let comps = Calendar.current.dateComponents([.year], from: date)
-        let year = ArchiveYear(comps.year!)
+        guard let compsYear = comps.year else { return nil }
+        let year = ArchiveYear(compsYear)
         years.append(year)
         return year
     }
