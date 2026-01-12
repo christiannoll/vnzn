@@ -1235,36 +1235,11 @@
       }
     },
     "sort" : {
-
-    },
-    "sortDown" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "sortDown"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SortDown"
-          }
-        }
-      }
-    },
-    "sortUp" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sortUp"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SortUp"
+            "value" : "sort"
           }
         }
       }

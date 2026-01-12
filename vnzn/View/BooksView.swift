@@ -7,6 +7,8 @@ struct BooksView: View {
     @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
 
+    @State private var sortOrderReversed: Bool = false
+
     var body: some View {
         List {
             ForEach(metaData.books.register.registerItems, id: \.self) { item in
@@ -29,13 +31,8 @@ struct BooksView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("sortDown", systemImage: "chevron.down") {
-                    metaData.books.register.registerItems.sort()
-                }
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("sortUp", systemImage: "chevron.up") {
-                    metaData.books.register.registerItems.sort(by: >)
+                Button("sort", systemImage: "chevron.up.chevron.down") {
+                    sort()
                 }
             }
         }
@@ -45,5 +42,14 @@ struct BooksView: View {
             }
         }
         .navigationTitle("Bücher")
+    }
+
+    private func sort() {
+        sortOrderReversed.toggle()
+        if sortOrderReversed {
+            metaData.books.register.registerItems.sort(by: >)
+        } else {
+            metaData.books.register.registerItems.sort()
+        }
     }
 }
