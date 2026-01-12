@@ -7,6 +7,8 @@ struct MoviesView: View {
     @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
 
+    @State private var sortOrderReversed: Bool = false
+
     var body: some View {
         List {
             ForEach(metaData.movies.register.registerItems, id: \.self) { item in
@@ -29,13 +31,8 @@ struct MoviesView: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button("sortDown", systemImage: "chevron.down") {
-                    metaData.movies.register.registerItems.sort()
-                }
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("sortUp", systemImage: "chevron.up") {
-                    metaData.movies.register.registerItems.sort(by: >)
+                Button("sort", systemImage: "chevron.up.chevron.down") {
+                    sort()
                 }
             }
         }
@@ -45,5 +42,14 @@ struct MoviesView: View {
             }
         }
         .navigationTitle("Filme")
+    }
+
+    private func sort() {
+        sortOrderReversed.toggle()
+        if sortOrderReversed {
+            metaData.movies.register.registerItems.sort(by: >)
+        } else {
+            metaData.movies.register.registerItems.sort()
+        }
     }
 }
