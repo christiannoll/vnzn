@@ -125,8 +125,9 @@ class StringBuilder {
                 s.append(AttributedString(text))
             case .parenthesis(let nodes):
                 //s.append(AttributedString("<a href=\""))
-                let url = URL(string: Self.buildUrl(parse(nodes)))
-                s.link = url!
+                if let url = URL(string: Self.buildUrl(parse(nodes))) {
+                    s.link = url
+                }
                 //s.append(AttributedString("\">"))
             case .brackets(let nodes):
                 s.append(parse(nodes))
