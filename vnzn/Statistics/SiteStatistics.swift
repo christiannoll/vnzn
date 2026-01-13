@@ -135,7 +135,9 @@ class SiteStatistics {
     
     private func calculateMaxWordCountPost() {
         if !data.postsData.isEmpty {
-            data.maxWordCountPostItem = StatisticPostItem(data.postsData.last!.postItem, data.postsData.last!.wordCount)
+            if let lastPostsData = data.postsData.last {
+                data.maxWordCountPostItem = StatisticPostItem(lastPostsData.postItem, lastPostsData.wordCount)
+            }
         }
     }
     
@@ -150,13 +152,17 @@ class SiteStatistics {
     
     private func calculateMaxLinkCountPost() {
         if !data.postsData.isEmpty {
-            data.maxLinkCountPostItem = StatisticPostItem(data.postsData.last!.postItem, data.postsData.last!.linkCount)
+            if let lastPostsData = data.postsData.last {
+                data.maxLinkCountPostItem = StatisticPostItem(lastPostsData.postItem, lastPostsData.linkCount)
+            }
         }
     }
 
     private func calculateMaxVisitsCountPost() {
         if !data.postsData.isEmpty {
-            data.maxVisitsPostItem = StatisticPostItem(data.postsData.last!.postItem, data.postsData.last!.visits)
+            if let lastPostsData = data.postsData.last {
+                data.maxVisitsPostItem = StatisticPostItem(lastPostsData.postItem, lastPostsData.visits)
+            }
         }
     }
 
