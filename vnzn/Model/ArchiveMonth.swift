@@ -32,14 +32,16 @@ class ArchiveMonth: Hashable {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy/MM/"
-        return VnznEnv.baseUrl + dateFormatter.string(from: post.date!)
+        guard let postDate = post.date else { return "" }
+        return VnznEnv.baseUrl + dateFormatter.string(from: postDate)
     }
     
     private func getMonthName() -> String {
         let post = posts[0]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
-        return dateFormatter.string(from: post.date!)
+        guard let postDate = post.date else { return "" }
+        return dateFormatter.string(from: postDate)
     }
 
     func hash(into hasher: inout Hasher) {
