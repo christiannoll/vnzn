@@ -31,7 +31,6 @@ struct TagItemView: View {
             orientation = newOrientation
         }
         .navigationTitle(tagItem.key)
-        .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden)
     }
 }
