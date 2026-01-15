@@ -13,8 +13,9 @@ struct vnznSearchIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult & OpensIntent {
-        let url = URL(string: "vnznapp://search-post?q=\(searchTerm)")!
-        EnvironmentValues().openURL(url)
+        if let url = URL(string: "vnznapp://search-post?q=\(searchTerm)") {
+            EnvironmentValues().openURL(url)
+        }
         return .result()
     }
 }

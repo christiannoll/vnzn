@@ -65,7 +65,8 @@ class PostViewModel {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateFormat = "yyyy/MM/dd/"
-        return dateFormatter.string(from: post.date!)
+        guard let postDate = post.date else { return "" }
+        return dateFormatter.string(from: postDate)
     }
 
     private func boldText(_ text: String) -> Text {
