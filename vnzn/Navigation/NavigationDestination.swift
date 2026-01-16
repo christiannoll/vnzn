@@ -72,6 +72,8 @@ struct NavigationDestination: ViewModifier {
                     SimilarPostsView(post: post)
                 case .web(let url):
                     SafariWebView(url: url)
+                case .portal:
+                    PortalView()
                 }
             }
     }

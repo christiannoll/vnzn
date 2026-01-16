@@ -34,4 +34,5 @@ enum NavigationTarget: Hashable {
     case copyright
     case similarPosts(Post)
     case web(URL)
+    case portal
 }

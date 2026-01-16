@@ -8,6 +8,7 @@ struct ExperimentsView: View {
         List {
             ExperimentButton(navigationTarget: NavigationTarget.past, title: "Reise in die Vergangenheit")
             ExperimentButton(navigationTarget: NavigationTarget.quotes, title: "Zitate")
+            ExperimentButton(navigationTarget: NavigationTarget.portal, title: "Das Portal")
         }
         .navigationTitle("Experimente")
         .buttonStyle(.plain)
