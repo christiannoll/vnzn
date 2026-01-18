@@ -11,7 +11,8 @@ struct PortalView: View {
 
     var body: some View {
         List {
-            if let tagItem = metaData.serials.getSerialsTagItem("Das Portal") {
+            let localizedKey = String(localized: String.LocalizationValue("Das Portal"))
+            if let tagItem = metaData.serials.getSerialsTagItem(localizedKey) {
                 ForEach(tagItem.posts) { post in
                     if post.type == PostType.text {
                         PostBasicView(posts: posts, selectedPost: post, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented)
