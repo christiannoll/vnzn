@@ -837,14 +837,14 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lade Daten"
+            "state" : "needs_review",
+            "value" : "Lade Daten…"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Load data"
+            "value" : "Load data…"
           }
         }
       }
