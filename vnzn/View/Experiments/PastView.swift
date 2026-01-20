@@ -81,8 +81,12 @@ struct PastView: View {
 
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = .spellOut
-            let stringValue: String = numberFormatter.string(from: NSNumber(value: distance)) ?? ""
-            distanceString = "Vor \(stringValue) Jahren:"
+            if distance == 1 {
+                distanceString = String(localized: "Vor einem Jahr:")
+            } else {
+                let stringValue: String = numberFormatter.string(from: NSNumber(value: distance)) ?? ""
+                distanceString = String(localized: "Vor \(stringValue) Jahren:").capitalized
+            }
         }
         return distanceString
     }

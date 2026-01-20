@@ -837,7 +837,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Lade Daten…"
           }
         },
@@ -1448,6 +1448,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vnzn.app does not collect or process any personal information from its users. The app is used to connect to vnzn servers that may or may not collect personal information and are not covered by this privacy policy."
+          }
+        }
+      }
+    },
+    "Vor %@ Jahren:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor %@ Jahren:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ years ago:"
+          }
+        }
+      }
+    },
+    "Vor einem Jahr:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor einem Jahr:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One year ago:"
           }
         }
       }
