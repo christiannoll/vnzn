@@ -95,6 +95,5 @@ import SwiftUI
         }
         
         currentNavigationPath.append(NavigationTarget.searchIntent(queryString))
-        SwiftDataService.shared.saveSearchItem(searchTerm: queryString)
     }
 }
