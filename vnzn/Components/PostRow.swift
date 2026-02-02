@@ -35,7 +35,7 @@ struct PostRow: View {
                 action()
             }
             .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 10, trailing: 6))
+            .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 20, trailing: 6))
             .listRowBackground(Color.clear)
         } else {
             VStack(alignment: .center) {
@@ -54,6 +54,7 @@ struct PostRow: View {
                 }
                 Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
+            .padding(.bottom, 10)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
         }
