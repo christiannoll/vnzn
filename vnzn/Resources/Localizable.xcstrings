@@ -929,22 +929,6 @@
         }
       }
     },
-    "Meta durchsuchen" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meta durchsuchen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search meta"
-          }
-        }
-      }
-    },
     "Mitteilungen" : {
       "localizations" : {
         "de" : {

@@ -40,8 +40,7 @@ struct TagsView: View {
             }
         }
         .contentMargins(.top, 0)
-        .searchable(text: $searchText, placement: .toolbar, prompt: "Kategorien durchsuchen")
-        .searchToolbarBehavior(.minimize)
+        .searchable(text: $searchText, placement: .automatic, prompt: "Kategorien durchsuchen")
         .selectNavigationDestination()
         .navigationTitle("Kategorien")
         .toolbarBackground(.visible, for: .tabBar)

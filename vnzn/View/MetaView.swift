@@ -7,24 +7,15 @@ struct MetaView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
 
-    @State private var searchText = ""
     @State private var viewModel = MetaViewModel()
 
     @Query(sort: \Post.date, order: .reverse) var posts: [Post]
-
-    var searchResults: [MetaItem] {
-        if searchText.isEmpty {
-            return viewModel.metaItems
-        } else {
-            return viewModel.metaItems.filter { $0.localizedValue.lowercased().contains(searchText.lowercased()) }
-        }
-    }
 
     var body: some View {
         @Bindable var router = router
         NavigationStack(path: $router.metaViewNavigationPath) {
             List {
-                ForEach(searchResults, id: \.navigationTarget) { item in
+                ForEach(viewModel.metaItems, id: \.navigationTarget) { item in
                     MetaViewButton(metaItem: item)
                 }
             }
@@ -62,14 +53,11 @@ struct MetaView: View {
             }
             .selectNavigationDestination()
             .navigationTitle("Meta")
-            .searchable(text: $searchText, placement: .toolbar, prompt: "Meta durchsuchen")
-            .searchToolbarBehavior(.minimize)
             .toolbarBackground(.visible, for: .tabBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("sort", systemImage: "chevron.up.chevron.down") {
                         viewModel.sortByNextOrder()
-                        searchText = ""
                     }
                 }
             }

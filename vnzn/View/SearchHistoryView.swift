@@ -33,6 +33,7 @@ struct SearchHistoryView: View {
                     Text(searchItem.post.title)
                         .bold()
                     Spacer()
+                    Text("\"" + searchItem.searchTerm + "\"")
                 }
                 Text(Date.createPostDate(searchItem.post)).foregroundStyle(.secondary).font(.footnote)
             }
