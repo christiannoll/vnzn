@@ -5,6 +5,7 @@ struct StatisticsView: View {
 
     @Query(sort: \Post.date) var posts: [Post]
     @Environment(Router.self) var router: Router
+    @Environment(MetaData.self) var metaData: MetaData
     @Environment(SiteStatistics.self) var statistics: SiteStatistics
 
     var body: some View {
@@ -66,6 +67,11 @@ struct StatisticsView: View {
                         Text("\(statistics.data.maxVisitsPostItem?.post.title ?? "")")
                     }
                 }
+            }
+        }
+        .task {
+            if statistics.data.numberOfPosts == 0 {
+                await statistics.createStatistics(posts, index: metaData.index, tags: metaData.tags, serials: metaData.serials)
             }
         }
         .navigationTitle("Statistik")
