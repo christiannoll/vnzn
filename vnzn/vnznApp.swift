@@ -31,7 +31,8 @@ struct vnznApp: App {
         .modelContainer(modelContainer)
         .onChange(of: scenePhase) {
             switch scenePhase {
-            case .background:
+            case .background, .inactive:
+                SwiftDataService.shared.save()
                 Task {
                     if await UserNotificationController.shared.areNotificationsAuthorized() {
                         scheduleAppRefreshTask()
