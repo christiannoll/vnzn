@@ -15,7 +15,6 @@ class PostViewModel {
     @MainActor
     func toggleIsFavourite() {
         post.isFavourite.toggle()
-        SwiftDataService.shared.save()
     }
 
     var contentType: PostType {

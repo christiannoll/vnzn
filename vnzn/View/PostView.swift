@@ -70,7 +70,7 @@ struct PostView: View {
                 }
             }
         }
-        .onAppear {
+        .onDisappear {
             DispatchQueue.main.async {
                 SwiftDataService.shared.saveHistoryItem(post: viewModel.post)
                 SwiftDataService.shared.incrementVisits(post: viewModel.post)
