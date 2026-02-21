@@ -4,20 +4,19 @@ import Foundation
 class Tags {
     
     var tagItems: [TagItem] = []
-    internal let lock = NSLock()
     private var currentSortOrder = PopularSortOrder.alphabetical
 
     var numberOfTagItems: Int {
         tagItems.count
     }
 
+    @MainActor
     func sortByNextOrder() {
-        lock.lock()
         currentSortOrder.next()
         sort()
-        lock.unlock()
     }
 
+    @MainActor
     func sort() {
         switch currentSortOrder {
         case .alphabetical: sortAlphabetical()
@@ -65,20 +64,18 @@ class Tags {
     @MainActor
     internal func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
-        lock.withLock() {
-            for tag in post.tags {
-                var found = false
-                for tagItem in tagItems {
-                    if tag == tagItem.key {
-                        _tagItems.append(tagItem)
-                        found = true
-                    }
-                }
-                if !found {
-                    let tagItem = TagItem(tag, "tags/")
+        for tag in post.tags {
+            var found = false
+            for tagItem in tagItems {
+                if tag == tagItem.key {
                     _tagItems.append(tagItem)
-                    tagItems.append(tagItem)
+                    found = true
                 }
+            }
+            if !found {
+                let tagItem = TagItem(tag, "tags/")
+                _tagItems.append(tagItem)
+                tagItems.append(tagItem)
             }
         }
         return _tagItems

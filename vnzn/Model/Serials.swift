@@ -13,23 +13,22 @@ class Serials : Tags {
         sort()
     }
 
+    @MainActor
     internal override func getTagItems(_ post: Post) async -> [TagItem] {
         var _tagItems: [TagItem] = []
-        lock.withLock() {
-            for serial in post.serials {
-                if serial.count > 0 {
-                    var found = false
-                    for tagItem in tagItems {
-                        if serial == tagItem.key {
-                            _tagItems.append(tagItem)
-                            found = true
-                        }
-                    }
-                    if !found {
-                        let tagItem = TagItem(serial, "serials/")
+        for serial in post.serials {
+            if serial.count > 0 {
+                var found = false
+                for tagItem in tagItems {
+                    if serial == tagItem.key {
                         _tagItems.append(tagItem)
-                        tagItems.append(tagItem)
+                        found = true
                     }
+                }
+                if !found {
+                    let tagItem = TagItem(serial, "serials/")
+                    _tagItems.append(tagItem)
+                    tagItems.append(tagItem)
                 }
             }
         }
