@@ -46,10 +46,8 @@ struct IndexView: View {
         .toolbarBackground(.visible, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
+                Button("sort", systemImage: "chevron.up.chevron.down") {
                     sort()
-                } label: {
-                    Image(systemName: "chevron.up.chevron.down")
                 }
             }
         }
