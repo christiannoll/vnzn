@@ -10,6 +10,8 @@ struct PhotoPosts: View {
     @State private var tagItemPosts: [Post] = []
     @State private var orientation = UIDeviceOrientation.unknown
 
+    @Environment(\.horizontalSizeClass) var sizeClass
+
     private let dataKey: String
     private let tagItemKey: String
 
@@ -96,7 +98,7 @@ struct PhotoPosts: View {
     }
 
     private var maxPostsCount: Int {
-        orientation.isLandscape ? 6 : 3
+        orientation.isLandscape ? 6 : (sizeClass == .compact ? 3 : 6)
     }
 }
 
