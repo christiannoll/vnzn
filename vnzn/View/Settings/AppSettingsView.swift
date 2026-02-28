@@ -47,6 +47,9 @@ struct AppSettingsView: View {
                         }
                     }
                 }
+                Section("Design") {
+                    AppearancePicker()
+                }
             }
             .selectNavigationDestination()
             .navigationTitle("Einstellungen")

@@ -209,6 +209,9 @@
         }
       }
     },
+    "Appearance" : {
+
+    },
     "Archiv" : {
       "localizations" : {
         "de" : {
@@ -304,6 +307,9 @@
           }
         }
       }
+    },
+    "Design" : {
+
     },
     "Die Nutzung von VnznApp unterliegt Apples Standard-EULA für Apps. In VnznApp bereitgestellte Trinkgelder schalten keine zusätzlichen Inhalte in der App frei." : {
       "localizations" : {

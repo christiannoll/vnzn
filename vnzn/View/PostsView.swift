@@ -11,6 +11,9 @@ struct PostsView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
+    @AppStorage("appearance") private var appearance: Appearance = .system
+    @Environment(\.colorScheme) private var systemColorScheme
+
     @Query() var postsVisibilities: [PostsVisibility]
     var postsVisibility: PostsVisibility? {
         postsVisibilities.first
@@ -52,6 +55,7 @@ struct PostsView: View {
             .toolbarBackground(.visible, for: .tabBar)
             .sheet(isPresented: $settingsVisible) {
                 AppSettingsView()
+                    .preferredColorScheme(appearance.resolved(with: systemColorScheme))
             }
             .onReceive(NotificationCenter.publisher(for: .fetchPosts)) { _ in
                 viewModel.fetchPosts()

@@ -11,6 +11,7 @@ struct vnznApp: App {
     private var modelContainer = createAppContainer()
 
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("appearance") private var appearance: Appearance = .system
 
     private static let appRefreshIdentifier = "de.vnzn.vnzn.scheduler"
 
@@ -24,6 +25,7 @@ struct vnznApp: App {
                 .environment(router)
                 .environment(metaData)
                 .environment(siteStatistics)
+                .preferredColorScheme(appearance.colorScheme)
                 .onOpenURL { url in
                     router.navigate(to: url)
                 }
