@@ -46,7 +46,7 @@ struct PostsView: View {
             }
             .toolbar {
                 PostsVisibilityView()
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("settings", systemImage: "gearshape") {
                         settingsVisible.toggle()
                     }

@@ -22,7 +22,7 @@ struct DiscoverSettingsView: View {
             }
             .navigationTitle("Einstellungen")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Fertig") {
                         dismiss()
                     }

@@ -54,7 +54,7 @@ struct AppSettingsView: View {
             .selectNavigationDestination()
             .navigationTitle("Einstellungen")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Fertig") {
                         dismiss()
                     }

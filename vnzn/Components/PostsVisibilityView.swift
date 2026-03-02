@@ -9,7 +9,7 @@ struct PostsVisibilityView: ToolbarContent {
     }
 
     var body: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
+        ToolbarItem(placement: .topBarLeading) {
             Menu("menu", systemImage: "line.3.horizontal.decrease") {
                 Button() {
                     if let postsVisibility {

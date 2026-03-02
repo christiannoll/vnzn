@@ -68,7 +68,7 @@ struct DiscoverView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("settings", systemImage: "ellipsis") {
                         settingsVisible.toggle()
                     }
