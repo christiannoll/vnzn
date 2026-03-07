@@ -33,7 +33,7 @@
         }
       }
     },
-    "© Copyright 2019-2025 – Urheberrechtshinweis" : {
+    "© Copyright 2019-2026 – Urheberrechtshinweis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -44,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "© Copyright 2019-2026"
+            "value" : "© Copyright 2019-2026 - Copyright notice"
           }
         }
       }
