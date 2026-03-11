@@ -55,7 +55,7 @@ struct AppSettingsView: View {
             .navigationTitle("Einstellungen")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Fertig") {
+                    Button("Fertig", systemImage: "xmark") {
                         dismiss()
                     }
                 }
