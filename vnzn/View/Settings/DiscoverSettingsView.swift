@@ -23,7 +23,7 @@ struct DiscoverSettingsView: View {
             .navigationTitle("Einstellungen")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Fertig") {
+                    Button("Fertig", systemImage: "xmark") {
                         dismiss()
                     }
                 }
