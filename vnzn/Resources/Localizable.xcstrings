@@ -33,6 +33,22 @@
         }
       }
     },
+    "%@, %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "© Copyright 2019-2026 – Urheberrechtshinweis" : {
       "localizations" : {
         "de" : {
@@ -216,6 +232,12 @@
             "state" : "translated",
             "value" : "Anzeige"
           }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
         }
       }
     },
@@ -360,6 +382,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Use of Vnzn.app is governed by Apple’s Standard EULA for apps. Tips provided in Vnzn.app do no unlock any additional content in the app."
+          }
+        }
+      }
+    },
+    "Doppeltippen zum Öffnen" : {
+
+    },
+    "Doppeteltippen zum Öffnen" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doppeteltippen zum Öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to open"
           }
         }
       }
