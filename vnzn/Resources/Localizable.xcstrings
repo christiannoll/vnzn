@@ -387,21 +387,11 @@
       }
     },
     "Doppeltippen zum Öffnen" : {
-
-    },
-    "Doppeteltippen zum Öffnen" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doppeteltippen zum Öffnen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Double tap to open"
+            "value" : "Doppeltippen zum Öffnen"
           }
         }
       }
