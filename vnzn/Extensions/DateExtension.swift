@@ -21,7 +21,11 @@ extension Date {
 
     static func createPostDate(_ date: Date?) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
+        if VnznEnv.isCurrentLanguageEnglish {
+            dateFormatter.locale = Locale(identifier: "en_US")
+        } else {
+            dateFormatter.locale = Locale(identifier: "de_DE")
+        }
         dateFormatter.dateFormat = "dd MMM yyyy"
         if let date {
             return dateFormatter.string(from: date)
