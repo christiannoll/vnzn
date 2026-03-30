@@ -32,6 +32,10 @@ struct PostsView: View {
                 let slicedItems = slice(items: filteredItems)
                 ForEach (slicedItems) { post in
                     PostRow(post: post, posts: slicedItems, action: {})
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel("\(post.title), \(Date.createPostDate(post))")
+                        .accessibilityHint("Doppeltippen zum Öffnen")
+                        .accessibilityAddTraits(.isButton)
                 }
             }
             .selectNavigationDestination()
