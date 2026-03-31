@@ -34,7 +34,7 @@ struct PostsView: View {
                     PostRow(post: post, posts: slicedItems, action: {})
                         .accessibilityElement(children: .ignore)
                         .accessibilityLabel("\(post.title), \(Date.createPostDate(post))")
-                        .accessibilityHint("Doppeltippen zum Öffnen")
+                        .accessibilityHint("Doppeltippen zum Anzeigen des Blogeintrags")
                         .accessibilityAddTraits(.isButton)
                 }
             }
