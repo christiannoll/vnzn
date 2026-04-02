@@ -1620,6 +1620,23 @@
         }
       }
     },
+    "Zufall" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zufälliger Post"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Random Post"
+          }
+        }
+      }
+    },
     "Zuletzt gesucht" : {
       "localizations" : {
         "de" : {
