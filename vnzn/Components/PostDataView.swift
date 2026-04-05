@@ -35,6 +35,7 @@ struct PostDataView: View {
             } else {
                 PostImage(post: post)
                     .frame(width: reduceData ? 200 : 300, height: reduceData ? 200 : 300)
+                    .cornerRadius(12)
             }
         }
         .environment(\.openURL, OpenURLAction { url in
