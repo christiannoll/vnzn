@@ -98,7 +98,7 @@ struct DiscoverView: View {
     }
 
     private var quoteTagItemKey: String {
-        Locale.isEnglish ? "Quote" : "Zitat"
+        Locale.isEnglish ? "Quotes" : "Zitate"
     }
 
     private func postOfTheDayVisible() -> Bool {
@@ -144,8 +144,8 @@ struct DiscoverView: View {
     }
 
     private var quotes: [Post] {
-        if let index = metaData.index.getIndexItem(quoteTagItemKey) {
-            return index.posts
+        if let tagItem = metaData.serials.getTagItem(quoteTagItemKey) {
+            return tagItem.posts
         }
         return []
     }
