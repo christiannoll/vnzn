@@ -17,6 +17,22 @@
         }
       }
     },
+    "Fragmente aus Vergangenheit, Gegenwart und Zukunft" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fragmente aus Vergangenheit, Gegenwart und Zukunft"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fragments from the past, present and future"
+          }
+        }
+      }
+    },
     "Off" : {
       "localizations" : {
         "de" : {

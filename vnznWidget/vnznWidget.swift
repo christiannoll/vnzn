@@ -24,7 +24,7 @@ struct Provider: @MainActor TimelineProvider {
 
     private func createPlaceholderPost() -> Post {
         let post = Post(title: String(localized: "Title"))
-        post.data = "Fragmente aus Vergangenheit, Gegenwart und Zukunft"
+        post.data = String(localized:"Fragmente aus Vergangenheit, Gegenwart und Zukunft")
         return post
     }
 
