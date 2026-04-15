@@ -8,7 +8,7 @@ struct vnznSearchIntent: AppIntent {
     static let description: LocalizedStringResource = "Search for posts"
     static var openAppWhenRun: Bool { true }
 
-    @Parameter(title: "Search term")
+    @Parameter(title: LocalizedStringResource("Search term"))
     var searchTerm: String
 
     @MainActor
@@ -27,7 +27,7 @@ struct vnznAppShortcutsProvider: AppShortcutsProvider {
             phrases: [
                 "Search for \(.applicationName) posts"
             ],
-            shortTitle: "Search for posts",
+            shortTitle: LocalizedStringResource("Search for posts"),
             systemImageName: "magnifyingglass"
         )
     }

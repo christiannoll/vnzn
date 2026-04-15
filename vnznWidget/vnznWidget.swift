@@ -93,7 +93,7 @@ struct vnznWidget: Widget {
             }
         }
         .configurationDisplayName("v.n.z.n Widget")
-        .description("Shows the last post")
+        .description(String(localized: "Shows the last post"))
     }
 }
 
