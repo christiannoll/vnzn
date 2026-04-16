@@ -17,10 +17,13 @@ struct SearchIntentView: View {
     }
 
     var body: some View {
-        List {
-            ForEach (searchResults) { post in
-                PostRow(post: post, posts: searchResults, action: {})
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible())]) {
+                ForEach (searchResults) { post in
+                    PostRow(post: post, posts: searchResults, action: {})
+                }
             }
+            .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(searchText)
