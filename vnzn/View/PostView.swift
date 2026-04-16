@@ -24,6 +24,7 @@ struct PostView: View {
                     Text(viewModel.post.title)
                         .font(.title2)
                         .bold()
+                        .accessibilityAddTraits(.isHeader)
                     Spacer()
                 }
                 .padding(.top, 60)

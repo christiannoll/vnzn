@@ -31,6 +31,8 @@ struct PhotoPosts: View {
                             PostImage(post: post)
                                 .frame(width: 100, height: 100)
                                 .cornerRadius(8)
+                                .accessibilityAddTraits(.isImage)
+                                .accessibilityLabel(post.title)
                             Spacer()
                         }
                     }
