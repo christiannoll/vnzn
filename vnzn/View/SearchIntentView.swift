@@ -5,27 +5,27 @@ struct SearchIntentView: View {
 
     let searchText: String
 
-    @Query(sort: \Post.date, order: .reverse) var posts: [Post]
-
-    var searchResults: [Post] {
-        if searchText.isEmpty {
-            return posts
-        } else {
-            let searchTerm = searchText.lowercased()
-            return posts.filter { $0.data.lowercased().contains(searchTerm) || $0.title.lowercased().contains(searchTerm) }
-        }
-    }
+    @StateObject private var viewModel = PostsViewModel()
+    @State private var dataRetrieved = false
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())]) {
-                ForEach (searchResults) { post in
-                    PostRow(post: post, posts: searchResults, action: {})
+                let filteredItems = viewModel.filteredItems
+                ForEach (filteredItems) { post in
+                    PostRow(post: post, posts: filteredItems, action: {})
                 }
             }
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(searchText)
+        .task {
+            if dataRetrieved == false {
+                viewModel.fetchPosts()
+                viewModel.searchText = searchText
+                dataRetrieved = true
+            }
+        }
     }
 }
