@@ -64,6 +64,10 @@ struct PhotoPosts: View {
                     if let tagItem = photoTagItem() {
                         tagItemPosts.removeAll()
                         for loadedPostIndex in loadedPostIndices.posts {
+                            guard loadedPostIndex < tagItem.posts.count else {
+                                try setNewPhotoPostsIndices()
+                                return
+                            }
                             tagItemPosts.append(tagItem.posts[loadedPostIndex])
                         }
                     }
