@@ -58,6 +58,7 @@ class UpdateService {
         NotificationCenter.post(.fetchPosts)
     }
 
+    @MainActor
     private func fullSync(_ modelContext:  ModelContext, _ languageChanged: Bool) async throws {
         let items = await fetchItems(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
 
