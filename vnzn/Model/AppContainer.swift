@@ -4,7 +4,15 @@ import SwiftData
 @MainActor
 func createAppContainer() -> ModelContainer {
     do {
-        let container = try ModelContainer(for: Post.self, HistoryItem.self, Settings.self, SearchItem.self, PostsVisibility.self)
+        let groupURL = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.de.vnzn.vnzn")!
+            .appendingPathComponent("Library/Application Support/default.store")
+
+        let config = ModelConfiguration(url: groupURL)
+        let container = try ModelContainer(
+            for: Post.self, HistoryItem.self, Settings.self, SearchItem.self, PostsVisibility.self,
+            configurations: config
+        )
         container.mainContext.autosaveEnabled = false
 
         let languageChanged = resetIfLanguageChanged(container.mainContext)
