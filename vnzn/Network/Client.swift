@@ -11,6 +11,11 @@ enum NetworkError: Error {
 
 class Client {
 
+    static private let dateFormatter = ISO8601DateFormatter()
+
+    static let shared = Client()
+    private init() { }
+
     func fetchRawData(fromURL: String) async -> Data? {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }
@@ -27,7 +32,27 @@ class Client {
 
         return downloadedData
     }
-    
+
+    func fetchLastUpdate() async -> Double {
+        let fromUrl = VnznEnv.baseUrl + "app/last_update.txt"
+        return await fetchDate(fromUrl: fromUrl)
+    }
+
+    func fetchLastFullSync() async -> Double {
+        let fromUrl = VnznEnv.baseUrl + "app/last_fullsync.txt"
+        return await fetchDate(fromUrl: fromUrl)
+    }
+
+    private func fetchDate(fromUrl: String) async -> Double {
+        do {
+            let dateString = try await fetchData(fromUrl: fromUrl)
+            return Self.dateFormatter.date(from: dateString)?.timeIntervalSince1970 ?? 0
+        } catch {
+            print("[fetchDate] Error:", error)
+            return 0
+        }
+    }
+
     private func downloadData(fromURL: String) async -> String? {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrl }

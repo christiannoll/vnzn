@@ -42,30 +42,6 @@ func createAppContainer() -> ModelContainer {
     }
 }
 
-func fetchLastUpdate() async -> Double {
-    let fromUrl = VnznEnv.baseUrl + "app/last_update.txt"
-    return await fetchDate(fromUrl: fromUrl)
-}
-
-func fetchLastFullSync() async -> Double {
-    let fromUrl = VnznEnv.baseUrl + "app/last_fullsync.txt"
-    return await fetchDate(fromUrl: fromUrl)
-}
-
-private func fetchDate(fromUrl: String) async -> Double {
-    do {
-        let dateString = try await Client().fetchData(fromUrl: fromUrl)
-        let currentDateFormatter = DateFormatter()
-        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        if let date = currentDateFormatter.date(from:dateString) {
-            return date.timeIntervalSince1970
-        }
-    } catch {
-        print(error)
-    }
-    return 0
-}
-
 private func resetIfLanguageChanged(_ modelContext: ModelContext) -> Bool {
     var changed = false
     do {

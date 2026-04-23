@@ -4,7 +4,7 @@ import BackgroundTasks
 
 @main
 struct vnznApp: App {
-    
+
     private var router = Router()
     private var siteStatistics = SiteStatistics()
     private var metaData = MetaData()
@@ -18,7 +18,7 @@ struct vnznApp: App {
     init() {
         SwiftDataService.shared.setup(modelContext: modelContainer.mainContext)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -31,39 +31,67 @@ struct vnznApp: App {
                 }
         }
         .modelContainer(modelContainer)
-        .onChange(of: scenePhase) {
-            switch scenePhase {
-            case .background, .inactive:
+        .onChange(of: scenePhase) { _, newPhase in
+            switch newPhase {
+            case .background:
                 SwiftDataService.shared.save()
-                Task {
-                    if await UserNotificationController.shared.areNotificationsAuthorized() {
-                        scheduleAppRefreshTask()
-                    }
-                }
+                scheduleAppRefreshTask()
             default:
                 break
             }
         }
+
         .backgroundTask(.appRefresh(Self.appRefreshIdentifier)) {
-            if await newItemsAvailable() {
-                await UserNotificationController.shared.sendNotification(message: String(localized: "Neue Posts verfügbar!"), title: "vnzn.app", sound: true)
-            }
+            await handleAppRefresh()
+        }
+    }
+
+    private func handleAppRefresh() async {
+        scheduleAppRefreshTask()
+
+        guard await UserNotificationController.shared.areNotificationsAuthorized() else {
+            print("[BGTask] Notifications not authorized")
+            return
+        }
+
+        let hasNewItems = await newItemsAvailable()
+
+        if hasNewItems {
+            await UserNotificationController.shared.sendNotification(
+                message: String(localized: "Neue Posts verfügbar!"),
+                title: "vnzn.app",
+                sound: true
+            )
+            print("[BGTask] Notification sent")
+        } else {
+            print("[BGTask] No new items")
         }
     }
 
     private func scheduleAppRefreshTask() {
         let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshIdentifier)
-        request.earliestBeginDate = .now.addingTimeInterval(30 * 60)//(24 * 3600)
+        request.earliestBeginDate = Date().addingTimeInterval(15 * 60)
+
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("[BGTaskScheduler] submitted task with id: \(request.identifier)")
+            print("[BGTaskScheduler] scheduled:", request.earliestBeginDate ?? Date())
         } catch {
-            print("[BGTaskScheduler] error:", error)
+            print("[BGTaskScheduler] scheduling error:", error)
         }
     }
 
     private func newItemsAvailable() async -> Bool {
-        let lastUpdateFromServer = await fetchLastUpdate()
+        let lastUpdateFromServer: Double = await withTaskGroup(of: Double?.self) { group in
+            group.addTask { await Client.shared.fetchLastUpdate() }
+                group.addTask {
+                    try? await Task.sleep(nanoseconds: 20_000_000_000)
+                    return nil // Timeout → nil
+                }
+
+                let result = await group.next() ?? nil
+                group.cancelAll()
+                return result ?? 0
+            }
 
         let lastUpdateLocal = UserDefaults.standard.double(forKey: UpdateService.lastUpdateKey)
         return lastUpdateFromServer > lastUpdateLocal

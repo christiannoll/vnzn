@@ -9,8 +9,8 @@ final class UpdateService {
     static let lastFullSyncKey = "lastFullSync"
 
     func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
-        async let update = fetchLastUpdate()
-        async let fullSync = fetchLastFullSync()
+        async let update = Client.shared.fetchLastUpdate()
+        async let fullSync = Client.shared.fetchLastFullSync()
 
         let (lastUpdateFromServer, lastFullSyncFromServer) = await (update, fullSync)
 
@@ -150,7 +150,7 @@ final class UpdateService {
 
     private func fetchItems() async -> [Item] {
         do {
-            let xml = try await Client().fetchData(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
+            let xml = try await Client.shared.fetchData(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
             return contentParser.parse(xmlString: xml)
         } catch {
             print("Fetch items error:", error)
@@ -185,7 +185,7 @@ final class UpdateService {
 
     private func fetchImageData(item: Item) async -> Data? {
         let url = VnznEnv.baseRootUrl + "images/" + item.data
-        return await Client().fetchRawData(fromURL: url)
+        return await Client.shared.fetchRawData(fromURL: url)
     }
 
     private func createPost(from item: Item, image: Data?) -> Post {
