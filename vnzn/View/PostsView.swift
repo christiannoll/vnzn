@@ -10,6 +10,7 @@ struct PostsView: View {
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
+    @Environment(NotificationHandler.self) var notificationHandler: NotificationHandler
 
     @AppStorage("appearance") private var appearance: Appearance = .system
     @Environment(\.colorScheme) private var systemColorScheme
@@ -39,14 +40,16 @@ struct PostsView: View {
                 }
             }
             .selectNavigationDestination()
-            //.searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
             .scrollContentBackground(.hidden)
             .navigationTitle("v.n.z.n")
             .refreshable {
-                Task {
-                    let updateService = UpdateService()
-                    try await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
+                refreshItems()
+            }
+            .onChange(of: notificationHandler.newItemsAvailable) {
+                if notificationHandler.newItemsAvailable {
+                    refreshItems()
                 }
+                notificationHandler.newItemsAvailable = false
             }
             .toolbar {
                 PostsVisibilityView()
@@ -68,7 +71,14 @@ struct PostsView: View {
             }
         }
     }
-    
+
+    private func refreshItems() {
+        Task {
+            let updateService = UpdateService()
+            try await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
+        }
+    }
+
     private func shouldInclude(_ post: Post) -> Bool {
         if let postsVisibility {
             if postsVisibility.onlyFavourites && !post.isFavourite {

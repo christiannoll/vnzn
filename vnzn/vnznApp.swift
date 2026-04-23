@@ -10,6 +10,8 @@ struct vnznApp: App {
     private var metaData = MetaData()
     private var modelContainer = createAppContainer()
 
+    @State private var notificationHandler = NotificationHandler()
+
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("appearance") private var appearance: Appearance = .system
 
@@ -25,6 +27,7 @@ struct vnznApp: App {
                 .environment(router)
                 .environment(metaData)
                 .environment(siteStatistics)
+                .environment(notificationHandler)
                 .preferredColorScheme(appearance.colorScheme)
                 .onOpenURL { url in
                     router.navigate(to: url)

@@ -3,6 +3,11 @@ import SwiftUI
 import UserNotifications
 import OSLog
 
+enum NewBlogEntryInfo {
+    static let key = "type"
+    static let value = "new_blog_entry"
+}
+
 final class UserNotificationController: Sendable {
 
     let logger = Logger()
@@ -17,6 +22,7 @@ final class UserNotificationController: Sendable {
             let content = UNMutableNotificationContent()
             content.title = title
             content.body = NSLocalizedString(message, comment: "")
+            content.userInfo = [NewBlogEntryInfo.key: NewBlogEntryInfo.value]
             content.sound = sound ? .default : nil
             content.interruptionLevel = .active
             let uuidString = UUID().uuidString
