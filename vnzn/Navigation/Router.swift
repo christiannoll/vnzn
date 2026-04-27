@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import OSLog
 
 @Observable class Router {
     
@@ -12,6 +13,8 @@ import SwiftUI
     }
     
     var selectedTab = Tabs.posts
+
+    let logger = Logger()
 
     var postsViewNavigationPath = NavigationPath()
     var searchViewNavigationPath = NavigationPath()
@@ -57,12 +60,12 @@ import SwiftUI
     @MainActor
     func navigate(to url: URL) {
         guard url.scheme == "vnznapp" else {
-            print("Invalid URL scheme")
+            logger.debug("Invalid URL scheme")
             return
         }
 
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            print("Invalid URL")
+            logger.debug("Invalid URL")
             return
         }
 
@@ -73,13 +76,13 @@ import SwiftUI
         case "search-post":
             handleSearchPostLink(components)
         default:
-            print("Unknown URL, we can't handle this one!")
+            logger.debug("Unknown URL, we can't handle this one!")
         }
     }
 
     private func handleViewPostLink(_ components: URLComponents) {
         guard let postIdString = components.queryItems?.first(where: { $0.name == "id" })?.value else {
-            print("Id not found")
+            logger.debug("Id not found")
             return
         }
 
@@ -90,7 +93,7 @@ import SwiftUI
     @MainActor
     private func handleSearchPostLink(_ components: URLComponents) {
         guard let queryString = components.queryItems?.first(where: { $0.name == "q" })?.value else {
-            print("Query not found")
+            logger.debug("Query not found")
             return
         }
         
