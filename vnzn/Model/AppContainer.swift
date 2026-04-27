@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import OSLog
 
 @MainActor
 func createAppContainer() -> ModelContainer {
@@ -59,7 +60,7 @@ private func resetIfLanguageChanged(_ modelContext: ModelContext) -> Bool {
             UserDefaults.standard.set(Locale.currentLanguage, forKey: Locale.dataKey)
         }
     } catch {
-        print(error.localizedDescription)
+        Logger().error("\(error.localizedDescription)")
     }
     return changed
 }

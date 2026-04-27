@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import OSLog
 
 class SwiftDataService {
     
@@ -25,7 +26,7 @@ class SwiftDataService {
         do {
             try modelContext.save()
         } catch {
-            print(error.localizedDescription)
+            Logger().error("\(error.localizedDescription)")
         }
     }
 

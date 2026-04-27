@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import OSLog
 
 final class UpdateService {
 
@@ -153,7 +154,7 @@ final class UpdateService {
             let xml = try await Client.shared.fetchData(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
             return contentParser.parse(xmlString: xml)
         } catch {
-            print("Fetch items error:", error)
+            Logger().error("Fetch items error: \(error)")
             return []
         }
     }
