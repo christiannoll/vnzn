@@ -1,7 +1,10 @@
 import Foundation
+import OSLog
 
 public class MarkdownParser {
-    
+
+    private let logger = Logger()
+
     public static func parse(text: String) -> [MarkdownNode] {
         let parser = MarkdownParser(text: text)
         let parsedNodes = parser.parseLinks(elements: parser.parse())
@@ -93,7 +96,7 @@ public class MarkdownParser {
             if case let .text(name) = elements.first {
                 return [.htmlelement(name)]
             } else {
-                print("Error: Unable to parse HTML element.")
+                logger.error("Unable to parse HTML element.")
                 return elements
             }
         }

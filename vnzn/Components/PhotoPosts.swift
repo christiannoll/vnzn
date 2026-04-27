@@ -1,8 +1,10 @@
 import SwiftUI
+import OSLog
 
 struct PhotoPosts: View {
 
     private let posts: [Post]
+    private let logger = Logger()
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
@@ -73,13 +75,13 @@ struct PhotoPosts: View {
                     }
                 }
             } catch {
-                print(error.localizedDescription)
+                logger.error("\(error.localizedDescription)")
             }
         } else {
             do {
                 try setNewPhotoPostsIndices()
             } catch {
-                print(error.localizedDescription)
+                logger.error("\(error.localizedDescription)")
             }
         }
     }

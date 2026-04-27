@@ -1,6 +1,9 @@
 import UIKit
+import OSLog
 
 public struct EmailController {
+
+    private static let logger = Logger()
 
     @MainActor
     public static func sendEmail(address: String, subject: String = "", message: String = "") {
@@ -13,13 +16,13 @@ public struct EmailController {
         ]
 
         guard let url = components.url else {
-            print("Failed to create mailto URL")
+            logger.debug("Failed to create mailto URL")
             return
         }
 
         UIApplication.shared.open(url) { success in
             if !success {
-                print("Failed to open mailto URL \(url)")
+                logger.debug("Failed to open mailto URL \(url)")
             }
         }
     }

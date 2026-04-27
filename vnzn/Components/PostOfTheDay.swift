@@ -1,8 +1,10 @@
 import SwiftUI
+import OSLog
 
 struct PostOfTheDay: View {
 
     let posts: [Post]
+    private let logger = Logger()
 
     @State private var selectedPost: Post
     @Environment(Router.self) var router: Router
@@ -54,13 +56,13 @@ struct PostOfTheDay: View {
                     }
                 }
             } catch {
-                print(error.localizedDescription)
+                logger.error("\(error.localizedDescription)")
             }
         } else {
             do {
                 try setNewPostOfTheDayIndex()
             } catch {
-                print(error.localizedDescription)
+                logger.error("\(error.localizedDescription)")
             }
         }
     }
