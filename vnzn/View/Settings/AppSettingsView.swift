@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import NotificationCenter
+import OSLog
 
 struct AppSettingsView: View {
 
@@ -78,7 +79,7 @@ private extension UNUserNotificationCenter {
             do {
                 _ = try await self.requestAuthorization(options: [.badge, .sound, .alert])
             } catch {
-                print("Authorization request failed: \(error)")
+                Logger().error("Authorization request failed: \(error)")
             }
         } else {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {

@@ -1,5 +1,6 @@
 import Foundation
 import SwiftData
+import OSLog
 
 enum NetworkError: Error {
     case badUrl
@@ -22,7 +23,7 @@ class Client {
             let (data, _) = try await URLSession.shared.data(from: url)
             return data
         } catch {
-            print("Error fetching data: \(error)")
+            Logger().error("Error fetching data: \(error)")
             return nil
         }
     }
@@ -48,7 +49,7 @@ class Client {
             let dateString = try await fetchData(fromUrl: fromUrl)
             return Self.dateFormatter.date(from: dateString)?.timeIntervalSince1970 ?? 0
         } catch {
-            print("[fetchDate] Error:", error)
+            Logger().error("[fetchDate] Error: \(error)")
             return 0
         }
     }
@@ -67,15 +68,15 @@ class Client {
             
             return decodedResponse
         } catch NetworkError.badUrl {
-            print("There was an error creating the URL")
+            Logger().error("There was an error creating the URL")
         } catch NetworkError.badResponse {
-            print("Did not get a valid response")
+            Logger().error("Did not get a valid response")
         } catch NetworkError.badStatus {
-            print("Did not get a 2xx status code from the response")
+            Logger().error("Did not get a 2xx status code from the response")
         } catch NetworkError.failedToDecodeResponse {
-            print("Failed to decode response into the given type")
+            Logger().error("Failed to decode response into the given type")
         } catch {
-            print("An error occured downloading the data")
+            Logger().error("An error occured downloading the data")
         }
         
         return nil
