@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import BackgroundTasks
+import OSLog
 
 @main
 struct vnznApp: App {
@@ -53,7 +54,7 @@ struct vnznApp: App {
         scheduleAppRefreshTask()
 
         guard await UserNotificationController.shared.areNotificationsAuthorized() else {
-            print("[BGTask] Notifications not authorized")
+            Logger().error("[BGTask] Notifications not authorized")
             return
         }
 
@@ -65,9 +66,9 @@ struct vnznApp: App {
                 title: "vnzn.app",
                 sound: true
             )
-            print("[BGTask] Notification sent")
+            Logger().error("[BGTask] Notification sent")
         } else {
-            print("[BGTask] No new items")
+            Logger().error("[BGTask] No new items")
         }
     }
 
@@ -77,9 +78,9 @@ struct vnznApp: App {
 
         do {
             try BGTaskScheduler.shared.submit(request)
-            print("[BGTaskScheduler] scheduled:", request.earliestBeginDate ?? Date())
+            Logger().error("[BGTaskScheduler] scheduled: \(request.earliestBeginDate ?? Date())")
         } catch {
-            print("[BGTaskScheduler] scheduling error:", error)
+            Logger().error("[BGTaskScheduler] scheduling error: \(error)")
         }
     }
 

@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Combine
+import OSLog
 
 @MainActor
 class PostsViewModel: ObservableObject {
@@ -28,7 +29,7 @@ class PostsViewModel: ObservableObject {
                 }
                 .assign(to: &$filteredItems)
         } catch {
-            print(error.localizedDescription)
+            Logger().error("\(error.localizedDescription)")
         }
     }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 
 class ContentParser : NSObject, XMLParserDelegate {
     
@@ -121,7 +122,7 @@ class ContentParser : NSObject, XMLParserDelegate {
             //xmlString = try String(contentsOf: URL(fileURLWithPath: filePath))
         }
         catch {
-            print("Error: \(error)")
+            Logger().error("Error: \(error)")
         }
         return xmlString
     }

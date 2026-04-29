@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import OSLog
 
 struct SimilarPostsView: View {
 
@@ -46,7 +47,7 @@ struct SimilarPostsView: View {
                 }
             }
         } catch {
-            print(error.localizedDescription)
+            Logger().error("\(error.localizedDescription)")
         }
         return fetchedSimilarPosts
     }

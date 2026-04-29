@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import OSLog
 
 struct SearchHistoryView: View {
 
@@ -47,7 +48,7 @@ struct SearchHistoryView: View {
         do {
             try modelContext.delete(model: SearchItem.self)
         } catch {
-            print("Failed to delete all history items.")
+            Logger().error("Failed to delete all history items.")
         }
     }
 }
