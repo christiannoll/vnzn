@@ -6,7 +6,6 @@ struct NodeParser {
         var index = 0
         var nodesArray = [[MarkdownNode]]()
         var currentNodes: [MarkdownNode] = []
-        //nodesArray.append(currentNodes)
         
         let markdownNodes = MarkdownParser.parse(text: text)
         

@@ -11,10 +11,6 @@ class PostsViewModel: ObservableObject {
 
     var posts: [Post] = []
 
-    init() {
-        //fetchPosts()
-    }
-
     func fetchPosts() {
         do {
             let postFetchDescriptor = FetchDescriptor<Post>(sortBy: [ SortDescriptor(\.date, order: .reverse)])

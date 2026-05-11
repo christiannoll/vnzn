@@ -1,10 +1,3 @@
-//
-//  vnznTests.swift
-//  vnznTests
-//
-//  Created by Christian on 09.11.24.
-//
-
 import Testing
 @testable import vnzn
 

@@ -1,10 +1,3 @@
-//
-//  vnznUITests.swift
-//  vnznUITests
-//
-//  Created by Christian on 09.11.24.
-//
-
 import XCTest
 
 final class vnznUITests: XCTestCase {

@@ -1,10 +1,3 @@
-//
-//  vnznWidgetControl.swift
-//  vnznWidget
-//
-//  Created by Christian on 16.01.25.
-//
-
 import AppIntents
 import SwiftUI
 import WidgetKit

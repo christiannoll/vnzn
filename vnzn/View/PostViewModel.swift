@@ -50,7 +50,6 @@ class PostViewModel {
     }
 
     func createPostUrl() -> String {
-        //guard let selectedPost = post else { return VnznEnv.baseUrl }
         var url = VnznEnv.baseUrl
 
         url.append(createDatePath())
