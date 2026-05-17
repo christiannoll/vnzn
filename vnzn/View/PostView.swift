@@ -37,28 +37,7 @@ struct PostView: View {
                 }
                 .padding(.top, 6)
                 HStack {
-                    ForEach(viewModel.tagStrings(), id: \.self) { tag in
-                        Button {
-                            if let tagItem = metaData.tags.getTagItem(tag) {
-                                router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
-                            }
-                        } label: {
-                            Text("#" + tag + " ")
-                                .foregroundStyle(Color.accentColor)
-                                .font(.footnote)
-                                .lineLimit(1)
-                        }
-                    }
-                    if viewModel.post.type == .text {
-                        Button {
-                            router.currentNavigationPath.append(NavigationTarget.similarPosts(viewModel.post))
-                        } label: {
-                            Text("#Ähnliche Posts")
-                                .foregroundStyle(Color.accentColor)
-                                .font(.footnote)
-                                .lineLimit(1)
-                        }
-                    }
+                    tagButtons
                 }
                 .padding(.top, 6)
                 Spacer()
@@ -110,6 +89,49 @@ struct PostView: View {
 
     private func nextPost(_ currentId: Int) -> Post? {
         posts.first { $0.id == viewModel.post.id - 1 }
+    }
+
+    private func photoTagItem(_ tagItemKey: String) -> TagItem? {
+        metaData.serials.getTagItem(tagItemKey)
+    }
+
+    @ViewBuilder
+    private var tagButtons: some View {
+        ForEach(viewModel.tagStrings(), id: \.self) { tag in
+            Button {
+                if let tagItem = metaData.tags.getTagItem(tag) {
+                    router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                }
+            } label: {
+                Text("#" + tag + " ")
+                    .foregroundStyle(Color.accentColor)
+                    .font(.footnote)
+                    .lineLimit(1)
+            }
+        }
+        if viewModel.post.type == .text {
+            Button {
+                router.currentNavigationPath.append(NavigationTarget.similarPosts(viewModel.post))
+            } label: {
+                Text("#Ähnliche Posts")
+                    .foregroundStyle(Color.accentColor)
+                    .font(.footnote)
+                    .lineLimit(1)
+            }
+        } else if viewModel.post.type == .image {
+            ForEach(Array(viewModel.post.serials.enumerated()), id: \.offset) { _, title in
+                Button {
+                    if let tagItem = photoTagItem(title) {
+                        router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
+                    }
+                } label: {
+                    Text(title)
+                        .foregroundStyle(Color.accentColor)
+                        .font(.footnote)
+                        .lineLimit(1)
+                }
+            }
+        }
     }
 }
 
