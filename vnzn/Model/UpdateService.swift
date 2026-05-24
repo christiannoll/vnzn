@@ -154,7 +154,8 @@ final class UpdateService {
             let xml = try await Client.shared.fetchData(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
             return contentParser.parse(xmlString: xml)
         } catch {
-            Logger().error("Fetch items error: \(error)")
+            let logger = Logger(subsystem: "de.vnzn.vnzn", category: "UpdateService")
+            logger.error("Fetch items error: \(error)")
             return []
         }
     }
