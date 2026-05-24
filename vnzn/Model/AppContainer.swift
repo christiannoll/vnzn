@@ -32,6 +32,8 @@ func createAppContainer() -> ModelContainer {
             container.mainContext.insert(postsVisibility)
         }
 
+        try container.mainContext.save()
+
         Task {
             let updateService = UpdateService()
             try await updateService.fetchUpdates(modelContext: container.mainContext, languageChanged)

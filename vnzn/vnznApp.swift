@@ -9,7 +9,7 @@ struct vnznApp: App {
     private var router = Router()
     private var siteStatistics = SiteStatistics()
     private var metaData = MetaData()
-    private var modelContainer = createAppContainer()
+    private static let modelContainer = createAppContainer()
 
     @State private var notificationHandler = NotificationHandler()
 
@@ -19,7 +19,7 @@ struct vnznApp: App {
     private static let appRefreshIdentifier = "de.vnzn.vnzn.scheduler"
 
     init() {
-        SwiftDataService.shared.setup(modelContext: modelContainer.mainContext)
+        SwiftDataService.shared.setup(modelContext: Self.modelContainer.mainContext)
     }
 
     var body: some Scene {
@@ -34,7 +34,7 @@ struct vnznApp: App {
                     router.navigate(to: url)
                 }
         }
-        .modelContainer(modelContainer)
+        .modelContainer(Self.modelContainer)
         .onChange(of: scenePhase) { _, newPhase in
             switch newPhase {
             case .background:
