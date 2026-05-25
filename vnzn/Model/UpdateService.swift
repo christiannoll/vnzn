@@ -5,6 +5,7 @@ import OSLog
 final class UpdateService {
 
     private let contentParser = ContentParser()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "UpdateService")
 
     static let lastUpdateKey = "lastUpdate"
     static let lastFullSyncKey = "lastFullSync"
@@ -26,17 +27,27 @@ final class UpdateService {
         }
 
         if lastFullSyncFromServer > lastFullSyncLocal || languageChanged {
-            try await fullSyncFlow(modelContext: modelContext)
-            UserDefaults.standard.set(lastFullSyncFromServer, forKey: Self.lastFullSyncKey)
+            do {
+                try await fullSyncFlow(modelContext: modelContext)
+                UserDefaults.standard.set(lastFullSyncFromServer, forKey: Self.lastFullSyncKey)
+            } catch {
+                logger.error("fullSyncFlow error: \(error)")
+                throw error
+            }
         } else {
-            try await incrementalUpdate(modelContext: modelContext)
+            do {
+                try await incrementalUpdate(modelContext: modelContext)
+            } catch {
+                logger.error("incrementalUpdate error: \(error)")
+                throw error
+            }
         }
 
         UserDefaults.standard.set(lastUpdateFromServer, forKey: Self.lastUpdateKey)
     }
 
     private func incrementalUpdate(modelContext: ModelContext) async throws {
-        let items = await fetchItems()
+        let items = try await fetchItems()
 
         let existingIds: Set<Int> = try await MainActor.run {
             let posts = try modelContext.fetch(FetchDescriptor<Post>())
@@ -62,7 +73,7 @@ final class UpdateService {
     }
 
     private func fullSyncFlow(modelContext: ModelContext) async throws {
-        let items = await fetchItems()
+        let items = try await fetchItems()
         let imageMap = await prefetchImages(items)
 
         let oldData = try await MainActor.run {
@@ -149,14 +160,13 @@ final class UpdateService {
         }
     }
 
-    private func fetchItems() async -> [Item] {
+    private func fetchItems() async throws -> [Item] {
         do {
             let xml = try await Client.shared.fetchData(fromUrl: VnznEnv.baseUrl + "xml/content.xml")
             return contentParser.parse(xmlString: xml)
         } catch {
-            let logger = Logger(subsystem: "de.vnzn.vnzn", category: "UpdateService")
             logger.error("Fetch items error: \(error)")
-            return []
+            throw error
         }
     }
 
