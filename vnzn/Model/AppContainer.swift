@@ -36,7 +36,12 @@ func createAppContainer() -> ModelContainer {
 
         Task {
             let updateService = UpdateService()
-            try await updateService.fetchUpdates(modelContext: container.mainContext, languageChanged)
+            do {
+                try await updateService.fetchUpdates(modelContext: container.mainContext, languageChanged)
+            } catch {
+                let logger = Logger(subsystem: "de.vnzn.vnzn", category: "AppContainer")
+                logger.error("fetchUpdates error: \(error)")
+            }
         }
 
         return container
