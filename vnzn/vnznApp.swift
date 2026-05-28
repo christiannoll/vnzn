@@ -11,6 +11,8 @@ struct vnznApp: App {
     private var metaData = MetaData()
     private static let modelContainer = createAppContainer()
 
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "vnznApp")
+
     @State private var notificationHandler = NotificationHandler()
 
     @Environment(\.scenePhase) private var scenePhase
@@ -54,7 +56,7 @@ struct vnznApp: App {
         scheduleAppRefreshTask()
 
         guard await UserNotificationController.shared.areNotificationsAuthorized() else {
-            Logger().error("[BGTask] Notifications not authorized")
+            logger.error("[BGTask] Notifications not authorized")
             return
         }
 
@@ -66,9 +68,9 @@ struct vnznApp: App {
                 title: "vnzn.app",
                 sound: true
             )
-            Logger().error("[BGTask] Notification sent")
+            logger.error("[BGTask] Notification sent")
         } else {
-            Logger().error("[BGTask] No new items")
+            logger.error("[BGTask] No new items")
         }
     }
 
@@ -78,9 +80,9 @@ struct vnznApp: App {
 
         do {
             try BGTaskScheduler.shared.submit(request)
-            Logger().error("[BGTaskScheduler] scheduled: \(request.earliestBeginDate ?? Date())")
+            logger.debug("[BGTaskScheduler] scheduled: \(request.earliestBeginDate ?? Date())")
         } catch {
-            Logger().error("[BGTaskScheduler] scheduling error: \(error)")
+            logger.error("[BGTaskScheduler] scheduling error: \(error)")
         }
     }
 
