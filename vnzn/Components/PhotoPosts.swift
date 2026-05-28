@@ -4,7 +4,7 @@ import OSLog
 struct PhotoPosts: View {
 
     private let posts: [Post]
-    private let logger = Logger()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "PhotoPosts")
 
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
