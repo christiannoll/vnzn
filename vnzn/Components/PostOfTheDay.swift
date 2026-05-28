@@ -4,7 +4,7 @@ import OSLog
 struct PostOfTheDay: View {
 
     let posts: [Post]
-    private let logger = Logger()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "PostOfTheDay")
 
     @State private var selectedPost: Post
     @Environment(Router.self) var router: Router
