@@ -3,7 +3,7 @@ import OSLog
 
 public struct EmailController {
 
-    private static let logger = Logger()
+    private static let logger = Logger(subsystem: "de.vnzn.vnzn", category: "EmailController")
 
     @MainActor
     public static func sendEmail(address: String, subject: String = "", message: String = "") {
