@@ -3,7 +3,7 @@ import OSLog
 
 public class MarkdownParser {
 
-    private let logger = Logger()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "MarkdownParser")
 
     public static func parse(text: String) -> [MarkdownNode] {
         let parser = MarkdownParser(text: text)
