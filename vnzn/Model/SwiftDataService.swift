@@ -6,7 +6,8 @@ class SwiftDataService {
     
     @MainActor static let shared = SwiftDataService()
     private var modelContext: ModelContext!
-    
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "SwiftDataService")
+
     private init() {}
     
     func setup(modelContext: ModelContext) {
