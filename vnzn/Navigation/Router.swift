@@ -14,7 +14,7 @@ import OSLog
     
     var selectedTab = Tabs.posts
 
-    let logger = Logger()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "Router")
 
     var postsViewNavigationPath = NavigationPath()
     var searchViewNavigationPath = NavigationPath()
