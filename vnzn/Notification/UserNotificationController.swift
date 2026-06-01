@@ -10,7 +10,7 @@ enum NewBlogEntryInfo {
 
 final class UserNotificationController: Sendable {
 
-    let logger = Logger()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "UserNotificationController")
     @MainActor public static let shared: UserNotificationController = .init()
 
     public func sendNotification(message: String, title: String, sound: Bool) async {
