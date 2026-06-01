@@ -27,7 +27,7 @@ class SwiftDataService {
         do {
             try modelContext.save()
         } catch {
-            Logger().error("\(error.localizedDescription)")
+            logger.error("\(error.localizedDescription)")
         }
     }
 
