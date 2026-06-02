@@ -74,12 +74,13 @@ struct AppSettingsView: View {
 private extension UNUserNotificationCenter {
     func getNotificationSettingsAndHandle() async {
         let settings = await self.notificationSettings()
+        let logger = Logger(subsystem: "de.vnzn.vnzn", category: "UNUserNotificationCenter")
 
         if case .notDetermined = settings.authorizationStatus {
             do {
                 _ = try await self.requestAuthorization(options: [.badge, .sound, .alert])
             } catch {
-                Logger().error("Authorization request failed: \(error)")
+                logger.error("Authorization request failed: \(error)")
             }
         } else {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
