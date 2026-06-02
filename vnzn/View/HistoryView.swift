@@ -14,6 +14,8 @@ struct HistoryView: View {
 
     @State private var sortOrderReversed: Bool = false
 
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "HistoryView")
+
     var searchResults: [HistoryItem] {
         if searchText.isEmpty {
             return sortOrderReversed ? items.reversed() : items
@@ -84,7 +86,7 @@ struct HistoryView: View {
         do {
             try modelContext.delete(model: HistoryItem.self)
         } catch {
-            Logger().debug("Failed to delete all history items.")
+            logger.debug("Failed to delete all history items.")
         }
     }
 }
