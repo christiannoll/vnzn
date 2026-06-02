@@ -13,6 +13,7 @@ enum NetworkError: Error {
 class Client {
 
     static private let dateFormatter = ISO8601DateFormatter()
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "Client")
 
     static let shared = Client()
     private init() { }
@@ -23,7 +24,7 @@ class Client {
             let (data, _) = try await URLSession.shared.data(from: url)
             return data
         } catch {
-            Logger().error("Error fetching data: \(error)")
+            logger.error("Error fetching data: \(error)")
             return nil
         }
     }
@@ -49,7 +50,7 @@ class Client {
             let dateString = try await fetchData(fromUrl: fromUrl)
             return Self.dateFormatter.date(from: dateString)?.timeIntervalSince1970 ?? 0
         } catch {
-            Logger().error("[fetchDate] Error: \(error)")
+            logger.error("[fetchDate] Error: \(error)")
             return 0
         }
     }
@@ -68,15 +69,15 @@ class Client {
             
             return decodedResponse
         } catch NetworkError.badUrl {
-            Logger().error("There was an error creating the URL")
+            logger.error("There was an error creating the URL")
         } catch NetworkError.badResponse {
-            Logger().error("Did not get a valid response")
+            logger.error("Did not get a valid response")
         } catch NetworkError.badStatus {
-            Logger().error("Did not get a 2xx status code from the response")
+            logger.error("Did not get a 2xx status code from the response")
         } catch NetworkError.failedToDecodeResponse {
-            Logger().error("Failed to decode response into the given type")
+            logger.error("Failed to decode response into the given type")
         } catch {
-            Logger().error("An error occured downloading the data")
+            logger.error("An error occured downloading the data")
         }
         
         return nil
