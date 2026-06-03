@@ -6,6 +6,8 @@ struct SimilarPostsView: View {
 
     @State private var similarPosts: [Post]
 
+    private static let logger = Logger(subsystem: "de.vnzn.vnzn", category: "SimilarPostsView")
+
     init(post: Post) {
         similarPosts = Self.fetchSimilarPosts(post: post)
     }
@@ -47,7 +49,7 @@ struct SimilarPostsView: View {
                 }
             }
         } catch {
-            Logger().error("\(error.localizedDescription)")
+            logger.error("\(error.localizedDescription)")
         }
         return fetchedSimilarPosts
     }
