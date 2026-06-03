@@ -9,6 +9,8 @@ class PostsViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var filteredItems: [Post] = []
 
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "PostsViewModel")
+
     var posts: [Post] = []
 
     func fetchPosts() {
@@ -25,7 +27,7 @@ class PostsViewModel: ObservableObject {
                 }
                 .assign(to: &$filteredItems)
         } catch {
-            Logger().error("\(error.localizedDescription)")
+            logger.error("\(error.localizedDescription)")
         }
     }
 }
