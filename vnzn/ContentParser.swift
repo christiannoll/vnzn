@@ -9,7 +9,9 @@ class ContentParser : NSObject, XMLParserDelegate {
     private var item = Item(-1)
     private var foundCharacters = ""
     private var indexType = ""
-    
+
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "ContentParser")
+
     func parse() -> [Item] {
         return parse(CONTENT_FILE)
     }
@@ -122,7 +124,7 @@ class ContentParser : NSObject, XMLParserDelegate {
             //xmlString = try String(contentsOf: URL(fileURLWithPath: filePath))
         }
         catch {
-            Logger().error("Error: \(error)")
+            logger.error("Error: \(error)")
         }
         return xmlString
     }
