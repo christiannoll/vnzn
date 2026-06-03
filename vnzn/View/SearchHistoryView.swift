@@ -10,6 +10,8 @@ struct SearchHistoryView: View {
     @Query(sort: \SearchItem.date, order: .reverse) var searchItems: [SearchItem]
     @Query(sort: \Post.date) var posts: [Post]
 
+    private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "SearchHistoryView")
+
     var body: some View {
         @Bindable var router = router
         HStack {
@@ -48,7 +50,7 @@ struct SearchHistoryView: View {
         do {
             try modelContext.delete(model: SearchItem.self)
         } catch {
-            Logger().error("Failed to delete all history items.")
+            logger.error("Failed to delete all history items.")
         }
     }
 }
