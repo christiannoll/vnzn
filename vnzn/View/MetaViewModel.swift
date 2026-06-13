@@ -37,6 +37,7 @@ class MetaViewModel {
         metaItems.append(MetaItem(navigationTarget: .photos, title: "Fotos"))
         metaItems.append(MetaItem(navigationTarget: .personsCloud, title: "Personenwolke"))
         metaItems.append(MetaItem(navigationTarget: .topicsCloud, title: "Themenwolke"))
+        metaItems.append(MetaItem(navigationTarget: .portal, title: "Das Portal"))
         metaItems.append(MetaItem(navigationTarget: .shortStories, title: "Kurzgeschichten"))
         metaItems.append(MetaItem(navigationTarget: .ai, title: "Artificial Intelligence"))
         metaItems.append(MetaItem(navigationTarget: .experiments, title: "Experimente"))

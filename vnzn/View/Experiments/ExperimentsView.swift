@@ -7,7 +7,6 @@ struct ExperimentsView: View {
     var body: some View {
         List {
             ExperimentButton(navigationTarget: NavigationTarget.past, title: "Reise in die Vergangenheit")
-            ExperimentButton(navigationTarget: NavigationTarget.portal, title: "Das Portal")
         }
         .navigationTitle("Experimente")
         .buttonStyle(.plain)
