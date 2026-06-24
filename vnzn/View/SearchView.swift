@@ -16,7 +16,9 @@ struct SearchView: View {
             SearchScrollView()
                 .environmentObject(viewModel)
                 .selectNavigationDestination()
-                .searchable(text: $viewModel.searchText, prompt: "vnzn durchsuchen")
+                .searchable(text: $viewModel.searchText,
+                            placement: .navigationBarDrawer(displayMode: .always),
+                            prompt: "vnzn durchsuchen")
                 .scrollContentBackground(.hidden)
                 .navigationTitle("Suchen")
                 .task {
