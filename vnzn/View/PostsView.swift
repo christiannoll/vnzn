@@ -75,7 +75,7 @@ struct PostsView: View {
     private func refreshItems() {
         Task {
             let updateService = UpdateService()
-            try await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
+            try? await updateService.fetchUpdates(modelContext: SwiftDataService.shared.context)
         }
     }
 
