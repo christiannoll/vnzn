@@ -6,6 +6,17 @@ struct TagsGridView: View {
 
     @Environment(Router.self) var router: Router
 
+    @State private var favoritedIDs: Set<TagItem.ID> = []
+
+    var sortedItems: [TagItem] {
+        tagItems.sorted {
+            let aFav = favoritedIDs.contains($0.id)
+            let bFav = favoritedIDs.contains($1.id)
+            if aFav != bFav { return aFav }
+            return $0.tagTitle < $1.tagTitle
+        }
+    }
+
     var body: some View {
         @Bindable var router = router
         LazyVGrid(
@@ -16,16 +27,14 @@ struct TagsGridView: View {
             alignment: .leading,
             spacing: 10
         ) {
-            ForEach (tagItems) { tagItem in
+            ForEach (sortedItems) { tagItem in
                 Button {
                     router.currentNavigationPath.append(NavigationTarget.tag(tagItem))
                 } label: {
                     VStack(alignment: .leading) {
                         HStack {
                             Spacer()
-                            Image(systemName: "star")
-                                .padding(.horizontal)
-                                .foregroundStyle(.background)
+                            StarButton(tagItem: tagItem, favoritedIDs: $favoritedIDs)
                         }
                         Text(tagItem.tagTitle)
                             .bold()
@@ -45,5 +54,28 @@ struct TagsGridView: View {
                 )
             }
         }
+    }
+}
+
+struct StarButton: View {
+
+    let tagItem: TagItem
+    @Binding var favoritedIDs: Set<TagItem.ID>
+    @State private var isStarred = false
+
+    var body: some View {
+        let isStarred = favoritedIDs.contains(tagItem.id)
+        Button {
+            if isStarred {
+                favoritedIDs.remove(tagItem.id)
+            } else {
+                favoritedIDs.insert(tagItem.id)
+            }
+        } label: {
+            Image(systemName: isStarred ? "star.fill" : "star")
+                .padding(.horizontal)
+                .foregroundStyle(.background)
+        }
+        .buttonStyle(.plain)
     }
 }
