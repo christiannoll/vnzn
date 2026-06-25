@@ -40,7 +40,7 @@ struct TagsGridView: View {
                             .bold()
                             .padding(.horizontal)
                             .padding(.top, 4)
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                     }
                     .frame(height: 70)
                     .frame(maxWidth: .infinity)
@@ -66,15 +66,17 @@ struct StarButton: View {
     var body: some View {
         let isStarred = favoritedIDs.contains(tagItem.id)
         Button {
-            if isStarred {
-                favoritedIDs.remove(tagItem.id)
-            } else {
-                favoritedIDs.insert(tagItem.id)
+            withAnimation(.spring(duration: 0.4)) {
+                if isStarred {
+                    favoritedIDs.remove(tagItem.id)
+                } else {
+                    favoritedIDs.insert(tagItem.id)
+                }
             }
         } label: {
             Image(systemName: isStarred ? "star.fill" : "star")
                 .padding(.horizontal)
-                .foregroundStyle(.background)
+                .foregroundStyle(.white)
         }
         .buttonStyle(.plain)
     }
