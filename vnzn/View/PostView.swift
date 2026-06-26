@@ -87,10 +87,6 @@ struct PostView: View {
         }
     }
 
-    private func nextPost(_ currentId: Int) -> Post? {
-        posts.first { $0.id == viewModel.post.id - 1 }
-    }
-
     private func photoTagItem(_ tagItemKey: String) -> TagItem? {
         metaData.serials.getTagItem(tagItemKey)
     }
