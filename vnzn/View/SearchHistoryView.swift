@@ -44,7 +44,9 @@ struct SearchHistoryView: View {
                     Text(Date.createPostDate(searchItem.post))
                         .font(.footnote)
                 }
+                .contentShape(Rectangle())
             }
+            .padding(.horizontal, 4)
             .buttonStyle(.plain)
         }
     }
