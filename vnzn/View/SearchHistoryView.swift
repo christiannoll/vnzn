@@ -31,18 +31,21 @@ struct SearchHistoryView: View {
         ForEach (searchItems) { searchItem in
             Divider()
                 .padding(.vertical, 4)
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(searchItem.post.title)
-                        .bold()
-                    Spacer()
-                    Text("\"" + searchItem.searchTerm + "\"")
-                }
-                Text(Date.createPostDate(searchItem.post)).foregroundStyle(.secondary).font(.footnote)
-            }
-            .onTapGesture {
+            Button {
                 router.currentNavigationPath.append(NavigationTarget.post(searchItem.post, posts))
+            } label: {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(searchItem.post.title)
+                            .bold()
+                        Spacer()
+                        Text("\"" + searchItem.searchTerm + "\"")
+                    }
+                    Text(Date.createPostDate(searchItem.post))
+                        .font(.footnote)
+                }
             }
+            .buttonStyle(.plain)
         }
     }
 
