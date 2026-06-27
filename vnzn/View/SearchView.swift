@@ -50,6 +50,7 @@ struct SearchScrollView: View {
                 LazyVGrid(columns: [GridItem(.flexible())]) {
                     if viewModel.searchText.isEmpty {
                         SearchHistoryView()
+                            .environmentObject(viewModel)
                     } else {
                         let filteredItems = viewModel.filteredItems
                         ForEach (filteredItems) { post in

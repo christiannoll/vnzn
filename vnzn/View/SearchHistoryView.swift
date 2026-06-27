@@ -6,9 +6,9 @@ struct SearchHistoryView: View {
 
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var viewModel: PostsViewModel
 
     @Query(sort: \SearchItem.date, order: .reverse) var searchItems: [SearchItem]
-    @Query(sort: \Post.date) var posts: [Post]
 
     private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "SearchHistoryView")
 
@@ -32,7 +32,7 @@ struct SearchHistoryView: View {
             Divider()
                 .padding(.vertical, 4)
             Button {
-                router.currentNavigationPath.append(NavigationTarget.post(searchItem.post, posts))
+                router.currentNavigationPath.append(NavigationTarget.post(searchItem.post, viewModel.posts))
             } label: {
                 VStack(alignment: .leading) {
                     HStack {
