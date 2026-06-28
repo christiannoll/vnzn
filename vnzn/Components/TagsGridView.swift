@@ -6,7 +6,7 @@ struct TagsGridView: View {
 
     @Environment(Router.self) var router: Router
 
-    @State private var favoritedIDs: Set<TagItem.ID> = []
+    @State private var favoritedIDs: Set<TagItem.ID> = UserDefaults.standard.favoritedTagIDs
 
     var sortedItems: [TagItem] {
         tagItems.sorted {
@@ -54,6 +54,9 @@ struct TagsGridView: View {
                 )
             }
         }
+        .onChange(of: favoritedIDs) { _, newValue in
+            UserDefaults.standard.favoritedTagIDs = newValue
+        }
     }
 }
 
@@ -79,5 +82,14 @@ struct StarButton: View {
                 .foregroundStyle(.white)
         }
         .buttonStyle(.plain)
+    }
+}
+
+extension UserDefaults {
+    private static let favoritedTagsKey = "favoritedTagIDs"
+
+    var favoritedTagIDs: Set<TagItem.ID> {
+        get { Set(stringArray(forKey: Self.favoritedTagsKey) ?? []) }
+        set { set(Array(newValue), forKey: Self.favoritedTagsKey) }
     }
 }

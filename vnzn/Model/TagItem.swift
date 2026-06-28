@@ -5,7 +5,9 @@ class TagItem: Identifiable, Hashable {
     private let _key: String
     private let folderName: String
     var posts: [Post] = []
-    
+
+    var id: String { _key }
+
     var key: String {
         get { return _key }
     }
