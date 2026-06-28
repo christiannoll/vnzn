@@ -62,7 +62,7 @@ struct SearchScrollView: View {
                 .padding()
             } else {
                 TagsGridView(tagItems: metaData.tags.tagItems)
-                .padding()
+                    .padding()
             }
         }
     }
