@@ -8,9 +8,7 @@ class TagItem: Identifiable, Hashable {
 
     var id: String { _key }
 
-    var key: String {
-        get { return _key }
-    }
+    var key: String { _key }
     
     init(_ key: String, _ folderName: String) {
         self._key = key
