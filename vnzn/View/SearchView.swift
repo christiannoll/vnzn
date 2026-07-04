@@ -8,6 +8,7 @@ struct SearchView: View {
     @Environment(MetaData.self) var metaData: MetaData
     @Environment(Router.self) var router: Router
 
+    @State private var isSearchActive = false
     @State private var dataRetrieved = false
 
     var body: some View {
@@ -17,6 +18,7 @@ struct SearchView: View {
                 .environmentObject(viewModel)
                 .selectNavigationDestination()
                 .searchable(text: $viewModel.searchText,
+                            isPresented: $isSearchActive,
                             placement: .navigationBarDrawer(displayMode: .always),
                             prompt: "vnzn durchsuchen")
                 .scrollContentBackground(.hidden)
@@ -28,6 +30,13 @@ struct SearchView: View {
                         dataRetrieved = true
                     }
                 }
+        }
+        .onAppear {
+            if let searchTerm = router.searchTerm {
+                viewModel.searchText = searchTerm
+                isSearchActive = true
+                router.searchTerm = nil
+            }
         }
     }
 

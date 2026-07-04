@@ -123,6 +123,16 @@ struct PostDataView: View {
                 }
             }
         }
+        else if url.absoluteString.starts(with: "#search/") {
+            let urlString = url.absoluteString.replacingOccurrences(of: "#", with: VnznEnv.baseUrl)
+            if let components = URLComponents(string: urlString),
+               let queryItems = components.queryItems {
+                if let queryItem = queryItems.first(where: { $0.name == "q" }) {
+                    router.searchTerm = queryItem.value
+                    router.selectedTab = Router.Tabs.search
+                }
+            }
+        }
         else if url.absoluteString.starts(with: "#") {
             if let foundPost = findPost(url: url) {
                 post = foundPost
