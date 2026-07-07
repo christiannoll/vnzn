@@ -16,14 +16,13 @@ struct SearchHistoryView: View {
         @Bindable var router = router
         HStack {
             Text("Zuletzt gesucht")
-                .font(.subheadline)
+                .font(.headline)
                 .bold()
                 .padding(4)
             Spacer()
-            Button("Löschen") {
+            Button("Löschen", role: .destructive) {
                 deleteSearchHistory()
             }
-            .foregroundStyle(.secondary)
             .font(.subheadline)
             .bold()
             .padding(4)
