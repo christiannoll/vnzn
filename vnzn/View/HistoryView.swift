@@ -12,7 +12,7 @@ struct HistoryView: View {
     @Query(sort: \Post.date) var posts: [Post]
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
 
-    @State private var sortOrderReversed: Bool = false
+    @State private var sortOrderReversed = false
 
     private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "HistoryView")
 
