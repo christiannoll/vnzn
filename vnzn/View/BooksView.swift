@@ -7,7 +7,7 @@ struct BooksView: View {
     @Environment(Router.self) var router: Router
     @Environment(MetaData.self) var metaData: MetaData
 
-    @State private var sortOrderReversed: Bool = false
+    @State private var sortOrderReversed = false
 
     var body: some View {
         List {
