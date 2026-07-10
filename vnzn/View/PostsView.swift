@@ -30,6 +30,9 @@ struct PostsView: View {
                 }
                 let sortedItems = postsVisibility?.oldestFirst ?? false ? viewModel.filteredItems.reversed() : viewModel.filteredItems
                 let filteredItems = sortedItems.filter { shouldInclude($0) }
+                if filteredItems.isEmpty {
+                    Text("Keinen passenden Post gefunden. 🙁")
+                }
                 let slicedItems = slice(items: filteredItems)
                 ForEach (slicedItems) { post in
                     PostRow(post: post, posts: slicedItems, action: {})
