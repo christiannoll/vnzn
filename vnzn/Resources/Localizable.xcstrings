@@ -1604,23 +1604,6 @@
         }
       }
     },
-    "Zitate" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zitate"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quotes"
-          }
-        }
-      }
-    },
     "Zufall" : {
       "extractionState" : "manual",
       "localizations" : {
