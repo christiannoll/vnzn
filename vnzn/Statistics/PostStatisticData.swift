@@ -2,11 +2,11 @@ import Foundation
 
 struct PostStatisticData {
 
-    var publishDate: String = ""
-    var imagePost: Bool = false
+    var publishDate = ""
+    var imagePost = false
     var wordCount: Int = 0
     var linkCount: Int = 0
-    var serialPost: Bool = false
+    var serialPost = false
     var postItem: Post
     var visits: Int = 0
 }
