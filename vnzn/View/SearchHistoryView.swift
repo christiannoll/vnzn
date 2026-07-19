@@ -23,7 +23,7 @@ struct SearchHistoryView: View {
             Button("Löschen", role: .destructive) {
                 deleteSearchHistory()
             }
-            .font(.subheadline)
+            .font(.headline)
             .bold()
             .padding(4)
         }
