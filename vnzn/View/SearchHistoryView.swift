@@ -15,7 +15,7 @@ struct SearchHistoryView: View {
     var body: some View {
         @Bindable var router = router
         HStack {
-            Text("Zuletzt gesucht")
+            Text("Zuletzt gefunden")
                 .font(.headline)
                 .bold()
                 .padding(4)
