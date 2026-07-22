@@ -86,8 +86,10 @@ private extension UNUserNotificationCenter {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { _ in })
+            UIApplication.shared.open(settingsUrl, options: [:]) { success in
+                if !success {
+                    logger.error("Failed to open settings app")
+                }
             }
         }
     }
