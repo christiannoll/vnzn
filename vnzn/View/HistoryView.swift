@@ -13,6 +13,7 @@ struct HistoryView: View {
     @Query(sort: \HistoryItem.date, order: .reverse) var items: [HistoryItem]
 
     @State private var sortOrderReversed = false
+    @State private var isDeleteAlertPresented = false
 
     private let logger = Logger(subsystem: "de.vnzn.vnzn", category: "HistoryView")
 
@@ -66,9 +67,19 @@ struct HistoryView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        deleteHistory()
+                        isDeleteAlertPresented.toggle()
                     } label: {
                         Image(systemName: "trash")
+                    }
+                    .confirmationDialog(
+                        "",
+                        isPresented: $isDeleteAlertPresented,
+                        titleVisibility: .hidden
+                    ) {
+                        Button("Verlauf löschen") {
+                            isDeleteAlertPresented.toggle()
+                            deleteHistory()
+                        }
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
