@@ -77,8 +77,10 @@ struct HistoryView: View {
                         titleVisibility: .hidden
                     ) {
                         Button("Verlauf löschen") {
-                            isDeleteAlertPresented.toggle()
-                            deleteHistory()
+                            if items.isEmpty == false {
+                                isDeleteAlertPresented.toggle()
+                                deleteHistory()
+                            }
                         }
                     }
                 }
