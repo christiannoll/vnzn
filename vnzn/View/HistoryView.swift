@@ -72,7 +72,7 @@ struct HistoryView: View {
                         Image(systemName: "trash")
                     }
                     .confirmationDialog(
-                        "",
+                        "Verlauf löschen",
                         isPresented: $isDeleteAlertPresented,
                         titleVisibility: .hidden
                     ) {
