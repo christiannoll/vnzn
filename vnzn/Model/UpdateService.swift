@@ -11,6 +11,9 @@ final class UpdateService {
     static let lastFullSyncKey = "lastFullSync"
 
     func fetchUpdates(modelContext: ModelContext, _ languageChanged: Bool = false) async throws {
+        // observe whether it is truly necessary or merely a rare exception
+        //try await repairMissingImages(modelContext: modelContext)
+        
         async let update = Client.shared.fetchLastUpdate()
         async let fullSync = Client.shared.fetchLastFullSync()
 
@@ -221,5 +224,38 @@ final class UpdateService {
             visits: 0,
             image: image
         )
+    }
+    
+    private func repairMissingImages(modelContext: ModelContext) async throws {
+        let imageType = PostType.image
+        
+        let postsNeedingImage: [(id: Int, data: String)] = try await MainActor.run {
+            let descriptor = FetchDescriptor<Post>(
+                predicate: #Predicate { $0.type == imageType && $0.image == nil }
+            )
+            return try modelContext.fetch(descriptor).map { ($0.id, $0.data) }
+        }
+
+        guard !postsNeedingImage.isEmpty else { return }
+
+        var fetched: [(id: Int, image: Data)] = []
+        for post in postsNeedingImage {
+            let url = VnznEnv.baseRootUrl + "images/" + post.data
+            if let image = await Client.shared.fetchRawData(fromURL: url) {
+                fetched.append((post.id, image))
+            }
+        }
+
+        guard !fetched.isEmpty else { return }
+
+        try await MainActor.run {
+            let idsToUpdate = Set(fetched.map { $0.id })
+            let descriptor = FetchDescriptor<Post>(predicate: #Predicate { idsToUpdate.contains($0.id) })
+            let imageById = Dictionary(uniqueKeysWithValues: fetched)
+            for post in try modelContext.fetch(descriptor) {
+                post.image = imageById[post.id]
+            }
+            try modelContext.save()
+        }
     }
 }
