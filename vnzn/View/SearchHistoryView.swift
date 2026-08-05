@@ -7,6 +7,8 @@ struct SearchHistoryView: View {
     @Environment(Router.self) var router: Router
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var viewModel: PostsViewModel
+    
+    @State private var isDeleteAlertPresented: Bool = false
 
     @Query(sort: \SearchItem.date, order: .reverse) var searchItems: [SearchItem]
 
@@ -21,7 +23,19 @@ struct SearchHistoryView: View {
                 .padding(4)
             Spacer()
             Button("Löschen", role: .destructive) {
-                deleteSearchHistory()
+                isDeleteAlertPresented.toggle()
+            }
+            .confirmationDialog(
+                "Verlauf löschen",
+                isPresented: $isDeleteAlertPresented,
+                titleVisibility: .hidden
+            ) {
+                Button("Verlauf löschen") {
+                    if searchItems.isEmpty == false {
+                        isDeleteAlertPresented.toggle()
+                        deleteSearchHistory()
+                    }
+                }
             }
             .font(.headline)
             .bold()
