@@ -91,6 +91,9 @@ struct PostDataView: View {
         else if url.absoluteString.starts(with: "#ai") {
             router.currentNavigationPath.append(NavigationTarget.ai)
         }
+        else if url.absoluteString.starts(with: "#portal") {
+            router.currentNavigationPath.append(NavigationTarget.portal)
+        }
         else if url.absoluteString.starts(with: "#tags/") {
             let components = url.absoluteString.components(separatedBy: "/")
             if components.count == 3 {
