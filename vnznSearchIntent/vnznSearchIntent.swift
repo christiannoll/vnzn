@@ -6,13 +6,13 @@ struct vnznSearchIntent: AppIntent {
 
     static let title: LocalizedStringResource = "Search"
     static let description: LocalizedStringResource = "Search for posts"
-    static var openAppWhenRun: Bool { true }
-
+    static let supportedModes: IntentModes = .foreground
+    
     @Parameter(title: LocalizedStringResource("Search term"))
     var searchTerm: String
 
     @MainActor
-    func perform() async throws -> some IntentResult & OpensIntent {
+    func perform() async throws -> some IntentResult {
         if let url = URL(string: "vnznapp://search-post?q=\(searchTerm)") {
             EnvironmentValues().openURL(url)
         }
