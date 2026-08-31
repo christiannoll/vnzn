@@ -13,9 +13,19 @@ struct vnznSearchIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        if let url = URL(string: "vnznapp://search-post?q=\(searchTerm)") {
-            EnvironmentValues().openURL(url)
+        var components = URLComponents()
+        components.scheme = "vnznapp"
+        components.host = "search-post"
+        components.queryItems = [
+            URLQueryItem(name: "q", value: searchTerm)
+        ]
+        
+        guard let url = components.url else {
+            throw CocoaError(.fileNoSuchFile)
         }
+        
+        EnvironmentValues().openURL(url)
+        
         return .result()
     }
 }
