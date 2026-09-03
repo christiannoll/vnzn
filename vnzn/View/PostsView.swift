@@ -30,7 +30,7 @@ struct PostsView: View {
                 }
                 let sortedItems = postsVisibility?.oldestFirst ?? false ? viewModel.filteredItems.reversed() : viewModel.filteredItems
                 let filteredItems = sortedItems.filter { shouldInclude($0) }
-                if filteredItems.isEmpty {
+                if filteredItems.isEmpty && showOnlyFavourites {
                     Text("Keinen passenden Post gefunden. 🙁")
                 }
                 let slicedItems = slice(items: filteredItems)
@@ -73,6 +73,10 @@ struct PostsView: View {
                 isLoading = false
             }
         }
+    }
+    
+    private var showOnlyFavourites: Bool {
+        postsVisibility?.onlyFavourites ?? false
     }
 
     private func refreshItems() {
