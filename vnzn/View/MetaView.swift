@@ -59,6 +59,7 @@ struct MetaView: View {
                     Button("sort", systemImage: "chevron.up.chevron.down") {
                         viewModel.sortByNextOrder()
                     }
+                    .accessibilityLabel("Sortieren der Meta-Themen")
                 }
             }
         }
