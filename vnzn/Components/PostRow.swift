@@ -1,12 +1,13 @@
 import SwiftUI
 
 struct PostRow: View {
-    
+
     let post: Post
     let posts: [Post]
     let action: () -> Void
 
     @Environment(Router.self) var router: Router
+    @Environment(\.replacesDetail) private var replacesDetail
 
     let stringBuilder = StringBuilder()
     let nodeParser = NodeParser()
@@ -23,16 +24,14 @@ struct PostRow: View {
                 Text(text())
                     .lineLimit(2)
                     .padding(.vertical, 1)
-                .contentShape(Rectangle())
+                    .contentShape(Rectangle())
                 Text(Date.createPostDate(post)).foregroundStyle(.secondary)
             }
             .environment(\.openURL, OpenURLAction { _ in
-                action()
-                return handleLink()
+                handleLink()
             })
             .onTapGesture {
-                router.currentNavigationPath.append(NavigationTarget.post(post, posts))
-                action()
+                open()
             }
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets(top: 0, leading: 6, bottom: 20, trailing: 6))
@@ -42,8 +41,7 @@ struct PostRow: View {
                 HStack {
                     Spacer()
                     Button {
-                        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
-                        action()
+                        open()
                     } label: {
                         PostImage(post: post)
                             .frame(width: 200, height: 200)
@@ -60,6 +58,11 @@ struct PostRow: View {
         }
     }
 
+    private func open() {
+        router.open(.post(post, posts), replacing: replacesDetail)
+        action()
+    }
+
     private func text() -> AttributedString {
         var text = AttributedString()
 
@@ -70,7 +73,7 @@ struct PostRow: View {
     }
 
     private func handleLink() -> OpenURLAction.Result {
-        router.currentNavigationPath.append(NavigationTarget.post(post, posts))
+        open()
         return .handled
     }
 }
