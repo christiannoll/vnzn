@@ -59,7 +59,7 @@ struct PostRow: View {
     }
 
     private func open() {
-        router.open(.post(post, posts), replacing: replacesDetail)
+        router.open(.post(post, posts)/*, replacing: replacesDetail*/)
         action()
     }
 

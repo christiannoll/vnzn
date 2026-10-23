@@ -59,13 +59,11 @@ import OSLog
         currentNavigationPath = NavigationPath()
     }
     
-    /// NEU: Navigiert zu einem Ziel. Mit `replacing: true` wird der Pfad vorher geleert
-    /// (iPad: Auswahl in der Sidebar ersetzt den Detailbereich).
-    func open(_ target: NavigationTarget, replacing: Bool = false) {
-        if replacing {
-            //currentNavigationPath.removeLast(currentNavigationPath.count)
-            //resetNavigation()
-        }
+    func open(_ target: NavigationTarget/*, replacing: Bool = false*/) {
+        /*if replacing {
+            currentNavigationPath.removeLast(currentNavigationPath.count)
+            resetNavigation()
+        }*/
         currentNavigationPath.append(target)
     }
 
