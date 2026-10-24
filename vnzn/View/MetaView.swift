@@ -81,6 +81,8 @@ struct MetaViewButton: View {
             HStack {
                 Text(LocalizedStringKey(metaItem.title))
                 Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.tertiary)
             }
             .contentShape(Rectangle())
         }
