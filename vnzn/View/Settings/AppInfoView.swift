@@ -58,6 +58,8 @@ struct AppInfoButton: View {
                 Image(systemName: imageName)
                 Text(title)
                 Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.tertiary)
             }
             .contentShape(Rectangle())
         }
