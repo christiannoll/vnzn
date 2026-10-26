@@ -23,19 +23,19 @@ struct PostOfTheDay: View {
     }
 
     var body: some View {
-        Group {
-            Text(selectedPost.title)
-                .bold()
-            Button {
-                router.currentNavigationPath.append(NavigationTarget.post(selectedPost, posts))
-            } label: {
+        Button {
+            router.currentNavigationPath.append(NavigationTarget.post(selectedPost, posts))
+        } label: {
+            VStack(alignment: .leading, spacing: 16) {
+                Text(selectedPost.title)
+                    .bold()
                 PostDataView(post: $selectedPost, urlToOpen: $urlToOpen, isSafariPresented: $isSafariPresented, reduceData: true, posts: posts)
-                    .contentShape(Rectangle())
+                Text(Date.createPostDate(selectedPost))
+                    .foregroundStyle(.secondary)
             }
-            .buttonStyle(.plain)
-            Text(Date.createPostDate(selectedPost))
-                .foregroundStyle(.secondary)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
         .onAppear {
             initPostOfTheDay()
         }

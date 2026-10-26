@@ -26,7 +26,7 @@ struct PostsView: View {
 
         Group {
             if sizeClass == .regular {
-                // iPad / breites Fenster: Sidebar + Detail
+                // iPad
                 NavigationSplitView {
                     postsList
                         .environment(\.replacesDetail, true)
@@ -38,7 +38,7 @@ struct PostsView: View {
                     }
                 }
             } else {
-                // iPhone / schmales Fenster: wie bisher
+                // iPhone
                 NavigationStack(path: $router.postsViewNavigationPath) {
                     postsList
                         .selectNavigationDestination()
