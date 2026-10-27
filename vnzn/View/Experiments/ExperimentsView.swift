@@ -26,6 +26,8 @@ struct ExperimentButton: View {
             HStack {
                 Text(title)
                 Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.tertiary)
             }
             .contentShape(Rectangle())
         }

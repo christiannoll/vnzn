@@ -29,6 +29,8 @@ struct IndexView: View {
                         Spacer()
                         Text(String(indexItem.numberOfPosts))
                             .foregroundStyle(.secondary)
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.tertiary)
                     }
                     .contentShape(Rectangle())
                 }

@@ -28,6 +28,8 @@ struct TagsView: View {
                         Spacer()
                         Text(tagItem.numberOfPosts)
                             .foregroundStyle(.secondary)
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.tertiary)
                     }
                     .contentShape(Rectangle())
                 }

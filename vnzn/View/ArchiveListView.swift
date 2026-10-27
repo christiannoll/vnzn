@@ -18,6 +18,8 @@ struct ArchiveListView: View {
                             Text(month.monthName)
                                 .foregroundStyle(.secondary)
                             Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.tertiary)
                         }
                         .contentShape(Rectangle())
                     }

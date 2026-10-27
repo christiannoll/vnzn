@@ -22,6 +22,8 @@ struct BooksView: View {
                             Text(post.title)
                                 .foregroundStyle(.secondary)
                             Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.tertiary)
                         }
                         .contentShape(Rectangle())
                     }
