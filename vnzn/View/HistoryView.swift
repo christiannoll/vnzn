@@ -76,7 +76,7 @@ struct HistoryView: View {
                         isPresented: $isDeleteAlertPresented,
                         titleVisibility: .hidden
                     ) {
-                        Button("Verlauf löschen") {
+                        Button("Verlauf löschen", role: .destructive) {
                             if items.isEmpty == false {
                                 isDeleteAlertPresented.toggle()
                                 deleteHistory()

@@ -30,7 +30,7 @@ struct SearchHistoryView: View {
                 isPresented: $isDeleteAlertPresented,
                 titleVisibility: .hidden
             ) {
-                Button("Verlauf löschen") {
+                Button("Verlauf löschen", role: .destructive) {
                     if searchItems.isEmpty == false {
                         isDeleteAlertPresented.toggle()
                         deleteSearchHistory()
