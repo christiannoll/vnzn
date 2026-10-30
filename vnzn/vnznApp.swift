@@ -41,7 +41,13 @@ struct vnznApp: App {
             switch newPhase {
             case .background:
                 SwiftDataService.shared.save()
-                scheduleAppRefreshTask()
+                Task {
+                    await scheduleAppRefreshTask()
+                }
+            case .active:
+                Task {
+                    await scheduleAppRefreshTask()
+                }
             default:
                 break
             }
@@ -53,7 +59,7 @@ struct vnznApp: App {
     }
 
     private func handleAppRefresh() async {
-        scheduleAppRefreshTask()
+        await scheduleAppRefreshTask()
 
         guard await UserNotificationController.shared.areNotificationsAuthorized() else {
             logger.error("[BGTask] Notifications not authorized")
@@ -74,12 +80,12 @@ struct vnznApp: App {
         }
     }
 
-    private func scheduleAppRefreshTask() {
+    private func scheduleAppRefreshTask() async {
         let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshIdentifier)
         request.earliestBeginDate = Date().addingTimeInterval(15 * 60)
 
         do {
-            try BGTaskScheduler.shared.submit(request)
+            try await BGTaskScheduler.shared.submitTaskRequest(request)
             logger.debug("[BGTaskScheduler] scheduled: \(request.earliestBeginDate ?? Date())")
         } catch {
             logger.error("[BGTaskScheduler] scheduling error: \(error)")
