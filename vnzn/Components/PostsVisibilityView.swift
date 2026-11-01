@@ -7,10 +7,15 @@ struct PostsVisibilityView: ToolbarContent {
     var postsVisibility: PostsVisibility? {
         postsVisibilities.first
     }
+    
+    var isFiltered: Bool {
+        guard let postsVisibility else { return false }
+        return postsVisibility.onlyFavourites || postsVisibility.postsLimit != .all
+    }
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            Menu("menu", systemImage: "line.3.horizontal.decrease") {
+            Menu {
                 Button() {
                     if let postsVisibility {
                         postsVisibility.onlyFavourites.toggle()
@@ -72,7 +77,10 @@ struct PostsVisibilityView: ToolbarContent {
                         Label("Alle", systemImage: postsVisibility.postsLimit == .all ? "checkmark.square" : "square")
                     }
                 }
+            } label: {
+                Image(systemName: "line.3.horizontal.decrease")
             }
+            .tint(isFiltered ? .accentColor : nil)
         }
     }
 }
