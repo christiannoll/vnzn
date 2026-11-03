@@ -58,14 +58,6 @@ import OSLog
     func resetNavigation() {
         currentNavigationPath = NavigationPath()
     }
-    
-    func open(_ target: NavigationTarget/*, replacing: Bool = false*/) {
-        /*if replacing {
-            currentNavigationPath.removeLast(currentNavigationPath.count)
-            resetNavigation()
-        }*/
-        currentNavigationPath.append(target)
-    }
 
     @MainActor
     func navigate(to url: URL) {
@@ -108,19 +100,5 @@ import OSLog
         }
         
         currentNavigationPath.append(NavigationTarget.searchIntent(queryString))
-    }
-}
-
-/// Wenn `true`, ersetzt ein Tap auf eine `PostRow` den Inhalt des Detailbereichs,
-/// statt einen weiteren Eintrag auf den Navigationspfad zu legen.
-/// Wird nur in der Sidebar-Liste des Posts-Tabs (iPad, `.regular`) gesetzt.
-private struct ReplacesDetailKey: EnvironmentKey {
-    static let defaultValue = false
-}
-
-extension EnvironmentValues {
-    var replacesDetail: Bool {
-        get { self[ReplacesDetailKey.self] }
-        set { self[ReplacesDetailKey.self] = newValue }
     }
 }
