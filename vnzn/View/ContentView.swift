@@ -8,7 +8,7 @@ struct ContentView: View {
         @Bindable var router = router
         TabView(selection: $router.selectedTab) {
             Tab("Blog", systemImage: "rectangle.stack", value: .posts) {
-                DuoView()
+                PostsDuoView()
             }
             Tab("Entdecken", systemImage: "globe", value: .discover) {
                 DiscoverView()
@@ -17,7 +17,7 @@ struct ContentView: View {
                 HistoryView()
             }
             Tab("Meta", systemImage: "ellipsis.circle", value: .meta) {
-                MetaView()
+                MetaDuoView()
             }
             Tab(value: .search, role: .search) {
                 SearchView()
@@ -26,10 +26,22 @@ struct ContentView: View {
     }
 }
 
-struct DuoView: View {
+struct PostsDuoView: View {
     var body: some View {
         ArrangementView {
             PostsView()
+        } secondary: {
+            SearchView()
+                .splitArrangementLayoutRatio(0.45)
+        }
+        .arrangementViewStyle(.split.axes(.horizontal))
+    }
+}
+
+struct MetaDuoView: View {
+    var body: some View {
+        ArrangementView {
+            MetaView()
         } secondary: {
             SearchView()
                 .splitArrangementLayoutRatio(0.45)
